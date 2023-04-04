@@ -34,6 +34,9 @@ public class SupplierFragment extends Fragment {
     int position;
 
 
+
+
+    
     Button addSupplierTxt;
 
     public SupplierFragment() {
