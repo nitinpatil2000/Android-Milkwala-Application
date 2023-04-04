@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#00BCD4"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:padding="5dp"
+    android:layout_height="220dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/milk"
+        android:layout_weight="3"
+        android:scaleType="fitXY"
+        android:contentDescription="Header Description"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Navigation Tutorial"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nitin@gmail.com"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>
