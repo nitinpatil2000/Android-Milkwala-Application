@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".Supplier.SupplierDetailsFragment">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:outlineAmbientShadowColor="@color/black"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:cardMaxElevation="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
@@ -38,88 +39,86 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="5">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="Suppier Name  :"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="2"
+                    android:text="Supplier Name : "
+                    android:textColor="#000"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/supplierName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="Supplier"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
+                    android:layout_weight="3"
+                    android:text="Chitale"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/edit_design"
+                    />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="5">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:text="Address  :"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="2"
+                    android:text=" Address : "
+                    android:textColor="#000"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/supplierAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.7"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="Address"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="3"
+                    android:text="Address 1"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/edit_design"
+                    />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="5">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="Contact/Mobile No :"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="2"
+                    android:text="Contact No  : "
+                    android:textColor="#000"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/supplierNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.7"
+                    android:layout_weight="3"
+                    android:text="8574859685"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:padding="5dp"
                     android:inputType="number"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="Number"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:paddingStart="10dp"
+                    android:background="@drawable/edit_design"
+                    />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

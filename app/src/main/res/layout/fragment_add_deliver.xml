@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".products.ProductViewDetailsFragment">
-
+    tools:context=".delivery.AddDeliverFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -34,72 +33,44 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Product Name :"
+                    android:text="Deliver Boy Name :"
                     android:textColor="#000"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/txtProductName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="Ice Cream"
-                    android:textSize="20dp"
-                    android:textColor="#000"
-                    android:padding="5dp"
-                    android:background="@drawable/edit_design"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="5"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Unit :"
-                    android:textColor="#000"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:padding="5dp"
-                    android:textColor="#000"
-                    android:text="1kg"
-                    android:textSize="20dp"
-                    android:background="@drawable/edit_design"
-                    android:id="@+id/txtUnit"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:weightSum="5"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Supplier Rate :"
-                    android:textColor="#000"
-                    android:textSize="20dp"/>
-
                 <EditText
-                    android:id="@+id/editSupplierRate"
+                    android:id="@+id/editDeliveryName"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
                     android:padding="5dp"
-                    android:text="Rs. 50"
+                    android:background="@drawable/edit_design"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="5"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Address :"
+                    android:textColor="#000"
+                    android:textSize="20dp"/>
+
+                <EditText
+                    android:id="@+id/editAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:padding="5dp"
+                    android:minLines="2"
+                    android:maxLines="10"
                     android:background="@drawable/edit_design"
                     />
 
@@ -115,16 +86,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Vender Rate :"
+                    android:text="Contact No :"
                     android:textColor="#000"
                     android:textSize="20dp"/>
 
                 <EditText
-                    android:id="@+id/editVenderRate"
+                    android:id="@+id/editContactNo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="Rs.100"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:padding="5dp"
                     android:background="@drawable/edit_design"
@@ -142,20 +113,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="MRP :"
+                    android:text="Alternate No :"
                     android:textColor="#000"
                     android:textSize="20dp"/>
 
-                <TextView
-                    android:id="@+id/txtProductMrp"
+                <EditText
+                    android:id="@+id/editAlternateNo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:textColor="#000"
-                    android:textSize="20dp"
-                    android:text="Rs.200"
-                    android:background="@drawable/edit_design"
+                    android:maxLines="1"
+                    android:inputType="number"
                     android:padding="5dp"
+                    android:background="@drawable/edit_design"
                     />
 
             </LinearLayout>
@@ -178,16 +148,16 @@
             android:layout_marginBottom="10dp"/>
 
         <Button
-            android:id="@+id/deleteNewProductBtn"
+            android:id="@+id/addNewDeliverBtn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Delete Product"
+            android:text="Add"
             android:layout_marginStart="25sp"
             android:layout_marginEnd="25sp"
             android:textColor="@color/black"
             android:textSize="25sp"
-            android:backgroundTint="@color/button_background_color"
             android:fontFamily="@font/ubuntu_light"
+            android:backgroundTint="@color/button_background_color"
             android:layout_marginBottom="10dp"
             android:gravity="center"
             />
@@ -196,4 +166,5 @@
 
 
     </LinearLayout>
+
 </LinearLayout>

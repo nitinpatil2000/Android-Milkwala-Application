@@ -15,11 +15,11 @@
             android:background="#A89F9F"
             android:id="@+id/toolbar">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:src="@drawable/ic_baseline_arrow_drop_down_24"/>
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:src="@drawable/ic_baseline_arrow_drop_down_24"/>-->
 
 
         </androidx.appcompat.widget.Toolbar>

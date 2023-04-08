@@ -18,18 +18,19 @@
     android:layout_height="wrap_content"
     android:text="Delete"
     android:textColor="#000"
+    android:id="@+id/deleteTxt"
     android:textSize="20dp"
     android:textStyle="bold"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="contact"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:id="@+id/suppName"
-        android:layout_marginStart="10dp"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="contact"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textColor="#000"-->
+<!--        android:id="@+id/suppName"-->
+<!--        android:layout_marginStart="10dp"/>-->
 
  </LinearLayout>
     <View

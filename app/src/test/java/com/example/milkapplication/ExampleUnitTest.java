@@ -1,4 +1,4 @@
-package com.example.milkapplication;
+package com.technosoul.milkwala;
 
 import org.junit.Test;
 
