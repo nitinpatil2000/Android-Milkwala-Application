@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            setActionBarTitle("MilkWala");
+//            setActionBarTitle("MilkWala");
         }
     }
 

@@ -82,6 +82,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:minLines="4"
+                    android:maxLines="5"
                     android:text="Address 1"
                     android:textSize="20dp"
                     android:textColor="#000"

@@ -14,7 +14,7 @@ import com.technosoul.milkwala.products.Product;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, DeliverDetails.class}, exportSchema = false, version = 5)
+@Database(entities = {Supplier.class, ProductDetails.class, DeliverDetails.class}, exportSchema = false, version = 6)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "supplierDb";
     private static MyDbHelper instance;

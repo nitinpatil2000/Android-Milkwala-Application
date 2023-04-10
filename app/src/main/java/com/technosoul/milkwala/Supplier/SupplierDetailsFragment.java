@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SupplierDetailsFragment extends Fragment {
-    TextView supplierName;
+    TextView supplierName, supplierAddress, supplierNumber;
     Button deleteSupplier;
-    String supplierTxtValue;
+    String suppName, suppAddress, suppNumber;
     RecyclerViewAdapter recyclerViewAdapter;
 
     public SupplierDetailsFragment() {
@@ -41,14 +41,20 @@ public class SupplierDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_supplier_details, container, false);
         supplierName = view.findViewById(R.id.supplierName);
+        supplierAddress = view.findViewById(R.id.supplierAddress);
+        supplierNumber = view.findViewById(R.id.supplierNumber);
         deleteSupplier = view.findViewById(R.id.deleteSupplier);
 
 
 
         Bundle bundle = getArguments();
         if(bundle != null){
-            supplierTxtValue = bundle.getString("supplierTxt");
-            supplierName.setText(supplierTxtValue);
+            suppName = bundle.getString("supplierTxt");
+            suppAddress = bundle.getString("supplierAddress");
+            suppNumber = bundle.getString("supplierNumber");
+            supplierName.setText(suppName);
+            supplierAddress.setText(suppAddress);
+            supplierNumber.setText(suppNumber);
         }
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
@@ -58,7 +64,7 @@ public class SupplierDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //dialog box buttons
-                TextView cancelBtn, deleteBtn, deleteTxt;
+                TextView cancelBtn, deleteBtn, deleteTxt, deleteInfo;
                 Dialog dialog = new Dialog(getContext());
 
                 dialog.setCancelable(false);
@@ -67,7 +73,11 @@ public class SupplierDetailsFragment extends Fragment {
                 cancelBtn = dialog.findViewById(R.id.cancelBtn);
                 deleteBtn = dialog.findViewById(R.id.delteBtn);
                 deleteTxt = dialog.findViewById(R.id.deleteTxt);
-                deleteTxt.setText(" Delete " + supplierTxtValue );
+                deleteInfo = dialog.findViewById(R.id.deleteInfo);
+                deleteTxt.setText(" Delete " + "Supplier " + suppName);
+                deleteInfo.setText(new StringBuilder().append("Please note, if you delete the \n")
+                        .append(suppName).append(" supplier, then all his \n")
+                        .append("products & associated data will get removed.\n").toString());
 
                 cancelBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

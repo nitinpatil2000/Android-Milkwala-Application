@@ -67,7 +67,6 @@ public class HomeFragment extends Fragment {
                 ft.addToBackStack(null);
                 ft.replace(R.id.container, productFragment);
                 ft.commit();
-
             }
         });
 
@@ -96,5 +95,11 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Master Info :");
     }
 }

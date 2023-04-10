@@ -84,6 +84,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         Supplier clickedItem = suppliers.get(position);
                         Bundle bundle = new Bundle();
                         bundle.putString("supplierTxt", clickedItem.getSupplierName());
+                        bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
+                        bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
 
                         SupplierDetailsFragment supplierDetailsFragment  = new SupplierDetailsFragment();
                         supplierDetailsFragment.setArguments(bundle);
@@ -95,7 +97,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         ft.addToBackStack(null);
                         ft.commit();
                         ((AppCompatActivity) view.getContext()).getSupportActionBar().setTitle(clickedItem.getSupplierName());
-
                     }
                 }
             });

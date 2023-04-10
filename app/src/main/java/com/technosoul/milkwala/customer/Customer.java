@@ -8,4 +8,5 @@ public class Customer {
         this.customerTxt = customerTxt;
         this.customerSubText = customerSubText;
     }
+
 }

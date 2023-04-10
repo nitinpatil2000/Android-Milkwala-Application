@@ -16,7 +16,7 @@ import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 public class AddSupplier extends Fragment {
-    EditText editSupplierName;
+    EditText editSupplierName, editSupplierAddress, editSupplierNumber;
     Button addNewSupplierBtn;
     int position;
 
@@ -36,6 +36,8 @@ public class AddSupplier extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_supplier, container, false);
         editSupplierName = view.findViewById(R.id.editSupplierName);
+        editSupplierAddress = view.findViewById(R.id.editSupplierAddress);
+        editSupplierNumber = view.findViewById(R.id.editSupplierNumber);
         addNewSupplierBtn = view.findViewById(R.id.addNewSupplierBtn);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
@@ -43,10 +45,14 @@ public class AddSupplier extends Fragment {
             @Override
             public void onClick(View view) {
                 String supplierName = editSupplierName.getText().toString();
-                if (!supplierName.isEmpty()) {
+                String supplierAddress = editSupplierAddress.getText().toString();
+                String supplierNumber = editSupplierNumber.getText().toString();
+
+                if (!supplierName.isEmpty() && !supplierAddress.isEmpty() && !supplierNumber.isEmpty()) {
                     myDbHelper.supplierDao().addSupplier(
-                            new Supplier(supplierName)
+                            new Supplier(supplierName, supplierAddress, supplierNumber)
                     );
+
                     Toast.makeText(getContext(), "Supplier added successfully", Toast.LENGTH_SHORT).show();
                     // return to the supplierFragment
                     FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
