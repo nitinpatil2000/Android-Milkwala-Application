@@ -5,6 +5,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(tableName = "supplier")
 public class Supplier {
 
@@ -71,4 +74,5 @@ public class Supplier {
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
     }
+
 }

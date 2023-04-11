@@ -1,16 +1,13 @@
 package com.technosoul.milkwala.Supplier;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +15,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.ArrayList;
 
@@ -32,6 +31,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.suppliers = suppliers;
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.supplier_design, parent, false);
@@ -42,6 +42,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.supplierTxt.setText(suppliers.get(holder.getAdapterPosition()).getSupplierName());
+        MyDbHelper myDbHelper = MyDbHelper.getDB(context);
+        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
+        int numCounterSuppliers = productDetailsList.size();
+        holder.supplierCounter.setText(String.format("%d Suppliers", numCounterSuppliers));
     }
 
     @Override
@@ -61,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView supplierTxt, supplierSubText;
+        TextView supplierTxt, supplierCounter;
         ImageView suppliersImg;
         LinearLayout supplierLinear;
 
@@ -70,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
 
             supplierTxt = itemView.findViewById(R.id.suppliersTxt);
-            supplierSubText = itemView.findViewById(R.id.supplierSubText);
+            supplierCounter = itemView.findViewById(R.id.supplierCounter);
             suppliersImg = itemView.findViewById(R.id.suppliersImg);
             supplierLinear = itemView.findViewById(R.id.supplierLinear);
 

@@ -67,10 +67,13 @@ public class ProductViewDetailsAdapter extends RecyclerView.Adapter<ProductViewD
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION){
                         ProductDetails clickedItem = productDetails.get(position);
+
                         Bundle bundle = new Bundle();
                         bundle.putString("viewProductName", clickedItem.getProductDetailsName());
                         bundle.putString("viewProductUnit", clickedItem.getProductDetailsUnit());
                         bundle.putString("viewProductMrp", clickedItem.getProductDetailsMrp());
+                        bundle.putString("viewSupplierRate", clickedItem.getProductSupplierRate());
+                        bundle.putString("viewVenderRate", clickedItem.getProductVenderRate());
 
                         ProductViewDetailsFragment productViewDetailsFragment = new ProductViewDetailsFragment();
                         productViewDetailsFragment.setArguments(bundle);

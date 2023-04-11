@@ -3,6 +3,8 @@ package com.technosoul.milkwala.customer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,17 +12,22 @@ import android.os.RecoverySystem;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.Supplier.AddSupplier;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.delivery.DeliverViewAdapter;
+import com.technosoul.milkwala.products.AddProductFragment;
 
 import java.util.ArrayList;
 
 public class CustomerFragment extends Fragment {
     ArrayList<Customer> customers = new ArrayList<>();
     CustomerViewAdapter customerViewAdapter;
+    Button addCustomerBtn;
 
     public CustomerFragment() {
         // Required empty public constructor
@@ -35,14 +42,26 @@ public class CustomerFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         customerRecyclerView.setLayoutManager(gridLayoutManager);
 
-        customers = new ArrayList<>();
-        customers.add(new Customer("Chitale", "16 Customers"));
-        customers.add(new Customer("Gokul", "14 Customers"));
-        customers.add(new Customer("Amul", "24 Customers"));
-        customers.add(new Customer("Katraj", "16 Customers"));
+        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+        ArrayList<Customer>customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
+        for(int i = 0; i<customerList.size(); i++){
+            customerViewAdapter = new CustomerViewAdapter(getContext(), customerList);
+            customerViewAdapter.notifyDataSetChanged();
+            customerRecyclerView.setAdapter(customerViewAdapter);
+        }
 
-        CustomerViewAdapter customerViewAdapter = new CustomerViewAdapter(getContext(), customers);
-        customerRecyclerView.setAdapter(customerViewAdapter);
+        addCustomerBtn = view.findViewById(R.id.addCustomerBtn);
+        addCustomerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddCustomer addCustomer = new AddCustomer();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.container, addCustomer);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         if(getActivity()!= null){
             ((MainActivity) getActivity()).setActionBarTitle("Customer");

@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delivery"
-                android:id="@+id/deliverTxt"
+                android:id="@+id/deliveryBoyName"
                 android:layout_marginStart="22dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/ubuntu_light"
@@ -36,11 +36,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8 Products"
+                android:text=""
+                android:inputType="number"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
-                android:textSize="20dp"
-                android:id="@+id/deliverSubText"
+                android:textSize="20sp"
+                android:id="@+id/deliveryBoyNumber"
                 android:fontFamily="@font/ubuntu_light"
                 android:textColor="@color/black"/>
 

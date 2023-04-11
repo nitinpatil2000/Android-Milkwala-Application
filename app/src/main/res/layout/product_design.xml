@@ -40,7 +40,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
                 android:textSize="20dp"
-                android:id="@+id/productSubText"
+                android:id="@+id/productCounter"
                 android:fontFamily="@font/ubuntu_light"
                 android:textColor="@color/black"/>
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.Supplier.RecyclerViewAdapter;
@@ -18,9 +19,8 @@ import com.technosoul.milkwala.Supplier.Supplier;
 import java.util.ArrayList;
 
 public class ProductFragment extends Fragment {
-    ArrayList<Product> products = new ArrayList<>();
+//    ArrayList<Product> products = new ArrayList<>();
     ProductViewAdapter productViewAdapter;
-
 
     public ProductFragment() {
         // Required empty public constructor
@@ -36,14 +36,21 @@ public class ProductFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         productRecyclerView.setLayoutManager(gridLayoutManager);
 
-        products = new ArrayList<>();
-        products.add(new Product("Chitale", "16 Products"));
-        products.add(new Product("Gokul", "14 Products"));
-        products.add(new Product("Amul","20 Products"));
-        products.add(new Product("Katraj", "24 Products"));
-
-        productViewAdapter = new ProductViewAdapter(getContext(), products);
-        productRecyclerView.setAdapter(productViewAdapter);
+        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+        ArrayList<Supplier> supplierList = (ArrayList<Supplier>)myDbHelper.supplierDao().getAllSuppliers();
+        for(int i = 0; i< supplierList.size(); i++){
+            productViewAdapter = new ProductViewAdapter(getContext(), supplierList);
+            productViewAdapter.notifyDataSetChanged();
+            productRecyclerView.setAdapter(productViewAdapter);
+        }
+//        products = new ArrayList<>();
+//        products.add(new Product("Chitale", "16 Products"));
+//        products.add(new Product("Gokul", "14 Products"));
+//        products.add(new Product("Amul","20 Products"));
+//        products.add(new Product("Katraj", "24 Products"));
+//
+//        productViewAdapter = new ProductViewAdapter(getContext(), products);
+//        productRecyclerView.setAdapter(productViewAdapter);
 
         if(getActivity() != null){
             ((MainActivity) getActivity()).setActionBarTitle("Products");

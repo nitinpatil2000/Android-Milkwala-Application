@@ -1,34 +1,21 @@
 package com.technosoul.milkwala.delivery;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.products.AddProductFragment;
-import com.technosoul.milkwala.products.ProductDetails;
-import com.technosoul.milkwala.products.ProductViewDetailsAdapter;
-
-import java.util.ArrayList;
-
 public class DeliveryDetailsFragment extends Fragment {
+    TextView txtDeliveryBoyName, txtDeliveryBoyAdd, txtDeliveryBoyCity, txtDeliveryBoyContactNo, txtDeliveryBoyAlterNo;
+    Button deleteDeliveryBoyBtn;
+    String deliveryBoyName;
 
-    DeliverDetailsViewAdapter deliverDetailsViewAdapter;
-    RecyclerView deliverDetailRecyclerView;
-    ArrayList<DeliverDetails> deliverDetails = new ArrayList<>();
-
-    Button addDeliveryBtn;
 
     public DeliveryDetailsFragment() {
         // Required empty public constructor
@@ -38,33 +25,71 @@ public class DeliveryDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view  = inflater.inflate(R.layout.fragment_delivery_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_delivery_details, container, false);
+        txtDeliveryBoyName = view.findViewById(R.id.txtDeliveryBoyName);
+        txtDeliveryBoyAdd = view.findViewById(R.id.txtDeliveryBoyAdd);
+        txtDeliveryBoyCity = view.findViewById(R.id.txtDeliveryBoyCity);
+        txtDeliveryBoyContactNo = view.findViewById(R.id.txtDeliveryBoyContact);
+        txtDeliveryBoyAlterNo = view.findViewById(R.id.txtDeliveryBoyAlterNo);
 
-        deliverDetailRecyclerView = view.findViewById(R.id.deliverDetailRecyclerView);
-        deliverDetailRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        deleteDeliveryBoyBtn = view.findViewById(R.id.deleteDeliveryBoyBtn);
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        deliverDetails = (ArrayList<DeliverDetails>) myDbHelper.deliveryDetailDao().getAllDetails();
 
-        for (int i = 0; i < deliverDetails.size(); i++) {
-            deliverDetailsViewAdapter = new DeliverDetailsViewAdapter(getContext(),deliverDetails);
-            deliverDetailsViewAdapter.notifyDataSetChanged();
-            deliverDetailRecyclerView.setAdapter(deliverDetailsViewAdapter);
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            deliveryBoyName = bundle.getString("Name");
+            String deliveryBoyAddress = bundle.getString("Address");
+            String deliveryBoyCity = bundle.getString("City");
+            String deliveryBoyContact = bundle.getString("Contact");
+            String deliveryBoyAlter = bundle.getString("Alter");
+
+            txtDeliveryBoyName.setText(deliveryBoyName);
+            txtDeliveryBoyAdd.setText(deliveryBoyAddress);
+            txtDeliveryBoyCity.setText(deliveryBoyCity);
+            txtDeliveryBoyContactNo.setText(deliveryBoyContact);
+            txtDeliveryBoyAlterNo.setText(deliveryBoyAlter);
         }
 
-        addDeliveryBtn = view.findViewById(R.id.addDeliverBtn);
-
-        addDeliveryBtn.setOnClickListener(new View.OnClickListener() {
+        deleteDeliveryBoyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddDeliverFragment addDeliverFragment = new AddDeliverFragment();
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.container, addDeliverFragment);
-                ft.addToBackStack(null);
-                ft.commit();
+                TextView cancelBtn, deleteBtn, deleteTxt, deleteInfo, dltMsg;
+
+                Dialog dialog = new Dialog(getContext());
+
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.dialog_design);
+
+                cancelBtn = dialog.findViewById(R.id.cancelBtn);
+                deleteBtn = dialog.findViewById(R.id.delteBtn);
+                deleteTxt = dialog.findViewById(R.id.deleteTxt);
+                deleteInfo = dialog.findViewById(R.id.deleteInfo);
+                dltMsg = dialog.findViewById(R.id.dltMsg);
+
+                deleteTxt.setText(" Delete Delivery Boy");
+                deleteInfo.setText(deliveryBoyName);
+                dltMsg.setText("are you sure to delete this \n product?");
+
+
+                cancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                dialog.show();
+
             }
         });
-        return view;
+
+        return  view;
     }
 }

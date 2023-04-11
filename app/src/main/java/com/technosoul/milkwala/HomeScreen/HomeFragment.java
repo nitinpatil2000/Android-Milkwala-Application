@@ -12,13 +12,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.Supplier.Supplier;
 import com.technosoul.milkwala.Supplier.SupplierFragment;
+import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.customer.CustomerFragment;
+import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.delivery.FragmentDeliver;
-import com.technosoul.milkwala.products.ProductFragment;
 
+import com.technosoul.milkwala.products.ProductFragment;
 import java.util.ArrayList;
+
 
 public class HomeFragment extends Fragment {
 //    ArrayList<HomeItem> homeItems = new ArrayList<>();
@@ -30,6 +35,8 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
 
     }
+
+
 
 
     @Override
@@ -48,6 +55,20 @@ public class HomeFragment extends Fragment {
         deliveryImg = view.findViewById(R.id.deliveryImg);
         customerImg = view.findViewById(R.id.customerImg);
 
+        supplierSubText = view.findViewById(R.id.supplierSubText);
+        productSubText  = view.findViewById(R.id.productSubText);
+        deliverySubText = view.findViewById(R.id.deliverySubText);
+        customerSubText = view.findViewById(R.id.customerSubText);
+
+
+
+
+
+        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+        ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
+
+        int numSuppliers = supplierList.size();
+        supplierSubText.setText(String.format("%d Suppliers ", numSuppliers));
         supplierImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +80,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        int numProducts = supplierList.size();
+        productSubText.setText(String.format("%d Products ", numProducts));
         productImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +94,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        ArrayList<Deliver> deliverList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+        int numDelivers = deliverList.size();
+        deliverySubText.setText(String.format("%d Delivery Boys", numDelivers));
         deliveryImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +108,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        ArrayList<Customer> customerList = (ArrayList<Customer>)myDbHelper.customerDao().getAllCustomers();
+        int numCustomers = customerList.size();
+        customerSubText.setText(String.format("%d Customers", numCustomers));
         customerImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,9 +121,6 @@ public class HomeFragment extends Fragment {
                 ft.commit();
             }
         });
-
-
-
         return view;
     }
 

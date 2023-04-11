@@ -42,18 +42,16 @@ public class ProductDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_product_details, container, false);
 
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String name = bundle.getString("name");
-            String mrp = bundle.getString("mrp");
-            String unit = bundle.getString("unit");
-            //add the item in the recyclerView.
-            ProductDetails productDetails = new ProductDetails(name, mrp, unit);
-            productDetailsList.add(productDetails);
-            productViewDetailsAdapter.notifyDataSetChanged();
-        }
-
-
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            String name = bundle.getString("name");
+//            String mrp = bundle.getString("mrp");
+//            String unit = bundle.getString("unit");
+//            //add the item in the recyclerView.
+//            ProductDetails productDetails = new ProductDetails(name, mrp, unit);
+//            productDetailsList.add(productDetails);
+//            productViewDetailsAdapter.notifyDataSetChanged();
+//        }
         productDetailRecyclerView = view.findViewById(R.id.productDetailRecylerView);
         productDetailRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -83,10 +81,5 @@ public class ProductDetailsFragment extends Fragment {
         return view;
     }
 
-    public void removeItem(int position) {
-        productDetailsList.remove(position);
-        productViewDetailsAdapter.notifyItemRemoved(position);
-
-    }
 }
 

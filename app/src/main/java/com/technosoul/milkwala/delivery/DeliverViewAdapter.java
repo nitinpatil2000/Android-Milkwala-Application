@@ -1,7 +1,7 @@
 package com.technosoul.milkwala.delivery;
 
 import android.content.Context;
-import android.text.Layout;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.products.Product;
-import com.technosoul.milkwala.products.ProductDetailsFragment;
 
 import java.util.ArrayList;
 
@@ -39,8 +37,8 @@ public class DeliverViewAdapter extends RecyclerView.Adapter<DeliverViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.deliverTxt.setText(deliver.get(position).deliverTxt);
-        holder.deliverSubText.setText(deliver.get(position).deliverSubText);
+        holder.deliveryBoyName.setText(deliver.get(position).getDeliveryBoyName());
+        holder.deliveryBoyNumber.setText(deliver.get(position).getDeliveryBoyNumber());
     }
 
     @Override
@@ -49,13 +47,13 @@ public class DeliverViewAdapter extends RecyclerView.Adapter<DeliverViewAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView deliverTxt, deliverSubText;
+        TextView deliveryBoyName, deliveryBoyNumber;
         ImageView deliverImg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            deliverTxt = itemView.findViewById(R.id.deliverTxt);
-            deliverSubText = itemView.findViewById(R.id.deliverSubText);
+            deliveryBoyName = itemView.findViewById(R.id.deliveryBoyName);
+            deliveryBoyNumber = itemView.findViewById(R.id.deliveryBoyNumber);
             deliverImg = itemView.findViewById(R.id.deliverImg);
 
             deliverImg.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +62,20 @@ public class DeliverViewAdapter extends RecyclerView.Adapter<DeliverViewAdapter.
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Deliver clickedItem = deliver.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Name", clickedItem.getDeliveryBoyName());
+                        bundle.putString("Address", clickedItem.getDeliveryBoyAddress());
+                        bundle.putString("City", clickedItem.getDeliveryBoyCity());
+                        bundle.putString("Contact", clickedItem.getDeliveryBoyNumber());
+                        bundle.putString("Alter", clickedItem.getDeliveryBoyAlterNo());
                         DeliveryDetailsFragment deliveryDetailsFragment = new DeliveryDetailsFragment();
+                        deliveryDetailsFragment.setArguments(bundle);
                         FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();
                         ft.replace(R.id.container, deliveryDetailsFragment);
                         ft.addToBackStack(null);
                         ft.commit();
-                        ((AppCompatActivity) itemView.getContext()).getSupportActionBar().setTitle(clickedItem.getDeliverTxt() + " Customers");
+                        ((AppCompatActivity) itemView.getContext()).getSupportActionBar().setTitle(clickedItem.getDeliveryBoyName());
                     }
                 }
             });

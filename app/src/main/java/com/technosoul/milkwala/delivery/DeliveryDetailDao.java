@@ -6,26 +6,25 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.List;
 
 @Dao
 public interface DeliveryDetailDao {
 
-    @Query("select * from deliveryBoys")
-    List<DeliverDetails> getAllDetails();
+    @Query("select * from delivery_boys")
+    List<Deliver> getAllDeliveryBoys();
 
     @Insert
-    void addDeliver(DeliverDetails deliverDetails);
+    void addDeliver(Deliver deliver);
 
     @Update
-    void updateDeliver(DeliverDetails deliverDetails);
+    void updateDeliver(Deliver deliver);
 
     @Delete
-    void deleteDeliver(DeliverDetails deliverDetails);
+    void deleteDeliver(Deliver deliver);
 
-    @Query("DELETE FROM deliveryBoys WHERE deliver_id = :deliver_details_id")
-    void getDeliverById(int deliver_details_id);
+    @Query("DELETE FROM delivery_boys WHERE delivery_boy_id = :delivery_boy_id")
+    void getDeliverById(int delivery_boy_id);
 
 }

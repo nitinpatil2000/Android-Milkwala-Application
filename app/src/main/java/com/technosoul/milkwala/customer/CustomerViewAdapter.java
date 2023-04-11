@@ -31,8 +31,8 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CustomerViewAdapter.ViewHolder holder, int position) {
-        holder.customerTxt.setText(customers.get(position).customerTxt);
-        holder.customerSubText.setText(customers.get(position).customerSubText);
+        holder.customerName.setText(customers.get(position).getCustomerName());
+        holder.customerNumber.setText(customers.get(position).getCustomerNumber());
 
     }
 
@@ -42,11 +42,11 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView customerTxt, customerSubText;
+        TextView customerName, customerNumber;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            customerTxt = itemView.findViewById(R.id.customerTxt);
-            customerSubText = itemView.findViewById(R.id.customerSubText);
+            customerName = itemView.findViewById(R.id.customerTxt);
+            customerNumber = itemView.findViewById(R.id.customerSubText);
         }
     }
 }

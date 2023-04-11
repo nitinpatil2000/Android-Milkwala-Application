@@ -5,18 +5,30 @@
     android:background="#F37777"
     android:orientation="vertical">
 
-
-    <TextView
-        android:id="@+id/deleteTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_marginTop="25sp"
-        android:text="Delete"
-        android:textColor="#000"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:gravity="center"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/deleteTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:id="@+id/brandName"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"/>
+    </LinearLayout>
 
     <View
         android:layout_width="wrap_content"
@@ -25,15 +37,15 @@
         android:background="@color/black" />
 
     <TextView
+        android:id="@+id/deleteInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/deleteInfo"
-        android:text="Delete"
         android:layout_margin="11dp"
-        android:textColor="#000"
         android:gravity="center"
+        android:text="Delete"
+        android:textColor="#000"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,11 +54,12 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/dltMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dltMsg"
+            android:layout_margin="11dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="Hello"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -55,7 +68,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="4">
@@ -69,6 +82,7 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/btn_design"
                 android:gravity="center"
+                android:padding="5dp"
                 android:text="cancel"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -82,6 +96,7 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/btn_design"
                 android:gravity="center"
+                android:padding="5dp"
                 android:text="Delete"
                 android:textColor="@color/black"
                 android:textSize="20sp"

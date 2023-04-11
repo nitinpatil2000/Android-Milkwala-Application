@@ -16,8 +16,8 @@ import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 public class AddDeliverFragment extends Fragment {
-EditText editDeliveryName, editAddress, editContactNo, editAlternateNo;
-Button addNewDeliveryBtn;
+EditText editDeliveryBoyName, editDeliveryBoyAdd, editDeliveryBoyContact, editDeliveryBoyAlterNo, editDeliveryBoyCity;
+Button addNewDeliveryBoyBtn;
 
     public AddDeliverFragment() {
         // Required empty public constructor
@@ -31,24 +31,29 @@ Button addNewDeliveryBtn;
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_deliver, container, false);
 
-        editDeliveryName = view.findViewById(R.id.editDeliveryName);
-        editAddress = view.findViewById(R.id.editAddress);
-        editContactNo = view.findViewById(R.id.editContactNo);
-        editAlternateNo = view.findViewById(R.id.editAlternateNo);
+        editDeliveryBoyName = view.findViewById(R.id.editDeliveryBoyName);
+        editDeliveryBoyAdd = view.findViewById(R.id.editDeliveryBoyAdd);
+        editDeliveryBoyContact = view.findViewById(R.id.editDeliveryBoyContact);
+        editDeliveryBoyAlterNo = view.findViewById(R.id.editDeliveryBoyAlterNo);
+        editDeliveryBoyCity = view.findViewById(R.id.editDeliveryBoyCity);
 
-        addNewDeliveryBtn = view.findViewById(R.id.addNewDeliverBtn);
+        addNewDeliveryBoyBtn = view.findViewById(R.id.addNewDeliveryBoyBtn);
+
+
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        addNewDeliveryBtn.setOnClickListener(new View.OnClickListener() {
+
+        addNewDeliveryBoyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               String  deliverName = editDeliveryName.getText().toString();
-               String deliveryAddress = editAddress.getText().toString();
-               String deliveryContactNo = editContactNo.getText().toString();
-               String deliveryAlterNo = editAlternateNo.getText().toString();
+               String  deliverName = editDeliveryBoyName.getText().toString();
+               String deliveryAddress = editDeliveryBoyAdd.getText().toString();
+               String deliveryContactNo = editDeliveryBoyContact.getText().toString();
+               String deliveryAlterNo = editDeliveryBoyAlterNo.getText().toString();
+               String deliveryCity = editDeliveryBoyCity.getText().toString();
 
                if(!deliverName.isEmpty() && !deliveryAddress.isEmpty() && !deliveryContactNo.isEmpty() && !deliveryAlterNo.isEmpty()){
                    myDbHelper.deliveryDetailDao().addDeliver(
-                           new DeliverDetails(deliverName, deliveryAddress, deliveryContactNo, deliveryAlterNo)
+                           new Deliver(deliverName, deliveryAddress, deliveryCity, deliveryContactNo, deliveryAlterNo)
                    );
 
                    Toast.makeText(getContext(), "Delivery Boy added successfully", Toast.LENGTH_SHORT).show();

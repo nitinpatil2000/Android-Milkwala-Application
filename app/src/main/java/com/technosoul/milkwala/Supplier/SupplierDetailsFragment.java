@@ -45,8 +45,6 @@ public class SupplierDetailsFragment extends Fragment {
         supplierNumber = view.findViewById(R.id.supplierNumber);
         deleteSupplier = view.findViewById(R.id.deleteSupplier);
 
-
-
         Bundle bundle = getArguments();
         if(bundle != null){
             suppName = bundle.getString("supplierTxt");
@@ -64,7 +62,8 @@ public class SupplierDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //dialog box buttons
-                TextView cancelBtn, deleteBtn, deleteTxt, deleteInfo;
+                TextView cancelBtn, deleteBtn, deleteTxt, deleteInfo, dltMsg;
+
                 Dialog dialog = new Dialog(getContext());
 
                 dialog.setCancelable(false);
@@ -74,7 +73,10 @@ public class SupplierDetailsFragment extends Fragment {
                 deleteBtn = dialog.findViewById(R.id.delteBtn);
                 deleteTxt = dialog.findViewById(R.id.deleteTxt);
                 deleteInfo = dialog.findViewById(R.id.deleteInfo);
+                dltMsg = dialog.findViewById(R.id.dltMsg);
+
                 deleteTxt.setText(" Delete " + "Supplier " + suppName);
+                dltMsg.setText("are you sure want to delete \n this supplier..");
                 deleteInfo.setText(new StringBuilder().append("Please note, if you delete the \n")
                         .append(suppName).append(" supplier, then all his \n")
                         .append("products & associated data will get removed.\n").toString());

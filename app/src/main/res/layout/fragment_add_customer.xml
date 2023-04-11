@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".delivery.DeliveryDetailsFragment">
+    tools:context=".customer.AddCustomer">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -33,183 +33,170 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:layout_marginBottom="4dp"
-                    android:text="Deliver Boy Name :"
+                    android:text="Name :"
                     android:textColor="#000"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/editCustomerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/edit_design"
+                    android:hint="Enter the Name"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Address :"
+                    android:textColor="#000"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/editCutomerAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/edit_design"
+                    android:gravity="top"
+                    android:hint="Enter the address"
+                    android:maxLines="6"
+                    android:minLines="4"
+                    android:padding="10dp"
                     android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/txtDeliveryBoyName"
-                    android:layout_width="0dp"
-                    android:maxLines="1"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="rahul"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:background="@drawable/edit_design"
-                    />
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:weightSum="5"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:weightSum="5">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Address :"
+                    android:text="City :"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    />
+                    android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/txtDeliveryBoyAdd"
+                <EditText
+                    android:id="@+id/editCustomerCity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:gravity = "top"
-                    android:text="Address :"
-                    android:padding="10dp"
-                    android:textSize="20sp"
-                    android:textColor="#000"
-                    android:minLines="4"
                     android:background="@drawable/edit_design"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:weightSum="5"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="City  :"
-                    android:textColor="#000"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:id="@+id/txtDeliveryBoyCity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:hint="Enter the city"
                     android:maxLines="1"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:text="pune"
                     android:padding="10dp"
-                    android:background="@drawable/edit_design"
-                    />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:weightSum="5"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Contact No :"
-                    android:textColor="#000"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:id="@+id/txtDeliveryBoyContact"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:text="8574857458"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:background="@drawable/edit_design"
-                    />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:weightSum="5"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:weightSum="5">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Alternate No :"
+                    android:text="Contact 1 :"
                     android:textColor="#000"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/txtDeliveryBoyAlterNo"
+                <EditText
+                    android:id="@+id/editContactNo1"
                     android:layout_width="0dp"
-                    android:text="2502524152"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:maxLines="1"
-                    android:inputType="number"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:padding="10dp"
                     android:background="@drawable/edit_design"
-                    />
+                    android:hint="Contact No. 1 "
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="5"
+               >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Contact 2 :"
+                    android:textColor="#000"
+                    android:textSize="20dp" />
+
+
+                <EditText
+                    android:id="@+id/editContactNo2"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_design"
+                    android:hint="Contact No. 2 "
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/black"
-            android:layout_marginBottom="10dp"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/deleteDeliveryBoyBtn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Delete Delivery Boy"
-            android:layout_marginStart="25sp"
-            android:layout_marginEnd="25sp"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:fontFamily="@font/ubuntu_light"
-            android:backgroundTint="@color/button_background_color"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/black"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/addNewCustomerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Add"
+                android:layout_marginStart="25sp"
+                android:layout_marginEnd="25sp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:fontFamily="@font/ubuntu_light"
+                android:backgroundTint="@color/button_background_color"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                />
 
 
-
-
-    </LinearLayout>
-
-
+        </LinearLayout>
 
 </LinearLayout>

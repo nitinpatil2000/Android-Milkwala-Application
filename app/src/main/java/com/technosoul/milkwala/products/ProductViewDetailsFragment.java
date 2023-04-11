@@ -21,8 +21,10 @@ import com.technosoul.milkwala.R;
 public class ProductViewDetailsFragment extends Fragment {
     TextView txtProductName, txtUnit, txtProductMrp;
     Button deleteNewProductBtn;
-    String viewProductName;
+    String viewProductName, viewProductUnit;
     ProductDetails productDetails;
+    EditText editVenderRate, editSupplierRate;
+
 
     public ProductViewDetailsFragment() {
         // Required empty public constructor
@@ -37,6 +39,8 @@ public class ProductViewDetailsFragment extends Fragment {
         txtProductName = view.findViewById(R.id.txtProductName);
         txtUnit = view.findViewById(R.id.txtUnit);
         txtProductMrp = view.findViewById(R.id.txtProductMrp);
+        editSupplierRate = view.findViewById(R.id.editSupplierRate);
+        editVenderRate = view.findViewById(R.id.editVenderRate);
         deleteNewProductBtn = view.findViewById(R.id.deleteNewProductBtn);
 
 
@@ -44,19 +48,23 @@ public class ProductViewDetailsFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             viewProductName = bundle.getString("viewProductName");
-            String viewProductUnit = bundle.getString("viewProductUnit");
+            viewProductUnit = bundle.getString("viewProductUnit");
             String viewProductMrp = bundle.getString("viewProductMrp");
+            String viewPSupplierRate = bundle.getString("viewSupplierRate");
+            String viewPVenderRate = bundle.getString("viewVenderRate");
 
             txtProductName.setText(viewProductName);
-            txtUnit.setText(viewProductUnit);
+            txtUnit.setText(viewProductUnit + " pack");
             txtProductMrp.setText(viewProductMrp);
+            editSupplierRate.setText(viewPSupplierRate);
+            editVenderRate.setText(viewPVenderRate);
         }
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         deleteNewProductBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView cancelBtn, deleteBtn, deleteTxt;
+                TextView cancelBtn, deleteBtn, deleteTxt, deleteInfo, deleteMsg;
 
                 Dialog dialog = new Dialog(getContext());
                 dialog.setCancelable(false);
@@ -65,9 +73,21 @@ public class ProductViewDetailsFragment extends Fragment {
                 cancelBtn = dialog.findViewById(R.id.cancelBtn);
                 deleteBtn = dialog.findViewById(R.id.delteBtn);
                 deleteTxt = dialog.findViewById(R.id.deleteTxt);
+                deleteInfo = dialog.findViewById(R.id.deleteInfo);
+                deleteMsg = dialog.findViewById(R.id.dltMsg);
+
+
+//                brandName = dialog.findViewById(R.id.brandName);
 
                 deleteTxt.setText(" Delete " + viewProductName);
+                deleteInfo.setText(viewProductName + " \n" + viewProductUnit);
+                deleteMsg.setText("Are you sure want to delete this");
 
+//                Bundle bundle = getArguments();
+//                if(bundle != null) {
+//                    String dltBrandName = bundle.getString("brandName");
+//                    brandName.setText(dltBrandName + viewProductName);
+//                }
 
                 cancelBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

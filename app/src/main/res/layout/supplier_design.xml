@@ -43,7 +43,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
                 android:textSize="22sp"
-                android:id="@+id/supplierSubText"
+                android:id="@+id/supplierCounter"
                 android:fontFamily="@font/ubuntu_light"
                 android:textColor="@color/black"/>
 
