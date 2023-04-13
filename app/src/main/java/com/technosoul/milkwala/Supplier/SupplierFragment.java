@@ -1,12 +1,9 @@
 package com.technosoul.milkwala.Supplier;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,14 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SupplierFragment extends Fragment {
     RecyclerView supplierRecyclerView;
@@ -69,10 +64,9 @@ public class SupplierFragment extends Fragment {
             supplierRecyclerView.setAdapter(recyclerViewAdapter);
         }
 
-        //set the title in the fragment;
-        if (getActivity() != null) {
-            ((MainActivity) getActivity()).setActionBarTitle("Supplier");
-        }
+
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle("Suppliers");
         return view;
     }
 

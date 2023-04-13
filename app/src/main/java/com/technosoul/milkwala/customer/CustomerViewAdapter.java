@@ -1,14 +1,20 @@
 package com.technosoul.milkwala.customer;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 
 import java.util.ArrayList;
@@ -43,10 +49,35 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView customerName, customerNumber;
+        ImageView customerImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             customerName = itemView.findViewById(R.id.customerTxt);
             customerNumber = itemView.findViewById(R.id.customerSubText);
+            customerImg = itemView.findViewById(R.id.customerImg);
+
+            customerImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        Customer clickedItem = customers.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("customerName", clickedItem.getCustomerName());
+                        bundle.putString("customerAdd", clickedItem.getCustomerAddress());
+                        bundle.putString("customerCity", clickedItem.getCustomerCity());
+                        bundle.putString("customerNo", clickedItem.getCustomerNumber());
+                        CustomerDetailsFragment customerDetailsFragment = new CustomerDetailsFragment();
+                        customerDetailsFragment.setArguments(bundle);
+                        FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
+                        FragmentTransaction ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container, customerDetailsFragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        ((AppCompatActivity) view.getContext()).getSupportActionBar().setTitle(clickedItem.getCustomerName());
+                    }
+                }
+            });
         }
     }
 }

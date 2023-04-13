@@ -1,8 +1,6 @@
 package com.technosoul.milkwala;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,21 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.technosoul.milkwala.HomeScreen.HomeFragment;
-import com.technosoul.milkwala.Supplier.Supplier;
-import com.technosoul.milkwala.Supplier.SupplierFragment;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,29 +48,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //option menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        new MenuInflater(this).inflate(R.menu.option_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        new MenuInflater(this).inflate(R.menu.option_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
-
-        if (itemId == R.id.menu_new) {
-            Toast.makeText(this, "new File", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.menu_save) {
-            Toast.makeText(this, "Save menu", Toast.LENGTH_SHORT).show();
-        } else if (itemId == android.R.id.home) {
-//            getSupportFragmentManager().popBackStack();
-            super.onBackPressed();
-            return true;
-        } else {
-            Toast.makeText(this, "Open menu", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int itemId = item.getItemId();
+//
+//        if (itemId == R.id.menu_master) {
+//            HomeFragment homeFragment = new HomeFragment();
+//            FragmentManager fm = getSupportFragmentManager();
+//            FragmentTransaction ft = fm.beginTransaction();
+//            ft.add(R.id.container, homeFragment);
+//            ft.commit();
+//
+//        } else if (itemId == R.id.menu_stock) {
+//            Toast.makeText(this, "stock menu", Toast.LENGTH_SHORT).show();
+//        } else if (itemId == android.R.id.home) {
+////            getSupportFragmentManager().popBackStack();
+//            super.onBackPressed();
+//            return true;
+//        } else if (itemId == R.id.menu_distribution){
+//            Toast.makeText(this, "distribution menu", Toast.LENGTH_SHORT).show();
+//        } else if(itemId == R.id.menu_profile){
+//            Toast.makeText(this, "profile menu", Toast.LENGTH_SHORT).show();
+//        } else if(itemId == R.id.menu_master){
+//            Toast.makeText(this, "master menu", Toast.LENGTH_SHORT).show();
+//        } else{
+//            Toast.makeText(this, "About menu", Toast.LENGTH_SHORT).show();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
     @Override
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         //by default set the fragment
-        loadFragment(new HomeFragment());
+        loadFragment(new MilkwalaFragment());
 
         //after click the menu item
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -108,13 +110,22 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id = item.getItemId();
-                if (id == R.id.menu_new) {
-//                    loadFragment(new HomeFragment());
-                    Toast.makeText(MainActivity.this, "new", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.menu_open) {
-                    Toast.makeText(MainActivity.this, "open", Toast.LENGTH_SHORT).show();
+                if (id == R.id.menu_master) {
+                    loadFragment(new HomeFragment());
+//                    Toast.makeText(MainActivity.this, "new", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.menu_stock) {
+                    Toast.makeText(MainActivity.this, "stock menu", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.menu_distribution) {
+                    Toast.makeText(MainActivity.this, "distribution menu", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.menu_profile) {
+                    loadFragment(new ProfileFragment());
+
+//                    Toast.makeText(MainActivity.this, "profile menu", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.menu_master) {
+                    Toast.makeText(MainActivity.this, "master menu", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "save", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "About menu", Toast.LENGTH_SHORT).show();
+                    loadFragment(new AboutFragment());
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -136,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.container, fragment);
+        ft.replace(R.id.container, fragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 }

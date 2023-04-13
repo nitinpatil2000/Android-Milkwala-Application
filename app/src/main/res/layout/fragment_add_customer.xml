@@ -44,7 +44,7 @@
                     android:layout_weight="3"
                     android:background="@drawable/edit_design"
                     android:hint="Enter the Name"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:padding="10dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -73,6 +73,7 @@
                     android:gravity="top"
                     android:hint="Enter the address"
                     android:maxLines="6"
+
                     android:minLines="4"
                     android:padding="10dp"
                     android:textSize="20sp" />
@@ -129,6 +130,7 @@
                     android:background="@drawable/edit_design"
                     android:hint="Contact No. 1 "
                     android:maxLines="1"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -155,6 +157,7 @@
                     android:id="@+id/editContactNo2"
                     android:layout_width="0dp"
                     android:layout_weight="3"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_design"
                     android:hint="Contact No. 2 "

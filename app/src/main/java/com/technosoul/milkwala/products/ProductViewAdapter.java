@@ -1,7 +1,6 @@
 package com.technosoul.milkwala.products;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.Supplier.RecyclerViewAdapter;
 import com.technosoul.milkwala.Supplier.Supplier;
-import com.technosoul.milkwala.Supplier.SupplierDetailsFragment;
 
 import java.util.ArrayList;
 
@@ -71,14 +68,6 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Supplier clickedItem = suppliers.get(position);
-
-                        //pass the name in a productViewDetailsFragment to set the title of the dialog box
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("brandName",clickedItem.getProductTxt());
-//                        ProductViewDetailsFragment productViewDetailsFragment = new ProductViewDetailsFragment();
-//                        productViewDetailsFragment.setArguments(bundle);
-
-
                         ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
                         FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();

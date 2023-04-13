@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.Supplier.RecyclerViewAdapter;
 import com.technosoul.milkwala.Supplier.Supplier;
 
 import java.util.ArrayList;

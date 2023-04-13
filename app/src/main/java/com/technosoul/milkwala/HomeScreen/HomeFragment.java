@@ -1,8 +1,11 @@
 package com.technosoul.milkwala.HomeScreen;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -13,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.Supplier.Supplier;
+import com.technosoul.milkwala.Supplier.SupplierActivity;
 import com.technosoul.milkwala.Supplier.SupplierFragment;
 import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.customer.CustomerFragment;
@@ -77,6 +82,9 @@ public class HomeFragment extends Fragment {
                 ft.replace(R.id.container, supplierFragment);
                 ft.addToBackStack(null);
                 ft.commit();
+//                Intent iSupplier = new Intent(getActivity(), SupplierActivity.class);
+//                iSupplier.putExtra("fragment", "supplierFragment");
+//                startActivity(iSupplier);
             }
         });
 
@@ -121,12 +129,17 @@ public class HomeFragment extends Fragment {
                 ft.commit();
             }
         });
+
+        //set the title in fragment .
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle("Master Info :");
+
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().setTitle("Master Info :");
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        getActivity().setTitle("Master Info :");
+//    }
 }

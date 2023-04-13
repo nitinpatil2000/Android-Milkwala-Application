@@ -6,7 +6,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.vegetableapplication"
+        applicationId "com.technosoul.milkwalaapp"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -21,6 +21,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+//    onfigurations.all {
+//        resolutionStrategy.force 'com.github.lecho:hellocharts-library:1.5.8@aar'
+//    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -39,9 +44,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0-beta01'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.airbnb.android:lottie:6.0.0'
 
     implementation "androidx.room:room-runtime:2.5.1"
     annotationProcessor "androidx.room:room-compiler:2.5.1"
+
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+
 
 
 }

@@ -43,7 +43,7 @@
                     android:maxLines="1"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:background="@drawable/edit_design"
                    />
             </LinearLayout>
@@ -68,6 +68,7 @@
                     android:id="@+id/spinner"
                     android:background="@android:drawable/btn_dropdown"
                     android:layout_height="35dp"
+                    android:padding="10dp"
                     android:layout_weight="3"/>
             </LinearLayout>
 
@@ -91,7 +92,7 @@
                     android:maxLines="1"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="Rs. 50"
                     android:background="@drawable/edit_design"
                 />
@@ -119,7 +120,7 @@
                     android:layout_weight="3"
                     android:text="Rs.100"
                     android:maxLines="1"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:background="@drawable/edit_design"
               />
 
@@ -146,7 +147,7 @@
                     android:layout_weight="3"
                     android:maxLines="1"
                     android:text="Rs.200"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:background="@drawable/edit_design"
                   />
 
