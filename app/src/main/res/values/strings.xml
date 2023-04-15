@@ -14,5 +14,7 @@
     </string-array>
 
     <string name="delete">are you sure want to delete this supplier: </string>
-    <string name="description">Copyright 2023-24 \n Developed By: Technosoul Ventures Pvt Ltd \n www.technosoul.io</string>
+    <string name="description">Copyright 2023-24 \n Developed By: Technosoul Ventures Pvt Ltd</string>
+    <string name="hyperlink"><a href="https://www.technosoul.io">www.technosoul.io</a></string>
+
 </resources>

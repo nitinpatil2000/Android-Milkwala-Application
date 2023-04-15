@@ -6,11 +6,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class AboutFragment extends Fragment {
+    TextView hyperlink;
 
     public AboutFragment() {
         // Required empty public constructor
@@ -24,6 +27,10 @@ public class AboutFragment extends Fragment {
 
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setTitle("About Milkwala");
+
+        hyperlink = view.findViewById(R.id.hyperlink);
+        hyperlink.setMovementMethod(LinkMovementMethod.getInstance());
+        hyperlink.setLinkTextColor(getResources().getColor(R.color.black));
         return view;
     }
 }

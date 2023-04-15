@@ -22,10 +22,6 @@ android {
         }
     }
 
-//    onfigurations.all {
-//        resolutionStrategy.force 'com.github.lecho:hellocharts-library:1.5.8@aar'
-//    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -51,6 +47,7 @@ dependencies {
 
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 
-
+//    implementation 'com.github.blackfizz:eazegraph:1.2.5l@aar'
+//    implementation 'com.nineoldandroids:library:2.4.0'
 
 }

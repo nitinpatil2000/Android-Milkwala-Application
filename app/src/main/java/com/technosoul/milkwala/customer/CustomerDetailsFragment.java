@@ -1,5 +1,6 @@
 package com.technosoul.milkwala.customer;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 public class CustomerDetailsFragment extends Fragment {
     TextView txtCustomerName, txtCustomerAdd, txtCustomerCity, txtCustomerNo;
     Button deleteCustomerBtn;
 
+    String customerName, customerAdd, customerCity, customerNo;
     public CustomerDetailsFragment() {
         // Required empty public constructor
     }
@@ -32,16 +36,60 @@ public class CustomerDetailsFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if(bundle!= null){
-            String customerName = bundle.getString("customerName");
-            String customerAdd = bundle.getString("customerAdd");
-            String customerCity = bundle.getString("customerCity");
-            String customerNo = bundle.getString("customerNo");
+             customerName = bundle.getString("customerName");
+             customerAdd = bundle.getString("customerAdd");
+             customerCity = bundle.getString("customerCity");
+             customerNo = bundle.getString("customerNo");
 
             txtCustomerName.setText(customerName);
             txtCustomerAdd.setText(customerAdd);
             txtCustomerCity.setText(customerCity);
             txtCustomerNo.setText(customerNo);
         }
+
+        deleteCustomerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView cancelBtn, deleteBtn, deleteTxt, deleteInfo, dltMsg;
+
+                Dialog dialog = new Dialog(getContext());
+
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.dialog_design);
+
+                cancelBtn = dialog.findViewById(R.id.cancelBtn);
+                deleteBtn = dialog.findViewById(R.id.delteBtn);
+                deleteTxt = dialog.findViewById(R.id.deleteTxt);
+                deleteInfo = dialog.findViewById(R.id.deleteInfo);
+                dltMsg = dialog.findViewById(R.id.dltMsg);
+
+                deleteTxt.setText(" Delete Customer");
+                deleteInfo.setText(customerName);
+                dltMsg.setText("are you sure to delete this \n customer?");
+
+
+                cancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//                        myDbHelper.customerDao().deleteCustomer(
+//                                new Customer()
+//                        );
+
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
         return view;
     }
 }

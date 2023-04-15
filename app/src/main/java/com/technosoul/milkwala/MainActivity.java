@@ -14,10 +14,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.technosoul.milkwala.HomeScreen.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.technosoul.milkwala.ReceivedProduct.ReceivedProductFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -110,23 +110,27 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id = item.getItemId();
-                if (id == R.id.menu_master) {
+                if
+                (id == R.id.menu_master) {
                     loadFragment(new HomeFragment());
-//                    Toast.makeText(MainActivity.this, "new", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.menu_stock) {
-                    Toast.makeText(MainActivity.this, "stock menu", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.menu_distribution) {
-                    Toast.makeText(MainActivity.this, "distribution menu", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.menu_profile) {
+                }
+                else if
+                (id == R.id.menu_stock) {
+                    loadFragment(new ReceivedProductFragment());
+                }
+                else if
+                (id == R.id.menu_distribution) {
+                    loadFragment(new CustomerOrderFragment());
+                }
+                else if
+                (id == R.id.menu_profile) {
                     loadFragment(new ProfileFragment());
-
-//                    Toast.makeText(MainActivity.this, "profile menu", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.menu_master) {
-                    Toast.makeText(MainActivity.this, "master menu", Toast.LENGTH_SHORT).show();
-                } else {
-//                    Toast.makeText(MainActivity.this, "About menu", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
                     loadFragment(new AboutFragment());
                 }
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

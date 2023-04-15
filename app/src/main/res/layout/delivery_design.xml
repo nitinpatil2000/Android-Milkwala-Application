@@ -30,6 +30,7 @@
                 android:id="@+id/deliveryBoyName"
                 android:layout_marginStart="22dp"
                 android:textColor="@color/black"
+                android:maxLines="1"
                 android:fontFamily="@font/ubuntu_light"
                 android:textSize="25sp" />
 
@@ -37,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:maxLines="1"
                 android:inputType="number"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"

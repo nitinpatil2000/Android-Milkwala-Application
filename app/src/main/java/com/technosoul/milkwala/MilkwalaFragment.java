@@ -1,5 +1,6 @@
 package com.technosoul.milkwala;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -16,6 +17,11 @@ import com.technosoul.milkwala.Supplier.Supplier;
 import com.technosoul.milkwala.customer.Customer;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 
 public class MilkwalaFragment extends Fragment {
@@ -24,6 +30,7 @@ public class MilkwalaFragment extends Fragment {
     public MilkwalaFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,22 +52,21 @@ public class MilkwalaFragment extends Fragment {
         int noCustomers = customersList.size();
         customerId.setText(String.valueOf( noCustomers));
 
-
         //set the title
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setTitle("Milkwala");
 
 
-//        PieChartView pieChartView = view.findViewById(R.id.chart);
-//        List<SliceValue> pieData = new ArrayList<>();
+        PieChartView pieChartView = view.findViewById(R.id.pieChart);
+        List<SliceValue> pieData = new ArrayList<>();
 //
-//        pieData.add(new SliceValue(15, Color.BLUE));
-//        pieData.add(new SliceValue(25, Color.GRAY));
-//        pieData.add(new SliceValue(10, Color.RED));
-//        pieData.add(new SliceValue(60, Color.MAGENTA));
-//
-//        PieChartData pieChartData = new PieChartData(pieData);
-//        pieChartView.setPieChartData(pieChartData);
+        pieData.add(new SliceValue(15, Color.BLUE));
+        pieData.add(new SliceValue(25, Color.GRAY));
+        pieData.add(new SliceValue(10, Color.RED));
+        pieData.add(new SliceValue(60, Color.MAGENTA));
+
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartView.setPieChartData(pieChartData);
 
         return view;
     }
