@@ -1,6 +1,9 @@
 package com.technosoul.milkwala.ReceivedProduct;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +40,7 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         holder.receivedProductName.setText(productDetails.get(position).getProductDetailsName());
         holder.receivedProductUnit.setText(productDetails.get(position).getProductDetailsUnit());
         holder.receivedProductMrp.setText(productDetails.get(position).getProductDetailsMrp());
+        holder.totalAmount.setText(productDetails.get(position).getProductDetailsMrp());
     }
 
     @Override
@@ -48,12 +52,44 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         TextView receivedProductName, receivedProductUnit, receivedProductMrp;
         EditText editQuantity;
         TextView totalAmount;
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             receivedProductName = itemView.findViewById(R.id.receivedProductName);
             receivedProductUnit = itemView.findViewById(R.id.receivedProductUnit);
             receivedProductMrp = itemView.findViewById(R.id.receivedProductMrp);
+            editQuantity = itemView.findViewById(R.id.editQuantity);
+            totalAmount = itemView.findViewById(R.id.totalAmout);
+
+            String mrpString = receivedProductMrp.getText().toString();
+            Long mrp = Long.parseLong(mrpString);
+
+            editQuantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    // not needed
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    // calculate the new total amount based on the value of editQuantity
+                    Long newQuantity = 0L;
+                    if (!TextUtils.isEmpty(s)) {
+                        newQuantity = Long.parseLong(s.toString());
+                    }
+                    double newTotalAmount = newQuantity * mrp;
+
+                    // update the totalAmount TextView
+                    totalAmount.setText(String.valueOf("Rs " + newTotalAmount));
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    // not needed
+                }
+            });
 
         }
     }

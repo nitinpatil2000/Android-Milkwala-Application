@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.Supplier.Supplier;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,12 @@ ArrayList<String>arrayNames = new ArrayList<>();
 Button addNewProductBtn;
 EditText editProductName, editProductMrp;
 EditText editSupplierRate, editVenderRate;
+private int supplierId;
 
 
 
-
-    public AddProductFragment() {
+    public AddProductFragment(int supplierId) {
+        this.supplierId = supplierId;
         // Required empty public constructor
     }
 
@@ -88,9 +90,10 @@ EditText editSupplierRate, editVenderRate;
                 String productVenderRate = editVenderRate.getText().toString();
 
                 if(!productDetailsText.isEmpty() && !productDetailsMrp.isEmpty() && !productDetailsUnit.isEmpty() && !productSupplierRate.isEmpty() && !productVenderRate.isEmpty()){
-                    myDbHelper.productDetailsDto().addProduct(
-                            new ProductDetails(productDetailsText, productDetailsUnit, productDetailsMrp, productSupplierRate, productVenderRate)
-                    );
+                    //get the id of the selected supplier
+                    ProductDetails productDetails = new ProductDetails(productDetailsText, productDetailsMrp, productDetailsUnit, productSupplierRate, productVenderRate);
+                    productDetails.setSupplierId(supplierId);
+                    myDbHelper.productDetailsDto().addProduct(productDetails);
                     Toast.makeText(getContext(), "Product added successfully", Toast.LENGTH_SHORT).show();
                     // return to the supplierFragment
                     FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();

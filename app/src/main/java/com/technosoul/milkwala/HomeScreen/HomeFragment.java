@@ -8,7 +8,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +30,21 @@ import com.technosoul.milkwala.delivery.FragmentDeliver;
 
 import com.technosoul.milkwala.products.ProductFragment;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class HomeFragment extends Fragment {
-//    ArrayList<HomeItem> homeItems = new ArrayList<>();
-//    RecyclerViewAdapter recyclerViewAdapter;
     TextView supplierTxt, productTxt, deliveryTxt, customerTxt;
     TextView supplierSubText, productSubText, deliverySubText, customerSubText;
     ImageView supplierImg, productImg, deliveryImg, customerImg;
+
+    private ViewPager viewPager;
+    private int currentPage = 0;
+    private Timer timer;
+    private final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
+    private final long PERIOD_MS = 3000; // time period in milliseconds between successive task executions.
+
 
     public HomeFragment() {
 
@@ -57,16 +66,13 @@ public class HomeFragment extends Fragment {
 
         supplierImg = view.findViewById(R.id.supplierImg);
         productImg = view.findViewById(R.id.productImg);
-        deliveryImg = view.findViewById(R.id.deliveryImg);
+        deliveryImg = view.findViewById(R.id.deliverImg);
         customerImg = view.findViewById(R.id.customerImg);
 
         supplierSubText = view.findViewById(R.id.supplierSubText);
-        productSubText  = view.findViewById(R.id.productSubText);
+        productSubText = view.findViewById(R.id.productSubText);
         deliverySubText = view.findViewById(R.id.deliverySubText);
         customerSubText = view.findViewById(R.id.customerSubText);
-
-
-
 
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
@@ -116,7 +122,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ArrayList<Customer> customerList = (ArrayList<Customer>)myDbHelper.customerDao().getAllCustomers();
+        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         int numCustomers = customerList.size();
         customerSubText.setText(String.format("%d Customers", numCustomers));
         customerImg.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +136,30 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //viewpager
+        viewPager = view.findViewById(R.id.viewPagerImage);
+        ImageAdapter adapter = new ImageAdapter(getActivity());
+        viewPager.setAdapter(adapter);
+
+        final Handler handler = new Handler();
+        final Runnable update = new Runnable() {
+            public void run() {
+                if (currentPage == adapter.getCount() - 1) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        timer = new Timer(); // This will create a new Thread
+        timer.schedule(new TimerTask() { // task to be scheduled
+            @Override
+            public void run() {
+                handler.post(update);
+            }
+        }, DELAY_MS, PERIOD_MS);
+
+
         //set the title in fragment .
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setTitle("Master Info :");
@@ -137,7 +167,13 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-//    @Override
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
+    }
+
+    //    @Override
 //    public void onResume() {
 //        super.onResume();
 //        getActivity().setTitle("Master Info :");

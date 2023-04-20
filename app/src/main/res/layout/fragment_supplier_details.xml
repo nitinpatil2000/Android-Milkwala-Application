@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/cardColor"
     tools:context=".Supplier.SupplierDetailsFragment">
 
 
@@ -44,16 +45,17 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Supplier Name : "
+                    android:layout_weight="1.5"
+                    android:text="Supplier \nName : "
                     android:textColor="#000"
+                    android:layout_marginStart="10dp"
                     android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/supplierName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="3.5"
                     android:text="Chitale"
                     android:textSize="20dp"
                     android:textColor="#000"
@@ -72,8 +74,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1.5"
                     android:text=" Address : "
+                    android:layout_marginStart="10dp"
                     android:textColor="#000"
                     android:textSize="20dp" />
 
@@ -81,7 +84,7 @@
                     android:id="@+id/supplierAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="3.5"
                     android:minLines="4"
                     android:maxLines="5"
                     android:text="Address 1"
@@ -103,8 +106,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1.5"
                     android:text="Contact No  : "
+                    android:layout_marginStart="10dp"
                     android:textColor="#000"
                     android:textSize="20dp" />
 
@@ -112,7 +116,7 @@
                     android:id="@+id/supplierNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="3.5"
                     android:text="8574859685"
                     android:textSize="20dp"
                     android:textColor="#000"

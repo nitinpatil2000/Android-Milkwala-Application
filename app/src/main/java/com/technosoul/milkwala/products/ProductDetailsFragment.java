@@ -31,10 +31,13 @@ public class ProductDetailsFragment extends Fragment {
     ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
     ImageView productImg;
     TextView addProductTxt;
+    private int supplierId = -1;
 
-    public ProductDetailsFragment() {
+    public ProductDetailsFragment(int supplierId) {
         // Required empty public constructor
+        this.supplierId = supplierId;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class ProductDetailsFragment extends Fragment {
         addProductTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddProductFragment addProductFragment = new AddProductFragment();
+                AddProductFragment addProductFragment = new AddProductFragment(supplierId);
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.container, addProductFragment);

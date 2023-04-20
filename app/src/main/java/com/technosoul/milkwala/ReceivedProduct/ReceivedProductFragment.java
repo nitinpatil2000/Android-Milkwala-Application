@@ -3,15 +3,24 @@ package com.technosoul.milkwala.ReceivedProduct;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -20,6 +29,7 @@ import android.widget.Toast;
 
 import com.technosoul.milkwala.Helper.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.Supplier.RecyclerViewAdapter;
 import com.technosoul.milkwala.Supplier.Supplier;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductViewDetailsAdapter;
@@ -32,25 +42,40 @@ public class ReceivedProductFragment extends Fragment {
     ImageView selectDate;
     Spinner receivedSpinner;
     ArrayList<String> arryNames = new ArrayList<>();
+    Button saveReceiveProduct;
+    View line;
+
 
     ReceivedProductAdapter receivedProductAdapter;
     RecyclerView receivedRecyclerView;
     ArrayList<ProductDetails> productDetails = new ArrayList<>();
 
+    TextView rcProductName, rcProductUnit, rcProductMrp, rcProductAmount;
 
     public ReceivedProductFragment() {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //set the title in the fragment.
         View view = inflater.inflate(R.layout.fragment_received_product, container, false);
+//        View anotherView = inflater.inflate(R.layout.received_product_design,container, false);
+//        ViewGroup rootViewGroup = view.findViewById(R.id.root_view_group);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setTitle("Today's Received Products ");
+
+//       actionBar.setDisplayHomeAsUpEnabled(true);
+//        DrawerLayout drawerLayout = getActivity().findViewById(R.id.drawerLayout);
+//        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//
+
+
         savedDate = view.findViewById(R.id.saveDate);
         selectDate = view.findViewById(R.id.selectDate);
-
-
         //show date picker
         selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,16 +98,32 @@ public class ReceivedProductFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, arryNames);
         receivedSpinner.setAdapter(adapter);
 
+        saveReceiveProduct = view.findViewById(R.id.saveReceivedProduct);
+        line = view.findViewById(R.id.line);
 
+        receivedRecyclerView = view.findViewById(R.id.receivedRecyclerView);
         receivedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i1, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i1).toString();
                 if (selectedItem.equals("No Selected")) {
                     receivedSpinner.setVerticalScrollbarPosition(0);
-//                    Toast.makeText(getContext(), "Please select an Item", Toast.LENGTH_SHORT).show();
+                    receivedRecyclerView.setVisibility(View.GONE);
+                    saveReceiveProduct.setVisibility(View.GONE);
+                    line.setVisibility(View.GONE);
                 } else {
                     Toast.makeText(getContext(), "Selected Item is : " + selectedItem, Toast.LENGTH_SHORT).show();
+                    receivedRecyclerView.setVisibility(View.VISIBLE);
+                    saveReceiveProduct.setVisibility(View.VISIBLE);
+                    line.setVisibility(View.VISIBLE);
+                    receivedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    productDetails = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
+
+                    for (int i = 0; i < productDetails.size(); i++) {
+                        receivedProductAdapter = new ReceivedProductAdapter(getContext(), productDetails);
+                        receivedProductAdapter.notifyDataSetChanged();
+                        receivedRecyclerView.setAdapter(receivedProductAdapter);
+                    }
                 }
             }
 
@@ -93,22 +134,35 @@ public class ReceivedProductFragment extends Fragment {
         });
 
 
-//        show the list in the recyclerView
-        receivedRecyclerView = view.findViewById(R.id.receivedRecyclerView);
-        receivedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //save the value in the database
+        rcProductName = view.findViewById(R.id.receivedProductName);
+        rcProductUnit = view.findViewById(R.id.receivedProductUnit);
+        rcProductMrp = view.findViewById(R.id.receivedProductMrp);
+        rcProductAmount = view.findViewById(R.id.totalAmout);
 
 
-        productDetails = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
-        for (int i = 0; i < productDetails.size(); i++) {
-            receivedProductAdapter = new ReceivedProductAdapter(getContext(), productDetails);
-            receivedProductAdapter.notifyDataSetChanged();
-            receivedRecyclerView.setAdapter(receivedProductAdapter);
-        }
+        saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String receivePname = rcProductName.getText().toString();
+                String receiveUnit = rcProductUnit.getText().toString();
+                String receiveMrp = rcProductMrp.getText().toString();
+                Long receiveAmount = Long.parseLong(rcProductAmount.getText().toString());
+
+                if (!receivePname.isEmpty() && !receiveUnit.isEmpty() && !receiveMrp.isEmpty() && !receiveAmount.toString().isEmpty()) {
+                    myDbHelper.receiveProductDao().addReceiveProduct(
+                            new ReceivedProduct(receivePname, receiveUnit, receiveMrp, receiveAmount)
+                    );
+                    Toast.makeText(getContext(), "Received Product added successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         return view;
     }
 
 
+    //    select the datePicker
     private void openDialog() {
         DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -118,4 +172,6 @@ public class ReceivedProductFragment extends Fragment {
         }, 2022, 1, 15);
         dialog.show();
     }
+
+
 }

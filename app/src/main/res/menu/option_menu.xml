@@ -6,11 +6,11 @@
         android:icon="@drawable/ic_baseline_info_24"
         android:title="Master Info"
         app:showAsAction="collapseActionView" />
-    <item
-        android:id="@+id/separator"
-        app:showAsAction="always"
-        android:title=""
-        app:actionLayout="@layout/separator_layout"/>
+<!--    <item-->
+<!--        android:id="@+id/separator"-->
+<!--        app:showAsAction="always"-->
+<!--        android:title=""-->
+<!--        app:actionLayout="@layout/separator_layout"/>-->
 
     <item
         android:id="@+id/menu_stock"
@@ -35,6 +35,13 @@
         android:icon="@drawable/ic_baseline_folder_open_24"
         android:title="About"
         app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/menu_log_out"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:title="Log Out"
+        app:showAsAction="collapseActionView"/>
+
 </menu>
 
 

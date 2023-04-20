@@ -1,8 +1,8 @@
 package com.technosoul.milkwala;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,12 +17,6 @@ import com.technosoul.milkwala.Supplier.Supplier;
 import com.technosoul.milkwala.customer.Customer;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.view.PieChartView;
-
 
 public class MilkwalaFragment extends Fragment {
     TextView customerId, productId, supplierId;
@@ -57,17 +51,22 @@ public class MilkwalaFragment extends Fragment {
         actionBar.setTitle("Milkwala");
 
 
-        PieChartView pieChartView = view.findViewById(R.id.pieChart);
-        List<SliceValue> pieData = new ArrayList<>();
-//
-        pieData.add(new SliceValue(15, Color.BLUE));
-        pieData.add(new SliceValue(25, Color.GRAY));
-        pieData.add(new SliceValue(10, Color.RED));
-        pieData.add(new SliceValue(60, Color.MAGENTA));
+//        PieChartView pieChartView = view.findViewById(R.id.pieChart);
+//        List<SliceValue> pieData = new ArrayList<>();
 
-        PieChartData pieChartData = new PieChartData(pieData);
-        pieChartView.setPieChartData(pieChartData);
+//        pieData.add(new SliceValue(15, Color.BLUE));
+//        pieData.add(new SliceValue(25, Color.GRAY));
+//        pieData.add(new SliceValue(10, Color.RED));
+//        pieData.add(new SliceValue(60, Color.MAGENTA));
+//
+//        PieChartData pieChartData = new PieChartData(pieData);
+//        pieChartView.setPieChartData(pieChartData);
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

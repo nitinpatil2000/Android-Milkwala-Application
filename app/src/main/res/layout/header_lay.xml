@@ -5,12 +5,13 @@
     android:orientation="vertical"
     android:gravity="bottom"
     android:padding="5dp"
+    android:layout_marginTop="5dp"
     android:layout_height="220dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/milk"
+        android:src="@drawable/glass"
         android:layout_weight="3"
         android:scaleType="fitXY"
         android:contentDescription="Header Description"/>

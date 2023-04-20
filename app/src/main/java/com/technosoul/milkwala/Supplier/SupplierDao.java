@@ -19,13 +19,16 @@ public interface SupplierDao {
     @Insert
     void addSupplier(Supplier supplier);
 
+    @Query("SELECT * FROM supplier WHERE supplier_id = :supplierId")
+    Supplier getSupplierById(int supplierId);
+
     @Update
     void updateSupplier(Supplier supplier);
 
     @Delete
     void deleteSupplier(Supplier supplier);
 
-    @Query("DELETE FROM supplier WHERE id = :supplierId")
+    @Query("DELETE FROM supplier WHERE supplier_id = :supplierId")
     void deleteById(long supplierId);
 
 

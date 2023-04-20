@@ -1,157 +1,422 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/toolbar"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AboutFragment">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/signin_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        android:layout_marginTop="15dp"
-        android:paddingLeft="10dp"
-        app:lottie_rawRes="@raw/milk"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:scaleType="centerCrop" />
+    <!--    <com.airbnb.lottie.LottieAnimationView-->
+    <!--        android:id="@+id/signin_image_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="240dp"-->
+    <!--        app:lottie_autoPlay="true"-->
+    <!--        app:lottie_loop="true"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        android:paddingLeft="10dp"-->
+    <!--        app:lottie_rawRes="@raw/milk"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        android:paddingRight="10dp"-->
+    <!--        android:paddingTop="10dp"-->
+    <!--        android:scaleType="centerCrop" />-->
 
 
-    <androidx.cardview.widget.CardView
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:cardBackgroundColor="@color/white"-->
+    <!--        app:cardCornerRadius="10dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        app:cardElevation="10dp"-->
+    <!--        app:cardMaxElevation="10dp"-->
+    <!--        app:cardPreventCornerOverlap="true"-->
+    <!--        app:cardUseCompatPadding="true">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="vertical">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:weightSum="5">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="1.7"-->
+    <!--                    android:text="App Name :"-->
+    <!--                    android:layout_marginBottom="5dp"-->
+    <!--                    android:textColor="#000"-->
+    <!--                    android:textSize="20dp" />-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/editProfileName"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="3.3"-->
+    <!--                    android:background="@drawable/rectangular_design_curve"-->
+    <!--                    android:maxLines="2"-->
+    <!--                    android:padding="10dp" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:weightSum="5">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="1.7"-->
+    <!--                    android:text="Description :"-->
+    <!--                    android:layout_marginBottom="5dp"-->
+    <!--                    android:textColor="#000"-->
+    <!--                    android:textSize="20dp" />-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/editProfileDesc"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="3.3"-->
+    <!--                    android:background="@drawable/rectangular_design_curve"-->
+    <!--                    android:minLines="4"-->
+    <!--                    android:padding="10dp" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:weightSum="5">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="1.7"-->
+    <!--                    android:text="Version :"-->
+    <!--                    android:layout_marginBottom="5dp"-->
+    <!--                    android:textColor="#000"-->
+    <!--                    android:textSize="20dp" />-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/editVersionName"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_weight="3.3"-->
+    <!--                    android:background="@drawable/rectangular_design_curve"-->
+    <!--                    android:maxLines="2"-->
+    <!--                    android:padding="10dp" />-->
+
+    <!--            </LinearLayout>-->
+    <!--        </LinearLayout>-->
+    <!--    </androidx.cardview.widget.CardView>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:gravity="bottom"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:layout_weight="1">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/description"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:fontFamily="@font/ubuntu_light"-->
+    <!--            android:textAlignment="center"/>-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/hyperlink"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:id="@+id/hyperlink"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:fontFamily="@font/ubuntu_light"-->
+    <!--            android:paddingBottom="7dp"-->
+    <!--            android:textAlignment="center"/>-->
+
+    <!--    </LinearLayout>-->
+
+    <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#FFF1ED"
-        app:cardCornerRadius="10dp"
-        android:layout_marginTop="10dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="10dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        android:layout_height="match_parent"
+        android:background="@drawable/contact_design">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="5">
+                android:layout_marginTop="100dp"
+                android:fontFamily="@font/berkshire_swash"
+                android:gravity="center"
+                android:text="About us"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="60sp" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
-                    android:text="App Name :"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="#000"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/editProfileName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.3"
-                    android:background="@drawable/rectangular_design_curve"
-                    android:maxLines="2"
-                    android:padding="10dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:weightSum="5">
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/contact"
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
-                    android:text="Description :"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="#000"
-                    android:textSize="20dp" />
 
-                <EditText
-                    android:id="@+id/editProfileDesc"
-                    android:layout_width="0dp"
-                    android:gravity="top"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.3"
-                    android:background="@drawable/rectangular_design_curve"
-                    android:minLines="4"
-                    android:padding="10dp" />
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/strawberry" />
 
-            </LinearLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/signin_image_view"
+                android:layout_width="200dp"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/milk" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:weightSum="5">
+                android:layout_marginTop="50dp"
+                android:background="@color/cardColor"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
-                    android:text="Version :"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="#000"
-                    android:textSize="20dp" />
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="10dp"
+                    app:cardMaxElevation="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
 
-                <EditText
-                    android:id="@+id/editVersionName"
-                    android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1.7"
+                                android:text="App Name :"
+                                android:textColor="#000"
+                                android:textSize="20dp" />
+
+                            <EditText
+                                android:id="@+id/editProfileName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.3"
+                                android:background="@drawable/rectangular_design_curve"
+                                android:maxLines="2"
+                                android:padding="10dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1.7"
+                                android:text="Mobile No :"
+                                android:textColor="#000"
+                                android:textSize="20dp" />
+
+                            <EditText
+                                android:id="@+id/editMobileNumber"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.3"
+                                android:background="@drawable/rectangular_design_curve"
+                                android:inputType="number"
+                                android:maxLines="2"
+                                android:padding="10dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1.7"
+                                android:text="Email :"
+                                android:textColor="#000"
+                                android:textSize="20dp" />
+
+                            <EditText
+                                android:id="@+id/editProfileEmail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.3"
+                                android:background="@drawable/rectangular_design_curve"
+                                android:maxLines="2"
+                                android:padding="10dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1.7"
+                                android:text="Message :"
+                                android:textColor="#000"
+                                android:textSize="20dp" />
+
+                            <EditText
+                                android:id="@+id/editProfileMsg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.3"
+                                android:background="@drawable/rectangular_design_curve"
+                                android:maxLines="2"
+                                android:padding="10dp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/submitBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="30dp"
+                            android:backgroundTint="#2890E3"
+                            android:text="Submit"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3.3"
-                    android:background="@drawable/rectangular_design_curve"
-                    android:maxLines="2"
-                    android:padding="10dp" />
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="10dp"
+                    app:cardMaxElevation="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="15dp"
+                            android:drawableStart="@drawable/ic_baseline_location_on_24"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:maxLines="5"
+                            android:minLines="1"
+                            android:text="@string/description"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/hyperlink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20sp"
+                            android:layout_marginBottom="15dp"
+                            android:drawableStart="@drawable/ic_baseline_email_24"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:paddingBottom="7dp"
+                            android:text="@string/hyperlink"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
 
             </LinearLayout>
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:layout_weight="1">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/description"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/ubuntu_light"
-            android:textAlignment="center"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hyperlink"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:id="@+id/hyperlink"
-            android:textStyle="bold"
-            android:fontFamily="@font/ubuntu_light"
-            android:paddingBottom="7dp"
-            android:textAlignment="center"/>
-
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

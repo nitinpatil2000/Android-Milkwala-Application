@@ -67,14 +67,15 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        Supplier clickedItem = suppliers.get(position);
-                        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
+                        Supplier selectedSupplier = suppliers.get(position);
+                        int supplierId = selectedSupplier.getSupplierId();
+                        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment(supplierId);
                         FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();
                         ft.replace(R.id.container, productDetailsFragment);
                         ft.addToBackStack(null);
                         ft.commit();
-                        ((AppCompatActivity) view.getContext()).getSupportActionBar().setTitle(clickedItem.getSupplierName() + " Products");
+                        ((AppCompatActivity) view.getContext()).getSupportActionBar().setTitle(selectedSupplier.getSupplierName() + " Products");
                     }
                 }
             });

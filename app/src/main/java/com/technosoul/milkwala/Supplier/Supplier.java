@@ -12,7 +12,8 @@ import java.util.List;
 public class Supplier {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    @ColumnInfo(name = "supplier_id")
+    private int supplierId;
 
     @ColumnInfo(name = "supplier_name")
     private String supplierName;
@@ -24,8 +25,8 @@ public class Supplier {
     private String supplierNumber;
 
 
-    public Supplier(int id, String supplierName, String supplierAddress, String supplierNumber) {
-        this.id = id;
+    public Supplier(int supplierId, String supplierName, String supplierAddress, String supplierNumber) {
+        this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
@@ -59,12 +60,12 @@ public class Supplier {
         this.supplierNumber = supplierNumber;
     }
 
-    public int getId() {
-        return id;
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getSupplierName() {

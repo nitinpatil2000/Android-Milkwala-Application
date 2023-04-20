@@ -16,4 +16,7 @@
     <color name="colorPrimaryDark">#0097A7</color>
     <color name="colorAccent">#009688</color>
 
+    <color name="toolbar">#3A634B</color>
+    <color name="cardColor">#EDE8E8</color>
+
 </resources>

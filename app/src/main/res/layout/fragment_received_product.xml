@@ -69,38 +69,49 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:weightSum="1"
-        android:orientation="vertical">
+        android:layout_marginTop="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/receivedRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="12dp" />
+            android:layout_height="0dp"
+            android:layout_marginBottom="12dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@id/saveReceivedProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/receivedRecyclerView" />
 
         <Button
             android:id="@+id/saveReceivedProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/button_background_color"
             android:fontFamily="@font/ubuntu_light"
             android:gravity="center"
-            android:text="Save"
+            android:text="save"
             android:textColor="@color/black"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

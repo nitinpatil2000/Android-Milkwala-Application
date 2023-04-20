@@ -1,6 +1,7 @@
 package com.technosoul.milkwala;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,16 +11,22 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.technosoul.milkwala.Auth.AuthActivity;
 import com.technosoul.milkwala.HomeScreen.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.technosoul.milkwala.ReceivedProduct.ReceivedProductFragment;
+import com.technosoul.milkwala.Supplier.SupplierActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements SupplierListner{
 
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -99,10 +106,14 @@ public class MainActivity extends AppCompatActivity {
         //opening and closing the toggle mode of the navigation.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.OpenDrawer, R.string.CloseDrawer);
         drawerLayout.addDrawerListener(toggle);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        toolbar.setTitleTextColor(Color.WHITE);
         toggle.syncState();
 
+
+
         //by default set the fragment
-        loadFragment(new MilkwalaFragment());
+        loadNewFragment(new MilkwalaFragment());
 
         //after click the menu item
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -126,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
                 (id == R.id.menu_profile) {
                     loadFragment(new ProfileFragment());
                 }
+                else if
+                (id == R.id.menu_log_out)  {
+//                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//                    editor.putBoolean("flag", true);
+//                    editor.apply();
+
+                    Intent iAuth = new Intent(MainActivity.this, AuthActivity.class);
+                    startActivity(iAuth);
+                }
                 else
                 {
                     loadFragment(new AboutFragment());
@@ -138,14 +159,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//            drawerLayout.setVisibility(View.VISIBLE);
+//            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 //            setActionBarTitle("MilkWala");
         }
+    }
+
+    private void loadNewFragment(Fragment fragment) {
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container, fragment);
+        ft.commit();
     }
 
     private void loadFragment(Fragment fragment) {
@@ -154,6 +188,13 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.container, fragment);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    @Override
+    public void onSupplierSuccess() {
+        Intent intent = new Intent(this, SupplierActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

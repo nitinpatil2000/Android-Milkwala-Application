@@ -1,112 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
-    tools:context=".AuthActivity">
+    tools:context=".Auth.AuthActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/signin_image_view"
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/signin_image_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="240dp"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        app:lottie_rawRes="@raw/milk"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:paddingRight="10dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:scaleType="centerCrop" />-->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/signin_card_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardBackgroundColor="@color/purple_200"-->
+<!--        app:cardCornerRadius="5dp"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardMaxElevation="10dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        app:cardPreventCornerOverlap="true"-->
+<!--        app:cardUseCompatPadding="true"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/signin_image_view">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="10dp">-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/signin_email_id"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/rectangular_design_curve"-->
+<!--                android:drawablePadding="10dp"-->
+<!--                android:maxLines="1"-->
+<!--                android:hint="Enter EmailId"-->
+<!--                android:imeOptions="actionDone"-->
+<!--                android:drawableStart="@drawable/ic_baseline_email_24"-->
+<!--                android:maxLength="14"-->
+<!--                android:minHeight="40dp"-->
+<!--                android:paddingStart="10dp"-->
+<!--                android:paddingEnd="10dp"-->
+<!--                android:textColor="@color/secondary_text_color"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/signin_password"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:maxLines="1"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:autofillHints="password"-->
+<!--                android:drawableStart="@drawable/ic_baseline_security_24"-->
+<!--                android:background="@drawable/rectangular_design_curve"-->
+<!--                android:drawablePadding="10dp"-->
+<!--                android:hint="Enter Password"-->
+<!--                android:imeOptions="actionDone"-->
+<!--                android:inputType="textPassword"-->
+<!--                android:maxLength="14"-->
+<!--                android:minHeight="40dp"-->
+<!--                android:paddingStart="10dp"-->
+<!--                android:paddingEnd="10dp"-->
+<!--                android:textColor="@color/secondary_text_color"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_signin"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="25dp"-->
+<!--                android:fontFamily="@font/aclonica"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginEnd="25dp"-->
+<!--                android:backgroundTint="#fea900"-->
+<!--                android:text="login" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_forget_password"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="Forgot Password"-->
+<!--                android:textColor="@color/secondary_text_color" />-->
+<!--        </LinearLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        android:layout_marginTop="15dp"
-        android:paddingLeft="10dp"
-        app:lottie_rawRes="@raw/milk"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:scaleType="centerCrop" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/signin_card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/purple_200"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="10dp"
-        android:layout_marginTop="20dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_image_view">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <EditText
-                android:id="@+id/signin_email_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rectangular_design_curve"
-                android:drawablePadding="10dp"
-                android:maxLines="1"
-                android:hint="Enter EmailId"
-                android:imeOptions="actionDone"
-                android:drawableStart="@drawable/ic_baseline_email_24"
-                android:maxLength="14"
-                android:minHeight="40dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/secondary_text_color"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/signin_password"
-                android:layout_width="match_parent"
-                android:maxLines="1"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:autofillHints="password"
-                android:drawableStart="@drawable/ic_baseline_security_24"
-                android:background="@drawable/rectangular_design_curve"
-                android:drawablePadding="10dp"
-                android:hint="Enter Password"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:maxLength="14"
-                android:minHeight="40dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/secondary_text_color"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btn_signin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:fontFamily="@font/aclonica"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:backgroundTint="#fea900"
-                android:text="login" />
-
-            <TextView
-                android:id="@+id/tv_forget_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:textStyle="bold"
-                android:text="Forgot Password"
-                android:textColor="@color/secondary_text_color" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+        android:layout_height="match_parent"
+        android:id="@+id/auth_container"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

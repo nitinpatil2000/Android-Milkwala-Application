@@ -1,31 +1,42 @@
 package com.technosoul.milkwala.ReceivedProduct;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "receive_product")
 public class ReceivedProduct {
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "receive_p_id")
     private int ReceivedProductId;
 
+    @ColumnInfo(name = "receive_p_name")
     private String ReceivedProductName;
 
+    @ColumnInfo(name = "receive_p_unit")
     private String ReceivedProductUnit;
 
+    @ColumnInfo(name = "receive_p_mrp")
     private String ReceivedProductMrp;
 
-    private int Quantity;
+    @ColumnInfo(name = "receive_p_amount")
+    private Long TotalAmount;
 
-    private int TotalAmount;
-
-    public ReceivedProduct(int receivedProductId, String receivedProductName, String receivedProductUnit, String receivedProductMrp, int quantity, int totalAmount) {
+    public ReceivedProduct(int receivedProductId, String receivedProductName, String receivedProductUnit, String receivedProductMrp, Long totalAmount) {
         ReceivedProductId = receivedProductId;
         ReceivedProductName = receivedProductName;
         ReceivedProductUnit = receivedProductUnit;
         ReceivedProductMrp = receivedProductMrp;
-        Quantity = quantity;
         TotalAmount = totalAmount;
     }
 
+    public ReceivedProduct() {
+    }
 
-    public ReceivedProduct(int receivedProductId, String receivedProductName, String receivedProductUnit, String receivedProductMrp, int totalAmount) {
-        ReceivedProductId = receivedProductId;
+    @Ignore
+    public ReceivedProduct(String receivedProductName, String receivedProductUnit, String receivedProductMrp, Long totalAmount) {
         ReceivedProductName = receivedProductName;
         ReceivedProductUnit = receivedProductUnit;
         ReceivedProductMrp = receivedProductMrp;
@@ -64,19 +75,11 @@ public class ReceivedProduct {
         ReceivedProductMrp = receivedProductMrp;
     }
 
-    public int getQuantity() {
-        return Quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
-    }
-
-    public int getTotalAmount() {
+    public Long getTotalAmount() {
         return TotalAmount;
     }
 
-    public void setTotalAmount(int totalAmount) {
+    public void setTotalAmount(Long totalAmount) {
         TotalAmount = totalAmount;
     }
 }

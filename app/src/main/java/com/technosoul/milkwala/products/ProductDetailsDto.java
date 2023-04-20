@@ -17,7 +17,6 @@ public interface ProductDetailsDto {
 //    @Query("select productDetailsName, productDetailsUnit, productDetailsMrp from productDetails")
     List<ProductDetails> getAllProducts();
 
-
     @Insert
     void addProduct(ProductDetails productDetails);
 
