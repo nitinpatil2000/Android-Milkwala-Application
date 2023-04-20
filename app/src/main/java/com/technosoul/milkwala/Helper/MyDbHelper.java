@@ -6,6 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.technosoul.milkwala.Auth.Login;
+import com.technosoul.milkwala.Auth.LoginDao;
 import com.technosoul.milkwala.ReceivedProduct.ReceiveProductDao;
 import com.technosoul.milkwala.ReceivedProduct.ReceivedProduct;
 import com.technosoul.milkwala.Supplier.Supplier;
@@ -17,7 +19,7 @@ import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceivedProduct.class}, exportSchema = false, version = 13)
+@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceivedProduct.class, Login.class}, exportSchema = false, version = 15)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "supplierDb";
     private static MyDbHelper instance;
@@ -37,5 +39,6 @@ public abstract class MyDbHelper extends RoomDatabase {
     public abstract DeliveryDetailDao deliveryDetailDao();
     public abstract CustomerDao customerDao();
     public abstract ReceiveProductDao receiveProductDao();
+    public abstract LoginDao loginDao ();
 
 }

@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -144,16 +145,45 @@ public class ReceivedProductFragment extends Fragment {
         saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String receivePname = rcProductName.getText().toString();
-                String receiveUnit = rcProductUnit.getText().toString();
-                String receiveMrp = rcProductMrp.getText().toString();
-                Long receiveAmount = Long.parseLong(rcProductAmount.getText().toString());
 
-                if (!receivePname.isEmpty() && !receiveUnit.isEmpty() && !receiveMrp.isEmpty() && !receiveAmount.toString().isEmpty()) {
+                String receivePname, receiveUnit, receiveMrp;
+                long receiveAmount;
+
+                CharSequence charSequence = rcProductName.getText();
+                if (charSequence == null || charSequence.length() == 0) {
+                    return;
+                } else {
+                    receivePname = charSequence.toString();
+                }
+
+                charSequence = rcProductUnit.getText();
+                if (charSequence == null || charSequence.length() == 0) {
+                    return;
+                } else {
+                    receiveUnit = charSequence.toString();
+                }
+
+                charSequence = rcProductMrp.getText();
+                if (charSequence == null || charSequence.length() == 0) {
+                    return;
+                } else {
+                    receiveMrp = charSequence.toString();
+                }
+
+                charSequence = rcProductAmount.getText();
+                if (charSequence == null || charSequence.length() == 0) {
+                    return;
+                } else {
+                    receiveAmount = Long.parseLong(charSequence.toString());
+                }
+
+                if (!receivePname.isEmpty() && !receiveUnit.isEmpty() && !receiveMrp.isEmpty() && receiveAmount != 0) {
                     myDbHelper.receiveProductDao().addReceiveProduct(
                             new ReceivedProduct(receivePname, receiveUnit, receiveMrp, receiveAmount)
                     );
                     Toast.makeText(getContext(), "Received Product added successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Please fill in all the fields", Toast.LENGTH_SHORT).show();
                 }
             }
         });
