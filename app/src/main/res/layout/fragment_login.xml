@@ -108,53 +108,53 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/forgotPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/aclonica"
-            android:text="Forgot Your Password ?"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/forgotPassword"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:fontFamily="@font/aclonica"-->
+<!--            android:text="Forgot Your Password ?"-->
+<!--            android:textAlignment="viewEnd"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15sp"-->
+<!--            />-->
 
-        <View
-            android:layout_width="210dp"
-            android:layout_height="1dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="8dp"
-            android:background="@color/black" />
+<!--        <View-->
+<!--            android:layout_width="210dp"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:background="@color/black" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:orientation="vertical"
-            android:gravity="center">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1.5"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center">-->
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="SIGNUP!"
-                android:fontFamily="@font/aclonica"
-                android:textSize="16sp"
-                android:id="@+id/goToSignUp"
-                android:backgroundTint="@color/toolbar"
-                android:layout_gravity="center" />
+<!--            <Button-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="SIGNUP!"-->
+<!--                android:fontFamily="@font/aclonica"-->
+<!--                android:textSize="16sp"-->
+<!--                android:id="@+id/goToSignUp"-->
+<!--                android:backgroundTint="@color/toolbar"-->
+<!--                android:layout_gravity="center" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dont have an account? signup!"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/aclonica"/>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Dont have an account? signup!"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:fontFamily="@font/aclonica"/>-->
 
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 </LinearLayout>

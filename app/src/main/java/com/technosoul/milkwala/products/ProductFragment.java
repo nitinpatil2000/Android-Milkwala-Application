@@ -20,8 +20,12 @@ import java.util.ArrayList;
 public class ProductFragment extends Fragment {
 //    ArrayList<Product> products = new ArrayList<>();
     ProductViewAdapter productViewAdapter;
+//    private int supplierId;
+
+
 
     public ProductFragment() {
+//        this.supplierId = supplierId;
         // Required empty public constructor
     }
 

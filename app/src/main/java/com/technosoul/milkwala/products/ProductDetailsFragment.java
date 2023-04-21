@@ -67,7 +67,6 @@ public class ProductDetailsFragment extends Fragment {
             productDetailRecyclerView.setAdapter(productViewDetailsAdapter);
         }
 
-
         addProductTxt = view.findViewById(R.id.addProductTxt);
         addProductTxt.setOnClickListener(new View.OnClickListener() {
             @Override

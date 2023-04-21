@@ -1,7 +1,5 @@
 package com.technosoul.milkwala.HomeScreen;
 
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -18,10 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.technosoul.milkwala.Helper.MyDbHelper;
-import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.Supplier.Supplier;
-import com.technosoul.milkwala.Supplier.SupplierActivity;
 import com.technosoul.milkwala.Supplier.SupplierFragment;
 import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.customer.CustomerFragment;
@@ -38,16 +34,13 @@ public class HomeFragment extends Fragment {
     TextView supplierTxt, productTxt, deliveryTxt, customerTxt;
     TextView supplierSubText, productSubText, deliverySubText, customerSubText;
     ImageView supplierImg, productImg, deliveryImg, customerImg;
-
     private ViewPager viewPager;
     private int currentPage = 0;
     private Timer timer;
     private final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     private final long PERIOD_MS = 3000; // time period in milliseconds between successive task executions.
 
-
     public HomeFragment() {
-
     }
 
 
@@ -100,6 +93,7 @@ public class HomeFragment extends Fragment {
         productImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ProductFragment productFragment = new ProductFragment();
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                 ft.addToBackStack(null);

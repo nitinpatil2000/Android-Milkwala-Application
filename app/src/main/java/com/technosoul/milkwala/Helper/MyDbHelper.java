@@ -19,7 +19,7 @@ import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceivedProduct.class, Login.class}, exportSchema = false, version = 15)
+@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceivedProduct.class, Login.class}, exportSchema = false, version = 16)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "supplierDb";
     private static MyDbHelper instance;
@@ -30,6 +30,13 @@ public abstract class MyDbHelper extends RoomDatabase {
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();
+
+            //Insert the hardcoded email and password into the database.
+            Login login = new Login();
+            login.setEmailId("nitin_patil@technosoul.io");
+            login.setPassword("password");
+            instance.loginDao().insert(login);
+
         }
         return instance;
     }
