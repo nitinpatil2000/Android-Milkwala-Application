@@ -1,9 +1,12 @@
-package com.technosoul.milkwala;
+package com.technosoul.milkwala.customerorder;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +19,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.products.ProductViewDetailsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.RandomAccess;
 
 public class CustomerOrderFragment extends Fragment {
     Spinner receivedCustomerSpinner, receivedDelivery;
     TextView savedDate;
     ImageView selectedDate;
+    CustomerOrderProductAdapter customerOrderProductAdapter;
+    RecyclerView receivedCustomerView;
+    ArrayList<ProductDetails> productDetailsList;
 
     ArrayList<String> receivedCustomer = new ArrayList<>();
     ArrayList<String> getDelivery = new ArrayList<>();
@@ -103,6 +110,17 @@ public class CustomerOrderFragment extends Fragment {
             }
         });
 
+
+        //show the item in the recyclerview
+        receivedCustomerView = view.findViewById(R.id.receivedCustomerView);
+        receivedCustomerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
+        for (int i = 0; i < productDetailsList.size(); i++) {
+            customerOrderProductAdapter = new CustomerOrderProductAdapter(getContext(),productDetailsList);
+            customerOrderProductAdapter.notifyDataSetChanged();
+            receivedCustomerView.setAdapter(customerOrderProductAdapter);
+        }
 
 
 

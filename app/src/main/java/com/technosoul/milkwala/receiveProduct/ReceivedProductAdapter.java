@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.ReceivedProduct;
+package com.technosoul.milkwala.receiveProduct;
 
 import android.content.Context;
 import android.text.Editable;
@@ -11,16 +11,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.supplier.Supplier;
 
 import java.util.ArrayList;
 
 public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProductAdapter.ViewHolder> {
     Context context;
     ArrayList<ProductDetails> productDetails;
+    private int mClickedPosition = RecyclerView.NO_POSITION;
 
     public ReceivedProductAdapter(Context context, ArrayList<ProductDetails> productDetails){
         this.context = context;
@@ -48,14 +53,30 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         return productDetails.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    public View getClickedView() {
+        return clickedView;
+    }
+
+
+
+    public void setClickedPosition(int clickedPosition, View clidkedView) {
+        mClickedPosition = clickedPosition;
+        this.clickedView = clidkedView;
+    }
+
+    View clickedView = null;
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView receivedProductName, receivedProductUnit, receivedProductMrp;
         EditText editQuantity;
         TextView totalAmount;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+
 
             receivedProductName = itemView.findViewById(R.id.receivedProductName);
             receivedProductUnit = itemView.findViewById(R.id.receivedProductUnit);
@@ -90,7 +111,14 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
                     // not needed
                 }
             });
+        }
 
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            if(position != RecyclerView.NO_POSITION){
+                setClickedPosition(position, view);
+            }
         }
     }
 }

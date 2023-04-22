@@ -1,8 +1,6 @@
 package com.technosoul.milkwala.products;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.Supplier.Supplier;
 
 import java.util.ArrayList;
 
@@ -36,7 +31,6 @@ private int supplierId;
 
     public AddProductFragment(int supplierId) {
         this.supplierId = supplierId;
-        // Required empty public constructor
     }
 
     @Override
@@ -76,6 +70,7 @@ private int supplierId;
         editProductMrp = view.findViewById(R.id.editProductMrp);
         editSupplierRate = view.findViewById(R.id.editSupplierRate);
         editVenderRate = view.findViewById(R.id.editVenderRate);
+
         addNewProductBtn = view.findViewById(R.id.addNewProductBtn);
         // Set click listener on add button
 

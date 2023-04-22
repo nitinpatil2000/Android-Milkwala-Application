@@ -1,6 +1,4 @@
-package com.technosoul.milkwala.Supplier;
-
-import android.widget.TextView;
+package com.technosoul.milkwala.supplier;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

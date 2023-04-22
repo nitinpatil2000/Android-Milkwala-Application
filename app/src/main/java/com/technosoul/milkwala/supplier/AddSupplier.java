@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Supplier;
+package com.technosoul.milkwala.supplier;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 public class AddSupplier extends Fragment {

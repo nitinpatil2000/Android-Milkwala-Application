@@ -50,6 +50,7 @@
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/drawable/login_design.xml" value="0.204" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/drawable/menu_separator.xml" value="0.1815" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/drawable/product_design.xml" value="0.2375" />
+        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/drawable/receive_design_curve.xml" value="0.213" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/drawable/rectangular_design_curve.xml" value="0.2275" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/drawable/scratch_edit_background.xml" value="0.204" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/font/ubuntu_light.xml" value="0.2625" />
@@ -58,13 +59,14 @@
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/activity_supplier.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/app_bar.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/customer_design.xml" value="0.23229166666666667" />
+        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/customer_order_design.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/deliver_details_design.xml" value="0.23125" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/delivery_design.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/dialog_design.xml" value="0.2" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/dialoglayout.xml" value="0.1203125" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/forgot_dialog.xml" value="0.1203125" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/forgot_dialog_design.xml" value="0.264" />
-        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_about.xml" value="0.264" />
+        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_about.xml" value="0.1" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_add_customer.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_add_deliver.xml" value="0.25" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_add_product.xml" value="0.264" />
@@ -80,7 +82,7 @@
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_product.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_product_details.xml" value="0.264" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_product_view_details.xml" value="0.23229166666666667" />
-        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_profile.xml" value="0.23229166666666667" />
+        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_received_product.xml" value="0.264" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_register.xml" value="0.264" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/fragment_sing_u_p.xml" value="0.23229166666666667" />
@@ -90,7 +92,7 @@
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/item_image.xml" value="0.23125" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/product_design.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/product_details_design.xml" value="0.23229166666666667" />
-        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/received_product_design.xml" value="0.23229166666666667" />
+        <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/received_product_design.xml" value="0.2" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/separator_layout.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/supplier_design.xml" value="0.23229166666666667" />
         <entry key="..\:/MilkApplication/milkwalaapp/app/src/main/res/layout/update_supplier_design.xml" value="0.23229166666666667" />

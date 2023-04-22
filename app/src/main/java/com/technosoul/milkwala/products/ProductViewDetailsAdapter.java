@@ -49,6 +49,11 @@ public class ProductViewDetailsAdapter extends RecyclerView.Adapter<ProductViewD
         return productDetails.size();
     }
 
+    public void filteredList(ArrayList<ProductDetails> filterProductDetails) {
+        productDetails = filterProductDetails;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView productItems, productUnit, productMrp;
         TextView addProductTxt;

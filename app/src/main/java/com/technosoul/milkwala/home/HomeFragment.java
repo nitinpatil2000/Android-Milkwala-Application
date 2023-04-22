@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.HomeScreen;
+package com.technosoul.milkwala.home;
 
 import android.os.Bundle;
 
@@ -15,10 +15,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.Supplier.Supplier;
-import com.technosoul.milkwala.Supplier.SupplierFragment;
+import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.supplier.SupplierFragment;
 import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.customer.CustomerFragment;
 import com.technosoul.milkwala.delivery.Deliver;
@@ -37,8 +37,9 @@ public class HomeFragment extends Fragment {
     private ViewPager viewPager;
     private int currentPage = 0;
     private Timer timer;
-    private final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    private final long PERIOD_MS = 3000; // time period in milliseconds between successive task executions.
+    private final long DELAY_MS = 2000;//delay in milliseconds before task is to be executed
+    private final long PERIOD_MS = 4000; // time period in milliseconds between successive task executions.
+//    ArrayList<Supplier> suppliers = new ArrayList<>();
 
     public HomeFragment() {
     }
@@ -81,9 +82,6 @@ public class HomeFragment extends Fragment {
                 ft.replace(R.id.container, supplierFragment);
                 ft.addToBackStack(null);
                 ft.commit();
-//                Intent iSupplier = new Intent(getActivity(), SupplierActivity.class);
-//                iSupplier.putExtra("fragment", "supplierFragment");
-//                startActivity(iSupplier);
             }
         });
 
@@ -93,7 +91,6 @@ public class HomeFragment extends Fragment {
         productImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ProductFragment productFragment = new ProductFragment();
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                 ft.addToBackStack(null);

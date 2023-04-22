@@ -1,7 +1,6 @@
 package com.technosoul.milkwala;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,26 +11,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.technosoul.milkwala.Auth.AuthActivity;
-import com.technosoul.milkwala.HomeScreen.HomeFragment;
+import com.technosoul.milkwala.auth.AuthActivity;
+import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
+import com.technosoul.milkwala.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
-import com.technosoul.milkwala.ReceivedProduct.ReceivedProductFragment;
-import com.technosoul.milkwala.Supplier.SupplierActivity;
+import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
+import com.technosoul.milkwala.supplier.SupplierActivity;
 
 public class MainActivity extends AppCompatActivity  implements SupplierListner{
 
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
+    private int supplieId;
 
     //set the title in the activity
     public void setActionBarTitle(String actionBarTitle) {
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         toolbar = findViewById(R.id.toolbar);
-
 
         //step1
         setSupportActionBar(toolbar);
@@ -196,6 +193,9 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
         startActivity(intent);
         finish();
     }
+
+
+
 }
 
 

@@ -6,7 +6,7 @@
     android:background="#EDE8E8"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeScreen.HomeFragment">
+    tools:context=".home.HomeFragment">
 
 
         <androidx.cardview.widget.CardView

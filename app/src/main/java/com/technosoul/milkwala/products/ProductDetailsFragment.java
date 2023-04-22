@@ -1,37 +1,35 @@
 package com.technosoul.milkwala.products;
 
-import android.content.ClipData;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.Supplier.RecyclerViewAdapter;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class ProductDetailsFragment extends Fragment {
     ProductViewDetailsAdapter productViewDetailsAdapter;
     RecyclerView productDetailRecyclerView;
-    ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
+    ArrayList<ProductDetails> productDetailsList;
     ImageView productImg;
     TextView addProductTxt;
     private int supplierId = -1;
+    EditText searchProductDetails;
 
     public ProductDetailsFragment(int supplierId) {
         // Required empty public constructor
@@ -59,7 +57,7 @@ public class ProductDetailsFragment extends Fragment {
         productDetailRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
+        productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
 
         for (int i = 0; i < productDetailsList.size(); i++) {
             productViewDetailsAdapter = new ProductViewDetailsAdapter(getContext(),productDetailsList);
@@ -80,7 +78,37 @@ public class ProductDetailsFragment extends Fragment {
             }
         });
 
+        searchProductDetails = view.findViewById(R.id.searchProdutctDetails);
+        searchProductDetails.clearFocus();
+        searchProductDetails.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
+
         return view;
+    }
+
+    private void filter(String text) {
+        ArrayList<ProductDetails> filterProductDetails = new ArrayList<>();
+        for(ProductDetails  productDetails : productDetailsList){
+            if(productDetails.getProductDetailsName().toLowerCase().contains(text.toLowerCase())){
+                filterProductDetails.add(productDetails);
+            }
+        }
+
+        productViewDetailsAdapter.filteredList(filterProductDetails);
     }
 
 }

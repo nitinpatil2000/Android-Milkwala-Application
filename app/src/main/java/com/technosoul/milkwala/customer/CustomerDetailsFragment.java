@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 public class CustomerDetailsFragment extends Fragment {

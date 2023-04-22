@@ -13,10 +13,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.Supplier.Supplier;
+import com.technosoul.milkwala.supplier.Supplier;
 
 import java.util.ArrayList;
 
@@ -28,6 +28,7 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
     public ProductViewAdapter(Context context, ArrayList<Supplier> suppliers) {
         this.context = context;
         this.suppliers = suppliers;
+
     }
 
     @NonNull
@@ -40,9 +41,11 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewAdapter.ViewHolder holder, int position) {
+        Supplier selectedSupplier = suppliers.get(position);
+        int supplierId = selectedSupplier.getSupplierId();
         holder.productTxt.setText(suppliers.get(position).getSupplierName());
         MyDbHelper myDbHelper = MyDbHelper.getDB(context);
-        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
+        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
         int numCounterProducts = productDetailsList.size();
         holder.productCounter.setText(String.format("%d Products", numCounterProducts));
     }
@@ -50,6 +53,11 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
     @Override
     public int getItemCount() {
         return suppliers.size();
+    }
+
+    public void filteredList(ArrayList<Supplier> filteredSupplier) {
+        suppliers = filteredSupplier;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

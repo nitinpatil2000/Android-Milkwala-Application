@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/toolbar"
+    android:background="@drawable/login_design"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:orientation= "vertical"
         android:layout_marginTop="10dp"
-        android:background="@drawable/contact_design"
         android:layout_height="match_parent">
 
         <ImageView
@@ -28,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#FFF1ED"
+            app:cardBackgroundColor="@color/cardColor"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             app:cardMaxElevation="10dp"

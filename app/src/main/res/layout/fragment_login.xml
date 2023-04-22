@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_design"
-    tools:context=".Auth.LoginFragment">
+    tools:context=".auth.LoginFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,14 +81,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:imeOptions="actionDone"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rectangular_design_curve"
                     android:hint="Enter the Password"
                     android:maxLines="1"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:inputType="textPassword|textVisiblePassword"
+                    android:imeOptions="actionDone" />
 
 
                 <Button

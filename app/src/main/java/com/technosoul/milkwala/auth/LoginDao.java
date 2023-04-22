@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Auth;
+package com.technosoul.milkwala.auth;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -8,7 +8,7 @@ import androidx.room.Query;
 @Dao
 public interface LoginDao {
 
-    @Query("select * from login where email_id = :emailId")
+    @Query("select * from login where email_id  = :emailId")
     Login getLoginCredentials(String emailId);
 
 

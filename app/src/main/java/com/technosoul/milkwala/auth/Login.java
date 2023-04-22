@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Auth;
+package com.technosoul.milkwala.auth;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

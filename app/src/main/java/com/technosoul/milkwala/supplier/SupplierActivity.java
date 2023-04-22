@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Supplier;
+package com.technosoul.milkwala.supplier;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

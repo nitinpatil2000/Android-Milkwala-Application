@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Supplier;
+package com.technosoul.milkwala.supplier;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,12 +15,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     Context context;
@@ -41,9 +42,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Supplier selectedSupplier = suppliers.get(position);
+        int supplierId = selectedSupplier.getSupplierId();
         holder.supplierTxt.setText(suppliers.get(holder.getAdapterPosition()).getSupplierName());
         MyDbHelper myDbHelper = MyDbHelper.getDB(context);
-        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getAllProducts();
+        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
         int numCounterSuppliers = productDetailsList.size();
         holder.supplierCounter.setText(String.format("%d Suppliers", numCounterSuppliers));
     }
@@ -63,6 +66,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // Get the Supplier at a specific position in the list
             return suppliers.get(position);
     }
+
+
+
+    public void filteredList(ArrayList<Supplier> filterList) {
+        suppliers = filterList;
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView supplierTxt, supplierCounter;

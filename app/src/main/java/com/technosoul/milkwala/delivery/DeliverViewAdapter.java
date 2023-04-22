@@ -46,6 +46,11 @@ public class DeliverViewAdapter extends RecyclerView.Adapter<DeliverViewAdapter.
         return deliver.size();
     }
 
+    public void filteredList(ArrayList<Deliver> filterDeliver) {
+        deliver = filterDeliver;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView deliveryBoyName, deliveryBoyNumber;
         ImageView deliverImg;

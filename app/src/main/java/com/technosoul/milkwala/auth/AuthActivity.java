@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Auth;
+package com.technosoul.milkwala.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;

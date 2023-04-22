@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.HomeScreen;
+package com.technosoul.milkwala.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;

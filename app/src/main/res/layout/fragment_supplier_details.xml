@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/cardColor"
-    tools:context=".Supplier.SupplierDetailsFragment">
+    tools:context=".supplier.SupplierDetailsFragment">
 
 
     <androidx.cardview.widget.CardView

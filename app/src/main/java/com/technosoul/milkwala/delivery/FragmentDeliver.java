@@ -7,12 +7,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 
@@ -21,9 +24,10 @@ import com.technosoul.milkwala.R;
 import java.util.ArrayList;
 
 public class FragmentDeliver extends Fragment {
-    ArrayList<Deliver> delivers = new ArrayList<>();
     DeliverViewAdapter deliverViewAdapter;
     Button addDeliveryBoyBtn;
+    EditText searchDeliveryBoy;
+    ArrayList<Deliver> deliverList;
 
 
     public FragmentDeliver() {
@@ -41,7 +45,7 @@ public class FragmentDeliver extends Fragment {
         deliverRecyclerView.setLayoutManager(gridLayoutManager);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        ArrayList<Deliver> deliverList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+       deliverList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
 
         for (int i = 0; i < deliverList.size(); i++) {
             deliverViewAdapter = new DeliverViewAdapter(getContext(), deliverList);
@@ -68,6 +72,35 @@ public class FragmentDeliver extends Fragment {
             }
         });
 
+        searchDeliveryBoy = view.findViewById(R.id.searchDeliveryBoy);
+        searchDeliveryBoy.clearFocus();
+        searchDeliveryBoy.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
+
         return view;
+    }
+
+    private void filter(String text) {
+        ArrayList<Deliver> filterDeliver = new ArrayList<>();
+        for(Deliver deliver : deliverList){
+            if(deliver.getDeliveryBoyName().toLowerCase().contains(text.toLowerCase())){
+                filterDeliver.add(deliver);
+            }
+        }
+        deliverViewAdapter.filteredList(filterDeliver);
     }
 }

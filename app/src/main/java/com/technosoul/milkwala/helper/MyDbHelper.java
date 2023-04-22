@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Helper;
+package com.technosoul.milkwala.helper;
 
 import android.content.Context;
 
@@ -6,12 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.technosoul.milkwala.Auth.Login;
-import com.technosoul.milkwala.Auth.LoginDao;
-import com.technosoul.milkwala.ReceivedProduct.ReceiveProductDao;
-import com.technosoul.milkwala.ReceivedProduct.ReceivedProduct;
-import com.technosoul.milkwala.Supplier.Supplier;
-import com.technosoul.milkwala.Supplier.SupplierDao;
+import com.technosoul.milkwala.auth.Login;
+import com.technosoul.milkwala.auth.LoginDao;
+import com.technosoul.milkwala.receiveProduct.ReceiveProduct;
+import com.technosoul.milkwala.receiveProduct.ReceiveProductDao;
+import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.supplier.SupplierDao;
 import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.customer.CustomerDao;
 import com.technosoul.milkwala.delivery.Deliver;
@@ -19,9 +19,9 @@ import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceivedProduct.class, Login.class}, exportSchema = false, version = 16)
+@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceiveProduct.class, Login.class}, exportSchema = false, version = 20)
 public abstract class MyDbHelper extends RoomDatabase {
-    private static  final  String DB_NAME = "supplierDb";
+    private static  final  String DB_NAME = "milkDb";
     private static MyDbHelper instance;
 
     public static synchronized MyDbHelper getDB(Context context){
@@ -31,14 +31,20 @@ public abstract class MyDbHelper extends RoomDatabase {
                     .allowMainThreadQueries()
                     .build();
 
-            //Insert the hardcoded email and password into the database.
-            Login login = new Login();
-            login.setEmailId("nitin_patil@technosoul.io");
-            login.setPassword("password");
-            instance.loginDao().insert(login);
-
         }
+        checkLoginCredentials(instance);
         return instance;
+    }
+
+    private static void checkLoginCredentials(MyDbHelper myDbHelper) {
+        LoginDao loginDao = myDbHelper.loginDao();
+        Login login = loginDao.getLoginCredentials("nitin@gmail.com");
+        if (login == null) {
+            login = new Login();
+            login.setEmailId("nitin@gmail.com");
+            login.setPassword("password");
+            loginDao.insert(login);
+        }
     }
 
     public abstract SupplierDao supplierDao();

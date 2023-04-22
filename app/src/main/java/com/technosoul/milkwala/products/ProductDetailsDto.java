@@ -17,6 +17,9 @@ public interface ProductDetailsDto {
 //    @Query("select productDetailsName, productDetailsUnit, productDetailsMrp from productDetails")
     List<ProductDetails> getAllProducts();
 
+    @Query("select *from productDetails where supplier_id = :supplier_id")
+     List<ProductDetails> getProductBySupplierId(int supplier_id);
+
     @Insert
     void addProduct(ProductDetails productDetails);
 
@@ -26,7 +29,7 @@ public interface ProductDetailsDto {
     @Delete
     void deleteProduct(ProductDetails productDetails);
 
-    @Query("DELETE FROM productDetails WHERE product_details_id = :product_details_id")
-    void getProductById(int product_details_id);
+//    @Query("DELETE FROM productDetails WHERE product_details_id = :product_details_id")
+//    void getProductById(int product_details_id);
 
 }

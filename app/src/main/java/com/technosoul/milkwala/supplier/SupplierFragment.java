@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.Supplier;
+package com.technosoul.milkwala.supplier;
 
 import android.os.Bundle;
 
@@ -9,26 +9,32 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
-import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SupplierFragment extends Fragment {
     RecyclerView supplierRecyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
     int position;
+    EditText searchSupplier;
+    ArrayList<Supplier> supplierList;
 
     Button addSupplierTxt;
 
     public SupplierFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -54,7 +60,7 @@ public class SupplierFragment extends Fragment {
         supplierRecyclerView.setLayoutManager(gridLayoutManager);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
+        supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
 
         for (int i = 0; i < supplierList.size(); i++) {
             recyclerViewAdapter = new RecyclerViewAdapter(getContext(), supplierList);
@@ -63,10 +69,54 @@ public class SupplierFragment extends Fragment {
         }
 
 
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setTitle("Suppliers");
+
+
+
+        //search the supplier
+        searchSupplier = view.findViewById(R.id.searchSupplier);
+        searchSupplier.clearFocus();
+        searchSupplier.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
         return view;
     }
+
+    private void filter(String text) {
+        ArrayList<Supplier> filterList = new ArrayList<>();
+        for(Supplier supplier : supplierList){
+            if(supplier.getSupplierName().toLowerCase().contains(text.toLowerCase())){
+                filterList.add(supplier);
+            }
+        }
+        recyclerViewAdapter.filteredList(filterList) ;
+    }
+
+//    private void filter(String text) {
+//        ArrayList<Supplier> searchSupplierList = new ArrayList<>();
+//        for(Supplier supplier : supplierArrayList){
+//            if(supplier.getSupplierName().contains(text)){
+//                searchSupplierList.add(supplier);
+//            }
+//        }
+//        recyclerViewAdapter.filtered(searchSupplierList);
+//    }
+
+
 
     public void showDetailsFragmentt(int position) {
         Supplier supplier = ((RecyclerViewAdapter) recyclerViewAdapter).getItem(position);
@@ -80,4 +130,6 @@ public class SupplierFragment extends Fragment {
         supplierRecyclerView.setAdapter(recyclerViewAdapter);
         recyclerViewAdapter.notifyItemRemoved(position);
     }
+
+
 }

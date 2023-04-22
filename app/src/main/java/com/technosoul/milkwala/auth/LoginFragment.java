@@ -1,32 +1,22 @@
-package com.technosoul.milkwala.Auth;
+package com.technosoul.milkwala.auth;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
+import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
-
-import java.io.DataInput;
 
 public class LoginFragment extends Fragment {
     private LoginListener listener;
@@ -145,6 +135,7 @@ public class LoginFragment extends Fragment {
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         Login login = myDbHelper.loginDao().getLoginCredentials(email);
         if(login != null && login.getPassword().equals(password))
+//        if(login != null && password != null)
         {
             listener.onLoginSuccess();
         }

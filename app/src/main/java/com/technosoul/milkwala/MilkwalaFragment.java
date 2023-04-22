@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.Helper.MyDbHelper;
-import com.technosoul.milkwala.Supplier.Supplier;
+import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.customer.Customer;
 
 import java.util.ArrayList;

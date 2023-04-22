@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Supplier.SupplierActivity">
+    tools:context=".supplier.SupplierActivity">
 
     <include layout="@layout/app_bar"
         android:layout_width="match_parent"
