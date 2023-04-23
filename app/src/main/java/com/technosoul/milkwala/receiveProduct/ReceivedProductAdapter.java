@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProductAdapter.ViewHolder> {
     Context context;
     ArrayList<ProductDetails> productDetails;
-    private int mClickedPosition = RecyclerView.NO_POSITION;
+    private int mClickedPosition;
 
     public ReceivedProductAdapter(Context context, ArrayList<ProductDetails> productDetails){
         this.context = context;
@@ -46,43 +46,40 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         holder.receivedProductUnit.setText(productDetails.get(position).getProductDetailsUnit());
         holder.receivedProductMrp.setText(productDetails.get(position).getProductDetailsMrp());
         holder.totalAmount.setText(productDetails.get(position).getProductDetailsMrp());
-    }
+        holder.itemView.setActivated(mClickedPosition == position);
+        }
 
     @Override
     public int getItemCount() {
         return productDetails.size();
     }
 
-
-    public View getClickedView() {
-        return clickedView;
+    public int getClickedPosition(){
+        return mClickedPosition;
     }
 
-
-
-    public void setClickedPosition(int clickedPosition, View clidkedView) {
-        mClickedPosition = clickedPosition;
-        this.clickedView = clidkedView;
+    public void clearClickPosition(){
+        mClickedPosition = RecyclerView.NO_POSITION;
     }
 
-    View clickedView = null;
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         TextView receivedProductName, receivedProductUnit, receivedProductMrp;
         EditText editQuantity;
         TextView totalAmount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-
-
             receivedProductName = itemView.findViewById(R.id.receivedProductName);
             receivedProductUnit = itemView.findViewById(R.id.receivedProductUnit);
             receivedProductMrp = itemView.findViewById(R.id.receivedProductMrp);
             editQuantity = itemView.findViewById(R.id.editQuantity);
             totalAmount = itemView.findViewById(R.id.totalAmout);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mClickedPosition = getAdapterPosition();
+                }
+            });
 
             String mrpString = receivedProductMrp.getText().toString();
             Long mrp = Long.parseLong(mrpString);
@@ -111,14 +108,6 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
                     // not needed
                 }
             });
-        }
-
-        @Override
-        public void onClick(View view) {
-            int position = getAdapterPosition();
-            if(position != RecyclerView.NO_POSITION){
-                setClickedPosition(position, view);
-            }
         }
     }
 }

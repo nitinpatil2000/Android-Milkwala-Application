@@ -126,24 +126,28 @@ public class ReceivedProductFragment extends Fragment {
             }
         });
 
-//        receiveProductTotalAmount = view.findViewById(R.id.totalAmout);
-//        receiveProductQuantity = view.findViewById(R.id.editQuantity);
-//        receiveProductDate = view.findViewById(R.id.editQuantity);
+
         saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int receiveQuantity;
                 long receiveAmount;
-
-//                Inflate the layout
-//                View layout = LayoutInflater.from(getContext()).inflate(R.layout.received_product_design, null);
-                View layout = receivedProductAdapter.getClickedView();
-                if(layout == null){
+                int clickedPosition = receivedProductAdapter.getClickedPosition();
+                if(clickedPosition == RecyclerView.NO_POSITION){
                     return;
                 }
 
-                TextView receiveProductTotalAmount = layout.findViewById(R.id.totalAmout);
-                EditText receiveProductQuantity = layout.findViewById(R.id.editQuantity);
+                View clickedView = receivedRecyclerView.getLayoutManager().findViewByPosition(clickedPosition);
+
+//                Inflate the layout
+//                View layout = LayoutInflater.from(getContext()).inflate(R.layout.received_product_design, null);
+//                View layout = receivedProductAdapter.getClickedView();
+//                if(layout == null){
+//                    return;
+//                }
+
+                TextView receiveProductTotalAmount = clickedView.findViewById(R.id.totalAmout);
+                EditText receiveProductQuantity = clickedView.findViewById(R.id.editQuantity);
                 try {
                     receiveQuantity = Integer.parseInt(receiveProductQuantity.getText().toString());
                 } catch (NumberFormatException e) {
@@ -163,8 +167,10 @@ public class ReceivedProductFragment extends Fragment {
                     );
                     Toast.makeText(getContext(), "Received Product Successfully", Toast.LENGTH_SHORT).show();
                 }
+                receivedProductAdapter.clearClickPosition();
             }
         });
+
 
 //        save the value in the database
 //        rcProductAmount = view.findViewById(R.id.totalAmout);

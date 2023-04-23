@@ -52,6 +52,7 @@ public abstract class MyDbHelper extends RoomDatabase {
     public abstract DeliveryDetailDao deliveryDetailDao();
     public abstract CustomerDao customerDao();
     public abstract ReceiveProductDao receiveProductDao();
+//    public abstract ReceiveProductDao receiveProductDao();
     public abstract LoginDao loginDao ();
 
 }
