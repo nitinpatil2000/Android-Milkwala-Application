@@ -28,9 +28,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.products.ProductDetails;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReceivedProductFragment extends Fragment {
@@ -43,12 +41,15 @@ public class ReceivedProductFragment extends Fragment {
     ReceivedProductAdapter receivedProductAdapter;
     RecyclerView receivedRecyclerView;
     ArrayList<ProductDetails> productDetails = new ArrayList<>();
+    ArrayList<ReceiveProduct> receiveProductArrayList;
 
 
     ImageView receiveProductDate;
     Button saveReceiveProduct;
 
     private int supplierId;
+
+    EditText receiveProductAmount, receiveProductQty;
 
     public ReceivedProductFragment() {
 //        this.supplierId = supplierId;
@@ -141,7 +142,7 @@ public class ReceivedProductFragment extends Fragment {
 
 //                Inflate the layout
 //                View layout = LayoutInflater.from(getContext()).inflate(R.layout.received_product_design, null);
-//                View layout = receivedProductAdapter.getClickedView();
+//                int layout = receivedProductAdapter.getClickedPosition();
 //                if(layout == null){
 //                    return;
 //                }
@@ -150,6 +151,7 @@ public class ReceivedProductFragment extends Fragment {
                 EditText receiveProductQuantity = clickedView.findViewById(R.id.editQuantity);
                 try {
                     receiveQuantity = Integer.parseInt(receiveProductQuantity.getText().toString());
+//                    receiveAmount = Integer.parseInt(receiveProductTotalAmount.getText().toString());
                 } catch (NumberFormatException e) {
                     return;
                 }
@@ -161,7 +163,7 @@ public class ReceivedProductFragment extends Fragment {
                 }
 
                 if (receiveQuantity > 0 && receiveAmount > 0) {
-                    ReceiveProduct receiveProduct = new ReceiveProduct(receiveQuantity, receiveAmount);
+                    ReceiveProduct receiveProduct = new ReceiveProduct(receiveQuantity,  receiveAmount);
                     myDbHelper.receiveProductDao().addReceiveProduct(
                             receiveProduct
                     );
@@ -170,34 +172,6 @@ public class ReceivedProductFragment extends Fragment {
                 receivedProductAdapter.clearClickPosition();
             }
         });
-
-
-//        save the value in the database
-//        rcProductAmount = view.findViewById(R.id.totalAmout);
-//        saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int clickedPosition = receivedProductAdapter.getClickedPosition();
-//                if (clickedPosition == RecyclerView.NO_POSITION) {
-//                    return;
-//                }
-//                ProductDetails product = productDetails.get(clickedPosition);
-//                String receiveProductName = rcProductName.getText().toString();
-//                String receiveProductMrp = rcProductMrp.getText().toString();
-//                String receiveProductUnit = rcProductUnit.getText().toString();
-//                Long receiveProductAmount = Long.parseLong(rcProductAmount.getText().toString());
-//
-//                if (!receiveProductMrp.isEmpty() && receiveProductAmount != 0) {
-//                    if (!receiveProductName.equals(product.getProductDetailsName())
-//                            || !receiveProductUnit.equals(product.getProductDetailsUnit())
-//                            || !receiveProductMrp.equals(product.getProductDetailsMrp())) {
-//                        ReceivedProduct receivedProduct = new ReceivedProduct(receiveProductName, receiveProductMrp, receiveProductUnit, receiveProductAmount);
-//                        myDbHelper.receiveProductDao().addReceiveProduct(receivedProduct);
-//                        Toast.makeText(getContext(), "Received Product Successfully", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
 
 
         return view;
@@ -214,6 +188,4 @@ public class ReceivedProductFragment extends Fragment {
         }, 2022, 1, 15);
         dialog.show();
     }
-
-
 }

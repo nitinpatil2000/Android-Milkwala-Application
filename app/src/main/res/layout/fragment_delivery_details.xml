@@ -38,7 +38,7 @@
                     android:layout_marginStart="10dp"
                     android:text="Deliver Boy Name :"
                     android:textColor="#000"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
                 <TextView
                     android:id="@+id/txtDeliveryBoyName"
                     android:layout_width="0dp"
@@ -48,7 +48,7 @@
                     android:text="rahul"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/edit_design"
@@ -69,7 +69,7 @@
                     android:text="Address :"
                     android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="18sp"                     />
+                    android:textSize="16sp"                     />
 
                 <TextView
                     android:id="@+id/txtDeliveryBoyAdd"
@@ -80,7 +80,7 @@
                     android:layout_marginStart="10dp"
                     android:text="Address :"
                     android:padding="10dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="#000"
                     android:minLines="4"
                     android:background="@drawable/edit_design"
@@ -100,7 +100,7 @@
                     android:layout_marginStart="10dp"
                     android:text="City  :"
                     android:textColor="#000"
-                    android:textSize="22sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/txtDeliveryBoyCity"
@@ -109,7 +109,7 @@
                     android:layout_weight="3.5"
                     android:layout_marginStart="10dp"
                     android:maxLines="1"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
                     android:text="pune"
                     android:padding="10dp"
@@ -133,7 +133,7 @@
                     android:text="Contact No :"
                     android:textColor="#000"
                     android:layout_marginBottom="2dp"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
                 <TextView
                     android:id="@+id/txtDeliveryBoyContact"
                     android:layout_width="0dp"
@@ -144,7 +144,7 @@
                     android:layout_marginStart="10dp"
                     android:text="8574857458"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:padding="10dp"
                     android:background="@drawable/edit_design"
                     />
@@ -165,7 +165,7 @@
                     android:text="Alternate No :"
                     android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
                 <TextView
                     android:id="@+id/txtDeliveryBoyAlterNo"
                     android:layout_width="0dp"
@@ -175,7 +175,7 @@
                     android:layout_marginStart="10dp"
                     android:maxLines="1"
                     android:inputType="number"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
                     android:padding="10dp"
                     android:background="@drawable/edit_design"

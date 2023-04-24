@@ -46,7 +46,7 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         holder.receivedProductUnit.setText(productDetails.get(position).getProductDetailsUnit());
         holder.receivedProductMrp.setText(productDetails.get(position).getProductDetailsMrp());
         holder.totalAmount.setText(productDetails.get(position).getProductDetailsMrp());
-        holder.itemView.setActivated(mClickedPosition == position);
+//        holder.itemView.setActivated(mClickedPosition == position);
         }
 
     @Override
@@ -54,7 +54,8 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         return productDetails.size();
     }
 
-    public int getClickedPosition(){
+
+        public int getClickedPosition(){
         return mClickedPosition;
     }
 
@@ -93,7 +94,7 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     // calculate the new total amount based on the value of editQuantity
-                    Long newQuantity = 0L;
+                    long newQuantity = 0L;
                     if (!TextUtils.isEmpty(s)) {
                         newQuantity = Long.parseLong(s.toString());
                     }

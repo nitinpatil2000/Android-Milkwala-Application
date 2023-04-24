@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,9 +55,16 @@ public class AddSupplier extends Fragment {
                     );
 
                     Toast.makeText(getContext(), "Supplier added successfully", Toast.LENGTH_SHORT).show();
+
                     // return to the supplierFragment
-                    FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
-                    fragmentManager.popBackStack();
+                    SupplierFragment supplierFragment = new SupplierFragment();
+                    FragmentManager fragmentManager = getParentFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, supplierFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+//                    FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
+//                    fragmentManager.popBackStack();
                 }
             }
         });

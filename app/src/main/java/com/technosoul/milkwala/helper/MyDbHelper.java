@@ -19,7 +19,7 @@ import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceiveProduct.class, Login.class}, exportSchema = false, version = 20)
+@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceiveProduct.class, Login.class}, exportSchema = false, version = 22)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "milkDb";
     private static MyDbHelper instance;

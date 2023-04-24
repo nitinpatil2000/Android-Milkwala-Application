@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/cardColor"
+    android:orientation="vertical"
     tools:context=".supplier.AddSupplier">
 
     <androidx.cardview.widget.CardView
@@ -34,79 +34,85 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:text="Supplier Name : "
-                    android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="18sp" />
+                    android:layout_weight="1.5"
+                    android:text="@string/txt_supplier_name"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
                 <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:background="@drawable/edit_design"
-                    android:padding="10dp"
-
-                    android:maxLines="1"
                     android:id="@+id/editSupplierName"
-                    android:hint="Enter Your Supplier Name"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:text="Supplier Address : "
-                    android:textColor="#000"
-                    android:layout_marginStart="10dp"
-                    android:textSize="18sp" />
-
-                <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:background="@drawable/edit_design"
-                    android:padding="10dp"
-                    android:gravity="top"
-                    android:hint="enter your supplie address :"
-                    android:minLines="4"
-                    android:maxLines="5"
-                    android:id="@+id/editSupplierAddress"
-             />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:text="Mobile Number : "
-                    android:textColor="#000"
-                    android:layout_marginStart="10dp"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:background="@drawable/edit_design"
-                    android:padding="10dp"
-                    android:hint="enter your Mobile Number :"
+                    android:hint="@string/supplier_name"
                     android:maxLines="1"
-                    android:id="@+id/editSupplierNumber"
+                    android:autofillHints=""
+                    android:padding="10dp"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/txt_supp_add"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editSupplierAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:background="@drawable/edit_design"
+                    android:gravity="top"
+                    android:hint="@string/edit_supp_add"
+                    android:maxLines="5"
+                    android:minLines="4"
+                    android:padding="10dp"
+                    android:autofillHints=""
                     />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1.5"
+                    android:text="@string/txt_supp_number"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editSupplierNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:background="@drawable/edit_design"
+                    android:hint="@string/edit_supp_number"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:autofillHints=""
+                    android:inputType="number" />
             </LinearLayout>
 
 
@@ -115,7 +121,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="bottom"
         android:orientation="vertical">
@@ -133,12 +139,12 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="Add"
-            android:fontFamily="@font/ubuntu_light"
             android:backgroundTint="@color/button_background_color"
+            android:fontFamily="@font/ubuntu_light"
+            android:gravity="center"
+            android:text="@string/supp_add_btn"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>

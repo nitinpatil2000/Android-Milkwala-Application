@@ -20,17 +20,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="80dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:orientation="horizontal"
-            android:weightSum="4.8">
+            android:weightSum="4.7">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_weight="0.8"
+                android:layout_weight="0.7"
                 android:src="@drawable/producticon" />
 
 
@@ -52,7 +52,7 @@
                     android:maxLines="1"
                     android:text="Products"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/productCounter"
@@ -64,7 +64,7 @@
                     android:maxLines="1"
                     android:text="8 Products"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

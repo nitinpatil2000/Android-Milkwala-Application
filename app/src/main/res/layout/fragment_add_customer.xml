@@ -34,10 +34,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="Name :"
+                    android:text="@string/txt_customer_name"
                     android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/editCustomerName"
@@ -45,12 +45,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:background="@drawable/edit_design"
-                    android:hint="Enter the Name"
+                    android:hint="@string/edit_customer_name"
                     android:layout_marginStart="10dp"
                     android:maxLines="2"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,10 +63,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="Address :"
+                    android:text="@string/txt_customer_address"
                     android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/editCutomerAdd"
@@ -75,12 +75,12 @@
                     android:layout_weight="3.5"
                     android:background="@drawable/edit_design"
                     android:gravity="top"
-                    android:hint="Enter the address"
+                    android:hint="@string/edit_customer_address"
                     android:maxLines="6"
                     android:layout_marginStart="10dp"
                     android:minLines="4"
                     android:padding="10dp"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
 
             </LinearLayout>
 
@@ -94,10 +94,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="City :"
+                    android:text="@string/txt_customer_city"
                     android:layout_marginStart="10dp"
                     android:textColor="#000"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
 
                 <EditText
                     android:id="@+id/editCustomerCity"
@@ -105,12 +105,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:background="@drawable/edit_design"
-                    android:hint="Enter the city"
+                    android:hint="@string/edit_customer_city"
                     android:maxLines="1"
                     android:layout_marginStart="10dp"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
 
             </LinearLayout>
 
@@ -124,10 +124,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="Contact 1 :"
+                    android:text="@string/txt_customer_contact1"
                     android:layout_marginStart="10dp"
                     android:textColor="#000"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
 
                 <EditText
                     android:id="@+id/editContactNo1"
@@ -135,13 +135,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:background="@drawable/edit_design"
-                    android:hint="Contact No. 1 "
+                    android:hint="@string/edit_customer_contact1"
                     android:layout_marginStart="10dp"
                     android:maxLines="1"
                     android:inputType="number"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
 
             </LinearLayout>
 
@@ -156,10 +156,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="Contact 2 :"
+                    android:text="@string/txt_customer_contact2"
                     android:layout_marginStart="10dp"
                     android:textColor="#000"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
 
 
                 <EditText
@@ -169,12 +169,12 @@
                     android:inputType="number"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_design"
-                    android:hint="Contact No. 2 "
+                    android:hint="@string/edit_customer_contact2"
                     android:layout_marginStart="10dp"
                     android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="18sp"  />
+                    android:textSize="16sp"  />
             </LinearLayout>
 
 
@@ -183,7 +183,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="bottom"
             android:orientation="vertical">
@@ -198,7 +198,7 @@
                 android:id="@+id/addNewCustomerBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Add"
+                android:text="@string/add_customer_btn"
                 android:layout_marginStart="25sp"
                 android:layout_marginEnd="25sp"
                 android:textColor="@color/black"
