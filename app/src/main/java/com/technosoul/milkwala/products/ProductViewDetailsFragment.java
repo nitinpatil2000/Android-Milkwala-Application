@@ -22,9 +22,11 @@ public class ProductViewDetailsFragment extends Fragment {
     String viewProductName, viewProductUnit;
     ProductDetails productDetails;
     EditText editVenderRate, editSupplierRate;
+    int productDetailsId;
 
 
-    public ProductViewDetailsFragment() {
+    public ProductViewDetailsFragment(int productDetailsId) {
+        this.productDetailsId = productDetailsId;
         // Required empty public constructor
     }
 
@@ -97,12 +99,11 @@ public class ProductViewDetailsFragment extends Fragment {
                 deleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int position;
-//                      ProductDetails productDetails=  myDbHelper.productDetailsDto().getProductById();
-                        if(productDetails != null){
-                            myDbHelper.productDetailsDto().deleteProduct(productDetails);
-                            Toast.makeText(getContext(), "Product Deleted Successfully !!", Toast.LENGTH_SHORT).show();
-                        }
+                        myDbHelper.productDetailsDto().deleteProductById(productDetailsId);
+                        Toast.makeText(getContext(), "Product Deleted Successfully !!", Toast.LENGTH_SHORT).show();
+                        getActivity().getSupportFragmentManager().popBackStack();
+                        dialog.dismiss();
+
                     }
                 });
                 dialog.show();

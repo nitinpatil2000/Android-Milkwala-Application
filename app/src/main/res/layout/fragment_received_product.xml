@@ -22,7 +22,7 @@
             android:fontFamily="@font/ubuntu_light"
             android:text="Select Supplier :"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <Spinner
@@ -51,17 +51,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:layout_weight="1.4"
+            android:layout_weight="1.5"
             android:background="@drawable/edit_design"
             android:padding="10dp"
             android:text="2022/12/25"
             android:textColor="@color/black"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/selectDate"
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
             android:layout_weight="0.5"

@@ -29,7 +29,7 @@ public interface ProductDetailsDto {
     @Delete
     void deleteProduct(ProductDetails productDetails);
 
-//    @Query("DELETE FROM productDetails WHERE product_details_id = :product_details_id")
-//    void getProductById(int product_details_id);
+    @Query("DELETE FROM productDetails WHERE product_details_id = :product_details_id")
+    void deleteProductById(int product_details_id);
 
 }

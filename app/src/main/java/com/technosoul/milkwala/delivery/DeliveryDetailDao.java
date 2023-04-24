@@ -25,6 +25,6 @@ public interface DeliveryDetailDao {
     void deleteDeliver(Deliver deliver);
 
     @Query("DELETE FROM delivery_boys WHERE delivery_boy_id = :delivery_boy_id")
-    void getDeliverById(int delivery_boy_id);
+    void deleteDeliveryBoyId(int delivery_boy_id);
 
 }

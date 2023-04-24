@@ -49,7 +49,7 @@
                     android:text="Supplier \nName : "
                     android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/supplierName"
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:text="Chitale"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textColor="#000"
                     android:padding="5dp"
                     android:paddingStart="10dp"
@@ -78,7 +78,7 @@
                     android:text=" Address : "
                     android:layout_marginStart="10dp"
                     android:textColor="#000"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/supplierAddress"
@@ -88,7 +88,7 @@
                     android:minLines="4"
                     android:maxLines="5"
                     android:text="Address 1"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textColor="#000"
                     android:padding="5dp"
                     android:paddingStart="10dp"
@@ -110,7 +110,7 @@
                     android:text="Contact No  : "
                     android:layout_marginStart="10dp"
                     android:textColor="#000"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/supplierNumber"
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:text="8574859685"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textColor="#000"
                     android:padding="5dp"
                     android:inputType="number"
@@ -157,7 +157,7 @@
             android:fontFamily="@font/ubuntu_light"
             android:text="Delete Supplier"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 

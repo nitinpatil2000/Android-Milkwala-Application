@@ -24,7 +24,7 @@ public interface CustomerDao {
     void deleteCustomer(Customer customer);
 
     @Query("DELETE FROM customer WHERE customer_id = :customer_id")
-    void deleteById(long customer_id);
+    void deleteCustomerById(int customer_id);
 
 
 }

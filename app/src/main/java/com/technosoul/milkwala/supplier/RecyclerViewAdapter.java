@@ -97,12 +97,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION){
                         Supplier clickedItem = suppliers.get(position);
+                        int supplierId = clickedItem.getSupplierId();
                         Bundle bundle = new Bundle();
                         bundle.putString("supplierTxt", clickedItem.getSupplierName());
                         bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
                         bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
 
-                        SupplierDetailsFragment supplierDetailsFragment  = new SupplierDetailsFragment();
+                        SupplierDetailsFragment supplierDetailsFragment  = new SupplierDetailsFragment(supplierId);
                         supplierDetailsFragment.setArguments(bundle);
                         //Replace the current fragment with the SupplierDetails Fragment
                         FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();

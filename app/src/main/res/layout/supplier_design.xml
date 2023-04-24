@@ -23,7 +23,7 @@
             android:layout_height="85dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:weightSum="5"
+            android:weightSum="4.8"
             android:orientation="horizontal">
 
 
@@ -31,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:src="@drawable/suppliericon" />
 
 
@@ -54,19 +54,19 @@
                     android:maxLines="1"
                     android:text="Suppliers"
                     android:textColor="@color/black"
-                    android:textSize="23sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/supplierCounter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/ubuntu_light"
                     android:maxLines="1"
                     android:text="8 Suppliers"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>

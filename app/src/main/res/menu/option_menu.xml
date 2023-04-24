@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_master"
         android:icon="@drawable/ic_baseline_info_24"
-        android:title="Master Info"
+        android:title="Milkwala"
         app:showAsAction="collapseActionView" />
 <!--    <item-->
 <!--        android:id="@+id/separator"-->

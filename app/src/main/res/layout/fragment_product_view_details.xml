@@ -39,7 +39,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="4dp"
                     android:textColor="#000"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtProductName"
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:text="Ice Cream"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textColor="#000"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
@@ -69,7 +69,7 @@
                     android:layout_marginStart="10dp"
                     android:text="Unit :"
                     android:textColor="#000"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -78,7 +78,7 @@
                     android:padding="10dp"
                     android:textColor="#000"
                     android:text="1kg"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:background="@drawable/edit_design"
                     android:id="@+id/txtUnit"/>
             </LinearLayout>
@@ -97,7 +97,7 @@
                     android:layout_marginBottom="4dp"
                     android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/editSupplierRate"
@@ -105,6 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:maxLines="1"
+                    android:textSize="18sp"
                     android:padding="10dp"
                     android:textColor="#000"
                     android:text="Rs. 50"
@@ -126,7 +127,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="4dp"
                     android:textColor="#000"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp"/>
 
                 <EditText
                     android:id="@+id/editVenderRate"
@@ -136,6 +137,7 @@
                     android:text="Rs.100"
                     android:maxLines="1"
                     android:padding="10dp"
+                    android:textSize="18sp"
                     android:textColor="#000"
                     android:background="@drawable/edit_design"
                     />
@@ -154,7 +156,7 @@
                     android:text="MRP :"
                     android:layout_marginStart="10dp"
                     android:textColor="#000"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/txtProductMrp"
@@ -162,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:text="Rs.200"
                     android:background="@drawable/edit_design"
                     android:padding="10dp"
@@ -195,7 +197,7 @@
             android:layout_marginStart="25sp"
             android:layout_marginEnd="25sp"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:backgroundTint="@color/button_background_color"
             android:fontFamily="@font/ubuntu_light"
             android:layout_marginBottom="10dp"

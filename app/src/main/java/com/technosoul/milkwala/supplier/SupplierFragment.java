@@ -32,6 +32,7 @@ public class SupplierFragment extends Fragment {
     ArrayList<Supplier> supplierList;
 
     Button addSupplierTxt;
+    int supplierId;
 
     public SupplierFragment() {
 
@@ -103,7 +104,10 @@ public class SupplierFragment extends Fragment {
                 filterList.add(supplier);
             }
         }
-        recyclerViewAdapter.filteredList(filterList) ;
+        //check if the adapter is not null before calling filteredList method
+        if(recyclerViewAdapter != null){
+        recyclerViewAdapter.filteredList(filterList);
+        }
     }
 
 //    private void filter(String text) {
@@ -118,13 +122,13 @@ public class SupplierFragment extends Fragment {
 
 
 
-    public void showDetailsFragmentt(int position) {
+    public void showDetailsFragment(int position) {
         Supplier supplier = ((RecyclerViewAdapter) recyclerViewAdapter).getItem(position);
         // Create a new SupplierDetailsFragment and pass the supplier ID and position
         Bundle args = new Bundle();
 //        args.putInt("id", supplier.getId());
         args.putInt("position", position);
-        SupplierDetailsFragment supplierDetailsFragment = new SupplierDetailsFragment();
+        SupplierDetailsFragment supplierDetailsFragment = new SupplierDetailsFragment(supplierId);
         supplierDetailsFragment.setArguments(args);
         // Pass a reference to the adapter to the SupplierDetailsFragment
         supplierRecyclerView.setAdapter(recyclerViewAdapter);

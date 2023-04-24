@@ -18,23 +18,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:weightSum="5">
+        >
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:layout_weight="1.6"
                 android:fontFamily="@font/berkshire_swash"
                 android:text="Milkwala"
                 android:textColor="#FFC30E"
                 android:textSize="30sp" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/berkshire_swash"
                 android:text="Dairy"
                 android:layout_marginStart = "5dp"

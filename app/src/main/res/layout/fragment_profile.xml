@@ -52,8 +52,7 @@
                         android:layout_weight="1.3"
                         android:text="Name :"
                         android:textColor="#000"
-                        android:textSize="20dp" />
-
+                        android:textSize="18sp"/>
                     <EditText
                         android:id="@+id/editProfileName"
                         android:layout_width="0dp"
@@ -61,6 +60,7 @@
                         android:layout_weight="3.7"
                         android:background="@drawable/edit_design"
                         android:maxLines="2"
+                        android:textSize="18sp"
                         android:padding="10dp" />
 
                 </LinearLayout>
@@ -78,8 +78,7 @@
                         android:layout_weight="1.3"
                         android:text="Address :"
                         android:textColor="#000"
-                        android:textSize="20dp" />
-
+                        android:textSize="18sp"/>
                     <EditText
                         android:id="@+id/editProfileAddress"
                         android:layout_width="0dp"
@@ -88,6 +87,7 @@
                         android:background="@drawable/edit_design"
                         android:gravity="top"
                         android:maxLines="6"
+                        android:textSize="18sp"
                         android:minLines="4"
                         android:padding="10dp" />
 
@@ -107,8 +107,7 @@
                         android:layout_weight="1.3"
                         android:text="Contact No :"
                         android:textColor="#000"
-                        android:textSize="20dp" />
-
+                        android:textSize="18sp"/>
                     <EditText
                         android:id="@+id/editContacNo"
                         android:layout_width="0dp"
@@ -117,6 +116,7 @@
                         android:background="@drawable/edit_design"
                         android:gravity="top"
                         android:inputType="number"
+                        android:textSize="18sp"
                         android:minLines="1"
                         android:padding="10dp" />
 

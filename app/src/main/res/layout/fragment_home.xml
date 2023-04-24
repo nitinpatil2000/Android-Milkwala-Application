@@ -36,7 +36,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/supplier"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
@@ -53,33 +53,35 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="90dp"
                     android:id = "@+id/supplierImg"
-                    android:layout_weight="3"
                     android:src="@drawable/supplier" />
 
                 <TextView
                     android:id="@+id/suppliersTxt"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2.5"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="Supplier"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/supplierSubText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2.5"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="8 Suppliers"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -89,7 +91,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/product"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
@@ -106,33 +108,35 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="90dp"
                     android:id = "@+id/productImg"
-                    android:layout_weight="3"
                     android:src="@drawable/products" />
 
                 <TextView
                     android:id="@+id/productTxt"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2.5"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="Products"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/productSubText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2.5"
                     android:fontFamily="@font/ubuntu_light"
+                    android:layout_marginTop="10dp"
                     android:text="8 Products"
+                    android:layout_marginBottom="10dp"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -146,7 +150,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/delivery"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
@@ -163,34 +167,35 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="90dp"
                     android:id = "@+id/deliverImg"
-
                     android:src="@drawable/delivery" />
 
                 <TextView
                     android:id="@+id/deliveryTxt"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2.5"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="Delivery Boy"
                     android:textAlignment="center"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/deliverySubText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="2.5"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="16 Delivery Boys"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -200,7 +205,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/products"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
@@ -218,8 +223,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="90dp"
                     android:id = "@+id/customerImg"
                     android:src="@drawable/cust" />
 
@@ -227,24 +231,27 @@
                     android:id="@+id/customerTxt"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2.5"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="Customers"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/customerSubText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2.5"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/ubuntu_light"
                     android:text="210 Customers"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -62,12 +62,13 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION){
                         Customer clickedItem = customers.get(position);
+                        int customerId = clickedItem.getCustomerId();
                         Bundle bundle = new Bundle();
                         bundle.putString("customerName", clickedItem.getCustomerName());
                         bundle.putString("customerAdd", clickedItem.getCustomerAddress());
                         bundle.putString("customerCity", clickedItem.getCustomerCity());
                         bundle.putString("customerNo", clickedItem.getCustomerNumber());
-                        CustomerDetailsFragment customerDetailsFragment = new CustomerDetailsFragment();
+                        CustomerDetailsFragment customerDetailsFragment = new CustomerDetailsFragment(customerId);
                         customerDetailsFragment.setArguments(bundle);
                         FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();

@@ -20,8 +20,10 @@ public class SupplierDetailsFragment extends Fragment {
     Button deleteSupplier;
     String suppName, suppAddress, suppNumber;
     RecyclerViewAdapter recyclerViewAdapter;
+    int supplierId;
 
-    public SupplierDetailsFragment() {
+    public SupplierDetailsFragment(int supplierId) {
+        this.supplierId = supplierId;
         // Required empty public constructor
     }
 
@@ -81,12 +83,13 @@ public class SupplierDetailsFragment extends Fragment {
                     deleteBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            myDbHelper.supplierDao().deleteById(getId());
-                            SupplierFragment supplierFragment = new SupplierFragment();
+//                            myDbHelper.supplierDao().deleteById(getId());
+//                            SupplierFragment supplierFragment = new SupplierFragment();
 
+                            myDbHelper.supplierDao().deleteById(supplierId);
                             //remove the item from the recyclerVIew.
-                            int position = getArguments().getInt("position");
-                            supplierFragment.showDetailsFragmentt(position);
+//                            int position = getArguments().getInt("position");
+//                            supplierFragment.showDetailsFragmentt(position);
 
                             Toast.makeText(getContext(), "Item Deleted Successfully", Toast.LENGTH_SHORT).show();
                             getActivity().getSupportFragmentManager().popBackStack();

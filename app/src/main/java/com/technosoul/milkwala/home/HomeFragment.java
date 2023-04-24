@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
     private int currentPage = 0;
     private Timer timer;
     private final long DELAY_MS = 2000;//delay in milliseconds before task is to be executed
-    private final long PERIOD_MS = 4000; // time period in milliseconds between successive task executions.
+    private final long PERIOD_MS = 3000; // time period in milliseconds between successive task executions.
 //    ArrayList<Supplier> suppliers = new ArrayList<>();
 
     public HomeFragment() {

@@ -188,8 +188,7 @@
                 android:text="@string/contact"
                 android:textAlignment="viewStart"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
-
+                android:textSize="18sp"/>
 
             <ImageView
                 android:layout_width="200dp"
@@ -248,8 +247,7 @@
                                 android:layout_weight="1.7"
                                 android:text="App Name :"
                                 android:textColor="#000"
-                                android:textSize="20dp" />
-
+                                android:textSize="18sp"/>
                             <EditText
                                 android:id="@+id/editProfileName"
                                 android:layout_width="0dp"
@@ -257,6 +255,7 @@
                                 android:layout_weight="3.3"
                                 android:background="@drawable/rectangular_design_curve"
                                 android:maxLines="2"
+                                android:textSize="18sp"
                                 android:padding="10dp" />
 
                         </LinearLayout>
@@ -276,8 +275,7 @@
                                 android:layout_weight="1.7"
                                 android:text="Mobile No :"
                                 android:textColor="#000"
-                                android:textSize="20dp" />
-
+                                android:textSize="18sp"/>
                             <EditText
                                 android:id="@+id/editMobileNumber"
                                 android:layout_width="0dp"
@@ -286,6 +284,7 @@
                                 android:background="@drawable/rectangular_design_curve"
                                 android:inputType="number"
                                 android:maxLines="2"
+                                android:textSize="18sp"
                                 android:padding="10dp" />
 
                         </LinearLayout>
@@ -305,13 +304,13 @@
                                 android:layout_weight="1.7"
                                 android:text="Email :"
                                 android:textColor="#000"
-                                android:textSize="20dp" />
-
+                                android:textSize="18sp"/>
                             <EditText
                                 android:id="@+id/editProfileEmail"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3.3"
+                                android:textSize="18sp"
                                 android:background="@drawable/rectangular_design_curve"
                                 android:maxLines="2"
                                 android:padding="10dp" />
@@ -333,8 +332,7 @@
                                 android:layout_weight="1.7"
                                 android:text="Message :"
                                 android:textColor="#000"
-                                android:textSize="20dp" />
-
+                                android:textSize="18sp"/>
                             <EditText
                                 android:id="@+id/editProfileMsg"
                                 android:layout_width="0dp"
@@ -342,6 +340,7 @@
                                 android:layout_weight="3.3"
                                 android:background="@drawable/rectangular_design_curve"
                                 android:maxLines="2"
+                                android:textSize="18sp"
                                 android:padding="10dp" />
                         </LinearLayout>
 
@@ -390,7 +389,7 @@
                             android:minLines="1"
                             android:text="@string/description"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView

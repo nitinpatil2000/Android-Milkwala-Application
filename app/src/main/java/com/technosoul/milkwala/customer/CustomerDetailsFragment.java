@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
@@ -19,7 +20,9 @@ public class CustomerDetailsFragment extends Fragment {
     Button deleteCustomerBtn;
 
     String customerName, customerAdd, customerCity, customerNo;
-    public CustomerDetailsFragment() {
+    int customerId;
+    public CustomerDetailsFragment(int customerId) {
+        this.customerId = customerId;
         // Required empty public constructor
     }
 
@@ -78,10 +81,11 @@ public class CustomerDetailsFragment extends Fragment {
                 deleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-//                        myDbHelper.customerDao().deleteCustomer(
-//                                new Customer()
-//                        );
+                     MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+                     myDbHelper.customerDao().deleteCustomerById(customerId);
+                        Toast.makeText(getContext(), "Customer Deleted Successfully !!", Toast.LENGTH_SHORT).show();
+                        getActivity().getSupportFragmentManager().popBackStack();
+                        dialog.dismiss();
 
                     }
                 });

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".customerorder.CustomerOrderFragment">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:weightSum="4">
 
         <TextView
@@ -21,7 +21,7 @@
             android:fontFamily="@font/ubuntu_light"
             android:text="Select Customer :"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <Spinner
@@ -30,15 +30,14 @@
             android:layout_height="43dp"
             android:layout_margin="10dp"
             android:layout_weight="2"
-            android:minLines = "3"
-            android:background="@android:drawable/btn_dropdown" />
+            android:background="@android:drawable/btn_dropdown"
+            android:minLines="3" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="5dp"
         android:background="@color/black" />
 
     <LinearLayout
@@ -51,8 +50,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="1.4"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.6"
             android:background="@drawable/edit_design"
             android:padding="10dp"
             android:text="2022/12/25"
@@ -64,8 +63,8 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.5"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.4"
             android:src="@drawable/ic_baseline_date_range_24" />
 
     </LinearLayout>
@@ -73,19 +72,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:weightSum="4">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="2"
             android:fontFamily="@font/ubuntu_light"
             android:text="Assign Delivery \nBoy :"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginTop="11dp"
-            android:layout_marginStart="11dp"
+            android:textSize="18sp"
 
             android:textStyle="bold" />
 
@@ -93,7 +91,7 @@
             android:id="@+id/receivedDelivery"
             android:layout_width="0dp"
             android:layout_height="43dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="2"
             android:background="@android:drawable/btn_dropdown" />
 
@@ -103,68 +101,76 @@
     <View
         android:layout_width="180dp"
         android:layout_height="2dp"
-        android:background="@color/black"
         android:layout_marginStart="5dp"
-        />
+        android:background="@color/black" />
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="Select Product :"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-       android:textSize="20sp"
-       android:textColor="@color/black"/>
+        android:text="Select Product :"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
 
     <View
         android:layout_width="180dp"
         android:layout_height="2dp"
-        android:background="@color/black"
         android:layout_marginStart="5dp"
-        />
+        android:background="@color/black" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="10dp">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/receivedCustomerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="12dp"
-        android:scrollbars="vertical"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@id/savedCustomerOrder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/receivedRecyclerView"
-        tools:ignore="UnknownIdInLayout" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/receivedCustomerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight ="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/savedCustomerOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/button_background_color"
-        android:fontFamily="@font/ubuntu_light"
-        android:gravity="center"
-        android:text="save"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnOpenDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "end"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="188dp"
+            android:src="@drawable/ic_baseline_add_24"
+           />
+
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black"
+   />
+
+        <Button
+            android:id="@+id/savedCustomerOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="@color/button_background_color"
+            android:fontFamily="@font/ubuntu_light"
+            android:gravity="center"
+            android:text="save"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+    </LinearLayout>
 
 </LinearLayout>

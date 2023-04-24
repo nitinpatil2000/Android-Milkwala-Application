@@ -27,7 +27,7 @@ public interface SupplierDao {
     void deleteSupplier(Supplier supplier);
 
     @Query("DELETE FROM supplier WHERE supplier_id = :supplierId")
-    void deleteById(long supplierId);
+    void deleteById(int supplierId);
 
 
 

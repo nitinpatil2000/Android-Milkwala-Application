@@ -67,13 +67,14 @@ public class DeliverViewAdapter extends RecyclerView.Adapter<DeliverViewAdapter.
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Deliver clickedItem = deliver.get(position);
+                        int deliveryId = clickedItem.getDeliverBoyId();
                         Bundle bundle = new Bundle();
                         bundle.putString("Name", clickedItem.getDeliveryBoyName());
                         bundle.putString("Address", clickedItem.getDeliveryBoyAddress());
                         bundle.putString("City", clickedItem.getDeliveryBoyCity());
                         bundle.putString("Contact", clickedItem.getDeliveryBoyNumber());
                         bundle.putString("Alter", clickedItem.getDeliveryBoyAlterNo());
-                        DeliveryDetailsFragment deliveryDetailsFragment = new DeliveryDetailsFragment();
+                        DeliveryDetailsFragment deliveryDetailsFragment = new DeliveryDetailsFragment(deliveryId);
                         deliveryDetailsFragment.setArguments(bundle);
                         FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();

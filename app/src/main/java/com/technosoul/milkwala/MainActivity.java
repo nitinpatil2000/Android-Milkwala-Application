@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
 
 
         //by default set the fragment
-        loadNewFragment(new MilkwalaFragment());
+        loadNewFragment(new HomeFragment());
 
         //after click the menu item
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
                 int id = item.getItemId();
                 if
                 (id == R.id.menu_master) {
-                    loadFragment(new HomeFragment());
+                    loadFragment(new MilkwalaFragment());
                 }
                 else if
                 (id == R.id.menu_stock) {
