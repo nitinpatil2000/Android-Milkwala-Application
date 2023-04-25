@@ -17,16 +17,24 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOrderProductAdapter.ViewHolder> {
 
     Context context;
     ArrayList<ProductDetails> productDetails;
+    List<String> customerData;
     private int mClickedPosition = RecyclerView.NO_POSITION;
 
-    public CustomerOrderProductAdapter(Context context, ArrayList<ProductDetails> productDetails){
+    public CustomerOrderProductAdapter(Context context, ArrayList<ProductDetails> productDetails, List<String>customerData){
         this.context = context;
         this.productDetails = productDetails;
+        this.customerData = customerData;
+    }
+    public CustomerOrderProductAdapter(Context context){
+        this.context = context;
+//        this.productDetails = productDetails;
+//        this.customerData = customerData;
     }
 
     @NonNull
@@ -50,6 +58,12 @@ public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOr
     @Override
     public int getItemCount() {
         return productDetails.size();
+    }
+
+
+    public void addItem(String selectItem) {
+        customerData.add(selectItem);
+        notifyItemInserted(customerData.size () - 1);
     }
 
 

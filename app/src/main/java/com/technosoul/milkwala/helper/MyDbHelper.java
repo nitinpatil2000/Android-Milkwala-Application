@@ -8,8 +8,8 @@ import androidx.room.RoomDatabase;
 
 import com.technosoul.milkwala.auth.Login;
 import com.technosoul.milkwala.auth.LoginDao;
-import com.technosoul.milkwala.receiveProduct.ReceiveProduct;
-import com.technosoul.milkwala.receiveProduct.ReceiveProductDao;
+import com.technosoul.milkwala.receiveProduct.DailyReceiveDao;
+import com.technosoul.milkwala.receiveProduct.DailyReceiveProduct;
 import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.supplier.SupplierDao;
 import com.technosoul.milkwala.customer.Customer;
@@ -19,7 +19,7 @@ import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, ReceiveProduct.class, Login.class}, exportSchema = false, version = 22)
+@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version = 2)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "milkDb";
     private static MyDbHelper instance;
@@ -51,8 +51,7 @@ public abstract class MyDbHelper extends RoomDatabase {
     public abstract ProductDetailsDto productDetailsDto();
     public abstract DeliveryDetailDao deliveryDetailDao();
     public abstract CustomerDao customerDao();
-    public abstract ReceiveProductDao receiveProductDao();
-//    public abstract ReceiveProductDao receiveProductDao();
     public abstract LoginDao loginDao ();
+    public abstract DailyReceiveDao dailyReceiveDao();
 
 }

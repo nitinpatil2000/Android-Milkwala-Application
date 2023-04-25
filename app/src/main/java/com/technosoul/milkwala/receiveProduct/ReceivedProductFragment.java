@@ -23,12 +23,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
 import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReceivedProductFragment extends Fragment {
@@ -37,11 +39,11 @@ public class ReceivedProductFragment extends Fragment {
     ArrayList<String> arryNames = new ArrayList<>();
     View line;
 
-
     ReceivedProductAdapter receivedProductAdapter;
     RecyclerView receivedRecyclerView;
     ArrayList<ProductDetails> productDetails = new ArrayList<>();
-    ArrayList<ReceiveProduct> receiveProductArrayList;
+
+    int productDetailsId;
 
 
     ImageView receiveProductDate;
@@ -131,49 +133,51 @@ public class ReceivedProductFragment extends Fragment {
         saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int receiveQuantity;
-                long receiveAmount;
-                int clickedPosition = receivedProductAdapter.getClickedPosition();
-                if(clickedPosition == RecyclerView.NO_POSITION){
-                    return;
+                EditText editQuantity;
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                View anotherView = inflater.inflate(R.layout.received_product_design, null);
+                editQuantity = anotherView.findViewById(R.id.editQuantity);
+//                receiveProductDate
+
+                ArrayList<ProductDetails> productDetails = receivedProductAdapter.getProductDetails();
+                for (ProductDetails productDetail : productDetails) {
+                    productDetailsId = productDetail.getProductDetailsId();
+                    String receivedQuantity = productDetail.getProductDetailsQuantity().toString();
+                    int quantityReceiveProduct = 0;
+                    if(TextUtils.isEmpty(receivedQuantity)){
+                        Toast.makeText(getContext(), "Please enter a quantity", Toast.LENGTH_SHORT).show();
+                    }else{
+                    DailyReceiveProduct dailyReceiveProduct = new DailyReceiveProduct();
+                    quantityReceiveProduct = Integer.parseInt(receivedQuantity);
+//                int dailyReceivedQuantity = Integer.parseInt(quantityReceiveProduct);
+                        dailyReceiveProduct.setProductDetailsId(productDetailsId);
+                        dailyReceiveProduct.setReceivedProductQuantity(quantityReceiveProduct);
+//                  dailyReceiveProduct.setReceivedProductDate(new Date()); //use current date of the receive product
+                        // Insert the DailyReceivedProduct object into the database
+                        myDbHelper.dailyReceiveDao().addDailyReceiveProduct(dailyReceiveProduct);
+                        Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-                View clickedView = receivedRecyclerView.getLayoutManager().findViewByPosition(clickedPosition);
 
-//                Inflate the layout
-//                View layout = LayoutInflater.from(getContext()).inflate(R.layout.received_product_design, null);
-//                int layout = receivedProductAdapter.getClickedPosition();
-//                if(layout == null){
-//                    return;
+
+
+//                ArrayList<ProductDetails> productDetails = receivedProductAdapter.getProductDetails();
+//                for (ProductDetails productDetail : productDetails) {
+////                    int profileDetailsId = productDetail.getProductDetailsId();
+////                    String quantityReceivedProduct = editQuantity.getText().toString();
+//                    System.out.println(productDetail);
+//                    Long productEditQty = productDetail.getProductDetailsQuantity();
+//                    if (productEditQty == 0L) {
+//                        Toast.makeText(getContext(), "Please enter a quantity", Toast.LENGTH_SHORT).show();
+//                    }else{
+////                        long productQty = Long.parseLong(productEditQty);
+//                        myDbHelper.productDetailsDto().getProductById(productDetail.getProductDetailsId());
+//                        Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();
+//                    }
 //                }
-
-                TextView receiveProductTotalAmount = clickedView.findViewById(R.id.totalAmout);
-                EditText receiveProductQuantity = clickedView.findViewById(R.id.editQuantity);
-                try {
-                    receiveQuantity = Integer.parseInt(receiveProductQuantity.getText().toString());
-//                    receiveAmount = Integer.parseInt(receiveProductTotalAmount.getText().toString());
-                } catch (NumberFormatException e) {
-                    return;
-                }
-
-                try {
-                    receiveAmount = Long.parseLong(receiveProductTotalAmount.getText().toString());
-                } catch (NumberFormatException e) {
-                    return;
-                }
-
-                if (receiveQuantity > 0 && receiveAmount > 0) {
-                    ReceiveProduct receiveProduct = new ReceiveProduct(receiveQuantity,  receiveAmount);
-                    myDbHelper.receiveProductDao().addReceiveProduct(
-                            receiveProduct
-                    );
-                    Toast.makeText(getContext(), "Received Product Successfully", Toast.LENGTH_SHORT).show();
-                }
-                receivedProductAdapter.clearClickPosition();
             }
         });
-
-
         return view;
     }
 

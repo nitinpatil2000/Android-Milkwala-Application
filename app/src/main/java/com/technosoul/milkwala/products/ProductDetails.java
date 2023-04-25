@@ -10,6 +10,8 @@ import androidx.room.PrimaryKey;
 
 import com.technosoul.milkwala.supplier.Supplier;
 
+import kotlin.jvm.Transient;
+
 @Entity(tableName = "productDetails", foreignKeys = {
         @ForeignKey(entity = Supplier.class,
                 parentColumns = "supplier_id",
@@ -39,6 +41,10 @@ public class ProductDetails {
 
     @ColumnInfo(name = "product_details_mrp")
     private String productDetailsMrp;
+
+    @Transient
+    private Long productDetailsQuantity;
+
 
     public ProductDetails(int productDetailsId, int supplierId, String productDetailsName, String productSupplierRate, String productVenderRate, String productDetailsUnit, String productDetailsMrp) {
         this.productDetailsId = productDetailsId;
@@ -72,6 +78,14 @@ public class ProductDetails {
 
     public void setProductDetailsId(int productDetailsId) {
         this.productDetailsId = productDetailsId;
+    }
+
+    public Long getProductDetailsQuantity() {
+        return productDetailsQuantity;
+    }
+
+    public void setProductDetailsQuantity(Long productDetailsQuantity) {
+        this.productDetailsQuantity = productDetailsQuantity;
     }
 
     public int getSupplierId() {
@@ -120,5 +134,19 @@ public class ProductDetails {
 
     public void setProductDetailsMrp(String productDetailsMrp) {
         this.productDetailsMrp = productDetailsMrp;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDetails{" +
+                "productDetailsId=" + productDetailsId +
+                ", supplierId=" + supplierId +
+                ", productDetailsName='" + productDetailsName + '\'' +
+                ", productSupplierRate='" + productSupplierRate + '\'' +
+                ", productVenderRate='" + productVenderRate + '\'' +
+                ", productDetailsUnit='" + productDetailsUnit + '\'' +
+                ", productDetailsMrp='" + productDetailsMrp + '\'' +
+                ", productDetailsQuantity=" + productDetailsQuantity +
+                '}';
     }
 }

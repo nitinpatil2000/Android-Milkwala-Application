@@ -80,7 +80,7 @@ public class CustomerOrderFragment extends Fragment {
                     receivedCustomerSpinner.setVerticalScrollbarPosition(0);
 //                    Toast.makeText(getContext(), "Please select an Item", Toast.LENGTH_SHORT).show();
                 } else if (i != 0) {
-                    Toast.makeText(getContext(), "Selected Item is : " + selectedItem, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Selected Customer is : " + selectedItem, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -109,7 +109,7 @@ public class CustomerOrderFragment extends Fragment {
                     receivedCustomerSpinner.setVerticalScrollbarPosition(0);
 //                    Toast.makeText(getContext(), "Please select an Item", Toast.LENGTH_SHORT).show();
                 } else if (i != 0) {
-                    Toast.makeText(getContext(), "Selected Item is : " + selectedItem, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Selected Delivery Boy is : " + selectedItem, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -129,6 +129,10 @@ public class CustomerOrderFragment extends Fragment {
 
 
         //open the dialog button.
+        receivedCustomerView = view.findViewById(R.id.receivedCustomerView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
+        receivedCustomerView.setLayoutManager(gridLayoutManager);
+
         btnOpenDialog = view.findViewById(R.id.btnOpenDialog);
         btnOpenDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +168,7 @@ public class CustomerOrderFragment extends Fragment {
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, supplierNames);
                 selectSupplierInCustomer.setAdapter(arrayAdapter);
+
                 selectSupplierInCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -206,46 +211,45 @@ public class CustomerOrderFragment extends Fragment {
                 selectBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        String selectProduct = selectProductInSupplier.getSelectedItem().toString();
-//                        if (!selectProduct.equals("No Selected")) {
-//                            for (ProductDetails productDetails : productDetailsList) {
-//                                if (TextUtils.equals(productDetails.getProductDetailsName(), selectProduct)) {
-                                    //show the item in the recyclerview
-                                    // Add the new item to the list
-//                                    productDetailsList.add(new ProductDetails(productDetails.getProductDetailsName()));
-                                    // Notify the adapter that a new item has been added
-//                                    customerOrderProductAdapter.notifyItemInserted(productList.size() - 1);
-//                                    break;
-
-                            }
-                        });
-                        dialog.show();
+                        String selectItem = selectProductInSupplier.getSelectedItem().toString();
+                        if (!selectItem.equals("No Selected")) {
+                            customerOrderProductAdapter.addItem(selectItem);
+                            receivedCustomerView.setAdapter(customerOrderProductAdapter);
+                            dialog.dismiss();
+                        } else {
+                            // show a message that no item is selected
+                            Toast.makeText(getContext(), "Please select a product", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 });
-
-
-                //select the date
-                selectedDate = view.findViewById(R.id.selectedDate);
-                savedDate = view.findViewById(R.id.savedDate);
-                selectedDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        openDialog();
-                    }
-                });
-
-                return view;
-            }
-
-            private void openDialog() {
-                DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int day, int month, int year) {
-                        savedDate.setText(String.valueOf(day) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year));
-                    }
-                }, 24, 4, 2023);
                 dialog.show();
-            }
 
-        }
+            }
+        });
+
+
+        //select the date
+        selectedDate = view.findViewById(R.id.selectedDate);
+        savedDate = view.findViewById(R.id.savedDate);
+        selectedDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
+
+        return view;
+    }
+
+    private void openDialog() {
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int day, int month, int year) {
+                savedDate.setText(String.valueOf(day) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(year));
+            }
+        }, 24, 4, 2023);
+        dialog.show();
+    }
+
+}
