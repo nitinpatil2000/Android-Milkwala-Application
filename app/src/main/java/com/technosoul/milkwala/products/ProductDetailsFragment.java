@@ -31,10 +31,13 @@ public class ProductDetailsFragment extends Fragment {
     private int supplierId = -1;
     EditText searchProductDetails;
 
+
     public ProductDetailsFragment(int supplierId) {
         // Required empty public constructor
         this.supplierId = supplierId;
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

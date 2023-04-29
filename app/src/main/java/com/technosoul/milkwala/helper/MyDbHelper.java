@@ -19,7 +19,7 @@ import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.products.ProductDetailsDto;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version = 2)
+@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version =3)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "milkDb";
     private static MyDbHelper instance;
@@ -42,7 +42,16 @@ public abstract class MyDbHelper extends RoomDatabase {
         if (login == null) {
             login = new Login();
             login.setEmailId("nitin@gmail.com");
-            login.setPassword("password");
+            login.setPassword("admin123");
+            loginDao.insert(login);
+        }
+
+        // TODO Check if another user exists
+        login = loginDao.getLoginCredentials("db@gmail.com");
+        if (login == null) {
+            login = new Login();
+            login.setEmailId("db@gmail.com ");
+            login.setPassword("normal123");
             loginDao.insert(login);
         }
     }

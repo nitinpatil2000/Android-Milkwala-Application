@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
 
                 int id = item.getItemId();
                 if
-                (id == R.id.menu_master) {
+                (id == R.id.menu_dashboard) {
                     loadFragment(new MilkwalaFragment());
                 }
                 else if
@@ -136,10 +137,10 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
                 }
                 else if
                 (id == R.id.menu_log_out)  {
-//                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = pref.edit();
-//                    editor.putBoolean("flag", true);
-//                    editor.apply();
+                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putBoolean("flag", false);
+                    editor.apply();
 
                     Intent iAuth = new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(iAuth);

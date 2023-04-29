@@ -137,6 +137,7 @@ public class ReceivedProductFragment extends Fragment {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 View anotherView = inflater.inflate(R.layout.received_product_design, null);
                 editQuantity = anotherView.findViewById(R.id.editQuantity);
+
 //                receiveProductDate
 
                 ArrayList<ProductDetails> productDetails = receivedProductAdapter.getProductDetails();
@@ -149,10 +150,10 @@ public class ReceivedProductFragment extends Fragment {
                     }else{
                     DailyReceiveProduct dailyReceiveProduct = new DailyReceiveProduct();
                     quantityReceiveProduct = Integer.parseInt(receivedQuantity);
-//                int dailyReceivedQuantity = Integer.parseInt(quantityReceiveProduct);
-                        dailyReceiveProduct.setProductDetailsId(productDetailsId);
-                        dailyReceiveProduct.setReceivedProductQuantity(quantityReceiveProduct);
-//                  dailyReceiveProduct.setReceivedProductDate(new Date()); //use current date of the receive product
+                    dailyReceiveProduct.setProductDetailsId(productDetailsId);
+                    dailyReceiveProduct.setReceivedProductQuantity(quantityReceiveProduct);
+                    dailyReceiveProduct.setReceivedProductDate(new Date()); //use current date of the receive product
+
                         // Insert the DailyReceivedProduct object into the database
                         myDbHelper.dailyReceiveDao().addDailyReceiveProduct(dailyReceiveProduct);
                         Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();

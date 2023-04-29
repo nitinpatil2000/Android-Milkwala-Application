@@ -22,9 +22,9 @@ import java.util.List;
 public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOrderProductAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<ProductDetails> productDetails;
+    List<ProductDetails> productDetails;
     List<String> customerData;
-    private int mClickedPosition = RecyclerView.NO_POSITION;
+    private int mClickedPosition;
 
     public CustomerOrderProductAdapter(Context context, ArrayList<ProductDetails> productDetails, List<String>customerData){
         this.context = context;
@@ -33,8 +33,6 @@ public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOr
     }
     public CustomerOrderProductAdapter(Context context){
         this.context = context;
-//        this.productDetails = productDetails;
-//        this.customerData = customerData;
     }
 
     @NonNull
@@ -57,13 +55,13 @@ public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOr
 
     @Override
     public int getItemCount() {
-        return productDetails.size();
+        return customerData.size();
     }
 
 
     public void addItem(String selectItem) {
         customerData.add(selectItem);
-        notifyItemInserted(customerData.size () - 1);
+        notifyItemInserted(productDetails.size () - 1);
     }
 
 

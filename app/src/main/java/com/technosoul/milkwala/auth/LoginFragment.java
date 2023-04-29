@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.R;
@@ -34,6 +33,7 @@ public class LoginFragment extends Fragment {
             throw new RuntimeException(context.toString() + " must implement LoginListener");
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +73,7 @@ public class LoginFragment extends Fragment {
                 }
 
                 validateCredentials(email, password);
+
 
             }
         });
@@ -134,18 +135,19 @@ public class LoginFragment extends Fragment {
     private void validateCredentials(String email, String password) {
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         Login login = myDbHelper.loginDao().getLoginCredentials(email);
-        if(login != null && login.getPassword().equals(password))
-//        if(login != null && password != null)
-        {
-            listener.onLoginSuccess();
+
+        if (TextUtils.equals(email, "db@gmail.com")) {
+            listener.onNormalLoginSuccess();
+        } else if (TextUtils.equals(email, "nitin@gmail.com")) {
+            listener.onAdminLognSuccess();
         }
-        else{
-            Toast.makeText(getContext(), "Invalid EmailId and Password", Toast.LENGTH_SHORT).show();
-        }
+
     }
+
 
 
     private boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
 }

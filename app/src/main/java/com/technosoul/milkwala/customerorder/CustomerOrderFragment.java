@@ -4,9 +4,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
@@ -30,7 +31,6 @@ import com.technosoul.milkwala.helper.MyDbHelper;
 import com.technosoul.milkwala.customer.Customer;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.products.ProductDetails;
-import com.technosoul.milkwala.products.ProductViewDetailsAdapter;
 import com.technosoul.milkwala.supplier.Supplier;
 
 import java.util.ArrayList;
@@ -60,6 +60,10 @@ public class CustomerOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_order, container, false);
+
+        //TODO CHANGE THE TITLE OF THE ACTION BAR
+        ActionBar actionBar = ((AppCompatActivity)getContext()).getSupportActionBar();
+        actionBar.setTitle("Today's Customer Order");
 
 
         receivedCustomerSpinner = view.findViewById(R.id.receivedCustomerSpinner);
@@ -161,7 +165,6 @@ public class CustomerOrderFragment extends Fragment {
                 ArrayList<String> supplierNames = new ArrayList<>();
                 List<Supplier> suppliersList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
 
-                supplierNames.add("No Selected ");
                 for (Supplier supplier : suppliersList) {
                     supplierNames.add(supplier.getSupplierName());
                 }
@@ -173,10 +176,9 @@ public class CustomerOrderFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         String selectedItem = adapterView.getItemAtPosition(i).toString();
-                        if (selectedItem.equals("No Selected")) {
-
-                        } else {
-//                            Toast.makeText(getContext(), "Selected Item is : " + selectedItem, Toast.LENGTH_SHORT).show();
+//                        if (selectedItem.equals("No Selected")) {
+//                                selectProductInSupplier.setVisibility(View.GONE);
+//                        } else {
                             for (Supplier supplier : suppliersList) {
                                 if (supplier != null && TextUtils.equals(supplier.getSupplierName(), selectedItem)) {
                                     supplierId = supplier.getSupplierId();
@@ -191,10 +193,7 @@ public class CustomerOrderFragment extends Fragment {
                             }
                             ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, productNames);
                             selectProductInSupplier.setAdapter(arrayAdapter1);
-
                         }
-                    }
-
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
                         //do nothing.
@@ -212,15 +211,9 @@ public class CustomerOrderFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         String selectItem = selectProductInSupplier.getSelectedItem().toString();
-                        if (!selectItem.equals("No Selected")) {
                             customerOrderProductAdapter.addItem(selectItem);
                             receivedCustomerView.setAdapter(customerOrderProductAdapter);
                             dialog.dismiss();
-                        } else {
-                            // show a message that no item is selected
-                            Toast.makeText(getContext(), "Please select a product", Toast.LENGTH_SHORT).show();
-                        }
-
                     }
                 });
                 dialog.show();

@@ -2,15 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_master"
+        android:id="@+id/menu_dashboard"
         android:icon="@drawable/ic_baseline_info_24"
-        android:title="Milkwala"
+        android:title="DashBoard"
         app:showAsAction="collapseActionView" />
-<!--    <item-->
-<!--        android:id="@+id/separator"-->
-<!--        app:showAsAction="always"-->
-<!--        android:title=""-->
-<!--        app:actionLayout="@layout/separator_layout"/>-->
+
 
     <item
         android:id="@+id/menu_stock"

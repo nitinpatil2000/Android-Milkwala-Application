@@ -6,6 +6,7 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import com.technosoul.milkwala.products.ProductDetails;
 
@@ -17,7 +18,7 @@ import java.util.Date;
                 childColumns = "product_details_id",
                 onDelete = ForeignKey.CASCADE)
 })
-//@TypeConverter(DataConverter.class)
+@TypeConverters(DataConverter.class)
 public class DailyReceiveProduct {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "daily_receive_id")
@@ -26,8 +27,8 @@ public class DailyReceiveProduct {
     @ColumnInfo(name = "product_details_id")
     private int productDetailsId;
 
-//    @ColumnInfo(name = "received_product_date")
-//    private Date receivedProductDate;
+    @ColumnInfo(name = "received_product_date")
+    private Date receivedProductDate;
 
     @ColumnInfo(name = "received_product_quantity")
     private int receivedProductQuantity;
@@ -35,17 +36,17 @@ public class DailyReceiveProduct {
 
     // TODO add productDetailsMrp
 
-    public DailyReceiveProduct(int dailyReceiveId, int productDetailsId,  int receivedProductQuantity) {
+    public DailyReceiveProduct(int dailyReceiveId, int productDetailsId,  Date receivedProductDate,int receivedProductQuantity) {
         this.dailyReceiveId = dailyReceiveId;
         this.productDetailsId = productDetailsId;
-//        this.receivedProductDate = receivedProductDate;
+        this.receivedProductDate = receivedProductDate;
         this.receivedProductQuantity = receivedProductQuantity;
     }
 
     @Ignore
     public DailyReceiveProduct(int productDetailsId, Date receivedProductDate, int receivedProductQuantity) {
         this.productDetailsId = productDetailsId;
-//        this.receivedProductDate = receivedProductDate;
+        this.receivedProductDate = receivedProductDate;
         this.receivedProductQuantity = receivedProductQuantity;
     }
 
@@ -69,13 +70,13 @@ public class DailyReceiveProduct {
         this.productDetailsId = productDetailsId;
     }
 
-//    public Date getReceivedProductDate() {
-//        return receivedProductDate;
-//    }
-
-//    public void setReceivedProductDate(Date receivedProductDate) {
-//        this.receivedProductDate = receivedProductDate;
-//    }
+    public Date getReceivedProductDate() {
+        return receivedProductDate;
+    }
+//
+    public void setReceivedProductDate(Date receivedProductDate) {
+        this.receivedProductDate = receivedProductDate;
+    }
 
     public int getReceivedProductQuantity() {
         return receivedProductQuantity;
@@ -90,7 +91,7 @@ public class DailyReceiveProduct {
         return "DailyReceiveProduct{" +
                 "dailyReceiveId=" + dailyReceiveId +
                 ", productDetailsId=" + productDetailsId +
-//                ", receivedProductDate=" + receivedProductDate +
+                ", receivedProductDate=" + receivedProductDate +
                 ", receivedProductQuantity=" + receivedProductQuantity +
                 '}';
     }

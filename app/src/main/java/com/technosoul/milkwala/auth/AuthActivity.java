@@ -6,8 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 
@@ -41,9 +44,27 @@ public class AuthActivity extends AppCompatActivity implements LoginListener{
     }
 
     @Override
-    public void onLoginSuccess() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    public void onNormalLoginSuccess() {
+
+        SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("deliver", true);
+        editor.apply();
+        Intent iDeliver = new Intent(this, DeliveryActivity.class);
+        startActivity(iDeliver);
+        finish();
+    }
+
+    @Override
+    public void onAdminLognSuccess() {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+        SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("flag", true);
+        editor.apply();
+        Intent iMain = new Intent(this, MainActivity.class);
+        startActivity(iMain);
         finish();
     }
 }

@@ -78,15 +78,15 @@ private int supplierId;
         addNewProductBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String productDetailsText = editProductName.getText().toString();
+                String productDetailsName = editProductName.getText().toString();
                 String productDetailsMrp = editProductMrp.getText().toString();
                 String productDetailsUnit = spinner.getSelectedItem().toString();
                 String productSupplierRate = editSupplierRate.getText().toString();
                 String productVenderRate = editVenderRate.getText().toString();
 
-                if(!productDetailsText.isEmpty() && !productDetailsMrp.isEmpty() && !productDetailsUnit.isEmpty() && !productSupplierRate.isEmpty() && !productVenderRate.isEmpty()){
+                if(!productDetailsName.isEmpty() && !productDetailsMrp.isEmpty() && !productDetailsUnit.isEmpty() && !productSupplierRate.isEmpty() && !productVenderRate.isEmpty()){
                     //get the id of the selected supplier
-                    ProductDetails productDetails = new ProductDetails(productDetailsText, productDetailsMrp, productDetailsUnit, productSupplierRate, productVenderRate);
+                    ProductDetails productDetails = new ProductDetails(  productDetailsName,  productSupplierRate,  productVenderRate, productDetailsUnit, productDetailsMrp);
                     productDetails.setSupplierId(supplierId);
                     myDbHelper.productDetailsDto().addProduct(productDetails);
                     Toast.makeText(getContext(), "Product added successfully", Toast.LENGTH_SHORT).show();

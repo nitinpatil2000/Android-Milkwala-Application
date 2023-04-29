@@ -48,7 +48,7 @@ public class MilkwalaFragment extends Fragment {
 
         //set the title
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("Milkwala");
+        actionBar.setTitle("DashBoard");
 
 
 //        PieChartView pieChartView = view.findViewById(R.id.pieChart);

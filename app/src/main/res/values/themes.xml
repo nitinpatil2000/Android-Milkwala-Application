@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Theme.MilkApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">#3A634B</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -18,4 +17,9 @@
         <item name="colorSecondary">#fea900</item>
         <item name="colorPrimary">#fea9</item>
     </style>
+
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_milk</item>
+    </style>
+
 </resources>

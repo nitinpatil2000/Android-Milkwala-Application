@@ -76,8 +76,8 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
             editQuantity = itemView.findViewById(R.id.editQuantity);
             totalAmount = itemView.findViewById(R.id.totalAmout);
 
-            String mrpString = receivedProductMrp.getText().toString();
-            Long mrp = Long.parseLong(mrpString);
+            String receivedMrp = receivedProductMrp.getText().toString();
+            long mrp = Long.parseLong(receivedMrp);
 
             editQuantity.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -87,6 +87,8 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
                     // calculate the new total amount based on the value of editQuantity
                     long newQuantity = 0L;
                     if (!TextUtils.isEmpty(s)) {
