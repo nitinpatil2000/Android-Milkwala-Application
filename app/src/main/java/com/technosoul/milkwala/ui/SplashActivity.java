@@ -1,4 +1,4 @@
-package com.technosoul.milkwala;
+package com.technosoul.milkwala.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.auth.AuthActivity;
-import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -17,9 +18,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-
-
 
         new Handler().postDelayed(new Runnable() {
             @Override

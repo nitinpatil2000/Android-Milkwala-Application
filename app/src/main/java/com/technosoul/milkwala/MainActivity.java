@@ -98,17 +98,12 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
         navigationView = findViewById(R.id.navigationView);
         toolbar = findViewById(R.id.toolbar);
 
-        //step1
-        setSupportActionBar(toolbar);
-
         //opening and closing the toggle mode of the navigation.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.OpenDrawer, R.string.CloseDrawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         toolbar.setTitleTextColor(Color.WHITE);
         toggle.syncState();
-
-
 
         //by default set the fragment
         loadNewFragment(new HomeFragment());
