@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.customer;
+package com.technosoul.milkwala.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

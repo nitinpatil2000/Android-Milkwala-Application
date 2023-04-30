@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 public class AddSupplier extends Fragment {

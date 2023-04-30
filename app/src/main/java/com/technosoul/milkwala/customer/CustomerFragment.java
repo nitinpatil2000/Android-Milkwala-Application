@@ -13,7 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.Customer;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +17,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SupplierFragment extends Fragment {
     RecyclerView supplierRecyclerView;

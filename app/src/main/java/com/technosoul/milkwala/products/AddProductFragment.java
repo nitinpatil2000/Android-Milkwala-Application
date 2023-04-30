@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 
 import java.util.ArrayList;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.MyDbHelper;
 
 public class DeliveryDetailsFragment extends Fragment {
     TextView txtDeliveryBoyName, txtDeliveryBoyAdd, txtDeliveryBoyCity, txtDeliveryBoyContactNo, txtDeliveryBoyAlterNo;

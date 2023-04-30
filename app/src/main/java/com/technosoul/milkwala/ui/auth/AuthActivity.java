@@ -9,8 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.auth.LoginFragment;
-import com.technosoul.milkwala.auth.LoginListener;
 import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
 

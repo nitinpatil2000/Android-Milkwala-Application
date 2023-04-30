@@ -23,8 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.L;
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.products.ProductDetails;

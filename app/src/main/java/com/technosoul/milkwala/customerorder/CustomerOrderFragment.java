@@ -27,8 +27,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.helper.MyDbHelper;
-import com.technosoul.milkwala.customer.Customer;
+import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.products.ProductDetails;
 import com.technosoul.milkwala.supplier.Supplier;

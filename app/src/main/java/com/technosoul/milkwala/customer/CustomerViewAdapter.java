@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.Customer;
 
 import java.util.ArrayList;
 

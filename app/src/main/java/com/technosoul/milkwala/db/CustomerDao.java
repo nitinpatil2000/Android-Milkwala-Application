@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.customer;
+package com.technosoul.milkwala.db;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

@@ -15,11 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.helper.MyDbHelper;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.supplier.SupplierFragment;
-import com.technosoul.milkwala.customer.Customer;
+import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.customer.CustomerFragment;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.delivery.FragmentDeliver;

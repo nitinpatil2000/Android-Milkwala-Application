@@ -3,15 +3,9 @@ package com.technosoul.milkwala.todaydeliver;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
-import com.technosoul.milkwala.customer.Customer;
-import com.technosoul.milkwala.products.ProductDetails;
-import com.technosoul.milkwala.receiveProduct.DataConverter;
-
-import java.util.Date;
+import com.technosoul.milkwala.db.Customer;
 
 @Entity(tableName = "delivery_products", foreignKeys = {
         @ForeignKey(entity = Customer.class,

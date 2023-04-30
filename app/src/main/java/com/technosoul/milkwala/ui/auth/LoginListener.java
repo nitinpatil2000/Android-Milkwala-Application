@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.auth;
+package com.technosoul.milkwala.ui.auth;
 
 public interface LoginListener {
 
