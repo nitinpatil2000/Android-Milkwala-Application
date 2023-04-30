@@ -1,19 +1,19 @@
 package com.technosoul.milkwala.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import com.technosoul.milkwala.Constants;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
-import com.technosoul.milkwala.auth.AuthActivity;
 import com.technosoul.milkwala.managers.SharedPreferenceManager;
 import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
+import com.technosoul.milkwala.ui.auth.AuthActivity;
+import com.technosoul.milkwala.utils.Constants;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -2,10 +2,6 @@ package com.technosoul.milkwala.auth;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -13,24 +9,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.technosoul.milkwala.helper.MyDbHelper;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
+import com.technosoul.milkwala.managers.SharedPreferenceManager;
+import com.technosoul.milkwala.utils.Constants;
 
 public class LoginFragment extends Fragment {
     private LoginListener listener;
-    EditText signInEmail, signInPassword;
-    Button signInLogin;
-//    TextView forgotPassword;
-
+    private EditText signInEmail;
+    private EditText signInPassword;
+    private Context context;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        this.context = context;
         if (context instanceof LoginListener) {
             listener = (LoginListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement LoginListener");
+            throw new RuntimeException(context + " must implement LoginListener");
         }
     }
 
@@ -43,111 +45,57 @@ public class LoginFragment extends Fragment {
         signInEmail = view.findViewById(R.id.signInEmail);
         signInPassword = view.findViewById(R.id.signInPassword);
 
-        signInLogin = view.findViewById(R.id.singInLogin);
-        signInLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String email = signInEmail.getText().toString().trim();
-                String password = signInPassword.getText().toString().trim();
-
-                // Validate the input values
-                if (TextUtils.isEmpty(email)) {
-                    signInEmail.setError("Please enter a Email");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    signInPassword.setError("Please enter a password");
-                    return;
-                }
-
-                if (!isValidEmail(email)) {
-                    signInEmail.setError("Please enter a valid email address");
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    signInPassword.setError("Password must be at least 6 characters");
-                    return;
-                }
-
-                validateCredentials(email, password);
-
-
-            }
-        });
-
-//        goToRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                RegisterFragment registerFragment = new RegisterFragment();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.auth_container, registerFragment);
-//                fragmentTransaction.commit();
-//            }
-//        });
-
-//        forgotPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Button sendOtpBtn, cancelBtn;
-//
-//                Dialog dialog = new Dialog(getContext());
-//                dialog.setCancelable(false);
-//                dialog.setContentView(R.layout.forgot_dialog_design);
-//                cancelBtn = dialog.findViewById(R.id.cancelForgot);
-//                sendOtpBtn = dialog.findViewById(R.id.sendOTPBtn);
-//
-//                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//                Window window = dialog.getWindow();
-//                lp.copyFrom(window.getAttributes());
-//                lp.width = (int) (getResources().getDisplayMetrics().widthPixels * 1.0);
-//                lp.height = (int) (getResources().getDisplayMetrics().heightPixels * 0.4);
-//                window.setAttributes(lp);
-
-//                cancelBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-
-//                sendOtpBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                        Toast.makeText(getContext(), "OTP is sent to the registered emailID !!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-//                dialog.show();
-//
-//
-//            }
-//        });
-
+        Button btnLogin = view.findViewById(R.id.singInLogin);
+        btnLogin.setOnClickListener(view1 -> initiateLogin());
 
         return view;
     }
 
-    private void validateCredentials(String email, String password) {
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        Login login = myDbHelper.loginDao().getLoginCredentials(email);
+    private void initiateLogin() {
+        String email = signInEmail.getText().toString().trim();
+        String password = signInPassword.getText().toString().trim();
 
-        if (TextUtils.equals(email, "db@gmail.com")) {
-            listener.onNormalLoginSuccess();
-        } else if (TextUtils.equals(email, "nitin@gmail.com")) {
-            listener.onAdminLognSuccess();
+        // Validate the input values
+        if (TextUtils.isEmpty(email)) {
+            signInEmail.setError(getString(R.string.err_empty_email));
+            return;
         }
 
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            signInEmail.setError(getString(R.string.err_invalid_email));
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            signInPassword.setError(getString(R.string.err_empty_pwd));
+            return;
+        }
+
+        if (password.length() < 6) {
+            signInPassword.setError(getString(R.string.err_pwd_min_length));
+            return;
+        }
+
+        sendLoginRequest(email, password);
     }
 
+    private void sendLoginRequest(String email, String password) {
 
+        // TODO: Add code to send Login request when Backend it ready.
 
-    private boolean isValidEmail(String email) {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        if (TextUtils.equals(email, "db@gmail.com")) {
+            AuthTokenManager.instance().set("TempDeliveryBoyLoginToken");
+            SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_DELIVERY_BOY);
+            listener.onDeliveryBoyLoginSuccess();
+
+        } else if (TextUtils.equals(email, "admin@gmail.com")) {
+            AuthTokenManager.instance().set("TempAdminLoginToken");
+            SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_ADMIN);
+            listener.onAdminLoginSuccess();
+
+        } else {
+            Toast.makeText(context, "Not authorized to login.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

@@ -18,7 +18,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.technosoul.milkwala.auth.AuthActivity;
+import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
 import com.technosoul.milkwala.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;

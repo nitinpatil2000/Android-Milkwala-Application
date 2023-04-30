@@ -1,10 +1,8 @@
 package com.technosoul.milkwala.auth;
 
-import android.content.Intent;
-
 public interface LoginListener {
 
-    void onNormalLoginSuccess();
+    void onDeliveryBoyLoginSuccess();
 
-    void onAdminLognSuccess();
+    void onAdminLoginSuccess();
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.technosoul.milkwala.managers.SharedPreferenceManager;
+import com.technosoul.milkwala.utils.Constants;
 
 public class MilkwalaApp extends Application {
 

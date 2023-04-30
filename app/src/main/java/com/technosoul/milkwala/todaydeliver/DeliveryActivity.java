@@ -16,7 +16,10 @@ import android.view.MenuItem;
 
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.auth.AuthActivity;
+import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
+import com.technosoul.milkwala.managers.SharedPreferenceManager;
+import com.technosoul.milkwala.ui.auth.AuthActivity;
+import com.technosoul.milkwala.utils.Constants;
 
 public class DeliveryActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -40,13 +43,9 @@ public class DeliveryActivity extends AppCompatActivity {
                 // do your code
                 return true;
             case R.id.menu_logout:
-                SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putBoolean("deliver", false);
-                editor.apply();
-
-                Intent i = new Intent(DeliveryActivity.this, AuthActivity.class);
-                startActivity(i);
+                AuthTokenManager.instance().set("");
+                SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
+                startActivity(new Intent(DeliveryActivity.this, AuthActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
