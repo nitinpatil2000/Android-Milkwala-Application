@@ -9,6 +9,7 @@ import android.os.Handler;
 
 import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
 import com.technosoul.milkwala.auth.AuthActivity;
 import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
 
@@ -22,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                String token = AuthTokenManager.instance().get();
                 SharedPreferences preferences= getSharedPreferences("login", MODE_PRIVATE);
                 Boolean check= preferences.getBoolean("flag", false);
                 Boolean deliver = preferences.getBoolean("deliver", false);
