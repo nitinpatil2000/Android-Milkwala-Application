@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,10 +17,12 @@ import com.technosoul.milkwala.db.Customer;
 
 import java.util.ArrayList;
 
-public class MilkwalaFragment extends Fragment {
-    TextView customerId, productId, supplierId;
+public class AdminDashboardFragment extends Fragment {
+    TextView totalCustomers;
+    TextView totalProducts;
+    TextView totalSuppliers;
 
-    public MilkwalaFragment() {
+    public AdminDashboardFragment() {
         // Required empty public constructor
     }
 
@@ -30,25 +31,34 @@ public class MilkwalaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_milkwala, container, false);
+        View view =  inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
 
-        supplierId = view.findViewById(R.id.supplierId);
-        customerId = view.findViewById(R.id.customerId);
-        productId = view.findViewById(R.id.productId);
+        totalSuppliers = view.findViewById(R.id.totalSuppliers);
+        totalCustomers = view.findViewById(R.id.totalCustomers);
+        totalProducts = view.findViewById(R.id.totalProducts);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+
+        // Get total Suppliers
         ArrayList<Supplier> supplierList = (ArrayList<Supplier>)myDbHelper.supplierDao().getAllSuppliers();
         int noSuppliers = supplierList.size();
-        supplierId.setText(String.valueOf(noSuppliers));
-        productId.setText(String.valueOf(noSuppliers));
+        totalSuppliers.setText(getString(R.string.total_suppliers, noSuppliers));
 
+        // Get total Customers
         ArrayList<Customer> customersList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         int noCustomers = customersList.size();
-        customerId.setText(String.valueOf( noCustomers));
+        totalCustomers.setText(getString(R.string.total_customers, noCustomers));
 
-        //set the title
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("DashBoard");
+        // Get total Products
+        // TODO: need to add the products & fetch it.
+        totalProducts.setText(getString(R.string.total_products, noSuppliers));
+
+        if (getActivity() != null) {
+            ActionBar actionBar =((MainActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(R.string.title_dashboard);
+            }
+        }
 
 
 //        PieChartView pieChartView = view.findViewById(R.id.pieChart);

@@ -23,6 +23,17 @@
     <string name="err_empty_pwd">Please enter a Password.</string>
     <string name="err_pwd_min_length">Password must be at least 6 characters.</string>
 
+    <string name="title_monthly_sale"><u>Monthly Sales:</u></string>
+    <string name="total_customers">Total Customers : %d</string>
+    <string name="total_products">Total Products : %d</string>
+    <string name="total_suppliers">Total Suppliers : %d</string>
+    <string name="title_yesterdays_status"><b>Yesterday\'s Status :</b></string>
+    <string name="title_todays_status"><b>Today\'s Status :</b></string>
+    <string name="total_sale">Total Sale: Rs.</string>
+    <string name="total_waste">Wastage: </string>
+
+    <string name="title_dashboard">Dashboard</string>
+
     <string name="delete">are you sure want to delete this supplier: </string>
     <string name="description">Copyright 2023–24 \n Developed By:\n Technosoul Ventures Pvt Ltd</string>
     <string name="hyperlink"><a href="https://www.technosoul.io">www.technosoul.io</a></string>

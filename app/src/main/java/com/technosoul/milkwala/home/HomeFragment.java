@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.supplier.Supplier;
@@ -151,9 +152,13 @@ public class HomeFragment extends Fragment {
         }, DELAY_MS, PERIOD_MS);
 
 
-        //set the title in fragment .
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("Master Info :");
+        if (getActivity() != null) {
+            //set the title in fragment .
+            ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle("Master Info :");
+            }
+        }
 
         return view;
     }

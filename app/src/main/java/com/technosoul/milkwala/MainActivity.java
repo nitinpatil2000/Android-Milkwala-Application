@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
     private int supplieId;
 
     //set the title in the activity
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
                 int id = item.getItemId();
                 if
                 (id == R.id.menu_dashboard) {
-                    loadFragment(new MilkwalaFragment());
+                    loadFragment(new AdminDashboardFragment());
                 }
                 else if
                 (id == R.id.menu_stock) {
