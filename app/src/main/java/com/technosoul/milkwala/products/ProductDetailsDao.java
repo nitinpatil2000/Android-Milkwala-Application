@@ -5,10 +5,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.technosoul.milkwala.db.ProductDetails;
+
 import java.util.List;
 
 @Dao
-public interface ProductDetailsDto {
+public interface ProductDetailsDao {
 
     @Query("select * from productDetails")
     List<ProductDetails> getAllProducts();

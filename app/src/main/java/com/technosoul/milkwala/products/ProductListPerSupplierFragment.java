@@ -19,11 +19,11 @@ import android.widget.TextView;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.ui.masterinfo.products.AddNewProductFragment;
+import com.technosoul.milkwala.db.ProductDetails;
 
 import java.util.ArrayList;
 
-public class ProductDetailsFragment extends Fragment {
+public class ProductListPerSupplierFragment extends Fragment {
     ProductViewDetailsAdapter productViewDetailsAdapter;
     RecyclerView productDetailRecyclerView;
     ArrayList<ProductDetails> productDetailsList;
@@ -33,7 +33,7 @@ public class ProductDetailsFragment extends Fragment {
     EditText searchProductDetails;
 
 
-    public ProductDetailsFragment(int supplierId) {
+    public ProductListPerSupplierFragment(int supplierId) {
         // Required empty public constructor
         this.supplierId = supplierId;
     }
@@ -44,7 +44,7 @@ public class ProductDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_product_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_list_per_supplier, container, false);
 
 
 //        Bundle bundle = getArguments();
@@ -106,7 +106,7 @@ public class ProductDetailsFragment extends Fragment {
 
     private void filter(String text) {
         ArrayList<ProductDetails> filterProductDetails = new ArrayList<>();
-        for(ProductDetails  productDetails : productDetailsList){
+        for(ProductDetails productDetails : productDetailsList){
             if(productDetails.getProductDetailsName().toLowerCase().contains(text.toLowerCase())){
                 filterProductDetails.add(productDetails);
             }

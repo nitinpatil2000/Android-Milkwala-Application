@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.ui.masterinfo.products;
+package com.technosoul.milkwala.products;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.db.ProductDetails;
 
 import java.util.ArrayList;
 

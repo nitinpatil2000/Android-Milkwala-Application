@@ -5,10 +5,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
-import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.db.ProductDetails;
 
 import java.util.Date;
 

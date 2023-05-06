@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 

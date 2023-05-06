@@ -15,4 +15,5 @@ public class Constants {
     public static final int SELECTED_TYPE_PRODUCT = 1;
     public static final int SELECTED_TYPE_DELIVERY_BOY = 2;
     public static final int SELECTED_TYPE_CUSTOMER = 3;
+    public static final int SELECTED_SUPPLIER_FOR_PRODUCT_LIST = 4;
 }

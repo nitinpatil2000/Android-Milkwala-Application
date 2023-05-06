@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
 
 import java.util.ArrayList;

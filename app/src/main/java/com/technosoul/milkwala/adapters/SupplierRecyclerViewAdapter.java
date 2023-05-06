@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.utils.Constants;

@@ -69,7 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/black"
-        android:fontFamily="@font/ubuntu_light"
         android:textSize="22sp"
         android:layout_marginBottom="10dp"
         android:gravity="center"

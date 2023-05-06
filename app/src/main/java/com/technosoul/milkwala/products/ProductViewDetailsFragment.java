@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.ProductDetails;
 
 public class ProductViewDetailsFragment extends Fragment {
     TextView txtProductName, txtUnit, txtProductMrp;

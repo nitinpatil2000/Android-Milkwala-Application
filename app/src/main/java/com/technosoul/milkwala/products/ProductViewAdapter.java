@@ -14,9 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -24,11 +27,13 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
     Context context;
     ArrayList<Supplier> suppliers;
 
+    private OnItemSelected onItemSelected;
 
-    public ProductViewAdapter(Context context, ArrayList<Supplier> suppliers) {
+
+    public ProductViewAdapter(Context context, ArrayList<Supplier> suppliers, OnItemSelected onItemSelected) {
         this.context = context;
         this.suppliers = suppliers;
-
+        this.onItemSelected = onItemSelected;
     }
 
     @NonNull
@@ -70,20 +75,13 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
             productCounter = itemView.findViewById(R.id.productCounter);
             productImg = itemView.findViewById(R.id.productImg);
 
-            productImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        Supplier selectedSupplier = suppliers.get(position);
-                        int supplierId = selectedSupplier.getSupplierId();
-                        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment(supplierId);
-                        FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container, productDetailsFragment);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                        ((AppCompatActivity) view.getContext()).getSupportActionBar().setTitle(selectedSupplier.getSupplierName() + " Products");
+            productImg.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Supplier selectedSupplier = suppliers.get(position);
+                    int supplierId = selectedSupplier.getSupplierId();
+                    if (onItemSelected != null) {
+                        onItemSelected.onItemClicked(Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST, supplierId, null);
                     }
                 }
             });

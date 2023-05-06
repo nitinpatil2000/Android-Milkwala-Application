@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Supplier;
-import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.db.ProductDetails;
 
 import java.util.ArrayList;
 import java.util.Date;

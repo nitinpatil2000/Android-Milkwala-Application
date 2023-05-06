@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/cardColor"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".products.ProductDetailsFragment">
+    tools:context=".products.ProductListPerSupplierFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -68,7 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/button_background_color"
         android:gravity="center"
-        android:fontFamily="@font/ubuntu_light"
         android:text="Add Product"
         android:textSize = "22sp"
         android:textColor="@color/black"

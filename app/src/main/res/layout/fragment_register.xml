@@ -27,7 +27,6 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginTop="50dp"-->
 <!--                android:layout_weight="1.6"-->
-<!--                android:fontFamily="@font/berkshire_swash"-->
 <!--                android:text="Milkwala"-->
 <!--                android:textColor="#FFC30E"-->
 <!--                android:textSize="30sp" />-->
@@ -37,7 +36,6 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginTop="50dp"-->
 <!--                android:layout_weight="1"-->
-<!--                android:fontFamily="@font/berkshire_swash"-->
 <!--                android:text="Dairy"-->
 <!--                android:textColor="@color/white"-->
 <!--                android:textSize="30sp"-->
@@ -148,7 +146,6 @@
 <!--                    android:layout_marginTop="10dp"-->
 <!--                    android:backgroundTint="@color/toolbar"-->
 <!--                    android:text="SIGNUP"-->
-<!--                    android:fontFamily="@font/aclonica"-->
 <!--                    android:textColor="@color/white"-->
 <!--                    android:textSize="15sp"-->
 <!--                    android:textStyle="bold" />-->
@@ -168,7 +165,6 @@
 <!--                android:layout_width="120dp"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="LOGIN!"-->
-<!--                android:fontFamily="@font/aclonica"-->
 <!--                android:textSize="16sp"-->
 <!--                android:id="@+id/goToSignIn"-->
 <!--                android:backgroundTint="@color/toolbar"-->

@@ -18,6 +18,7 @@ import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.products.ProductViewAdapter;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class ProductFragment extends Fragment {
     ArrayList<Supplier> supplierList;
     Button btnAddNewProduct;
     private MasterInfoListener masterInfoListener;
+    private OnItemSelected onItemSelected;
 
     public ProductFragment() {
     }
@@ -36,14 +38,15 @@ public class ProductFragment extends Fragment {
         this.masterInfoListener = listener;
     }
 
+    public void setOnItemSelectedListener(OnItemSelected onItemSelected) {
+        this.onItemSelected = onItemSelected;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product, container, false);
-
-        btnAddNewProduct = view.findViewById(R.id.btn_add_new_product);
-        btnAddNewProduct.setOnClickListener(v -> onClickAddNewProduct());
 
         RecyclerView productRecyclerView = view.findViewById(R.id.recyclerView_product_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
@@ -52,7 +55,7 @@ public class ProductFragment extends Fragment {
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
         for (int i = 0; i < supplierList.size(); i++) {
-            productViewAdapter = new ProductViewAdapter(getContext(), supplierList);
+            productViewAdapter = new ProductViewAdapter(getContext(), supplierList, onItemSelected);
             productRecyclerView.setAdapter(productViewAdapter);
         }
 
@@ -73,12 +76,6 @@ public class ProductFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    private void onClickAddNewProduct() {
-        if (masterInfoListener != null) {
-            masterInfoListener.addNewProduct();
-        }
     }
 
     private void filter(String text) {

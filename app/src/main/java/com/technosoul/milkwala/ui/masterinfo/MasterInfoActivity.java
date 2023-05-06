@@ -10,11 +10,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.customer.CustomerFragment;
 import com.technosoul.milkwala.delivery.DeliveryDetailsFragment;
+import com.technosoul.milkwala.products.AddNewProductFragment;
+import com.technosoul.milkwala.products.ProductListPerSupplierFragment;
+import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.AddNewSupplierFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
-import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.utils.Constants;
 
 public class MasterInfoActivity extends AbstractBaseActivity implements MasterInfoListener, OnItemSelected {
@@ -57,6 +59,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     public void onProductClick() {
         ProductFragment productFragment = new ProductFragment();
         productFragment.setListener(this);
+        productFragment.setOnItemSelectedListener(this);
         loadFragment(productFragment);
     }
 
@@ -79,6 +82,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
     @Override
     public void addNewProduct() {
+        AddNewProductFragment addNewProductFragment = new AddNewProductFragment(1);
     }
 
     @Override
@@ -105,7 +109,6 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 supplierDetailsFragment.setArguments(bundle);
                 supplierDetailsFragment.setListener(this);
                 loadFragment(supplierDetailsFragment);
-
                 break;
 
             case Constants.SELECTED_TYPE_PRODUCT:
@@ -115,6 +118,11 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 break;
 
             case Constants.SELECTED_TYPE_CUSTOMER:
+                break;
+
+            case Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST:
+                ProductListPerSupplierFragment productListPerSupplierFragment = new ProductListPerSupplierFragment(id);
+                loadFragment(productListPerSupplierFragment);
                 break;
 
         }
