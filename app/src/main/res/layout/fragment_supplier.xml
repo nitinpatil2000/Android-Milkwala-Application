@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardColor"
-    tools:context=".supplier.SupplierFragment">
-
+    tools:context=".ui.masterinfo.suppliers.SupplierFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardView_supplier_search"
         android:layout_width="match_parent"
-        app:cardBackgroundColor="@color/toolbar"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,59 +19,64 @@
         <EditText
             android:id="@+id/searchSupplier"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/scratch_edit_background"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:drawablePadding="10dp"
-            android:hint="Search"
-            android:paddingStart="20sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/hint_search"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:autofillHints="name"
+            android:inputType="text" />
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
-        android:minHeight="100dp"
+        android:layout_marginBottom="8dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@id/addSupplierTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintBottom_toTopOf="@id/ll_btn_add_new_supplier"
+        app:layout_constraintTop_toBottomOf="@+id/cardView_supplier_search" />
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/recylerView" />
-
-
-    <Button
-        android:id="@+id/addSupplierTxt"
+    <LinearLayout
+        android:id="@+id/ll_btn_add_new_supplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/button_background_color"
-        android:fontFamily="@font/ubuntu_light"
-        android:gravity="center"
-        android:text="Add New Supplier"
-        android:textColor="@color/black"
-        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="vertical">
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_add_new_supplier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="@color/button_background_color"
+            android:gravity="center"
+            android:text="@string/btn_add_new_supplier"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

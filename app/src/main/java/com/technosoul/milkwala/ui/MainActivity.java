@@ -1,4 +1,12 @@
-package com.technosoul.milkwala;
+package com.technosoul.milkwala.ui;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -10,22 +18,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.technosoul.milkwala.ui.auth.AuthActivity;
-import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
-import com.technosoul.milkwala.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.technosoul.milkwala.AboutFragment;
+import com.technosoul.milkwala.AdminDashboardFragment;
+import com.technosoul.milkwala.ProfileFragment;
+import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.SupplierListner;
+import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
 import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
 import com.technosoul.milkwala.supplier.SupplierActivity;
+import com.technosoul.milkwala.ui.auth.AuthActivity;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 
-public class MainActivity extends AppCompatActivity  implements SupplierListner{
+public class MainActivity extends AppCompatActivity  implements SupplierListner {
 
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
 //        int itemId = item.getItemId();
 //
 //        if (itemId == R.id.menu_master) {
-//            HomeFragment homeFragment = new HomeFragment();
+//            MasterInfoFragment homeFragment = new MasterInfoFragment();
 //            FragmentManager fm = getSupportFragmentManager();
 //            FragmentTransaction ft = fm.beginTransaction();
 //            ft.add(R.id.container, homeFragment);
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
         toggle.syncState();
 
         //by default set the fragment
-        loadNewFragment(new HomeFragment());
+        loadNewFragment(new AdminDashboardFragment());
 
         //after click the menu item
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -115,24 +120,18 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id = item.getItemId();
-                if
-                (id == R.id.menu_dashboard) {
+                if (id == R.id.menu_dashboard) {
                     loadFragment(new AdminDashboardFragment());
-                }
-                else if
-                (id == R.id.menu_stock) {
+                } else if (id == R.id.menu_master_info) {
+                    Intent intent = new Intent(MainActivity.this, MasterInfoActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.menu_stock) {
                     loadFragment(new ReceivedProductFragment());
-                }
-                else if
-                (id == R.id.menu_distribution) {
+                } else if (id == R.id.menu_distribution) {
                     loadFragment(new CustomerOrderFragment());
-                }
-                else if
-                (id == R.id.menu_profile) {
+                } else if (id == R.id.menu_profile) {
                     loadFragment(new ProfileFragment());
-                }
-                else if
-                (id == R.id.menu_log_out)  {
+                } else if (id == R.id.menu_log_out) {
                     SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean("flag", false);
@@ -140,9 +139,7 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner{
 
                     Intent iAuth = new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(iAuth);
-                }
-                else
-                {
+                } else {
                     loadFragment(new AboutFragment());
                 }
 

@@ -2,7 +2,6 @@ package com.technosoul.milkwala;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.db.Customer;
+import com.technosoul.milkwala.ui.MainActivity;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,6 @@ public class AdminDashboardFragment extends Fragment {
     public AdminDashboardFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +59,6 @@ public class AdminDashboardFragment extends Fragment {
             }
         }
 
-
 //        PieChartView pieChartView = view.findViewById(R.id.pieChart);
 //        List<SliceValue> pieData = new ArrayList<>();
 
@@ -73,10 +71,5 @@ public class AdminDashboardFragment extends Fragment {
 //        pieChartView.setPieChartData(pieChartData);
 
         return view;
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 }

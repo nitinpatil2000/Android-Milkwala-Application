@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.supplier.Supplier;
 

@@ -14,12 +14,13 @@ import android.widget.Toast;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.adapters.SupplierRecyclerViewAdapter;
 
 public class SupplierDetailsFragment extends Fragment {
     TextView supplierName, supplierAddress, supplierNumber;
     Button deleteSupplier;
     String suppName, suppAddress, suppNumber;
-    RecyclerViewAdapter recyclerViewAdapter;
+    SupplierRecyclerViewAdapter recyclerViewAdapter;
     int supplierId;
 
     public SupplierDetailsFragment(int supplierId) {

@@ -16,7 +16,6 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="50dp"-->
 <!--            android:background="@color/toolbar"-->
-<!--            android:fontFamily="@font/aclonica"-->
 <!--            android:gravity="center"-->
 <!--            android:text="Reset Password"-->
 <!--            android:textColor="@color/white"-->
@@ -31,7 +30,6 @@
 <!--            android:textAlignment="center"-->
 <!--            android:textColor="@color/black"-->
 <!--            android:textSize="18sp"-->
-<!--            android:fontFamily="@font/ubuntu_light"-->
 <!--            android:textStyle="bold"-->
 <!--            android:layout_marginTop="15dp"/>-->
 

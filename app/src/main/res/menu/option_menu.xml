@@ -4,39 +4,45 @@
     <item
         android:id="@+id/menu_dashboard"
         android:icon="@drawable/ic_baseline_info_24"
-        android:title="DashBoard"
+        android:title="@string/title_dashboard"
+        android:visible="false"
         app:showAsAction="collapseActionView" />
 
+    <item
+        android:id="@+id/menu_master_info"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="@string/title_master_info"
+        app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/menu_stock"
         android:icon="@drawable/ic_baseline_call_received_24"
-        android:title="Today's Received Stock"
+        android:title="@string/title_today_received"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/menu_distribution"
         android:icon="@drawable/ic_baseline_folder_open_24"
-        android:title="Today's Distribution"
+        android:title="@string/title_today_distribution"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="My Profile"
+        android:title="@string/title_my_profile"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/menu_about"
         android:icon="@drawable/ic_baseline_folder_open_24"
-        android:title="About"
+        android:title="@string/title_about"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/menu_log_out"
         android:icon="@drawable/ic_baseline_logout_24"
-        android:title="Log Out"
-        app:showAsAction="collapseActionView"/>
+        android:title="@string/title_logout"
+        app:showAsAction="collapseActionView" />
 
 </menu>
 

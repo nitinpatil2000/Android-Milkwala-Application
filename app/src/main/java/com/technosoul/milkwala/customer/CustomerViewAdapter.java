@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Customer;
 
@@ -54,7 +54,7 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             customerName = itemView.findViewById(R.id.customerTxt);
-            customerNumber = itemView.findViewById(R.id.customerSubText);
+            customerNumber = itemView.findViewById(R.id.masterinfo_customer_subtext);
             customerImg = itemView.findViewById(R.id.customerImg);
 
             customerImg.setOnClickListener(new View.OnClickListener() {

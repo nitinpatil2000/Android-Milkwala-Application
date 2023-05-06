@@ -26,6 +26,10 @@ public class DeliveryDetailsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public DeliveryDetailsFragment() {
+        this.deliveryId = -1;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

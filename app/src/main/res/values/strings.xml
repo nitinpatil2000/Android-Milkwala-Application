@@ -33,18 +33,44 @@
     <string name="total_waste">Wastage: </string>
 
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_master_info">Master Info</string>
+    <string name="title_today_received">Today\'s Received stock</string>
+    <string name="title_today_distribution">Today\'s Distribution</string>
+    <string name="title_my_profile">My Profile</string>
+    <string name="title_about">About</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_suppliers">Suppliers</string>
+    <string name="title_products">Products</string>
+    <string name="title_customers">Customers</string>
+    <string name="title_delivery_boys">Delivery Boys</string>
+
+    <string name="master_info_total_suppliers">%d suppliers</string>
+    <string name="master_info_total_customers">%d customers</string>
+    <string name="master_info_total_products">%d products</string>
+    <string name="master_info_total_delivery_boys">%d delivery boys</string>
+
+    <string name="hint_search">Search</string>
+    <string name="btn_add_new_supplier">Add new supplier</string>
+    <string name="btn_add_new_product">Add new product</string>
+    <string name="btn_add_new_customer">Add new customer</string>
+    <string name="btn_add_new_delivery_boy">Add new Delivery Boy</string>
+
+<!--  Add new Supplier strings  -->
+    <string name="title_supplier_name">Supplier Name :</string>
+    <string name="hint_enter_supplier_name">Enter Supplier Name</string>
+    <string name="title_supplier_address">Supplier Address :</string>
+    <string name="hint_enter_supplier_address">Enter supplier address</string>
+    <string name="title_supplier_number">Mobile Number :</string>
+    <string name="hint_enter_supplier_mobile1">Enter Mobile Number</string>
+    <string name="title_supplier_alternate_number">Alternate Number :</string>
+    <string name="hint_enter_supplier_mobile2">Alternate Mobile Number</string>
+
 
     <string name="delete">are you sure want to delete this supplier: </string>
     <string name="description">Copyright 2023–24 \n Developed By:\n Technosoul Ventures Pvt Ltd</string>
     <string name="hyperlink"><a href="https://www.technosoul.io">www.technosoul.io</a></string>
     <string name="contact">If you are new or existing user of our app. if you want to use it or you are using it, in case of any issues or suggestions , you can write us below with a form. Your feedback will be appreciated.</string>
     <string name="forgotdescription">Enter your mobile no in below field, you \n will get an OTP on your mobile phone \n to reset the password.</string>
-    <string name="supplier_name">Enter Your Supplier Name</string>
-    <string name="txt_supplier_name">Supplier Name :</string>
-    <string name="edit_supp_add">enter your supplie address :</string>
-    <string name="txt_supp_add">Supplier Address :</string>
-    <string name="txt_supp_number">Mobile Number :</string>
-    <string name="edit_supp_number">enter your Mobile Number :</string>
     <string name="supp_add_btn">Add</string>
     <string name="txt_product_name">Product Name :</string>
     <string name="edit_product_name">enter the product name</string>

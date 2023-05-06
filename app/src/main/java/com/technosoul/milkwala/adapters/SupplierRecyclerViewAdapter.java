@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.supplier;
+package com.technosoul.milkwala.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,17 +16,19 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.supplier.SupplierDetailsFragment;
+import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRecyclerViewAdapter.ViewHolder> {
     Context context;
     ArrayList<Supplier> suppliers;
 
-    public RecyclerViewAdapter(Context context, ArrayList<Supplier>suppliers){
+    public SupplierRecyclerViewAdapter(Context context, ArrayList<Supplier>suppliers){
         this.context = context;
         this.suppliers = suppliers;
     }

@@ -7,7 +7,6 @@ import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.technosoul.milkwala.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
 import com.technosoul.milkwala.managers.SharedPreferenceManager;
@@ -41,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
                 startActivity(intent);
+                finish();
             }
         }, 4000);
 

@@ -18,7 +18,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
-            android:fontFamily="@font/berkshire_swash"
             android:text="Milkwala"
             android:textColor="#FFC30E"
             android:textSize="30sp" />
@@ -27,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
-            android:fontFamily="@font/berkshire_swash"
             android:text="Dairy"
             android:layout_marginStart = "5dp"
             android:textColor="#F6F1F1"

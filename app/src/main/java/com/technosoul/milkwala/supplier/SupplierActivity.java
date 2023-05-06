@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
 
 public class SupplierActivity extends AppCompatActivity {
 

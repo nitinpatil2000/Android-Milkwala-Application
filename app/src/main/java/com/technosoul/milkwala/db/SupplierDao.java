@@ -1,10 +1,12 @@
-package com.technosoul.milkwala.supplier;
+package com.technosoul.milkwala.db;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.technosoul.milkwala.supplier.Supplier;
 
 import java.util.List;
 

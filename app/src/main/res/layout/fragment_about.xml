@@ -139,7 +139,6 @@
     <!--            android:textColor="@color/black"-->
     <!--            android:textSize="18sp"-->
     <!--            android:textStyle="bold"-->
-    <!--            android:fontFamily="@font/ubuntu_light"-->
     <!--            android:textAlignment="center"/>-->
 
     <!--        <TextView-->
@@ -150,7 +149,6 @@
     <!--            android:textSize="18sp"-->
     <!--            android:id="@+id/hyperlink"-->
     <!--            android:textStyle="bold"-->
-    <!--            android:fontFamily="@font/ubuntu_light"-->
     <!--            android:paddingBottom="7dp"-->
     <!--            android:textAlignment="center"/>-->
 
@@ -171,7 +169,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:fontFamily="@font/berkshire_swash"
                 android:gravity="center"
                 android:text="About us"
                 android:textAlignment="center"
@@ -184,7 +181,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:fontFamily="@font/ubuntu_light"
                 android:text="@string/contact"
                 android:textAlignment="viewStart"
                 android:textColor="@color/white"
@@ -384,7 +380,6 @@
                             android:layout_marginTop="15dp"
                             android:drawableStart="@drawable/ic_baseline_location_on_24"
                             android:drawablePadding="10dp"
-                            android:fontFamily="@font/ubuntu_light"
                             android:maxLines="5"
                             android:minLines="1"
                             android:text="@string/description"
@@ -401,7 +396,6 @@
                             android:layout_marginBottom="15dp"
                             android:drawableStart="@drawable/ic_baseline_email_24"
                             android:drawablePadding="10dp"
-                            android:fontFamily="@font/ubuntu_light"
                             android:paddingBottom="7dp"
                             android:text="@string/hyperlink"
                             android:textColor="@color/black"

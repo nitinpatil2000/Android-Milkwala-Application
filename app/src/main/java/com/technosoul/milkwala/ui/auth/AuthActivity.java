@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;

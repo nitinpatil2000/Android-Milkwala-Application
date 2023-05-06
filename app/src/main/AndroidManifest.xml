@@ -38,8 +38,11 @@
             android:exported="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true" />
+
+        <activity android:name=".ui.masterinfo.MasterInfoActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

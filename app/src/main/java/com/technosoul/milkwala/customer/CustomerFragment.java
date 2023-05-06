@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.MainActivity;
+import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 
 import java.util.ArrayList;
