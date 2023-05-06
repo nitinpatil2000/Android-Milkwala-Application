@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:background="@color/cardColor"
-    tools:context=".supplier.SupplierDetailsFragment">
-
+    android:orientation="vertical"
+    tools:context=".ui.masterinfo.suppliers.SupplierDetailsFragment">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_title_supplier_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/title_supplier_details"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_supplier_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintTop_toBottomOf="@+id/cv_title_supplier_details">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu_light"
-                android:gravity="center"
-                android:text="Supplier Details : "
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,25 +65,27 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:text="Supplier \nName : "
-                    android:textColor="#000"
                     android:layout_marginStart="10dp"
-                    android:textSize="16sp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1.7"
+                    android:text="@string/str_name"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/supplierName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:text="Chitale"
-                    android:textSize="16sp"
-                    android:textColor="#000"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3.3"
+                    android:background="@drawable/edit_design"
                     android:padding="5dp"
                     android:paddingStart="10dp"
-                    android:background="@drawable/edit_design"
-                    />
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,26 +96,27 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:text=" Address : "
                     android:layout_marginStart="10dp"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1.7"
+                    android:text="@string/str_address"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/supplierAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:minLines="4"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3.3"
+                    android:background="@drawable/edit_design"
                     android:maxLines="5"
-                    android:text="Address 1"
-                    android:textSize="16sp"
-                    android:textColor="#000"
+                    android:minLines="4"
                     android:padding="5dp"
                     android:paddingStart="10dp"
-                    android:background="@drawable/edit_design"
-                    />
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,43 +129,76 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:text="Contact No  : "
                     android:layout_marginStart="10dp"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1.7"
+                    android:text="@string/str_mobile_number"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/supplierNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:text="8574859685"
-                    android:textSize="16sp"
-                    android:textColor="#000"
-                    android:padding="5dp"
-                    android:inputType="number"
-                    android:paddingStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3.3"
                     android:background="@drawable/edit_design"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                    android:padding="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1.7"
+                    android:text="@string/str_mobile_number"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/supplier_alt_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="3.3"
+                    android:background="@drawable/edit_design"
+                    android:padding="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:orientation="vertical">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView_supplier_list" />
-
+            android:background="@color/black" />
 
         <Button
             android:id="@+id/deleteSupplier"
@@ -154,12 +210,10 @@
             android:layout_marginBottom="5dp"
             android:backgroundTint="@color/button_background_color"
             android:gravity="center"
-            android:fontFamily="@font/ubuntu_light"
-            android:text="Delete Supplier"
+            android:text="@string/btn_delete_supplier"
             android:textColor="@color/black"
             android:textSize="22sp" />
 
     </LinearLayout>
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,11 +70,11 @@ public class ProductViewDetailsFragment extends Fragment {
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.dialog_design);
 
-                cancelBtn = dialog.findViewById(R.id.cancelBtn);
-                deleteBtn = dialog.findViewById(R.id.delteBtn);
-                deleteTxt = dialog.findViewById(R.id.deleteTxt);
-                deleteInfo = dialog.findViewById(R.id.deleteInfo);
-                deleteMsg = dialog.findViewById(R.id.dltMsg);
+                cancelBtn = dialog.findViewById(R.id.btn_cancel_delete_supplier);
+                deleteBtn = dialog.findViewById(R.id.btn_delete_supplier);
+                deleteTxt = dialog.findViewById(R.id.tv_title_delete_supplier);
+                deleteInfo = dialog.findViewById(R.id.tv_msg_delete_supplier);
+                deleteMsg = dialog.findViewById(R.id.tv_msg_delete_supplier_confirmation);
 
 
 //                brandName = dialog.findViewById(R.id.brandName);

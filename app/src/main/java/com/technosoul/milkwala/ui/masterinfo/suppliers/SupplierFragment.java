@@ -18,8 +18,8 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.SupplierRecyclerViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.supplier.Supplier;
-import com.technosoul.milkwala.supplier.SupplierDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
 import java.util.ArrayList;
 
@@ -32,6 +32,7 @@ public class SupplierFragment extends Fragment {
     Button btnAddNewSupplier;
     int supplierId;
     private MasterInfoListener masterInfoListener;
+    private OnItemSelected onItemSelected;
 
     public SupplierFragment() {
     }
@@ -59,7 +60,7 @@ public class SupplierFragment extends Fragment {
         if (supplierList == null || supplierList.size() == 0) {
             Toast.makeText(getContext(), R.string.empty_supplier_list, Toast.LENGTH_SHORT).show();
         } else {
-            recyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), supplierList);
+            recyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), supplierList, onItemSelected);
             supplierRecyclerView.setAdapter(recyclerViewAdapter);
         }
 
@@ -129,6 +130,10 @@ public class SupplierFragment extends Fragment {
 
     public void setListener(MasterInfoListener listener) {
         this.masterInfoListener = listener;
+    }
+
+    public void setOnItemSelectedListener(OnItemSelected onItemSelected) {
+        this.onItemSelected = onItemSelected;
     }
 
 

@@ -12,10 +12,12 @@ import com.technosoul.milkwala.customer.CustomerFragment;
 import com.technosoul.milkwala.delivery.DeliveryDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.AddNewSupplierFragment;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
+import com.technosoul.milkwala.utils.Constants;
 
-public class MasterInfoActivity extends AbstractBaseActivity implements MasterInfoListener {
+public class MasterInfoActivity extends AbstractBaseActivity implements MasterInfoListener, OnItemSelected {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     public void onSupplierClick() {
         SupplierFragment supplierFragment = new SupplierFragment();
         supplierFragment.setListener(this);
+        supplierFragment.setOnItemSelectedListener(this);
         loadFragment(supplierFragment);
     }
 
@@ -92,5 +95,28 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     public void onBackToPreviousScreen() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStack();
+    }
+
+    @Override
+    public void onItemClicked(int type, int id, Bundle bundle) {
+        switch (type) {
+            case Constants.SELECTED_TYPE_SUPPLIER:
+                SupplierDetailsFragment supplierDetailsFragment = new SupplierDetailsFragment(id);
+                supplierDetailsFragment.setArguments(bundle);
+                supplierDetailsFragment.setListener(this);
+                loadFragment(supplierDetailsFragment);
+
+                break;
+
+            case Constants.SELECTED_TYPE_PRODUCT:
+                break;
+
+            case Constants.SELECTED_TYPE_DELIVERY_BOY:
+                break;
+
+            case Constants.SELECTED_TYPE_CUSTOMER:
+                break;
+
+        }
     }
 }

@@ -10,19 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.supplier.Supplier;
-import com.technosoul.milkwala.supplier.SupplierDetailsFragment;
-import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.products.ProductDetails;
-import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
+import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -30,9 +25,12 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
     Context context;
     ArrayList<Supplier> suppliers;
 
-    public SupplierRecyclerViewAdapter(Context context, ArrayList<Supplier>suppliers){
+    private OnItemSelected onItemSelected;
+
+    public SupplierRecyclerViewAdapter(Context context, ArrayList<Supplier> suppliers, OnItemSelected onItemSelected) {
         this.context = context;
         this.suppliers = suppliers;
+        this.onItemSelected = onItemSelected;
     }
 
     @NonNull
@@ -66,7 +64,7 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
 
     public Supplier getItem(int position) {
         // Get the Supplier at a specific position in the list
-            return suppliers.get(position);
+        return suppliers.get(position);
     }
 
     public void filteredList(ArrayList<Supplier> filterList) {
@@ -90,26 +88,17 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
             //show details of the supplier and changing the fragment
             suppliersImg.setOnClickListener(view -> {
                 int position = getAdapterPosition();
-                if(position != RecyclerView.NO_POSITION){
+                if (position != RecyclerView.NO_POSITION) {
                     Supplier clickedItem = suppliers.get(position);
                     int supplierId = clickedItem.getSupplierId();
                     Bundle bundle = new Bundle();
                     bundle.putString("supplierTxt", clickedItem.getSupplierName());
                     bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
                     bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
+                    bundle.putString("supplierAltNumber", clickedItem.getSupplierAltNumber());
 
-                    SupplierDetailsFragment supplierDetailsFragment  = new SupplierDetailsFragment(supplierId);
-                    supplierDetailsFragment.setArguments(bundle);
-                    //Replace the current fragment with the SupplierDetails Fragment
-                    FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();
-                    FragmentTransaction ft = fragmentManager.beginTransaction();
-
-                    ft.replace(R.id.container, supplierDetailsFragment);
-                    ft.addToBackStack(null);
-                    ft.commit();
-                    ActionBar actionBar = ((MasterInfoActivity) context).getSupportActionBar();
-                    if (actionBar != null) {
-                        actionBar.setTitle(clickedItem.getSupplierName());
+                    if (onItemSelected != null) {
+                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER, supplierId, bundle);
                     }
                 }
             });

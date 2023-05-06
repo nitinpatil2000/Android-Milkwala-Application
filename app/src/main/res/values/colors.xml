@@ -9,6 +9,7 @@
     <color name="secondary_text_color">#54000000</color>
     <color name="hint_color">#36000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FF0000</color>
     <color name="button_background_color">#fea900</color>
     <color name="transparent">#00000000</color>
 

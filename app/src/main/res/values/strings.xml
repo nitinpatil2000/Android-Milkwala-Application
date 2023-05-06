@@ -74,6 +74,20 @@
     <string name="supplier_added_success">Supplier Added successfully.</string>
     <string name="empty_supplier_list">Supplier list is empty. Let\'s start adding new supplier.</string>
     <string name="products_of_supplier">%1$d Products</string>
+    <string name="title_supplier_details">Supplier Details</string>
+    <string name="btn_delete_supplier">Delete Supplier</string>
+    <string name="title_delete_supplier">Delete Supplier - %1$s</string>
+    <string name="msg_delete_supplier_confirmation">Are you sure to delete this supplier?</string>
+    <string name="msg_delete_supplier_desc">Please Note - If you delete this supplier, then all the products and associated data will get removed.</string>
+    <string name="msg_delete_supplier_success">Supplier deleted successfully.</string>
+
+    <string name="str_name">Name :</string>
+    <string name="str_address">Address :</string>
+    <string name="str_mobile_number">Mobile Number :</string>
+    <string name="str_alt_number">Alternate Number :</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_delete">Delete</string>
+
 
 
     <string name="delete">are you sure want to delete this supplier: </string>

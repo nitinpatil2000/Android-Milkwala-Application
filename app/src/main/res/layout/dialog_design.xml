@@ -2,33 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F37777"
+    android:background="@color/cardColor"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="25sp"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/deleteTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:textColor="#000"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:id="@+id/brandName"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_title_delete_supplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/title_delete_supplier"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="wrap_content"
@@ -37,44 +24,37 @@
         android:background="@color/black" />
 
     <TextView
-        android:id="@+id/deleteInfo"
+        android:id="@+id/tv_msg_delete_supplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="11dp"
         android:gravity="center"
-        android:text="Delete"
-        android:textColor="#000"
-        android:textSize="20dp"
+        android:text="@string/title_delete_supplier"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_msg_delete_supplier_confirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="11dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/title_delete_supplier"
+        android:textColor="@color/red"
+        android:textSize="16sp"
         android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/dltMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="11dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
-
             <TextView
-                android:id="@+id/cancelBtn"
+                android:id="@+id/btn_cancel_delete_supplier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
@@ -82,13 +62,13 @@
                 android:background="@drawable/btn_design"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="cancel"
+                android:text="@string/str_cancel"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/delteBtn"
+                android:id="@+id/btn_delete_supplier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -96,12 +76,11 @@
                 android:background="@drawable/btn_design"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Delete"
+                android:text="@string/str_delete"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
         </LinearLayout>
-    </LinearLayout>
+
 </LinearLayout>
