@@ -55,7 +55,7 @@
     <string name="btn_add_new_customer">Add new customer</string>
     <string name="btn_add_new_delivery_boy">Add new Delivery Boy</string>
 
-<!--  Add new Supplier strings  -->
+    <!--  Add new Supplier strings  -->
     <string name="title_supplier_name">Supplier Name :</string>
     <string name="hint_enter_supplier_name">Enter Supplier Name</string>
     <string name="title_supplier_address">Supplier Address :</string>
@@ -64,6 +64,16 @@
     <string name="hint_enter_supplier_mobile1">Enter Mobile Number</string>
     <string name="title_supplier_alternate_number">Alternate Number :</string>
     <string name="hint_enter_supplier_mobile2">Alternate Mobile Number</string>
+    <string name="err_empty_supplier_name">Supplier name should not be empty.</string>
+    <string name="err_min_length_supplier_name">Supplier name should be minimum of 3 characters</string>
+    <string name="err_empty_supplier_addr">Supplier address should not be empty.</string>
+    <string name="err_min_length_supplier_addr">Supplier address should be minimum of 8 characters</string>
+    <string name="err_empty_supplier_number">Mobile number should not be empty.</string>
+    <string name="err_invalid_mobile_number">Entered mobile number is not in right format. Please check again.</string>
+    <string name="err_invalid_alternate_number">Alternate mobile number is not in fight format. Please check again.</string>
+    <string name="supplier_added_success">Supplier Added successfully.</string>
+    <string name="empty_supplier_list">Supplier list is empty. Let\'s start adding new supplier.</string>
+    <string name="products_of_supplier">%1$d Products</string>
 
 
     <string name="delete">are you sure want to delete this supplier: </string>

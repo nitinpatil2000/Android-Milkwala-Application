@@ -21,25 +21,28 @@ public class Supplier {
     @ColumnInfo(name = "supplier_number")
     private String supplierNumber;
 
+    @ColumnInfo(name="supplier_alt_number")
+    private String supplierAltNumber;
 
-    public Supplier(int supplierId, String supplierName, String supplierAddress, String supplierNumber) {
+
+    public Supplier(int supplierId, String supplierName, String supplierAddress, String supplierNumber, String supplierAltNumber) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
+        this.supplierAltNumber = supplierAltNumber;
     }
 
     @Ignore
-    public Supplier(String supplierName, String supplierAddress, String supplierNumber) {
+    public Supplier(String supplierName, String supplierAddress, String supplierNumber, String supplierAltNumber) {
         this.supplierName = supplierName;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
+        this.supplierAltNumber = supplierAltNumber;
     }
 
     public Supplier() {
-
     }
-
 
     public String getSupplierAddress() {
         return supplierAddress;
@@ -73,4 +76,11 @@ public class Supplier {
         this.supplierName = supplierName;
     }
 
+    public String getSupplierAltNumber() {
+        return supplierAltNumber;
+    }
+
+    public void setSupplierAltNumber(String supplierAltNumber) {
+        this.supplierAltNumber = supplierAltNumber;
+    }
 }

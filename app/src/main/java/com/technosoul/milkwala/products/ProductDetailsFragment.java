@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.ui.masterinfo.products.AddNewProductFragment;
 
 import java.util.ArrayList;
 
@@ -72,7 +73,7 @@ public class ProductDetailsFragment extends Fragment {
         addProductTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddProductFragment addProductFragment = new AddProductFragment(supplierId);
+                AddNewProductFragment addProductFragment = new AddNewProductFragment(supplierId);
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.container, addProductFragment);

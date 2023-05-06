@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,6 +22,7 @@ import com.technosoul.milkwala.supplier.SupplierDetailsFragment;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.products.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 
 import java.util.ArrayList;
 
@@ -33,12 +35,11 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
         this.suppliers = suppliers;
     }
 
-
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.supplier_design, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return  viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
         MyDbHelper myDbHelper = MyDbHelper.getDB(context);
         ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
         int numCounterSuppliers = productDetailsList.size();
-        holder.supplierCounter.setText(String.format("%d Suppliers", numCounterSuppliers));
+        holder.supplierCounter.setText(String.format(context.getString(R.string.products_of_supplier), numCounterSuppliers));
     }
 
     @Override
@@ -68,19 +69,15 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
             return suppliers.get(position);
     }
 
-
-
     public void filteredList(ArrayList<Supplier> filterList) {
         suppliers = filterList;
         notifyDataSetChanged();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView supplierTxt, supplierCounter;
         ImageView suppliersImg;
         LinearLayout supplierLinear;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,30 +87,29 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
             suppliersImg = itemView.findViewById(R.id.suppliersImg);
             supplierLinear = itemView.findViewById(R.id.supplierLinear);
 
-
             //show details of the supplier and changing the fragment
-            suppliersImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if(position != RecyclerView.NO_POSITION){
-                        Supplier clickedItem = suppliers.get(position);
-                        int supplierId = clickedItem.getSupplierId();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("supplierTxt", clickedItem.getSupplierName());
-                        bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
-                        bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
+            suppliersImg.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if(position != RecyclerView.NO_POSITION){
+                    Supplier clickedItem = suppliers.get(position);
+                    int supplierId = clickedItem.getSupplierId();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("supplierTxt", clickedItem.getSupplierName());
+                    bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
+                    bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
 
-                        SupplierDetailsFragment supplierDetailsFragment  = new SupplierDetailsFragment(supplierId);
-                        supplierDetailsFragment.setArguments(bundle);
-                        //Replace the current fragment with the SupplierDetails Fragment
-                        FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();
-                        FragmentTransaction ft = fragmentManager.beginTransaction();
+                    SupplierDetailsFragment supplierDetailsFragment  = new SupplierDetailsFragment(supplierId);
+                    supplierDetailsFragment.setArguments(bundle);
+                    //Replace the current fragment with the SupplierDetails Fragment
+                    FragmentManager fragmentManager = ((MainActivity)context).getSupportFragmentManager();
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
 
-                        ft.replace(R.id.container, supplierDetailsFragment);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                        ((AppCompatActivity) view.getContext()).getSupportActionBar().setTitle(clickedItem.getSupplierName());
+                    ft.replace(R.id.container, supplierDetailsFragment);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    ActionBar actionBar = ((MasterInfoActivity) context).getSupportActionBar();
+                    if (actionBar != null) {
+                        actionBar.setTitle(clickedItem.getSupplierName());
                     }
                 }
             });

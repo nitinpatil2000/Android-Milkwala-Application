@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.products;
+package com.technosoul.milkwala.ui.masterinfo.products;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,10 +16,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.products.ProductDetails;
 
 import java.util.ArrayList;
 
-public class AddProductFragment extends Fragment {
+public class AddNewProductFragment extends Fragment {
 Spinner spinner;
 ArrayList<String>arrayNames = new ArrayList<>();
 Button addNewProductBtn;
@@ -29,7 +30,7 @@ private int supplierId;
 
 
 
-    public AddProductFragment(int supplierId) {
+    public AddNewProductFragment(int supplierId) {
         this.supplierId = supplierId;
     }
 
