@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class AddNewSupplierFragment extends Fragment {

@@ -31,7 +31,7 @@ import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.products.ProductDetails;
-import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.db.Supplier;
 
 import java.util.ArrayList;
 import java.util.List;

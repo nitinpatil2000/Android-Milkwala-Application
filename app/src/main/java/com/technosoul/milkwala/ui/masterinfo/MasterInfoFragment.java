@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.technosoul.milkwala.home.ImageAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.supplier.Supplier;
+import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.delivery.Deliver;
 

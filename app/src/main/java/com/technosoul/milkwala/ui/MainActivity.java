@@ -23,14 +23,12 @@ import com.technosoul.milkwala.AboutFragment;
 import com.technosoul.milkwala.AdminDashboardFragment;
 import com.technosoul.milkwala.ProfileFragment;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.SupplierListner;
 import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
 import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
-import com.technosoul.milkwala.supplier.SupplierActivity;
 import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 
-public class MainActivity extends AppCompatActivity  implements SupplierListner {
+public class MainActivity extends AppCompatActivity {
 
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -180,15 +178,6 @@ public class MainActivity extends AppCompatActivity  implements SupplierListner 
         ft.addToBackStack(null);
         ft.commit();
     }
-
-    @Override
-    public void onSupplierSuccess() {
-        Intent intent = new Intent(this, SupplierActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-
 
 }
 

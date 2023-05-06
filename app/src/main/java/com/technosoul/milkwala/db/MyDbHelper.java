@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase;
 
 import com.technosoul.milkwala.receiveProduct.DailyReceiveDao;
 import com.technosoul.milkwala.receiveProduct.DailyReceiveProduct;
-import com.technosoul.milkwala.supplier.Supplier;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.delivery.DeliveryDetailDao;
 import com.technosoul.milkwala.products.ProductDetails;
