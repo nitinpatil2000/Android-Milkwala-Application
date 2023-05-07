@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.products;
+package com.technosoul.milkwala.ui.masterinfo.products;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -83,7 +83,7 @@ public class AddNewProductFragment extends Fragment {
         editProductName = view.findViewById(R.id.editProductName);
         editProductMrp = view.findViewById(R.id.editProductMrp);
         editSupplierRate = view.findViewById(R.id.editSupplierRate);
-        editVenderRate = view.findViewById(R.id.editVenderRate);
+        editVenderRate = view.findViewById(R.id.tv_Vendor_rate);
 
         addNewProductBtn = view.findViewById(R.id.addNewProductBtn);
         // Set click listener on add button

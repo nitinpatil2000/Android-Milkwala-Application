@@ -24,7 +24,6 @@ public class Supplier {
     @ColumnInfo(name="supplier_alt_number")
     private String supplierAltNumber;
 
-
     public Supplier(int supplierId, String supplierName, String supplierAddress, String supplierNumber, String supplierAltNumber) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;

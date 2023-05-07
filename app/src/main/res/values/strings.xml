@@ -91,7 +91,12 @@
     <string name="hint_vendor_rate">110</string>
     <string name="hint_mrp">115</string>
     <string name="str_rs">Rs.</string>
-
+    <string name="title_product_details">Product Details</string>
+    <string name="btn_delete_product">Delete Product</string>
+    <string name="title_delete_product">Delete - %1$s</string>
+    <string name="msg_delete_product_desc">Please Note - Deleting this product will remove all the product related information, permanently.</string>
+    <string name="msg_delete_product_confirmation">Are you sure to delete this product?</string>
+    <string name="msg_delete_product_success">Product deleted successfully</string>
 
     <string name="str_name">Name :</string>
     <string name="str_address">Address :</string>
@@ -99,6 +104,7 @@
     <string name="str_alt_number">Alternate Number :</string>
     <string name="str_cancel">Cancel</string>
     <string name="str_delete">Delete</string>
+    <string name="str_unit">Unit :</string>
 
 
 
@@ -107,7 +113,6 @@
     <string name="contact">If you are new or existing user of our app. if you want to use it or you are using it, in case of any issues or suggestions , you can write us below with a form. Your feedback will be appreciated.</string>
 
     <string name="supp_add_btn">Add</string>
-    <string name="txt_unit">Unit :</string>
     <string name="edit_product_mrp">Rs.200</string>
     <string name="txt_product_mrp">MRP :</string>
     <string name="txt_delivery_name">DeliverBoy Name :</string>

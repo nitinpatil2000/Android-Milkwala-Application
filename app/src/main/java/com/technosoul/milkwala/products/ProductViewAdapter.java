@@ -8,15 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
-import com.technosoul.milkwala.ui.MainActivity;
-import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.utils.Constants;
@@ -24,10 +20,9 @@ import com.technosoul.milkwala.utils.Constants;
 import java.util.ArrayList;
 
 public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.ViewHolder> {
+    private final OnItemSelected onItemSelected;
     Context context;
     ArrayList<Supplier> suppliers;
-
-    private OnItemSelected onItemSelected;
 
 
     public ProductViewAdapter(Context context, ArrayList<Supplier> suppliers, OnItemSelected onItemSelected) {
@@ -40,8 +35,7 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
     @Override
     public ProductViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.product_design, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -52,7 +46,7 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
         MyDbHelper myDbHelper = MyDbHelper.getDB(context);
         ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
         int numCounterProducts = productDetailsList.size();
-        holder.productCounter.setText(String.format("%d Products", numCounterProducts));
+        holder.productCounter.setText(String.format(context.getString(R.string.products_of_supplier), numCounterProducts));
     }
 
     @Override

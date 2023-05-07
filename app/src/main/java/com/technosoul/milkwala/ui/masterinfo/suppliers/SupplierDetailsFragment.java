@@ -1,6 +1,8 @@
 package com.technosoul.milkwala.ui.masterinfo.suppliers;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,15 +73,15 @@ public class SupplierDetailsFragment extends Fragment {
             TextView confirmationDeleteSupplier;
 
             Dialog dialog = new Dialog(getContext());
-
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCancelable(false);
             dialog.setContentView(R.layout.dialog_design);
 
-            btnCancelDeleteSupplier = dialog.findViewById(R.id.btn_cancel_delete_supplier);
-            btnDeleteSupplier = dialog.findViewById(R.id.btn_delete_supplier);
+            btnCancelDeleteSupplier = dialog.findViewById(R.id.btn_action_cancel);
+            btnDeleteSupplier = dialog.findViewById(R.id.btn_action_delete);
             titleDeleteSupplier = dialog.findViewById(R.id.tv_title_delete_supplier);
-            msgDeleteSupplier = dialog.findViewById(R.id.tv_msg_delete_supplier);
-            confirmationDeleteSupplier = dialog.findViewById(R.id.tv_msg_delete_supplier_confirmation);
+            msgDeleteSupplier = dialog.findViewById(R.id.tv_msg_delete_desc);
+            confirmationDeleteSupplier = dialog.findViewById(R.id.tv_msg_delete_confirmation);
 
             titleDeleteSupplier.setText(String.format(getString(R.string.title_delete_supplier), suppName));
             confirmationDeleteSupplier.setText(R.string.msg_delete_supplier_confirmation);

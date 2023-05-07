@@ -57,4 +57,9 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">15sp</item>
     </style>
+
+    <style name="commonTextViewValue" parent="commonTextViewLabel">
+        <item name="android:background">@drawable/edit_design</item>>
+        <item name="android:padding">8dp</item>>
+    </style>
 </resources>

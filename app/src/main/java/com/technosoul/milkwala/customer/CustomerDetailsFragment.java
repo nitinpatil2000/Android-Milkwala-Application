@@ -60,11 +60,11 @@ public class CustomerDetailsFragment extends Fragment {
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.dialog_design);
 
-                cancelBtn = dialog.findViewById(R.id.btn_cancel_delete_supplier);
-                deleteBtn = dialog.findViewById(R.id.btn_delete_supplier);
+                cancelBtn = dialog.findViewById(R.id.btn_action_cancel);
+                deleteBtn = dialog.findViewById(R.id.btn_action_delete);
                 deleteTxt = dialog.findViewById(R.id.tv_title_delete_supplier);
-                deleteInfo = dialog.findViewById(R.id.tv_msg_delete_supplier);
-                dltMsg = dialog.findViewById(R.id.tv_msg_delete_supplier_confirmation);
+                deleteInfo = dialog.findViewById(R.id.tv_msg_delete_desc);
+                dltMsg = dialog.findViewById(R.id.tv_msg_delete_confirmation);
 
                 deleteTxt.setText(" Delete Customer");
                 deleteInfo.setText(customerName);

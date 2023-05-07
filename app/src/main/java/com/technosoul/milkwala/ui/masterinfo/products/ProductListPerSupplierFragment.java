@@ -11,22 +11,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
-import com.technosoul.milkwala.products.AddNewProductFragment;
-import com.technosoul.milkwala.products.ProductViewDetailsAdapter;
+import com.technosoul.milkwala.adapters.ProductDetailsViewAdapter;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
 import java.util.ArrayList;
 
 public class ProductListPerSupplierFragment extends Fragment {
-    ProductViewDetailsAdapter productViewDetailsAdapter;
+    ProductDetailsViewAdapter productViewDetailsAdapter;
     RecyclerView productDetailRecyclerView;
     ArrayList<ProductDetails> productDetailsList;
     ImageView productImg;
@@ -35,6 +33,7 @@ public class ProductListPerSupplierFragment extends Fragment {
     private int supplierId = -1;
 
     private MasterInfoListener listener;
+    private OnItemSelected onItemSelected;
 
     public ProductListPerSupplierFragment(int supplierId) {
         // Required empty public constructor
@@ -43,6 +42,10 @@ public class ProductListPerSupplierFragment extends Fragment {
 
     public void setListener(MasterInfoListener listener) {
         this.listener = listener;
+    }
+
+    public void setOnItemSelected(OnItemSelected onItemSelected) {
+        this.onItemSelected = onItemSelected;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class ProductListPerSupplierFragment extends Fragment {
         productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
 
         for (int i = 0; i < productDetailsList.size(); i++) {
-            productViewDetailsAdapter = new ProductViewDetailsAdapter(getContext(), productDetailsList);
+            productViewDetailsAdapter = new ProductDetailsViewAdapter(getContext(), productDetailsList, onItemSelected);
             productDetailRecyclerView.setAdapter(productViewDetailsAdapter);
         }
 
