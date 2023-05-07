@@ -6,7 +6,7 @@ public interface MasterInfoListener {
     void onDeliveryBoyClick();
     void onCustomerClick();
     void addNewSupplier();
-    void addNewProduct();
+    void addNewProduct(int id);
     void addNewDeliveryBoy();
     void addNewCustomer();
     void onBackToPreviousScreen();

@@ -14,49 +14,62 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
 public class AddNewProductFragment extends Fragment {
-Spinner spinner;
-ArrayList<String>arrayNames = new ArrayList<>();
-Button addNewProductBtn;
-EditText editProductName, editProductMrp;
-EditText editSupplierRate, editVenderRate;
-private int supplierId;
+    Spinner unitsSpinner;
+    ArrayList<String> arrayNames = new ArrayList<>();
+    Button addNewProductBtn;
+    EditText editProductName, editProductMrp;
+    EditText editSupplierRate, editVenderRate;
+    private final int supplierId;
 
-
+    private MasterInfoListener listener;
 
     public AddNewProductFragment(int supplierId) {
         this.supplierId = supplierId;
+    }
+
+    public void setListener(MasterInfoListener listener) {
+        this.listener = listener;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate( R.layout.fragment_add_product, container, false);
-        spinner = view.findViewById(R.id.spinner);
-        arrayNames.add("1 Litre");
-        arrayNames.add("500 ml");
-        arrayNames.add("1 kg");
-        arrayNames.add("2 Litre");
-        arrayNames.add("3 Litre");
+        View view = inflater.inflate(R.layout.fragment_add_product, container, false);
+        unitsSpinner = view.findViewById(R.id.spinner);
+        arrayNames.add(Constants.UNIT_LITRE_1);
+        arrayNames.add(Constants.UNIT_LITRE_2);
+        arrayNames.add(Constants.UNIT_ML_500);
+        arrayNames.add(Constants.UNIT_ML_250);
+        arrayNames.add(Constants.UNIT_ML_100);
+        arrayNames.add(Constants.UNIT_KG_1);
+        arrayNames.add(Constants.UNIT_KG_2);
+        arrayNames.add(Constants.UNIT_GRAM_500);
+        arrayNames.add(Constants.UNIT_GRAM_250);
+        arrayNames.add(Constants.UNIT_GRAM_200);
+        arrayNames.add(Constants.UNIT_GRAM_100);
+        arrayNames.add(Constants.UNIT_GRAM_50);
+        arrayNames.add(Constants.UNIT_PACKETS);
 //        arrayNames.add("No Selected");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, arrayNames);
-        spinner.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayNames);
+        unitsSpinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        unitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0) {
                     String selectedItem = adapterView.getItemAtPosition(i).toString();
-                    Toast.makeText(getContext(), "Selected Item is : "+ selectedItem, Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getContext(), "Selected Item is : " + selectedItem, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -81,18 +94,18 @@ private int supplierId;
             public void onClick(View v) {
                 String productDetailsName = editProductName.getText().toString();
                 String productDetailsMrp = editProductMrp.getText().toString();
-                String productDetailsUnit = spinner.getSelectedItem().toString();
+                String productDetailsUnit = unitsSpinner.getSelectedItem().toString();
                 String productSupplierRate = editSupplierRate.getText().toString();
                 String productVenderRate = editVenderRate.getText().toString();
 
-                if(!productDetailsName.isEmpty() && !productDetailsMrp.isEmpty() && !productDetailsUnit.isEmpty() && !productSupplierRate.isEmpty() && !productVenderRate.isEmpty()){
+                if (!productDetailsName.isEmpty() && !productDetailsMrp.isEmpty() && !productDetailsUnit.isEmpty() && !productSupplierRate.isEmpty() && !productVenderRate.isEmpty()) {
                     //get the id of the selected supplier
-                    ProductDetails productDetails = new ProductDetails(  productDetailsName,  productSupplierRate,  productVenderRate, productDetailsUnit, productDetailsMrp);
+                    ProductDetails productDetails = new ProductDetails(productDetailsName, productSupplierRate, productVenderRate, productDetailsUnit, productDetailsMrp);
                     productDetails.setSupplierId(supplierId);
                     myDbHelper.productDetailsDto().addProduct(productDetails);
                     Toast.makeText(getContext(), "Product added successfully", Toast.LENGTH_SHORT).show();
                     // return to the supplierFragment
-                    FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager.popBackStack();
                 }
             }

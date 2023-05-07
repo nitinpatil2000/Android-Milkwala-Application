@@ -11,7 +11,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.customer.CustomerFragment;
 import com.technosoul.milkwala.delivery.DeliveryDetailsFragment;
 import com.technosoul.milkwala.products.AddNewProductFragment;
-import com.technosoul.milkwala.products.ProductListPerSupplierFragment;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductListPerSupplierFragment;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.AddNewSupplierFragment;
@@ -81,8 +81,10 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     }
 
     @Override
-    public void addNewProduct() {
-        AddNewProductFragment addNewProductFragment = new AddNewProductFragment(1);
+    public void addNewProduct(int id) {
+        AddNewProductFragment addNewProductFragment = new AddNewProductFragment(id);
+        addNewProductFragment.setListener(this);
+        loadFragment(addNewProductFragment);
     }
 
     @Override
@@ -122,6 +124,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
             case Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST:
                 ProductListPerSupplierFragment productListPerSupplierFragment = new ProductListPerSupplierFragment(id);
+                productListPerSupplierFragment.setListener(this);
                 loadFragment(productListPerSupplierFragment);
                 break;
 

@@ -1,13 +1,6 @@
-package com.technosoul.milkwala.products;
+package com.technosoul.milkwala.ui.masterinfo.products;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,9 +10,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.db.MyDbHelper;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.products.AddNewProductFragment;
+import com.technosoul.milkwala.products.ProductViewDetailsAdapter;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 import java.util.ArrayList;
 
@@ -29,20 +31,22 @@ public class ProductListPerSupplierFragment extends Fragment {
     ArrayList<ProductDetails> productDetailsList;
     ImageView productImg;
     TextView addProductTxt;
-    private int supplierId = -1;
     EditText searchProductDetails;
+    private int supplierId = -1;
 
+    private MasterInfoListener listener;
 
     public ProductListPerSupplierFragment(int supplierId) {
         // Required empty public constructor
         this.supplierId = supplierId;
     }
 
-
+    public void setListener(MasterInfoListener listener) {
+        this.listener = listener;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_list_per_supplier, container, false);
 
@@ -64,22 +68,13 @@ public class ProductListPerSupplierFragment extends Fragment {
         productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
 
         for (int i = 0; i < productDetailsList.size(); i++) {
-            productViewDetailsAdapter = new ProductViewDetailsAdapter(getContext(),productDetailsList);
-            productViewDetailsAdapter.notifyDataSetChanged();
+            productViewDetailsAdapter = new ProductViewDetailsAdapter(getContext(), productDetailsList);
             productDetailRecyclerView.setAdapter(productViewDetailsAdapter);
         }
 
         addProductTxt = view.findViewById(R.id.addProductTxt);
-        addProductTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddNewProductFragment addProductFragment = new AddNewProductFragment(supplierId);
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.container, addProductFragment);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
+        addProductTxt.setOnClickListener(view1 -> {
+            listener.addNewProduct(supplierId);
         });
 
         searchProductDetails = view.findViewById(R.id.searchProdutctDetails);
@@ -106,8 +101,8 @@ public class ProductListPerSupplierFragment extends Fragment {
 
     private void filter(String text) {
         ArrayList<ProductDetails> filterProductDetails = new ArrayList<>();
-        for(ProductDetails productDetails : productDetailsList){
-            if(productDetails.getProductDetailsName().toLowerCase().contains(text.toLowerCase())){
+        for (ProductDetails productDetails : productDetailsList) {
+            if (productDetails.getProductDetailsName().toLowerCase().contains(text.toLowerCase())) {
                 filterProductDetails.add(productDetails);
             }
         }

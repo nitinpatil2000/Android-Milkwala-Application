@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardColor"
+    android:background="@color/white"
     tools:context=".ui.masterinfo.suppliers.AddNewSupplierFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_add_new_supplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/cardColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
@@ -35,25 +35,19 @@
                 android:weightSum="5">
 
                 <TextView
+                    style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
                     android:layout_weight="1.5"
-                    android:text="@string/title_supplier_name"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_supplier_name" />
 
                 <EditText
                     android:id="@+id/editSupplierName"
+                    style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:autofillHints=""
-                    android:background="@drawable/edit_design"
-                    android:hint="@string/hint_enter_supplier_name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="10dp" />
+                    android:hint="@string/hint_enter_supplier_name" />
 
             </LinearLayout>
 
@@ -65,27 +59,23 @@
                 android:weightSum="5">
 
                 <TextView
+                    style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
                     android:layout_weight="1.5"
-                    android:text="@string/title_supplier_address"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_supplier_address" />
 
                 <EditText
                     android:id="@+id/editSupplierAddress"
+                    style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:autofillHints=""
-                    android:background="@drawable/edit_design"
                     android:gravity="top"
                     android:inputType="none"
                     android:hint="@string/hint_enter_supplier_address"
                     android:maxLines="5"
-                    android:minLines="4"
-                    android:padding="10dp" />
+                    android:minLines="4" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,25 +87,20 @@
                 android:weightSum="5">
 
                 <TextView
+                    style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
                     android:layout_weight="1.5"
-                    android:text="@string/title_supplier_number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_supplier_number" />
 
                 <EditText
                     android:id="@+id/et_supplier_mobile"
+                    style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:autofillHints=""
-                    android:background="@drawable/edit_design"
                     android:hint="@string/hint_enter_supplier_mobile1"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:padding="10dp" />
+                    android:inputType="number" />
             </LinearLayout>
 
             <LinearLayout
@@ -127,25 +112,20 @@
                 android:weightSum="5">
 
                 <TextView
+                    style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
                     android:layout_weight="1.5"
-                    android:text="@string/title_supplier_alternate_number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_supplier_alternate_number" />
 
                 <EditText
                     android:id="@+id/et_supplier_alt_mobile"
+                    style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="3.5"
                     android:autofillHints=""
-                    android:background="@drawable/edit_design"
                     android:hint="@string/hint_enter_supplier_mobile2"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:padding="10dp" />
+                    android:inputType="number" />
             </LinearLayout>
 
         </LinearLayout>
@@ -158,25 +138,12 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/black" />
+        <View style="@style/lineHorizontal"/>
 
         <Button
             android:id="@+id/btnAddNewSupplier"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/button_background_color"
-            android:gravity="center"
-            android:text="@string/supp_add_btn"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            style="@style/commonButton"
+            android:text="@string/supp_add_btn" />
 
     </LinearLayout>
 
