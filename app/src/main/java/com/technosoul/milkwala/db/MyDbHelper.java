@@ -10,7 +10,6 @@ import com.technosoul.milkwala.receiveProduct.DailyReceiveDao;
 import com.technosoul.milkwala.receiveProduct.DailyReceiveProduct;
 import com.technosoul.milkwala.delivery.Deliver;
 import com.technosoul.milkwala.delivery.DeliveryDetailDao;
-import com.technosoul.milkwala.products.ProductDetailsDao;
 
 @Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version =3)
 public abstract class MyDbHelper extends RoomDatabase {

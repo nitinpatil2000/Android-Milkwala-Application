@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.products;
+package com.technosoul.milkwala.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,13 +19,13 @@ import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
-public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.ViewHolder> {
+public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<SupplierListViewForProductAdapter.ViewHolder> {
     private final OnItemSelected onItemSelected;
     Context context;
     ArrayList<Supplier> suppliers;
 
 
-    public ProductViewAdapter(Context context, ArrayList<Supplier> suppliers, OnItemSelected onItemSelected) {
+    public SupplierListViewForProductAdapter(Context context, ArrayList<Supplier> suppliers, OnItemSelected onItemSelected) {
         this.context = context;
         this.suppliers = suppliers;
         this.onItemSelected = onItemSelected;
@@ -33,13 +33,13 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
 
     @NonNull
     @Override
-    public ProductViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SupplierListViewForProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.product_design, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SupplierListViewForProductAdapter.ViewHolder holder, int position) {
         Supplier selectedSupplier = suppliers.get(position);
         int supplierId = selectedSupplier.getSupplierId();
         holder.productTxt.setText(suppliers.get(position).getSupplierName());

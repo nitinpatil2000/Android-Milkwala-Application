@@ -17,12 +17,12 @@ import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
-public class ProductDetailsViewAdapter extends RecyclerView.Adapter<ProductDetailsViewAdapter.ViewHolder> {
+public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<ProductListViewPerSupplierAdapter.ViewHolder> {
     private final OnItemSelected onItemSelected;
     Context context;
     ArrayList<ProductDetails> productDetails;
 
-    public ProductDetailsViewAdapter(Context context, ArrayList<ProductDetails> productDetails, OnItemSelected onItemSelected) {
+    public ProductListViewPerSupplierAdapter(Context context, ArrayList<ProductDetails> productDetails, OnItemSelected onItemSelected) {
         this.context = context;
         this.productDetails = productDetails;
         this.onItemSelected = onItemSelected;
@@ -30,13 +30,13 @@ public class ProductDetailsViewAdapter extends RecyclerView.Adapter<ProductDetai
 
     @NonNull
     @Override
-    public ProductDetailsViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductListViewPerSupplierAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.product_details_design, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductDetailsViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductListViewPerSupplierAdapter.ViewHolder holder, int position) {
         holder.productId = productDetails.get(position).getProductDetailsId();
         holder.productItems.setText(productDetails.get(position).getProductDetailsName());
         holder.productUnit.setText(productDetails.get(position).getProductDetailsUnit());

@@ -14,7 +14,7 @@ import com.technosoul.milkwala.ui.masterinfo.products.AddNewProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductDetailsViewFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductListPerSupplierFragment;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
-import com.technosoul.milkwala.ui.masterinfo.products.ProductFragment;
+import com.technosoul.milkwala.ui.masterinfo.products.SupplierListForProductsFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.AddNewSupplierFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
@@ -58,7 +58,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
     @Override
     public void onProductClick() {
-        ProductFragment productFragment = new ProductFragment();
+        SupplierListForProductsFragment productFragment = new SupplierListForProductsFragment();
         productFragment.setListener(this);
         productFragment.setOnItemSelectedListener(this);
         loadFragment(productFragment);

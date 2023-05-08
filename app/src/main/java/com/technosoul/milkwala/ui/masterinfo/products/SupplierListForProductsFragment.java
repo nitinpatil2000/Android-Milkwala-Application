@@ -15,23 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.products.ProductViewAdapter;
+import com.technosoul.milkwala.adapters.SupplierListViewForProductAdapter;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
 import java.util.ArrayList;
 
-public class ProductFragment extends Fragment {
+public class SupplierListForProductsFragment extends Fragment {
     //    ArrayList<Product> products = new ArrayList<>();
-    ProductViewAdapter productViewAdapter;
+    SupplierListViewForProductAdapter supplierListViewForProductAdapter;
     EditText searchProduct;
     ArrayList<Supplier> supplierList;
     Button btnAddNewProduct;
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
 
-    public ProductFragment() {
+    public SupplierListForProductsFragment() {
     }
 
     public void setListener(MasterInfoListener listener) {
@@ -46,7 +46,7 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_supplier_list_for_products, container, false);
 
         RecyclerView productRecyclerView = view.findViewById(R.id.recyclerView_product_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
@@ -55,8 +55,8 @@ public class ProductFragment extends Fragment {
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
         for (int i = 0; i < supplierList.size(); i++) {
-            productViewAdapter = new ProductViewAdapter(getContext(), supplierList, onItemSelected);
-            productRecyclerView.setAdapter(productViewAdapter);
+            supplierListViewForProductAdapter = new SupplierListViewForProductAdapter(getContext(), supplierList, onItemSelected);
+            productRecyclerView.setAdapter(supplierListViewForProductAdapter);
         }
 
         searchProduct = view.findViewById(R.id.searchProduct);
@@ -86,6 +86,6 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        productViewAdapter.filteredList(filteredSupplier);
+        supplierListViewForProductAdapter.filteredList(filteredSupplier);
     }
 }
