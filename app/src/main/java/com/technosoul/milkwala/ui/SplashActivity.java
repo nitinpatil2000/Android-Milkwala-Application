@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
                     // User is already logged in. Let's check the login type
                     int loginType = SharedPreferenceManager.getInstance().getInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_ADMIN);
-                    if (loginType == Constants.LOGIN_TYPE_DELIVERY_BOY) {
+                    if (loginType == Constants.LOGIN_TYPE_DELIVERY_PERSON) {
                         intent = new Intent(SplashActivity.this, DeliveryActivity.class);
                     } else {
                         intent = new Intent(SplashActivity.this, MainActivity.class);

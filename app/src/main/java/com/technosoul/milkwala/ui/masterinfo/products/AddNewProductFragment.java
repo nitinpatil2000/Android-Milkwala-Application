@@ -1,6 +1,7 @@
 package com.technosoul.milkwala.ui.masterinfo.products;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
@@ -24,10 +24,12 @@ import java.util.ArrayList;
 
 public class AddNewProductFragment extends Fragment {
     Spinner unitsSpinner;
-    ArrayList<String> arrayNames = new ArrayList<>();
-    Button addNewProductBtn;
-    EditText editProductName, editProductMrp;
-    EditText editSupplierRate, editVenderRate;
+    ArrayList<String> unitNamesArrayList = new ArrayList<>();
+    Button btnAddNewProduct;
+    EditText etProductName;
+    EditText etProductMrp;
+    EditText etSupplierRate;
+    EditText edtVendorRate;
     private final int supplierId;
 
     private MasterInfoListener listener;
@@ -41,27 +43,25 @@ public class AddNewProductFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_product, container, false);
         unitsSpinner = view.findViewById(R.id.spinner);
-        arrayNames.add(Constants.UNIT_LITRE_1);
-        arrayNames.add(Constants.UNIT_LITRE_2);
-        arrayNames.add(Constants.UNIT_ML_500);
-        arrayNames.add(Constants.UNIT_ML_250);
-        arrayNames.add(Constants.UNIT_ML_100);
-        arrayNames.add(Constants.UNIT_KG_1);
-        arrayNames.add(Constants.UNIT_KG_2);
-        arrayNames.add(Constants.UNIT_GRAM_500);
-        arrayNames.add(Constants.UNIT_GRAM_250);
-        arrayNames.add(Constants.UNIT_GRAM_200);
-        arrayNames.add(Constants.UNIT_GRAM_100);
-        arrayNames.add(Constants.UNIT_GRAM_50);
-        arrayNames.add(Constants.UNIT_PACKETS);
-//        arrayNames.add("No Selected");
+        unitNamesArrayList.add(Constants.UNIT_LITRE_1);
+        unitNamesArrayList.add(Constants.UNIT_LITRE_2);
+        unitNamesArrayList.add(Constants.UNIT_ML_500);
+        unitNamesArrayList.add(Constants.UNIT_ML_250);
+        unitNamesArrayList.add(Constants.UNIT_ML_100);
+        unitNamesArrayList.add(Constants.UNIT_KG_1);
+        unitNamesArrayList.add(Constants.UNIT_KG_2);
+        unitNamesArrayList.add(Constants.UNIT_GRAM_500);
+        unitNamesArrayList.add(Constants.UNIT_GRAM_250);
+        unitNamesArrayList.add(Constants.UNIT_GRAM_200);
+        unitNamesArrayList.add(Constants.UNIT_GRAM_100);
+        unitNamesArrayList.add(Constants.UNIT_GRAM_50);
+        unitNamesArrayList.add(Constants.UNIT_PACKETS);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, unitNamesArrayList);
         unitsSpinner.setAdapter(adapter);
 
         unitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -80,34 +80,58 @@ public class AddNewProductFragment extends Fragment {
         });
 
         //after click the add Btn then element is added in the recyclerView;
-        editProductName = view.findViewById(R.id.editProductName);
-        editProductMrp = view.findViewById(R.id.editProductMrp);
-        editSupplierRate = view.findViewById(R.id.editSupplierRate);
-        editVenderRate = view.findViewById(R.id.tv_Vendor_rate);
+        etProductName = view.findViewById(R.id.editProductName);
+        etProductMrp = view.findViewById(R.id.editProductMrp);
+        etSupplierRate = view.findViewById(R.id.editSupplierRate);
+        edtVendorRate = view.findViewById(R.id.tv_Vendor_rate);
 
-        addNewProductBtn = view.findViewById(R.id.addNewProductBtn);
+        btnAddNewProduct = view.findViewById(R.id.addNewProductBtn);
         // Set click listener on add button
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        addNewProductBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String productDetailsName = editProductName.getText().toString();
-                String productDetailsMrp = editProductMrp.getText().toString();
-                String productDetailsUnit = unitsSpinner.getSelectedItem().toString();
-                String productSupplierRate = editSupplierRate.getText().toString();
-                String productVenderRate = editVenderRate.getText().toString();
+        btnAddNewProduct.setOnClickListener(v -> {
+            String name = etProductName.getText().toString();
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(getContext(), R.string.err_empty_product_name, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (name.length() < 3) {
+                Toast.makeText(getContext(), R.string.err_min_length_product_name, Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                if (!productDetailsName.isEmpty() && !productDetailsMrp.isEmpty() && !productDetailsUnit.isEmpty() && !productSupplierRate.isEmpty() && !productVenderRate.isEmpty()) {
-                    //get the id of the selected supplier
-                    ProductDetails productDetails = new ProductDetails(productDetailsName, productSupplierRate, productVenderRate, productDetailsUnit, productDetailsMrp);
-                    productDetails.setSupplierId(supplierId);
-                    myDbHelper.productDetailsDto().addProduct(productDetails);
-                    Toast.makeText(getContext(), "Product added successfully", Toast.LENGTH_SHORT).show();
-                    // return to the supplierFragment
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    fragmentManager.popBackStack();
-                }
+            String productMrp = etProductMrp.getText().toString();
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(getContext(), R.string.err_empty_product_mrp, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String productDetailsUnit = unitsSpinner.getSelectedItem().toString();
+            if (TextUtils.isEmpty(productDetailsUnit)) {
+                Toast.makeText(getContext(), R.string.err_empty_unit, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String productSupplierRate = etSupplierRate.getText().toString();
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(getContext(), R.string.err_empty_supplier_rate, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String productVendorRate = edtVendorRate.getText().toString();
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(getContext(), R.string.err_empty_vendor_rate, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            //get the id of the selected supplier
+            ProductDetails productDetails = new ProductDetails(name, productSupplierRate, productVendorRate, productDetailsUnit, productMrp);
+            productDetails.setSupplierId(supplierId);
+            myDbHelper.productDetailsDto().addProduct(productDetails);
+            Toast.makeText(getContext(), R.string.msg_product_added_success, Toast.LENGTH_SHORT).show();
+
+            if (listener != null) {
+                listener.onBackToPreviousScreen();
             }
         });
         return view;

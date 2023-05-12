@@ -85,7 +85,7 @@ public class LoginFragment extends Fragment {
 
         if (TextUtils.equals(email, "db@gmail.com")) {
             AuthTokenManager.instance().set("TempDeliveryBoyLoginToken");
-            SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_DELIVERY_BOY);
+            SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_DELIVERY_PERSON);
             listener.onDeliveryBoyLoginSuccess();
 
         } else if (TextUtils.equals(email, "admin@gmail.com")) {

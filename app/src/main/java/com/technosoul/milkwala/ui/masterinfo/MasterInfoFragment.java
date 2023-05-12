@@ -76,7 +76,7 @@ public class MasterInfoFragment extends Fragment {
 
         ArrayList<Deliver> deliverList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
         int numDelivers = deliverList.size();
-        llDeliveryBoys.setOnClickListener(view13 -> masterInfoListener.onDeliveryBoyClick());
+        llDeliveryBoys.setOnClickListener(view13 -> masterInfoListener.onDeliveryPersonClick());
 
         ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         int numCustomers = customerList.size();

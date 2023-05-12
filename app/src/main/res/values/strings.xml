@@ -53,7 +53,7 @@
     <string name="btn_add_new_supplier">Add new supplier</string>
     <string name="btn_add_new_product">Add new product</string>
     <string name="btn_add_new_customer">Add new customer</string>
-    <string name="btn_add_new_delivery_boy">Add new Delivery Boy</string>
+    <string name="btn_add_new_delivery_person">Add new Delivery Person</string>
 
     <!--  Supplier strings  -->
     <string name="title_supplier_name">Supplier Name :</string>
@@ -69,8 +69,6 @@
     <string name="err_empty_supplier_addr">Supplier address should not be empty.</string>
     <string name="err_min_length_supplier_addr">Supplier address should be minimum of 8 characters</string>
     <string name="err_empty_supplier_number">Mobile number should not be empty.</string>
-    <string name="err_invalid_mobile_number">Entered mobile number is not in right format. Please check again.</string>
-    <string name="err_invalid_alternate_number">Alternate mobile number is not in fight format. Please check again.</string>
     <string name="supplier_added_success">Supplier Added successfully.</string>
     <string name="empty_supplier_list">Supplier list is empty. Let\'s start adding new supplier.</string>
     <string name="products_of_supplier">%1$d Products</string>
@@ -97,14 +95,39 @@
     <string name="msg_delete_product_desc">Please Note - Deleting this product will remove all the product related information, permanently.</string>
     <string name="msg_delete_product_confirmation">Are you sure to delete this product?</string>
     <string name="msg_delete_product_success">Product deleted successfully</string>
+    <string name="err_empty_product_name">Product name should not be empty.</string>
+    <string name="err_min_length_product_name">Product name should be minimum of 3 characters</string>
+    <string name="err_empty_product_mrp">Product MRP should not be empty.</string>
+    <string name="err_empty_unit">Please select the unit from the dropdown list.</string>
+    <string name="err_empty_supplier_rate">Supplier rate should not be empty.</string>
+    <string name="err_empty_vendor_rate">Vendor rate should not be empty.</string>
+    <string name="msg_product_added_success">Product added successfully!</string>
 
+    <!--  Delivery person strings  -->
+    <string name="hint_delivery_name">Delivery person name</string>
+    <string name="hint_delivery_address">Delivery person Address</string>
+    <string name="hint_delivery_city">Delivery person city</string>
+    <string name="err_empty_delivery_name">Delivery person name should not be empty.</string>
+    <string name="err_min_length_delivery_name">Delivery person name should be minimum of 3 characters</string>
+    <string name="err_empty_delivery_addr">Delivery person address should not be empty.</string>
+    <string name="err_min_length_delivery_addr">Delivery person address should be minimum of 8 characters</string>
+    <string name="msg_delivery_person_add_success">Delivery person %1$s added successfully.</string>
+
+    <!--  Generic Strings  -->
     <string name="str_name">Name :</string>
     <string name="str_address">Address :</string>
     <string name="str_mobile_number">Mobile Number :</string>
+    <string name="hint_mobile_number">1234567890</string>
     <string name="str_alt_number">Alternate Number :</string>
     <string name="str_cancel">Cancel</string>
     <string name="str_delete">Delete</string>
     <string name="str_unit">Unit :</string>
+    <string name="str_city">City :</string>
+    <string name="err_empty_mobile_number">Mobile number should not be empty.</string>
+    <string name="err_invalid_mobile_number">Entered mobile number is not in right format. Please check again.</string>
+    <string name="err_invalid_alternate_number">Alternate mobile number is not in fight format. Please check again.</string>
+    <string name="err_empty_city_name">City name should not be empty.</string>
+    <string name="err_min_length_city">City name should be minimum of 3 characters</string>
 
 
 
@@ -115,16 +138,6 @@
     <string name="supp_add_btn">Add</string>
     <string name="edit_product_mrp">Rs.200</string>
     <string name="txt_product_mrp">MRP :</string>
-    <string name="txt_delivery_name">DeliverBoy Name :</string>
-    <string name="edit_delivery_name">Enter delivery boy name</string>
-    <string name="edit_delivery_add">Enter delivery boy Address</string>
-    <string name="txt_delivery_add">Address :</string>
-    <string name="txt_delivery_city">City :</string>
-    <string name="edit_delivery_city">Enter delivery boy city</string>
-    <string name="txt_delivery_contact1">Contact No :</string>
-    <string name="edit_delivery_contact1">Enter Contact No.</string>
-    <string name="txt_delivery_contact2">Alternate No :</string>
-    <string name="edit_delivery_contact2">Enter Alter No.</string>
     <string name="add_customer_btn">Add</string>
     <string name="edit_customer_contact2">Contact No. 2</string>
     <string name="txt_customer_contact2">Contact 2 :</string>

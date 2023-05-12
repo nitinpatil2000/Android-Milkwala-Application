@@ -1,9 +1,6 @@
 package com.technosoul.milkwala.ui.masterinfo.suppliers;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -13,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.technosoul.milkwala.db.MyDbHelper;
+import androidx.fragment.app.Fragment;
+
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 

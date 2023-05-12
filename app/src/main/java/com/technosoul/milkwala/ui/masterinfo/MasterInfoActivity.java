@@ -9,7 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.customer.CustomerFragment;
-import com.technosoul.milkwala.delivery.DeliveryDetailsFragment;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.AddNewDeliverPersonFragment;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonListFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.AddNewProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductDetailsViewFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductListPerSupplierFragment;
@@ -65,8 +66,12 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     }
 
     @Override
-    public void onDeliveryBoyClick() {
-        loadFragment(new DeliveryDetailsFragment());
+    public void onDeliveryPersonClick() {
+
+        DeliveryPersonListFragment deliveryPersonListFragment = new DeliveryPersonListFragment();
+        deliveryPersonListFragment.setMasterInfoListener(this);
+        deliveryPersonListFragment.setOnItemSelected(this);
+        loadFragment(deliveryPersonListFragment);
     }
 
     @Override
@@ -89,8 +94,10 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     }
 
     @Override
-    public void addNewDeliveryBoy() {
-
+    public void addNewDeliveryPerson() {
+        AddNewDeliverPersonFragment addNewDeliverPersonFragment = new AddNewDeliverPersonFragment();
+        addNewDeliverPersonFragment.setListener(this);
+        loadFragment(addNewDeliverPersonFragment);
     }
 
     @Override
@@ -120,7 +127,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 loadFragment(productDetailsViewFragment);
                 break;
 
-            case Constants.SELECTED_TYPE_DELIVERY_BOY:
+            case Constants.SELECTED_TYPE_DELIVERY_PERSON:
                 break;
 
             case Constants.SELECTED_TYPE_CUSTOMER:

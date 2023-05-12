@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.delivery;
+package com.technosoul.milkwala.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,25 +14,29 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.delivery.DeliveryDetailsFragment;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
 import java.util.ArrayList;
 
-public class DeliverViewAdapter extends RecyclerView.Adapter<DeliverViewAdapter.ViewHolder> {
+public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPersonListViewAdapter.ViewHolder> {
     Context context;
     ArrayList<Deliver> deliver;
+    private OnItemSelected onItemSelected;
 
-    public DeliverViewAdapter(Context context, ArrayList<Deliver> deliver) {
+    public DeliverPersonListViewAdapter(Context context, ArrayList<Deliver> deliver, OnItemSelected onItemSelected) {
         this.context = context;
         this.deliver = deliver;
+        this.onItemSelected = onItemSelected;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.delivery_design, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
