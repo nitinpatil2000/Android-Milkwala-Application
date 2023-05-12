@@ -15,10 +15,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.delivery.Deliver;
-import com.technosoul.milkwala.delivery.DeliveryDetailsFragment;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonDetailsFragment;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -65,27 +66,13 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
             deliveryBoyNumber = itemView.findViewById(R.id.deliveryBoyNumber);
             deliverImg = itemView.findViewById(R.id.deliverImg);
 
-            deliverImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        Deliver clickedItem = deliver.get(position);
-                        int deliveryId = clickedItem.getDeliverBoyId();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("Name", clickedItem.getDeliveryBoyName());
-                        bundle.putString("Address", clickedItem.getDeliveryBoyAddress());
-                        bundle.putString("City", clickedItem.getDeliveryBoyCity());
-                        bundle.putString("Contact", clickedItem.getDeliveryBoyNumber());
-                        bundle.putString("Alter", clickedItem.getDeliveryBoyAlterNo());
-                        DeliveryDetailsFragment deliveryDetailsFragment = new DeliveryDetailsFragment(deliveryId);
-                        deliveryDetailsFragment.setArguments(bundle);
-                        FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container, deliveryDetailsFragment);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                        ((AppCompatActivity) itemView.getContext()).getSupportActionBar().setTitle(clickedItem.getDeliveryBoyName());
+            deliverImg.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Deliver clickedItem = deliver.get(position);
+                    int deliveryId = clickedItem.getDeliverBoyId();
+                    if (onItemSelected != null) {
+                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_DELIVERY_PERSON, deliveryId, null);
                     }
                 }
             });

@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.customer.CustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.AddNewDeliverPersonFragment;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonListFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.AddNewProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductDetailsViewFragment;
@@ -128,6 +129,9 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 break;
 
             case Constants.SELECTED_TYPE_DELIVERY_PERSON:
+                DeliveryPersonDetailsFragment deliveryPersonDetailsFragment = new DeliveryPersonDetailsFragment(id);
+                deliveryPersonDetailsFragment.setListener(this);
+                loadFragment(deliveryPersonDetailsFragment);
                 break;
 
             case Constants.SELECTED_TYPE_CUSTOMER:

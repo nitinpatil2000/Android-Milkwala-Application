@@ -94,7 +94,7 @@
     <string name="title_delete_product">Delete - %1$s</string>
     <string name="msg_delete_product_desc">Please Note - Deleting this product will remove all the product related information, permanently.</string>
     <string name="msg_delete_product_confirmation">Are you sure to delete this product?</string>
-    <string name="msg_delete_product_success">Product deleted successfully</string>
+    <string name="msg_delete_product_success">Product deleted successfully.</string>
     <string name="err_empty_product_name">Product name should not be empty.</string>
     <string name="err_min_length_product_name">Product name should be minimum of 3 characters</string>
     <string name="err_empty_product_mrp">Product MRP should not be empty.</string>
@@ -112,6 +112,11 @@
     <string name="err_empty_delivery_addr">Delivery person address should not be empty.</string>
     <string name="err_min_length_delivery_addr">Delivery person address should be minimum of 8 characters</string>
     <string name="msg_delivery_person_add_success">Delivery person %1$s added successfully.</string>
+    <string name="title_delivery_person_details">%1$s details</string>
+    <string name="title_delete_delivery_person">Delete - %1$s</string>
+    <string name="msg_delete_delivery_person_desc">Please Note - Deleting will remove all the information and records permanently related to this person</string>
+    <string name="msg_delete_delivery_person_confirmation">Are you sure to delete this delivery person?</string>
+    <string name="msg_delete_delivery_person_success">Delivery person deleted successfully.</string>
 
     <!--  Generic Strings  -->
     <string name="str_name">Name :</string>
