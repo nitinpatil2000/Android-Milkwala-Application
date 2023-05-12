@@ -6,7 +6,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "delivery_boys")
-public class Deliver {
+public class DeliveryPerson {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "delivery_boy_id")
@@ -27,7 +27,7 @@ public class Deliver {
     @ColumnInfo(name = "delivery_boy_alter_no")
     private String deliveryBoyAlterNo;
 
-    public Deliver(int deliverBoyId, String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity, String deliveryBoyNumber, String deliveryBoyAlterNo) {
+    public DeliveryPerson(int deliverBoyId, String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity, String deliveryBoyNumber, String deliveryBoyAlterNo) {
         this.deliverBoyId = deliverBoyId;
         this.deliveryBoyName = deliveryBoyName;
         this.deliveryBoyAddress = deliveryBoyAddress;
@@ -37,7 +37,7 @@ public class Deliver {
     }
 
     @Ignore
-    public Deliver(String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity, String deliveryBoyNumber, String deliveryBoyAlterNo) {
+    public DeliveryPerson(String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity, String deliveryBoyNumber, String deliveryBoyAlterNo) {
         this.deliveryBoyName = deliveryBoyName;
         this.deliveryBoyAddress = deliveryBoyAddress;
         this.deliveryBoyCity = deliveryBoyCity;

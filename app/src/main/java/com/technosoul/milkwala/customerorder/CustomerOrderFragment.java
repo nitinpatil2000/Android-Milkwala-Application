@@ -29,7 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Customer;
-import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
 
@@ -97,11 +97,11 @@ public class CustomerOrderFragment extends Fragment {
 
         //Delivery Spinner View
         receivedDelivery = view.findViewById(R.id.receivedDelivery);
-        ArrayList<Deliver> deliversList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+        ArrayList<DeliveryPerson> deliversList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
         getDelivery.add("No Selected");
         //using for loop to iterate the item and add the spinner;
-        for (Deliver deliver : deliversList) {
-            getDelivery.add(deliver.getDeliveryBoyName());
+        for (DeliveryPerson deliveryPerson : deliversList) {
+            getDelivery.add(deliveryPerson.getDeliveryBoyName());
         }
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, getDelivery);
         receivedDelivery.setAdapter(adapter1);

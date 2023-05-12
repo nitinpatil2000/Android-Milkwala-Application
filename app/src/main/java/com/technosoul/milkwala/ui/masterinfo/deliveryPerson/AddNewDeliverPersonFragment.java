@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class AddNewDeliverPersonFragment extends Fragment {
@@ -97,7 +97,7 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 return;
             }
 
-            myDbHelper.deliveryDetailDao().addDeliver(new Deliver(name, deliveryAddress, deliveryCity, deliveryContactNo, deliveryAlterNo));
+            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(name, deliveryAddress, deliveryCity, deliveryContactNo, deliveryAlterNo));
 
             Toast.makeText(getContext(), getString(R.string.msg_delivery_person_add_success, name), Toast.LENGTH_SHORT).show();
 

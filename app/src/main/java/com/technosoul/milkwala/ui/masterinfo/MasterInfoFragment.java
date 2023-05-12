@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 import com.technosoul.milkwala.home.ImageAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.db.Customer;
-import com.technosoul.milkwala.delivery.Deliver;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -74,8 +74,8 @@ public class MasterInfoFragment extends Fragment {
         int numProducts = supplierList.size();
         llProducts.setOnClickListener(view12 -> masterInfoListener.onProductClick());
 
-        ArrayList<Deliver> deliverList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
-        int numDelivers = deliverList.size();
+        ArrayList<DeliveryPerson> deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+        int numDelivers = deliveryPersonList.size();
         llDeliveryBoys.setOnClickListener(view13 -> masterInfoListener.onDeliveryPersonClick());
 
         ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();

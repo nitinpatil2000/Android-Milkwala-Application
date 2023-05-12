@@ -6,12 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.technosoul.milkwala.delivery.DeliveryPersonDao;
 import com.technosoul.milkwala.receiveProduct.DailyReceiveDao;
 import com.technosoul.milkwala.receiveProduct.DailyReceiveProduct;
-import com.technosoul.milkwala.delivery.Deliver;
-import com.technosoul.milkwala.delivery.DeliveryDetailDao;
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 
-@Database(entities = {Supplier.class, ProductDetails.class, Deliver.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version =3)
+@Database(entities = {Supplier.class, ProductDetails.class, DeliveryPerson.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version =3)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "milkDb";
     private static MyDbHelper instance;
@@ -50,7 +50,7 @@ public abstract class MyDbHelper extends RoomDatabase {
 
     public abstract SupplierDao supplierDao();
     public abstract ProductDetailsDao productDetailsDto();
-    public abstract DeliveryDetailDao deliveryDetailDao();
+    public abstract DeliveryPersonDao deliveryDetailDao();
     public abstract CustomerDao customerDao();
     public abstract LoginDao loginDao ();
     public abstract DailyReceiveDao dailyReceiveDao();

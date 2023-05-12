@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.DeliverPersonListViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
@@ -26,7 +26,7 @@ public class DeliveryPersonListFragment extends Fragment {
     DeliverPersonListViewAdapter deliverViewAdapter;
     Button btnAddDeliveryPerson;
     EditText searchDeliveryPerson;
-    ArrayList<Deliver> deliverPersonList;
+    ArrayList<DeliveryPerson> deliveryPersonList;
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
 
@@ -54,10 +54,10 @@ public class DeliveryPersonListFragment extends Fragment {
         deliverRecyclerView.setLayoutManager(gridLayoutManager);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        deliverPersonList = (ArrayList<Deliver>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+        deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
 
-        for (int i = 0; i < deliverPersonList.size(); i++) {
-            deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliverPersonList, onItemSelected);
+        for (int i = 0; i < deliveryPersonList.size(); i++) {
+            deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
             deliverRecyclerView.setAdapter(deliverViewAdapter);
         }
 
@@ -91,12 +91,12 @@ public class DeliveryPersonListFragment extends Fragment {
     }
 
     private void filter(String text) {
-        ArrayList<Deliver> filterDeliver = new ArrayList<>();
-        for (Deliver deliver : deliverPersonList) {
-            if (deliver.getDeliveryBoyName().toLowerCase().contains(text.toLowerCase())) {
-                filterDeliver.add(deliver);
+        ArrayList<DeliveryPerson> filterDeliveryPerson = new ArrayList<>();
+        for (DeliveryPerson deliveryPerson : deliveryPersonList) {
+            if (deliveryPerson.getDeliveryBoyName().toLowerCase().contains(text.toLowerCase())) {
+                filterDeliveryPerson.add(deliveryPerson);
             }
         }
-        deliverViewAdapter.filteredList(filterDeliver);
+        deliverViewAdapter.filteredList(filterDeliveryPerson);
     }
 }

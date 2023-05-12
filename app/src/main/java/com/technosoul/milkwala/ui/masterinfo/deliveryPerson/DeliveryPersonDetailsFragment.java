@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.delivery.Deliver;
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class DeliveryPersonDetailsFragment extends Fragment {
@@ -49,7 +49,7 @@ public class DeliveryPersonDetailsFragment extends Fragment {
         deleteDeliveryBoyBtn = view.findViewById(R.id.deleteDeliveryBoyBtn);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getContext());
-        Deliver deliveryPersonDetails = myDbHelper.deliveryDetailDao().getDeliveryPersonById(deliveryId);
+        DeliveryPerson deliveryPersonDetails = myDbHelper.deliveryDetailDao().getDeliveryPersonById(deliveryId);
 
         txtDeliveryBoyName.setText(deliveryPersonDetails.getDeliveryBoyName());
         tvDeliveryBoyAddress.setText(deliveryPersonDetails.getDeliveryBoyAddress());

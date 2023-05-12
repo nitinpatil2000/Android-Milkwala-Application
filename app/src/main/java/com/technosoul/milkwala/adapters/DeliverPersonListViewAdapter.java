@@ -1,7 +1,6 @@
 package com.technosoul.milkwala.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +8,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.technosoul.milkwala.delivery.Deliver;
-import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonDetailsFragment;
-import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.delivery.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
 
 public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPersonListViewAdapter.ViewHolder> {
+    private final OnItemSelected onItemSelected;
     Context context;
-    ArrayList<Deliver> deliver;
-    private OnItemSelected onItemSelected;
+    ArrayList<DeliveryPerson> deliveryPerson;
 
-    public DeliverPersonListViewAdapter(Context context, ArrayList<Deliver> deliver, OnItemSelected onItemSelected) {
+    public DeliverPersonListViewAdapter(Context context, ArrayList<DeliveryPerson> deliveryPerson, OnItemSelected onItemSelected) {
         this.context = context;
-        this.deliver = deliver;
+        this.deliveryPerson = deliveryPerson;
         this.onItemSelected = onItemSelected;
     }
 
@@ -42,17 +36,17 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.deliveryBoyName.setText(deliver.get(position).getDeliveryBoyName());
-        holder.deliveryBoyNumber.setText(deliver.get(position).getDeliveryBoyNumber());
+        holder.deliveryBoyName.setText(deliveryPerson.get(position).getDeliveryBoyName());
+        holder.deliveryBoyNumber.setText(deliveryPerson.get(position).getDeliveryBoyNumber());
     }
 
     @Override
     public int getItemCount() {
-        return deliver.size();
+        return deliveryPerson.size();
     }
 
-    public void filteredList(ArrayList<Deliver> filterDeliver) {
-        deliver = filterDeliver;
+    public void filteredList(ArrayList<DeliveryPerson> filterDeliveryPerson) {
+        deliveryPerson = filterDeliveryPerson;
         notifyDataSetChanged();
     }
 
@@ -69,7 +63,7 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
             deliverImg.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    Deliver clickedItem = deliver.get(position);
+                    DeliveryPerson clickedItem = deliveryPerson.get(position);
                     int deliveryId = clickedItem.getDeliverBoyId();
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_DELIVERY_PERSON, deliveryId, null);
