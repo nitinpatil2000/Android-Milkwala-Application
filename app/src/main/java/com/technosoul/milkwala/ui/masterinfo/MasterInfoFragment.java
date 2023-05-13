@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.technosoul.milkwala.delivery.DeliveryPerson;
+import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.home.ImageAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
@@ -107,12 +107,11 @@ public class MasterInfoFragment extends Fragment {
 
 
         if (getActivity() != null) {
-            //set the title in fragment .
-            ActionBar actionBar = ((MasterInfoActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setTitle(R.string.title_master_info);
-            }
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Master Info");
         }
+
+//        ActionBar actionBar = ((MasterInfoActivity)getActivity()).getSupportActionBar();
+//        actionBar.setTitle("DashBoard");
 
         return view;
     }
@@ -126,6 +125,13 @@ public class MasterInfoFragment extends Fragment {
         super.onDestroy();
         timer.cancel();
     }
+
+//    public void setTitle(MasterInfoListener listener){
+//        listener.setActionBarTitle("DashBoard");
+//    }
+
+
+
 
     //    @Override
 //    public void onResume() {

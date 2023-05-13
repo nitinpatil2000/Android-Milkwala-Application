@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.DeliverPersonListViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.delivery.DeliveryPerson;
+import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 

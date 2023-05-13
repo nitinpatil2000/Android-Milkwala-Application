@@ -25,8 +25,8 @@ public class AboutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("About Milkwala");
+//        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+//        actionBar.setTitle("About Milkwala");
 
         hyperlink = view.findViewById(R.id.hyperlink);
         hyperlink.setMovementMethod(LinkMovementMethod.getInstance());

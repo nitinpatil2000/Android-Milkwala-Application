@@ -52,12 +52,12 @@ public class AdminDashboardFragment extends Fragment {
         // TODO: need to add the products & fetch it.
         totalProducts.setText(getString(R.string.total_products, noSuppliers));
 
-        if (getActivity() != null) {
-            ActionBar actionBar =((MainActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setTitle(R.string.title_dashboard);
-            }
-        }
+//        if (getActivity() != null) {
+//            ActionBar actionBar =((MainActivity) getActivity()).getSupportActionBar();
+//            if (actionBar != null) {
+//                actionBar.setTitle(R.string.title_dashboard);
+//            }
+//        }
 
 //        PieChartView pieChartView = view.findViewById(R.id.pieChart);
 //        List<SliceValue> pieData = new ArrayList<>();
@@ -69,6 +69,13 @@ public class AdminDashboardFragment extends Fragment {
 //
 //        PieChartData pieChartData = new PieChartData(pieData);
 //        pieChartView.setPieChartData(pieChartData);
+
+//        TODO SET THE TITLE
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setTitle("DashBoard");
+        }
+
 
         return view;
     }

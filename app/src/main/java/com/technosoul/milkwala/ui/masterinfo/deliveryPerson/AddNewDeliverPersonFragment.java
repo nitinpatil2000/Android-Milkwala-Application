@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.delivery.DeliveryPerson;
+import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class AddNewDeliverPersonFragment extends Fragment {

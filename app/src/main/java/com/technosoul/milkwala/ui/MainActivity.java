@@ -9,8 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.MenuItemHoverListener;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -27,35 +29,38 @@ import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
 import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
 import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class MainActivity extends AppCompatActivity {
 
     public DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
     private int supplieId;
+    boolean showBackButton = false;
+
+
 
     //set the title in the activity
-    public void setActionBarTitle(String actionBarTitle) {
-        if (!TextUtils.isEmpty(actionBarTitle) && getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(actionBarTitle);
-
-
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            if (true) {
-//                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-//                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                navigationView.setVisibility(View.GONE);
-//                getSupportFragmentManager().popBackStack();
-            } else {
-                onBackPressed();
-//                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
-            }
-
-        }
-    }
+//    public void setActionBarTitle(String actionBarTitle) {
+//        if (!TextUtils.isEmpty(actionBarTitle) && getSupportActionBar() != null) {
+//            getSupportActionBar().setTitle(actionBarTitle);
+//
+//
+////            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            if (true) {
+////                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+////                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                navigationView.setVisibility(View.GONE);
+////                getSupportFragmentManager().popBackStack();
+//            } else {
+//                onBackPressed();
+////                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+////                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+//            }
+//
+//        }
+//    }
 
     //option menu
 //    @Override
@@ -100,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
+
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //opening and closing the toggle mode of the navigation.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.OpenDrawer, R.string.CloseDrawer);
@@ -121,8 +128,11 @@ public class MainActivity extends AppCompatActivity {
                 if (id == R.id.menu_dashboard) {
                     loadFragment(new AdminDashboardFragment());
                 } else if (id == R.id.menu_master_info) {
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                    drawerLayout.setVisibility(navigationView.GONE);
                     Intent intent = new Intent(MainActivity.this, MasterInfoActivity.class);
                     startActivity(intent);
+
                 } else if (id == R.id.menu_stock) {
                     loadFragment(new ReceivedProductFragment());
                 } else if (id == R.id.menu_distribution) {
@@ -156,10 +166,6 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//            drawerLayout.setVisibility(View.VISIBLE);
-//            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-//            setActionBarTitle("MilkWala");
         }
     }
 
@@ -169,8 +175,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container, fragment);
         ft.commit();
+
+//        if (showBackButton) {
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        } else {
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        }
     }
 
+    
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

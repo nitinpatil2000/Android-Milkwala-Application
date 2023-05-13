@@ -29,7 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Customer;
-import com.technosoul.milkwala.delivery.DeliveryPerson;
+import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
 

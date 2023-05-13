@@ -1,8 +1,12 @@
 package com.technosoul.milkwala.ui.masterinfo;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +29,7 @@ import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
 import com.technosoul.milkwala.utils.Constants;
 
 public class MasterInfoActivity extends AbstractBaseActivity implements MasterInfoListener, OnItemSelected {
+Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +41,11 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
         if (getSupportActionBar() != null) {
             getSupportActionBar().show();
         }
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -119,6 +129,8 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
         fragmentManager.popBackStack();
     }
 
+
+
     @Override
     public void onItemClicked(int type, int id, Bundle bundle) {
         switch (type) {
@@ -155,4 +167,28 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 break;
         }
     }
+
+
+    @Override
+    public void setActionBarTitle(String actionBarTitle) {
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!= null && actionBarTitle != null){
+            actionBar.setTitle(actionBarTitle);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed(); // Handle back button click
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//
+//    }
 }
