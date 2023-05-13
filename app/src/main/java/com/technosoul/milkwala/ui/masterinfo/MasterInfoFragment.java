@@ -68,18 +68,23 @@ public class MasterInfoFragment extends Fragment {
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
         int numSuppliers = supplierList.size();
+        totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
         llSuppliers.setOnClickListener(view1 -> masterInfoListener.onSupplierClick());
 
 
+
         int numProducts = supplierList.size();
+        totalProductsSubText.setText(getString(R.string.total_deliver_sub_text, numProducts));
         llProducts.setOnClickListener(view12 -> masterInfoListener.onProductClick());
 
         ArrayList<DeliveryPerson> deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
         int numDelivers = deliveryPersonList.size();
+        totalDeliveryBoysSubText.setText(getString(R.string.total_deliver_sub_text, numDelivers));
         llDeliveryBoys.setOnClickListener(view13 -> masterInfoListener.onDeliveryPersonClick());
 
         ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         int numCustomers = customerList.size();
+        totalCustomersSubText.setText(getString(R.string.total_customer_sub_text, numCustomers));
         llCustomers.setOnClickListener(view14 -> masterInfoListener.onCustomerClick());
 
         //viewpager

@@ -32,6 +32,12 @@
     <string name="total_sale">Total Sale: Rs.</string>
     <string name="total_waste">Wastage: </string>
 
+    <string name="total_supplier_sub_text">%d Suppliers</string>
+    <string name="total_product_sub_text">%d Products</string>
+    <string name="total_deliver_sub_text">%d Delivery Boys</string>
+    <string name="total_customer_sub_text">%d Customers</string>
+
+
     <string name="title_dashboard">Dashboard</string>
     <string name="title_master_info">Master Info</string>
     <string name="title_today_received">Today\'s Received stock</string>
