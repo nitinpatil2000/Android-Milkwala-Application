@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.customer;
+package com.technosoul.milkwala.ui.masterinfo.customer;
 
 import android.os.Bundle;
 import android.text.TextUtils;

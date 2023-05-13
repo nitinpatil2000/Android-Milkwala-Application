@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.customer.CustomerViewAdapter;
+import com.technosoul.milkwala.adapters.CustomerViewAdapter;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
@@ -51,7 +51,7 @@ public class CustomerFragment extends Fragment {
         if (customerList == null || customerList.size() == 0) {
             Toast.makeText(getContext(), "Customer list is empty. Let's start adding new Customers", Toast.LENGTH_SHORT).show();
         } else {
-            customerViewAdapter = new CustomerViewAdapter(getContext(), customerList);
+            customerViewAdapter = new CustomerViewAdapter(getContext(), customerList, onItemSelected);
             customerRecyclerView.setAdapter(customerViewAdapter);
         }
 

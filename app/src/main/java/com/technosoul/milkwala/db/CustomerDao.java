@@ -11,6 +11,9 @@ import java.util.List;
 @Dao
 public interface CustomerDao {
 
+    @Query("SELECT * FROM customer WHERE customer_id = :customerId")
+    Customer getCustomerById(int customerId);
+
     @Query("select * from customer")
     List<Customer> getAllCustomers();
 

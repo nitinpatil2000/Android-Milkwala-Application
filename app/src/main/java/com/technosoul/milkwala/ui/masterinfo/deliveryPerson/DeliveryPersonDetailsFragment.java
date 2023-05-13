@@ -59,8 +59,8 @@ public class DeliveryPersonDetailsFragment extends Fragment {
         tvTitleDeliveryPerson.setText(getString(R.string.title_delivery_person_details, deliveryPersonDetails.getDeliveryBoyName()));
 
         deleteDeliveryBoyBtn.setOnClickListener(v -> {
-            TextView btnCancel;
-            TextView btnDelete;
+            Button btnCancel;
+            Button btnDelete;
             TextView title;
             TextView message;
             TextView confirmationMsg;
@@ -72,11 +72,11 @@ public class DeliveryPersonDetailsFragment extends Fragment {
 
             btnCancel = dialog.findViewById(R.id.btn_action_cancel);
             btnDelete = dialog.findViewById(R.id.btn_action_delete);
-            title = dialog.findViewById(R.id.tv_title_delete_supplier);
-            message = dialog.findViewById(R.id.tv_msg_delete_desc);
-            confirmationMsg = dialog.findViewById(R.id.tv_msg_delete_confirmation);
+            title = dialog.findViewById(R.id.tv_delete_dialog_title);
+            message = dialog.findViewById(R.id.tv_delete_dialog_desc);
+            confirmationMsg = dialog.findViewById(R.id.tv_delete_dialog_confirmation_msg);
 
-            title.setText(getString(R.string.title_delete_delivery_person, txtDeliveryBoyName.getText().toString()));
+            title.setText(getString(R.string.title_delete_dialog, txtDeliveryBoyName.getText().toString()));
             message.setText(R.string.msg_delete_delivery_person_desc);
             confirmationMsg.setText(R.string.msg_delete_delivery_person_confirmation);
 

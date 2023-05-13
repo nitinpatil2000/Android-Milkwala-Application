@@ -31,15 +31,15 @@ public class ProductDetailsViewFragment extends Fragment {
     TextView tvSupplierRate;
     private final int productDetailsId;
 
-    private MasterInfoListener listener;
+    private MasterInfoListener masterInfoListener;
 
     public ProductDetailsViewFragment(int productDetailsId) {
         this.productDetailsId = productDetailsId;
         // Required empty public constructor
     }
 
-    public void setListener(MasterInfoListener listener) {
-        this.listener = listener;
+    public void setMasterInfoListener(MasterInfoListener masterInfoListener) {
+        this.masterInfoListener = masterInfoListener;
     }
 
     @Override
@@ -65,30 +65,34 @@ public class ProductDetailsViewFragment extends Fragment {
         tvVendorRate.setText(productDetails.getProductVenderRate());
 
         deleteNewProductBtn.setOnClickListener(view1 -> {
-            TextView cancelBtn, deleteBtn, dialogTitle, dialogDesc, deleteConfirmation;
+            Button btnCancel;
+            Button deleteBtn;
+            TextView dialogTitle;
+            TextView dialogDesc;
+            TextView deleteConfirmation;
 
             Dialog dialog = new Dialog(getContext());
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCancelable(false);
             dialog.setContentView(R.layout.dialog_design);
 
-            cancelBtn = dialog.findViewById(R.id.btn_action_cancel);
+            btnCancel = dialog.findViewById(R.id.btn_action_cancel);
             deleteBtn = dialog.findViewById(R.id.btn_action_delete);
-            dialogTitle = dialog.findViewById(R.id.tv_title_delete_supplier);
-            dialogDesc = dialog.findViewById(R.id.tv_msg_delete_desc);
-            deleteConfirmation = dialog.findViewById(R.id.tv_msg_delete_confirmation);
+            dialogTitle = dialog.findViewById(R.id.tv_delete_dialog_title);
+            dialogDesc = dialog.findViewById(R.id.tv_delete_dialog_desc);
+            deleteConfirmation = dialog.findViewById(R.id.tv_delete_dialog_confirmation_msg);
 
-            dialogTitle.setText(String.format(getString(R.string.title_delete_product), viewProductName));
+            dialogTitle.setText(String.format(getString(R.string.title_delete_dialog), viewProductName));
             dialogDesc.setText(R.string.msg_delete_product_desc);
             deleteConfirmation.setText(R.string.msg_delete_product_confirmation);
 
-            cancelBtn.setOnClickListener(view11 -> dialog.dismiss());
+            btnCancel.setOnClickListener(view11 -> dialog.dismiss());
 
             deleteBtn.setOnClickListener(view112 -> {
                 myDbHelper.productDetailsDto().deleteProductById(productDetailsId);
                 Toast.makeText(getContext(), R.string.msg_delete_product_success, Toast.LENGTH_SHORT).show();
-                if (listener != null) {
-                    listener.onBackToPreviousScreen();
+                if (masterInfoListener != null) {
+                    masterInfoListener.onBackToPreviousScreen();
                 }
                 dialog.dismiss();
             });

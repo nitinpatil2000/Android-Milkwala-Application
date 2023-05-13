@@ -66,8 +66,8 @@ public class SupplierDetailsFragment extends Fragment {
 
         deleteSupplier.setOnClickListener(view12 -> {
             //dialog box buttons
-            TextView btnCancelDeleteSupplier;
-            TextView btnDeleteSupplier;
+            Button btnCancelDeleteSupplier;
+            Button btnDeleteSupplier;
             TextView titleDeleteSupplier;
             TextView msgDeleteSupplier;
             TextView confirmationDeleteSupplier;
@@ -79,11 +79,11 @@ public class SupplierDetailsFragment extends Fragment {
 
             btnCancelDeleteSupplier = dialog.findViewById(R.id.btn_action_cancel);
             btnDeleteSupplier = dialog.findViewById(R.id.btn_action_delete);
-            titleDeleteSupplier = dialog.findViewById(R.id.tv_title_delete_supplier);
-            msgDeleteSupplier = dialog.findViewById(R.id.tv_msg_delete_desc);
-            confirmationDeleteSupplier = dialog.findViewById(R.id.tv_msg_delete_confirmation);
+            titleDeleteSupplier = dialog.findViewById(R.id.tv_delete_dialog_title);
+            msgDeleteSupplier = dialog.findViewById(R.id.tv_delete_dialog_desc);
+            confirmationDeleteSupplier = dialog.findViewById(R.id.tv_delete_dialog_confirmation_msg);
 
-            titleDeleteSupplier.setText(String.format(getString(R.string.title_delete_supplier), suppName));
+            titleDeleteSupplier.setText(String.format(getString(R.string.title_delete_dialog), suppName));
             confirmationDeleteSupplier.setText(R.string.msg_delete_supplier_confirmation);
             msgDeleteSupplier.setText(R.string.msg_delete_supplier_desc);
 

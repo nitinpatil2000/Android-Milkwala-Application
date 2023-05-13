@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.customer.AddNewCustomerFragment;
+import com.technosoul.milkwala.ui.masterinfo.customer.AddNewCustomerFragment;
+import com.technosoul.milkwala.ui.masterinfo.customer.CustomerDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.AddNewDeliverPersonFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonDetailsFragment;
@@ -130,7 +131,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
             case Constants.SELECTED_TYPE_PRODUCT:
                 ProductDetailsViewFragment productDetailsViewFragment = new ProductDetailsViewFragment(id);
-                productDetailsViewFragment.setListener(this);
+                productDetailsViewFragment.setMasterInfoListener(this);
                 loadFragment(productDetailsViewFragment);
                 break;
 
@@ -141,6 +142,9 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 break;
 
             case Constants.SELECTED_TYPE_CUSTOMER:
+                CustomerDetailsFragment customerDetailsFragment = new CustomerDetailsFragment(id);
+                customerDetailsFragment.setMasterInfoListener(this);
+                loadFragment(customerDetailsFragment);
                 break;
 
             case Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST:
@@ -149,7 +153,6 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 productListPerSupplierFragment.setOnItemSelected(this);
                 loadFragment(productListPerSupplierFragment);
                 break;
-
         }
     }
 }
