@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardColor"
-    tools:context=".ui.masterinfo.suppliers.AddNewSupplierFragment">
+    tools:context=".customer.AddNewCustomerFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_add_new_supplier"
+        android:id="@+id/cv_add_new_customer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
@@ -30,102 +30,113 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:weightSum="5">
 
                 <TextView
                     style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1.5"
-                    android:text="@string/title_supplier_name" />
+                    android:layout_weight="1.8"
+                    android:text="@string/str_name" />
 
                 <EditText
-                    android:id="@+id/editSupplierName"
+                    android:id="@+id/etCustomerName"
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_weight="3.5"
+                    android:layout_weight="3.2"
                     android:autofillHints=""
-                    android:hint="@string/hint_enter_supplier_name" />
-
+                    android:hint="@string/hint_customer_name" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal"
                 android:weightSum="5">
 
                 <TextView
                     style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1.5"
-                    android:text="@string/title_supplier_address" />
+                    android:layout_weight="1.8"
+                    android:text="@string/str_address" />
 
                 <EditText
-                    android:id="@+id/editSupplierAddress"
+                    android:id="@+id/etCustomerAddress"
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_weight="3.5"
-                    android:autofillHints=""
+                    android:layout_weight="3.2"
+                    android:autofillHints="postalAddress"
                     android:gravity="top"
-                    android:hint="@string/hint_enter_supplier_address"
+                    android:hint="@string/hint_customer_address"
                     android:inputType="none"
                     android:maxLines="5"
                     android:minLines="4" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="2dp"
-                android:orientation="horizontal"
                 android:weightSum="5">
 
                 <TextView
                     style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1.5"
-                    android:text="@string/title_supplier_number" />
+                    android:layout_weight="1.8"
+                    android:text="@string/str_city" />
 
                 <EditText
-                    android:id="@+id/et_supplier_mobile"
+                    android:id="@+id/etCustomerCity"
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_weight="3.5"
-                    android:autofillHints=""
-                    android:hint="@string/hint_enter_supplier_mobile1"
-                    android:inputType="number" />
+                    android:layout_weight="3.2"
+                    android:autofillHints="city"
+                    android:hint="@string/hint_customer_city" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="2dp"
-                android:orientation="horizontal"
                 android:weightSum="5">
 
                 <TextView
                     style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1.5"
-                    android:text="@string/title_supplier_alternate_number" />
+                    android:layout_weight="1.8"
+                    android:text="@string/str_mobile_number" />
 
                 <EditText
-                    android:id="@+id/et_supplier_alt_mobile"
+                    android:id="@+id/etCustomerMobile"
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
-                    android:layout_weight="3.5"
-                    android:autofillHints=""
-                    android:hint="@string/hint_enter_supplier_mobile2"
-                    android:inputType="number" />
+                    android:layout_weight="3.2"
+                    android:autofillHints="phone"
+                    android:hint="@string/hint_mobile_number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/commonTextViewLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.8"
+                    android:text="@string/str_alt_number" />
+
+                <EditText
+                    android:id="@+id/etCustomerAlternateMobile"
+                    style="@style/commonInputEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.2"
+                    android:autofillHints="phone"
+                    android:hint="@string/hint_mobile_number" />
             </LinearLayout>
 
         </LinearLayout>
@@ -141,7 +152,7 @@
         <View style="@style/lineHorizontal" />
 
         <Button
-            android:id="@+id/btnAddNewSupplier"
+            android:id="@+id/btnAddNewCustomer"
             style="@style/commonButton"
             android:text="@string/supp_add_btn" />
 

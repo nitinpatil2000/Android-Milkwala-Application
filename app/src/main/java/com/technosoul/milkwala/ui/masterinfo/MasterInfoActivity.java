@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.customer.CustomerFragment;
+import com.technosoul.milkwala.customer.AddNewCustomerFragment;
+import com.technosoul.milkwala.ui.masterinfo.customer.CustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.AddNewDeliverPersonFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonListFragment;
@@ -77,7 +78,10 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
     @Override
     public void onCustomerClick() {
-        loadFragment(new CustomerFragment());
+        CustomerFragment customerFragment = new CustomerFragment();
+        customerFragment.setMasterInfoListener(this);
+        customerFragment.setOnItemSelected(this);
+        loadFragment(customerFragment);
     }
 
     @Override
@@ -103,7 +107,9 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
     @Override
     public void addNewCustomer() {
-
+        AddNewCustomerFragment addNewCustomerFragment = new AddNewCustomerFragment();
+        addNewCustomerFragment.setMasterInfoListener(this);
+        loadFragment(addNewCustomerFragment);
     }
 
     @Override

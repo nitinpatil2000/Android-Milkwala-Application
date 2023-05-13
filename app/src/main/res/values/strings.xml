@@ -118,6 +118,16 @@
     <string name="msg_delete_delivery_person_confirmation">Are you sure to delete this delivery person?</string>
     <string name="msg_delete_delivery_person_success">Delivery person deleted successfully.</string>
 
+    <!--  Customer strings  -->
+    <string name="hint_customer_name">Customer Name</string>
+    <string name="hint_customer_address">Customer Address</string>
+    <string name="hint_customer_city">Customer City</string>
+    <string name="err_empty_customer_name">Customer name should not be empty.</string>
+    <string name="err_min_length_customer_name">Customer name should be minimum of 3 characters</string>
+    <string name="err_empty_customer_address">Customer address should not be empty</string>
+    <string name="err_min_length_customer_address">Customer address should be minimum of 8 characters</string>
+    <string name="msg_customer_added_success">Customer added successfully!</string>
+
     <!--  Generic Strings  -->
     <string name="str_name">Name :</string>
     <string name="str_address">Address :</string>
