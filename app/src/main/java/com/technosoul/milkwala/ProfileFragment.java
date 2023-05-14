@@ -46,6 +46,8 @@ public class ProfileFragment extends Fragment {
         //set the title in fragment
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setTitle("<UserName>'s Profile");
+
+
         return view;
     }
 

@@ -65,8 +65,9 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
                 if (position != RecyclerView.NO_POSITION) {
                     DeliveryPerson clickedItem = deliveryPerson.get(position);
                     int deliveryId = clickedItem.getDeliverBoyId();
+                    String deliveryBoyName = clickedItem.getDeliveryBoyName();
                     if (onItemSelected != null) {
-                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_DELIVERY_PERSON, deliveryId, null);
+                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_DELIVERY_PERSON, deliveryId, deliveryBoyName, null);
                     }
                 }
             });

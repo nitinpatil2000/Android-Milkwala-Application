@@ -74,8 +74,9 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
                 if (position != RecyclerView.NO_POSITION) {
                     Supplier selectedSupplier = suppliers.get(position);
                     int supplierId = selectedSupplier.getSupplierId();
+                    String supplierName = selectedSupplier.getSupplierName();
                     if (onItemSelected != null) {
-                        onItemSelected.onItemClicked(Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST, supplierId, null);
+                        onItemSelected.onItemClicked(Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST, supplierId,supplierName, null);
                     }
                 }
             });

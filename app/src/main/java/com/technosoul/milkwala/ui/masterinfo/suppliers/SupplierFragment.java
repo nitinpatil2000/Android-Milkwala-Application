@@ -18,6 +18,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.SupplierRecyclerViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
@@ -76,6 +77,10 @@ public class SupplierFragment extends Fragment {
                 filter(editable.toString());
             }
         });
+
+        if(getActivity()!= null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Supplier");
+        }
         return view;
     }
 

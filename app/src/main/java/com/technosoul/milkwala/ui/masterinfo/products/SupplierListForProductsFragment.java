@@ -17,6 +17,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.adapters.SupplierListViewForProductAdapter;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
@@ -75,6 +76,9 @@ public class SupplierListForProductsFragment extends Fragment {
                 filter(editable.toString());
             }
         });
+        if(getActivity()!= null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Products");
+        }
         return view;
     }
 

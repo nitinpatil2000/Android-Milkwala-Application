@@ -62,8 +62,9 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
                 if (position != RecyclerView.NO_POSITION) {
                     Customer clickedItem = customers.get(position);
                     int customerId = clickedItem.getCustomerId();
+                    String customerName = clickedItem.getCustomerName();
                     if (onItemSelected != null) {
-                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_CUSTOMER, customerId, null);
+                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_CUSTOMER, customerId,customerName,null);
                     }
                 }
             });

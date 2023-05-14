@@ -16,6 +16,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.utils.Constants;
 
@@ -73,7 +74,8 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView supplierTxt, supplierCounter;
+        TextView supplierTxt;
+        TextView supplierCounter;
         ImageView suppliersImg;
         LinearLayout supplierLinear;
 
@@ -91,6 +93,7 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
                 if (position != RecyclerView.NO_POSITION) {
                     Supplier clickedItem = suppliers.get(position);
                     int supplierId = clickedItem.getSupplierId();
+                    String supplierName =  clickedItem.getSupplierName();
                     Bundle bundle = new Bundle();
                     bundle.putString("supplierTxt", clickedItem.getSupplierName());
                     bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
@@ -98,8 +101,11 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
                     bundle.putString("supplierAltNumber", clickedItem.getSupplierAltNumber());
 
                     if (onItemSelected != null) {
-                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER, supplierId, bundle);
+                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER, supplierId,supplierName, bundle);
                     }
+
+                    ((MasterInfoActivity)context).getSupportActionBar().setTitle(clickedItem.getSupplierName());
+
                 }
             });
         }

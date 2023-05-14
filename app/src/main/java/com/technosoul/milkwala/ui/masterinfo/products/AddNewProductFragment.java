@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.utils.Constants;
 
@@ -134,6 +135,10 @@ public class AddNewProductFragment extends Fragment {
                 listener.onBackToPreviousScreen();
             }
         });
+
+        if(getActivity()!= null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Product");
+        }
         return view;
     }
 }

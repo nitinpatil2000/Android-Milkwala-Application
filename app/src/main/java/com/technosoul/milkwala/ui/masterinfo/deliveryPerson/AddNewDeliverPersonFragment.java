@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.DeliveryPerson;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class AddNewDeliverPersonFragment extends Fragment {
@@ -105,6 +106,11 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 listener.onBackToPreviousScreen();
             }
         });
+
+        if (getActivity() != null) {
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Delivery Boy");
+        }
+        
         return view;
     }
 }

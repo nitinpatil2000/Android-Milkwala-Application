@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class SupplierDetailsFragment extends Fragment {
@@ -25,11 +27,14 @@ public class SupplierDetailsFragment extends Fragment {
     Button deleteSupplier;
     String suppName, suppAddress, suppNumber, suppAltNumber;
     int supplierId;
+    String supplierName;
 
     MasterInfoListener listener;
 
-    public SupplierDetailsFragment(int supplierId) {
+    public SupplierDetailsFragment(int supplierId, String supplierName) {
         this.supplierId = supplierId;
+        this.supplierName = supplierName;
+
         // Required empty public constructor
     }
 
@@ -100,8 +105,17 @@ public class SupplierDetailsFragment extends Fragment {
 
             dialog.show();
         });
+
+        if(getActivity() != null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(supplierName);
+        }
         return view;
     }
+
+
 }
+
+
+
 
 

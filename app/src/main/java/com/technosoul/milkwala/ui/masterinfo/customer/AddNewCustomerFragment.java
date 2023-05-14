@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class AddNewCustomerFragment extends Fragment {
@@ -101,6 +102,10 @@ public class AddNewCustomerFragment extends Fragment {
             }
 
         });
+
+        if(getActivity() !=null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Customer");
+        }
         return view;
     }
 }

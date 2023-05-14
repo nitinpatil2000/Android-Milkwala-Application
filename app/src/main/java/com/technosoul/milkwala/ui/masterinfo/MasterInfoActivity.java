@@ -1,8 +1,12 @@
 package com.technosoul.milkwala.ui.masterinfo;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -41,6 +45,7 @@ Toolbar toolbar;
         if (getSupportActionBar() != null) {
             getSupportActionBar().show();
         }
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -132,35 +137,35 @@ Toolbar toolbar;
 
 
     @Override
-    public void onItemClicked(int type, int id, Bundle bundle) {
+    public void onItemClicked(int type, int id,String actionBarTitle, Bundle bundle) {
         switch (type) {
             case Constants.SELECTED_TYPE_SUPPLIER:
-                SupplierDetailsFragment supplierDetailsFragment = new SupplierDetailsFragment(id);
+                SupplierDetailsFragment supplierDetailsFragment = new SupplierDetailsFragment(id, actionBarTitle);
                 supplierDetailsFragment.setArguments(bundle);
                 supplierDetailsFragment.setListener(this);
                 loadFragment(supplierDetailsFragment);
                 break;
 
             case Constants.SELECTED_TYPE_PRODUCT:
-                ProductDetailsViewFragment productDetailsViewFragment = new ProductDetailsViewFragment(id);
+                ProductDetailsViewFragment productDetailsViewFragment = new ProductDetailsViewFragment(id, actionBarTitle);
                 productDetailsViewFragment.setMasterInfoListener(this);
                 loadFragment(productDetailsViewFragment);
                 break;
 
             case Constants.SELECTED_TYPE_DELIVERY_PERSON:
-                DeliveryPersonDetailsFragment deliveryPersonDetailsFragment = new DeliveryPersonDetailsFragment(id);
+                DeliveryPersonDetailsFragment deliveryPersonDetailsFragment = new DeliveryPersonDetailsFragment(id, actionBarTitle);
                 deliveryPersonDetailsFragment.setListener(this);
                 loadFragment(deliveryPersonDetailsFragment);
                 break;
 
             case Constants.SELECTED_TYPE_CUSTOMER:
-                CustomerDetailsFragment customerDetailsFragment = new CustomerDetailsFragment(id);
+                CustomerDetailsFragment customerDetailsFragment = new CustomerDetailsFragment(id, actionBarTitle);
                 customerDetailsFragment.setMasterInfoListener(this);
                 loadFragment(customerDetailsFragment);
                 break;
 
             case Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST:
-                ProductListPerSupplierFragment productListPerSupplierFragment = new ProductListPerSupplierFragment(id);
+                ProductListPerSupplierFragment productListPerSupplierFragment = new ProductListPerSupplierFragment(id, actionBarTitle);
                 productListPerSupplierFragment.setListener(this);
                 productListPerSupplierFragment.setOnItemSelected(this);
                 loadFragment(productListPerSupplierFragment);
@@ -169,11 +174,19 @@ Toolbar toolbar;
     }
 
 
+    //TODO SET THE TITLE
     @Override
     public void setActionBarTitle(String actionBarTitle) {
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!= null && actionBarTitle != null){
             actionBar.setTitle(actionBarTitle);
+
+            //TODO set the title color
+            SpannableString spannableString = new SpannableString(actionBarTitle);
+            spannableString.setSpan(new ForegroundColorSpan(Color.WHITE),0, actionBarTitle.length(),0);
+            actionBar.setTitle(spannableString);
+//            int titleColor = getResources().getColor(R.color.white);
+//            actionBar.setTitleTextColor(titleColor);
         }
     }
 
@@ -186,9 +199,4 @@ Toolbar toolbar;
         return super.onOptionsItemSelected(item);
     }
 
-    //    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//
-//    }
 }

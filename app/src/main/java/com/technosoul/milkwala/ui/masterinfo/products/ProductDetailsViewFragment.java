@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class ProductDetailsViewFragment extends Fragment {
@@ -30,11 +31,13 @@ public class ProductDetailsViewFragment extends Fragment {
     TextView tvVendorRate;
     TextView tvSupplierRate;
     private final int productDetailsId;
+    private String productDetailsName;
 
     private MasterInfoListener masterInfoListener;
 
-    public ProductDetailsViewFragment(int productDetailsId) {
+    public ProductDetailsViewFragment(int productDetailsId, String productDetailsName) {
         this.productDetailsId = productDetailsId;
+        this.productDetailsName = productDetailsName;
         // Required empty public constructor
     }
 
@@ -98,6 +101,10 @@ public class ProductDetailsViewFragment extends Fragment {
             });
             dialog.show();
         });
+
+        if(getActivity() != null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(productDetailsName);
+        }
 
         return view;
 

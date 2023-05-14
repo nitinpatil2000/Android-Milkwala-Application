@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class AddNewSupplierFragment extends Fragment {
@@ -46,6 +47,10 @@ public class AddNewSupplierFragment extends Fragment {
         etSupplierAlternateNumber = view.findViewById(R.id.et_supplier_alt_mobile);
         btnAddNewSupplier = view.findViewById(R.id.btnAddNewSupplier);
         btnAddNewSupplier.setOnClickListener(view1 -> onClickAddNewSupplier());
+
+        if(getActivity() != null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Supplier");
+        }
 
         return view;
     }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.utils.Constants;
@@ -70,9 +71,12 @@ public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<Prod
             productImg.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
+                    ProductDetails clickedItem = productDetails.get(position);
+                    int productId = clickedItem.getProductDetailsId();
+                    String productDetailsName = clickedItem.getProductDetailsName();
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_PRODUCT,
-                                productDetails.get(position).getProductDetailsId(), null);
+                                productDetails.get(position).getProductDetailsId(), productDetailsName, null);
                     }
                 }
             });

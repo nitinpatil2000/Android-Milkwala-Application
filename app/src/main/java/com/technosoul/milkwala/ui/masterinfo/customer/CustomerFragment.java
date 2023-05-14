@@ -15,6 +15,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.CustomerViewAdapter;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
@@ -61,6 +62,10 @@ public class CustomerFragment extends Fragment {
                 masterInfoListener.addNewCustomer();
             }
         });
+
+        if(getActivity()!= null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Customer");
+        }
         return view;
     }
 }

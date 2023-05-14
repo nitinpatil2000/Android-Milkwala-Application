@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.DeliveryPerson;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class DeliveryPersonDetailsFragment extends Fragment {
@@ -24,11 +25,13 @@ public class DeliveryPersonDetailsFragment extends Fragment {
     TextView tvTitleDeliveryPerson;
     Button deleteDeliveryBoyBtn;
     private final int deliveryId;
+    private String deliveryBoyName;
 
     private MasterInfoListener listener;
 
-    public DeliveryPersonDetailsFragment(int deliveryId) {
+    public DeliveryPersonDetailsFragment(int deliveryId, String deliveryBoyName) {
         this.deliveryId = deliveryId;
+        this.deliveryBoyName = deliveryBoyName;
     }
 
     public void setListener(MasterInfoListener listener) {
@@ -92,6 +95,10 @@ public class DeliveryPersonDetailsFragment extends Fragment {
             dialog.show();
 
         });
+
+        if(getActivity() != null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(deliveryBoyName);
+        }
 
         return view;
     }

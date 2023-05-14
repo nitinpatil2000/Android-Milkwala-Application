@@ -17,6 +17,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.ProductListViewPerSupplierAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class ProductListPerSupplierFragment extends Fragment {
     private final int supplierId;
+    private String supplierName;
     ProductListViewPerSupplierAdapter productListViewPerSupplierAdapter;
     RecyclerView productListPerSupplierRecyclerView;
     ArrayList<ProductDetails> productDetailsList;
@@ -32,9 +34,11 @@ public class ProductListPerSupplierFragment extends Fragment {
     private MasterInfoListener listener;
     private OnItemSelected onItemSelected;
 
-    public ProductListPerSupplierFragment(int supplierId) {
+
+    public ProductListPerSupplierFragment(int supplierId, String supplierName) {
         // Required empty public constructor
         this.supplierId = supplierId;
+        this.supplierName = supplierName;
     }
 
     public void setListener(MasterInfoListener listener) {
@@ -80,6 +84,10 @@ public class ProductListPerSupplierFragment extends Fragment {
                 filter(editable.toString());
             }
         });
+
+        if(getActivity() != null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(supplierName + " Products");
+        }
 
         return view;
     }

@@ -15,14 +15,17 @@ import android.widget.Toast;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class CustomerDetailsFragment extends Fragment {
     private final int customerId;
+    private String customerName;
     private MasterInfoListener masterInfoListener;
 
-    public CustomerDetailsFragment(int customerId) {
+    public CustomerDetailsFragment(int customerId, String customerName) {
         this.customerId = customerId;
+        this.customerName = customerName;
         // Required empty public constructor
     }
 
@@ -88,6 +91,12 @@ public class CustomerDetailsFragment extends Fragment {
             dialog.show();
 
         });
+
+        if(getActivity() != null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(customerName);
+        }
+
+
         return view;
     }
 }

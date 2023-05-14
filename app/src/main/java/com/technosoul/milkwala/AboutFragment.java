@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
+
 public class AboutFragment extends Fragment {
     TextView hyperlink;
 
@@ -25,8 +27,9 @@ public class AboutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-//        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-//        actionBar.setTitle("About Milkwala");
+        //set the title in fragment
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle("About MilkWala");
 
         hyperlink = view.findViewById(R.id.hyperlink);
         hyperlink.setMovementMethod(LinkMovementMethod.getInstance());

@@ -17,6 +17,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.DeliverPersonListViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.DeliveryPerson;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 
@@ -86,6 +87,10 @@ public class DeliveryPersonListFragment extends Fragment {
                 filter(editable.toString());
             }
         });
+
+        if(getActivity()!= null){
+            ((MasterInfoActivity)getActivity()).setActionBarTitle("Delivery Boy");
+        }
 
         return view;
     }
