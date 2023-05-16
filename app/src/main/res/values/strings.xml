@@ -156,6 +156,12 @@
     <string name="err_min_length_city">City name should be minimum of 3 characters</string>
     <string name="title_delete_dialog">Delete %1$s</string>
 
+<!--   TODO FAILED TO FETCH THE DATA ON THE MASTER INFO FRAGMENT-->
+    <string name="failed_get_supplier_data">Failed to fetch supplier data</string>
+    <string name="failed_get_product_data">Failed to fetch product data</string>
+    <string name="failed_get_delivery_data">Failed to fetch delivery boy data</string>
+    <string name="failed_get_customer_data">Failed to fetch customer data</string>
+
 
 
     <string name="description">Copyright 2023–24 \n Developed By:\n Technosoul Ventures Pvt Ltd</string>

@@ -76,7 +76,7 @@ public class ProductDetails {
     public ProductDetails(String productDetailsName, Long productDetailsQuantity) {
         this.productDetailsName = productDetailsName;
         this.productDetailsQuantity = productDetailsQuantity;
-//        this.productDetailsId = productDetailsId;
+        this.productDetailsId = productDetailsId;
     }
 
     public int getProductDetailsId() {
@@ -90,7 +90,7 @@ public class ProductDetails {
     public Long getProductDetailsQuantity() {
         return productDetailsQuantity;
     }
-
+//
     public void setProductDetailsQuantity(Long productDetailsQuantity) {
         this.productDetailsQuantity = productDetailsQuantity;
     }

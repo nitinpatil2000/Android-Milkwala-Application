@@ -15,9 +15,14 @@ import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class SupplierDetailsFragment extends Fragment {
     TextView tvSupplierName;
@@ -28,6 +33,7 @@ public class SupplierDetailsFragment extends Fragment {
     String suppName, suppAddress, suppNumber, suppAltNumber;
     int supplierId;
     String supplierName;
+    private SupplierService supplierService;
 
     MasterInfoListener listener;
 
@@ -94,12 +100,14 @@ public class SupplierDetailsFragment extends Fragment {
 
             btnCancelDeleteSupplier.setOnClickListener(view1 -> dialog.dismiss());
 
+
+
+
             btnDeleteSupplier.setOnClickListener(v -> {
                 myDbHelper.supplierDao().deleteById(supplierId);
                 Toast.makeText(getContext(), R.string.msg_delete_supplier_success, Toast.LENGTH_SHORT).show();
-                if (listener != null) {
-                    listener.onBackToPreviousScreen();
-                }
+                deleteSuppliers();
+
                 dialog.dismiss();
             });
 
@@ -110,6 +118,32 @@ public class SupplierDetailsFragment extends Fragment {
             ((MasterInfoActivity)getActivity()).setActionBarTitle(supplierName);
         }
         return view;
+    }
+
+    private void deleteSuppliers() {
+        SupplierRetrofitService retrofitService = new SupplierRetrofitService();
+        Retrofit retrofit = retrofitService.getRetrofit();
+        supplierService = retrofit.create(SupplierService.class);
+
+        Call<ResponseBody> call = supplierService.deleteSupplier(supplierId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
+                    if (listener != null) {
+                        listener.onBackToPreviousScreen();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Supplier Not Found ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getContext(), "Network Error please try again later", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

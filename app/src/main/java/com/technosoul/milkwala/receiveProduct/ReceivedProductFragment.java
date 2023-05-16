@@ -41,15 +41,12 @@ public class ReceivedProductFragment extends Fragment {
     ReceivedProductAdapter receivedProductAdapter;
     RecyclerView receivedRecyclerView;
     ArrayList<ProductDetails> productDetails = new ArrayList<>();
+    ArrayList<DailyReceiveProduct>dailyReceiveProducts = new ArrayList<>();
 
     int productDetailsId;
-
-
     ImageView receiveProductDate;
     Button saveReceiveProduct;
-
     private int supplierId;
-
     EditText receiveProductAmount, receiveProductQty;
 
     public ReceivedProductFragment() {
@@ -136,6 +133,7 @@ public class ReceivedProductFragment extends Fragment {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 View anotherView = inflater.inflate(R.layout.received_product_design, null);
                 editQuantity = anotherView.findViewById(R.id.editQuantity);
+                receiveProductDate = view.findViewById(R.id.selectDate);
 
 //                receiveProductDate
 
@@ -146,6 +144,8 @@ public class ReceivedProductFragment extends Fragment {
                     int quantityReceiveProduct = 0;
                     if(TextUtils.isEmpty(receivedQuantity)){
                         Toast.makeText(getContext(), "Please enter a quantity", Toast.LENGTH_SHORT).show();
+//                        editQuantity.requestFocus();
+//                        return;
                     }else{
                     DailyReceiveProduct dailyReceiveProduct = new DailyReceiveProduct();
                     quantityReceiveProduct = Integer.parseInt(receivedQuantity);
@@ -158,24 +158,6 @@ public class ReceivedProductFragment extends Fragment {
                         Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
-
-
-//                ArrayList<ProductDetails> productDetails = receivedProductAdapter.getProductDetails();
-//                for (ProductDetails productDetail : productDetails) {
-////                    int profileDetailsId = productDetail.getProductDetailsId();
-////                    String quantityReceivedProduct = editQuantity.getText().toString();
-//                    System.out.println(productDetail);
-//                    Long productEditQty = productDetail.getProductDetailsQuantity();
-//                    if (productEditQty == 0L) {
-//                        Toast.makeText(getContext(), "Please enter a quantity", Toast.LENGTH_SHORT).show();
-//                    }else{
-////                        long productQty = Long.parseLong(productEditQty);
-//                        myDbHelper.productDetailsDto().getProductById(productDetail.getProductDetailsId());
-//                        Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
             }
         });
         return view;

@@ -18,6 +18,11 @@ import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class AddNewSupplierFragment extends Fragment {
     EditText etSupplierName;
     EditText etSupplierAddress;
@@ -26,6 +31,7 @@ public class AddNewSupplierFragment extends Fragment {
     Button btnAddNewSupplier;
 
     MasterInfoListener listener;
+    SupplierService supplierService;
 
     public AddNewSupplierFragment() {
         // Required empty public constructor
@@ -48,8 +54,8 @@ public class AddNewSupplierFragment extends Fragment {
         btnAddNewSupplier = view.findViewById(R.id.btnAddNewSupplier);
         btnAddNewSupplier.setOnClickListener(view1 -> onClickAddNewSupplier());
 
-        if(getActivity() != null){
-            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Supplier");
+        if (getActivity() != null) {
+            ((MasterInfoActivity) getActivity()).setActionBarTitle("Add New Supplier");
         }
 
         return view;
@@ -90,6 +96,7 @@ public class AddNewSupplierFragment extends Fragment {
             return;
         }
 
+
         String supplierAltNumber = etSupplierAlternateNumber.getText().toString();
         if (TextUtils.isEmpty(supplierAltNumber)) {
             supplierAltNumber = "";
@@ -100,12 +107,44 @@ public class AddNewSupplierFragment extends Fragment {
         }
 
         myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
+//
+//        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
+//
 
-        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
 
-        if (listener != null) {
-            listener.onBackToPreviousScreen();
-        }
+        SupplierRetrofitService retrofitService = new SupplierRetrofitService();
+        Retrofit retrofit = retrofitService.getRetrofit();
+        SupplierService supplierService = retrofit.create(SupplierService.class);
+
+
+        SupplierEntity supplierEntity = new SupplierEntity();
+        supplierEntity.setSupplierName(supplierName);
+        supplierEntity.setSupplierAddress(supplierAddress);
+        supplierEntity.setSupplierNumber(supplierNumber);
+        supplierEntity.setSupplierAltNumber(supplierAltNumber);
+
+        Call<SupplierEntity> call = supplierService.createSupplier(supplierEntity);
+        call.enqueue(new Callback<SupplierEntity>() {
+            @Override
+            public void onResponse(Call<SupplierEntity> call, Response<SupplierEntity> response) {
+                if (response.isSuccessful()) {
+                    SupplierEntity createSupplier = response.body();
+                    Toast.makeText(getContext(), "Supplier Created Successfully!!", Toast.LENGTH_SHORT).show();
+                    if (listener != null) {
+                        listener.onBackToPreviousScreen();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Failed to create Supplier !!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SupplierEntity> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
 }

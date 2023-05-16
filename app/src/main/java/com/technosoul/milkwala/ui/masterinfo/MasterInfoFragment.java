@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.home.ImageAdapter;
@@ -19,10 +20,19 @@ import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.db.Customer;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierEntity;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierRetrofitService;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class MasterInfoFragment extends Fragment {
@@ -64,6 +74,32 @@ public class MasterInfoFragment extends Fragment {
 
         totalCustomersSubText = view.findViewById(R.id.masterinfo_customer_subtext);
         llCustomers = view.findViewById(R.id.ll_masterinfo_customers);
+
+        SupplierRetrofitService supplierRetrofitService = new SupplierRetrofitService();
+        Retrofit retrofit = supplierRetrofitService.getRetrofit();
+        SupplierService supplierService = retrofit.create(SupplierService.class);
+        Call<List<SupplierEntity>> call = supplierService.getAllSuppliers();
+        call.enqueue(new Callback<List<SupplierEntity>>() {
+            @Override
+            public void onResponse(Call<List<SupplierEntity>> call, Response<List<SupplierEntity>> response) {
+                if(response.isSuccessful()){
+                    List<SupplierEntity> supplierList = response.body();
+                    if(supplierList != null && !supplierList.isEmpty()){
+                        int numSuppliers = supplierList.size();
+                        totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
+                    }else{
+
+                    }
+                }else{
+                    Toast.makeText(getContext(), "No Supplier Found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SupplierEntity>> call, Throwable t) {
+
+            }
+        });
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
