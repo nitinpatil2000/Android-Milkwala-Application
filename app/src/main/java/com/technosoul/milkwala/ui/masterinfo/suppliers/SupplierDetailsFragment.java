@@ -17,6 +17,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -121,7 +122,7 @@ public class SupplierDetailsFragment extends Fragment {
     }
 
     private void deleteSuppliers() {
-        SupplierRetrofitService retrofitService = new SupplierRetrofitService();
+        ApiRetrofitService retrofitService = new ApiRetrofitService();
         Retrofit retrofit = retrofitService.getRetrofit();
         supplierService = retrofit.create(SupplierService.class);
 
@@ -130,7 +131,7 @@ public class SupplierDetailsFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.msg_delete_supplier_success, Toast.LENGTH_SHORT).show();
                     if (listener != null) {
                         listener.onBackToPreviousScreen();
                     }
@@ -141,7 +142,7 @@ public class SupplierDetailsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getContext(), "Network Error please try again later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
             }
         });
     }

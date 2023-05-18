@@ -8,26 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.adapters.SupplierListViewForProductAdapter;
-import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class SupplierListForProductsFragment extends Fragment {
     //    ArrayList<Product> products = new ArrayList<>();
     SupplierListViewForProductAdapter supplierListViewForProductAdapter;
     EditText searchProduct;
-    ArrayList<Supplier> supplierList;
+    //    ArrayList<Supplier> supplierList;
+    ArrayList<SupplierFromServer> supplierFromServers;
     Button btnAddNewProduct;
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
@@ -53,12 +62,40 @@ public class SupplierListForProductsFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         productRecyclerView.setLayoutManager(gridLayoutManager);
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
-        for (int i = 0; i < supplierList.size(); i++) {
-            supplierListViewForProductAdapter = new SupplierListViewForProductAdapter(getContext(), supplierList, onItemSelected);
-            productRecyclerView.setAdapter(supplierListViewForProductAdapter);
-        }
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
+//        for (int i = 0; i < supplierList.size(); i++) {
+//            supplierListViewForProductAdapter = new SupplierListViewForProductAdapter(getContext(), supplierList, onItemSelected);
+//            productRecyclerView.setAdapter(supplierListViewForProductAdapter);
+//        }
+
+        ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = supplierRetrofitService.getRetrofit();
+        SupplierService supplierService = retrofit.create(SupplierService.class);
+        Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
+        call.enqueue(new Callback<List<SupplierFromServer>>() {
+            @Override
+            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
+                if (response.isSuccessful()) {
+                    List<SupplierFromServer> supplierEntityList = response.body();
+                    if (supplierEntityList == null || supplierEntityList.isEmpty()) {
+                        Toast.makeText(getContext(), R.string.supplier_list_is_empty_in_product_list, Toast.LENGTH_SHORT).show();
+                    } else {
+                        supplierListViewForProductAdapter = new SupplierListViewForProductAdapter(getContext(), (ArrayList<SupplierFromServer>) supplierEntityList, onItemSelected);
+                        productRecyclerView.setAdapter(supplierListViewForProductAdapter);
+                        productRecyclerView.scheduleLayoutAnimation();
+                    }
+                } else {
+                    Toast.makeText(getContext(), R.string.failed_get_supplier_data, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
 
         searchProduct = view.findViewById(R.id.searchProduct);
         searchProduct.clearFocus();
@@ -76,20 +113,22 @@ public class SupplierListForProductsFragment extends Fragment {
                 filter(editable.toString());
             }
         });
-        if(getActivity()!= null){
-            ((MasterInfoActivity)getActivity()).setActionBarTitle("Products");
+        if (getActivity() != null) {
+            ((MasterInfoActivity) getActivity()).setActionBarTitle("Products");
         }
         return view;
     }
 
     private void filter(String text) {
-        ArrayList<Supplier> filteredSupplier = new ArrayList<>();
-        for (Supplier supplier : supplierList) {
+        ArrayList<SupplierFromServer> filterList = new ArrayList<>();
+        for (SupplierFromServer supplier : supplierFromServers) {
             if (supplier.getSupplierName().toLowerCase().contains(text.toLowerCase())) {
-                filteredSupplier.add(supplier);
+                filterList.add(supplier);
             }
         }
-
-        supplierListViewForProductAdapter.filteredList(filteredSupplier);
+        //check if the adapter is not null before calling filteredList method
+        if (supplierListViewForProductAdapter != null) {
+            supplierListViewForProductAdapter.filteredList(filterList);
+        }
     }
 }

@@ -15,6 +15,8 @@ import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
@@ -22,12 +24,12 @@ import java.util.ArrayList;
 public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<SupplierListViewForProductAdapter.ViewHolder> {
     private final OnItemSelected onItemSelected;
     Context context;
-    ArrayList<Supplier> suppliers;
+    ArrayList<SupplierFromServer> supplierFromServers;
 
 
-    public SupplierListViewForProductAdapter(Context context, ArrayList<Supplier> suppliers, OnItemSelected onItemSelected) {
+    public SupplierListViewForProductAdapter(Context context, ArrayList<SupplierFromServer> supplierFromServers, OnItemSelected onItemSelected) {
         this.context = context;
-        this.suppliers = suppliers;
+        this.supplierFromServers = supplierFromServers;
         this.onItemSelected = onItemSelected;
     }
 
@@ -40,9 +42,9 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
 
     @Override
     public void onBindViewHolder(@NonNull SupplierListViewForProductAdapter.ViewHolder holder, int position) {
-        Supplier selectedSupplier = suppliers.get(position);
+        SupplierFromServer selectedSupplier = supplierFromServers.get(position);
         int supplierId = selectedSupplier.getSupplierId();
-        holder.productTxt.setText(suppliers.get(position).getSupplierName());
+        holder.productTxt.setText(supplierFromServers.get(position).getSupplierName());
         MyDbHelper myDbHelper = MyDbHelper.getDB(context);
         ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
         int numCounterProducts = productDetailsList.size();
@@ -51,11 +53,11 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
 
     @Override
     public int getItemCount() {
-        return suppliers.size();
+        return supplierFromServers.size();
     }
 
-    public void filteredList(ArrayList<Supplier> filteredSupplier) {
-        suppliers = filteredSupplier;
+    public void filteredList(ArrayList<SupplierFromServer> filteredSupplier) {
+        supplierFromServers = filteredSupplier;
         notifyDataSetChanged();
     }
 
@@ -72,7 +74,7 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
             productImg.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    Supplier selectedSupplier = suppliers.get(position);
+                    SupplierFromServer selectedSupplier = supplierFromServers.get(position);
                     int supplierId = selectedSupplier.getSupplierId();
                     String supplierName = selectedSupplier.getSupplierName();
                     if (onItemSelected != null) {

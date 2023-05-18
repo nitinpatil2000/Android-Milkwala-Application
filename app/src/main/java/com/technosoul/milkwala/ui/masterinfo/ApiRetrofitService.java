@@ -1,14 +1,14 @@
-package com.technosoul.milkwala.ui.masterinfo.suppliers;
+package com.technosoul.milkwala.ui.masterinfo;
 
 import com.google.gson.Gson;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SupplierRetrofitService {
+public class ApiRetrofitService {
      private Retrofit retrofit;
 
-        public SupplierRetrofitService() {
+        public ApiRetrofitService() {
             initializeRetrofilt();
         }
 

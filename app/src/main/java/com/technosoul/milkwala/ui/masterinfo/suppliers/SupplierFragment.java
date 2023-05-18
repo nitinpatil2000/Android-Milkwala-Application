@@ -16,11 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.SupplierRecyclerViewAdapter;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,7 @@ public class SupplierFragment extends Fragment {
     private SupplierRecyclerViewAdapter recyclerViewAdapter;
     private EditText searchSupplier;
 //    private ArrayList<Supplier> supplierList = new ArrayList<>();
-    private ArrayList<SupplierEntity> supplierList = new ArrayList<>();
+    private ArrayList<SupplierFromServer> supplierListFromServer = new ArrayList<>();
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
 
@@ -59,29 +58,41 @@ public class SupplierFragment extends Fragment {
 
 //        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 
-//        supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
-//        if (supplierList == null || supplierList.size() == 0) {
+//        supplierListFromServer = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
+//        if (supplierListFromServer == null || supplierListFromServer.size() == 0) {
 //            Toast.makeText(getContext(), R.string.empty_supplier_list, Toast.LENGTH_SHORT).show();
 //        } else {
-//            recyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), supplierList, onItemSelected);
+//            recyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), supplierListFromServer, onItemSelected);
 //            supplierRecyclerView.setAdapter(recyclerViewAdapter);
 //        }
 
-        SupplierRetrofitService supplierRetrofitService = new SupplierRetrofitService();
-        Retrofit retrofit = supplierRetrofitService.getRetrofit();
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
         SupplierService supplierService = retrofit.create(SupplierService.class);
 
-        Call<List<SupplierEntity>> call = supplierService.getAllSuppliers();
-        call.enqueue(new Callback<List<SupplierEntity>>() {
+        Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
+        call.enqueue(new Callback<List<SupplierFromServer>>() {
             @Override
-            public void onResponse(Call<List<SupplierEntity>> call, Response<List<SupplierEntity>> response) {
+            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
                 if(response.isSuccessful()){
-                    List<SupplierEntity> supplierEntityList = response.body();
+                    List<SupplierFromServer> supplierEntityList = response.body();
+//                    supplierListFromServer = (ArrayList<SupplierFromServer>) response.body();
                     if(supplierEntityList == null || supplierEntityList.isEmpty()){
                         Toast.makeText(getContext(), R.string.empty_supplier_list, Toast.LENGTH_SHORT).show();
                     }else{
-                        SupplierRecyclerViewAdapter supplierRecyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), (ArrayList<SupplierEntity>) supplierEntityList,onItemSelected);
+//                        MyDbHelper myDbHelper = MyDbHelper.getDB(getContext());
+//                        ArrayList<Supplier> supplierArrayList = new ArrayList<>();
+//                        for(SupplierFromServer supplier : supplierListFromServer){
+//                            supplierArrayList.add(new Supplier(supplier.getSupplierId(),
+//                                    supplier.getSupplierName(),
+//                                    supplier.getSupplierAddress(),
+//                                    supplier.getSupplierNumber(),
+//                                    supplier.getSupplierAltNumber()));
+//                        }
+//                        myDbHelper.supplierDao().addSupplier(supplierArrayList);
+                        SupplierRecyclerViewAdapter supplierRecyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), (ArrayList<SupplierFromServer>) supplierEntityList,onItemSelected);
                         supplierRecyclerView.setAdapter(supplierRecyclerViewAdapter);
+                        supplierRecyclerView.scheduleLayoutAnimation();
                     }
                 }else{
                     Toast.makeText(getContext(), R.string.failed_get_supplier_data, Toast.LENGTH_SHORT).show();
@@ -89,7 +100,7 @@ public class SupplierFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<SupplierEntity>> call, Throwable t) {
+            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
@@ -119,8 +130,8 @@ public class SupplierFragment extends Fragment {
     }
 
     private void filter(String text) {
-        ArrayList<SupplierEntity> filterList = new ArrayList<>();
-        for (SupplierEntity supplier : supplierList) {
+        ArrayList<SupplierFromServer> filterList = new ArrayList<>();
+        for (SupplierFromServer supplier : supplierListFromServer) {
             if (supplier.getSupplierName().toLowerCase().contains(text.toLowerCase())) {
                 filterList.add(supplier);
             }
@@ -130,6 +141,7 @@ public class SupplierFragment extends Fragment {
             recyclerViewAdapter.filteredList(filterList);
         }
     }
+
 
 
     public void setListener(MasterInfoListener listener) {

@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -106,29 +106,29 @@ public class AddNewSupplierFragment extends Fragment {
             return;
         }
 
-        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
+//        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
 //
 //        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
 //
 
 
-        SupplierRetrofitService retrofitService = new SupplierRetrofitService();
+        ApiRetrofitService retrofitService = new ApiRetrofitService();
         Retrofit retrofit = retrofitService.getRetrofit();
         SupplierService supplierService = retrofit.create(SupplierService.class);
 
 
-        SupplierEntity supplierEntity = new SupplierEntity();
-        supplierEntity.setSupplierName(supplierName);
-        supplierEntity.setSupplierAddress(supplierAddress);
-        supplierEntity.setSupplierNumber(supplierNumber);
-        supplierEntity.setSupplierAltNumber(supplierAltNumber);
+        SupplierFromServer supplierFromServer = new SupplierFromServer();
+        supplierFromServer.setSupplierName(supplierName);
+        supplierFromServer.setSupplierAddress(supplierAddress);
+        supplierFromServer.setSupplierNumber(supplierNumber);
+        supplierFromServer.setSupplierAltNumber(supplierAltNumber);
 
-        Call<SupplierEntity> call = supplierService.createSupplier(supplierEntity);
-        call.enqueue(new Callback<SupplierEntity>() {
+        Call<SupplierFromServer> call = supplierService.createSupplier(supplierFromServer);
+        call.enqueue(new Callback<SupplierFromServer>() {
             @Override
-            public void onResponse(Call<SupplierEntity> call, Response<SupplierEntity> response) {
+            public void onResponse(Call<SupplierFromServer> call, Response<SupplierFromServer> response) {
                 if (response.isSuccessful()) {
-                    SupplierEntity createSupplier = response.body();
+                    SupplierFromServer createSupplier = response.body();
                     Toast.makeText(getContext(), "Supplier Created Successfully!!", Toast.LENGTH_SHORT).show();
                     if (listener != null) {
                         listener.onBackToPreviousScreen();
@@ -139,7 +139,7 @@ public class AddNewSupplierFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<SupplierEntity> call, Throwable t) {
+            public void onFailure(Call<SupplierFromServer> call, Throwable t) {
 
             }
         });

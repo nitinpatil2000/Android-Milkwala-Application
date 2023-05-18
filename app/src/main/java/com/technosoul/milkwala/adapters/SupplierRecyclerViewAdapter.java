@@ -15,10 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
-import com.technosoul.milkwala.db.Supplier;
-import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
-import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierEntity;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ import java.util.ArrayList;
 public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRecyclerViewAdapter.ViewHolder> {
     Context context;
 //    ArrayList<Supplier> suppliers;
-    ArrayList<SupplierEntity> supplierEntityList;
+    ArrayList<SupplierFromServer> supplierEntityList;
 
     private OnItemSelected onItemSelected;
 
@@ -36,7 +34,7 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
 //        this.onItemSelected = onItemSelected;
 //    }
 
-    public SupplierRecyclerViewAdapter(Context context, ArrayList<SupplierEntity> supplierEntityList, OnItemSelected onItemSelected){
+    public SupplierRecyclerViewAdapter(Context context, ArrayList<SupplierFromServer> supplierEntityList, OnItemSelected onItemSelected){
         this.context = context;
         this.supplierEntityList = supplierEntityList;
         this.onItemSelected = onItemSelected;
@@ -51,7 +49,7 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        SupplierEntity selectedSupplier = supplierEntityList.get(position);
+        SupplierFromServer selectedSupplier = supplierEntityList.get(position);
         int supplierId = selectedSupplier.getSupplierId();
         holder.supplierTxt.setText(supplierEntityList.get(holder.getAdapterPosition()).getSupplierName());
         MyDbHelper myDbHelper = MyDbHelper.getDB(context);
@@ -66,17 +64,17 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
     }
 
     //method to add new item to the list
-    public void addNewItem(SupplierEntity supplierEntity) {
+    public void addNewItem(SupplierFromServer supplierEntity) {
         supplierEntityList.add(supplierEntity);
         notifyItemInserted(supplierEntityList.size() - 1);
     }
 
-    public SupplierEntity getItem(int position) {
+    public SupplierFromServer getItem(int position) {
         // Get the Supplier at a specific position in the list
         return supplierEntityList.get(position);
     }
 
-    public void filteredList(ArrayList<SupplierEntity> filterList) {
+    public void filteredList(ArrayList<SupplierFromServer> filterList) {
         supplierEntityList = filterList;
         notifyDataSetChanged();
     }
@@ -99,20 +97,40 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
             suppliersImg.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    SupplierEntity clickedItem = supplierEntityList.get(position);
+                    SupplierFromServer clickedItem = supplierEntityList.get(position);
                     int supplierId = clickedItem.getSupplierId();
                     String supplierName =  clickedItem.getSupplierName();
+//                    SupplierRetrofitService supplierRetrofitService = new SupplierRetrofitService();
+//                    Retrofit retrofit = supplierRetrofitService.getRetrofit();
+//                    SupplierService supplierService = retrofit.create(SupplierService.class);
+//                    Call<SupplierFromServer> call = supplierService.getSupplierDetails(supplierId);
+//                    call.enqueue(new Callback<SupplierFromServer>() {
+//                        @Override
+//                        public void onResponse(Call<SupplierFromServer> call, Response<SupplierFromServer> response) {
+//                            if(response.isSuccessful()){
+//                                SupplierFromServer getSupplierDetails = response.body();
+//                                if(getSupplierDetails != null){
+//
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<SupplierFromServer> call, Throwable t) {
+//
+//                        }
+//                    });
                     Bundle bundle = new Bundle();
                     bundle.putString("supplierTxt", clickedItem.getSupplierName());
                     bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
                     bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
                     bundle.putString("supplierAltNumber", clickedItem.getSupplierAltNumber());
-
+//
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER, supplierId,supplierName, bundle);
                     }
 
-                    ((MasterInfoActivity)context).getSupportActionBar().setTitle(clickedItem.getSupplierName());
+//                    ((MasterInfoActivity)context).getSupportActionBar().setTitle(clickedItem.getSupplierName());
 
                 }
             });

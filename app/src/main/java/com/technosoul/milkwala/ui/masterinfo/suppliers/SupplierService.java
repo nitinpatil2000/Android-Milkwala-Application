@@ -10,15 +10,18 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface SupplierService {
     @POST("/addsupplier")
-    Call<SupplierEntity> createSupplier(@Body SupplierEntity supplierEntity);
+    Call<SupplierFromServer> createSupplier(@Body SupplierFromServer supplierEntity);
 
     @GET("/getsupplier")
-    Call<List<SupplierEntity>> getAllSuppliers();
+    Call<List<SupplierFromServer>> getAllSuppliers();
+
+    @GET("/suppliers/{supplierId}")
+    Call<SupplierFromServer> getSupplierDetails(@Path("supplierId") int supplierId);
+
 
     @DELETE("/supplier/{supplierId}")
     Call<ResponseBody> deleteSupplier(@Path("supplierId") int supplierId);

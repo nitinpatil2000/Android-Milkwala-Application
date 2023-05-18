@@ -85,6 +85,10 @@
     <string name="msg_delete_supplier_desc">Please Note - If you delete this supplier, then all the products and associated data will get removed.</string>
     <string name="msg_delete_supplier_success">Supplier deleted successfully.</string>
 
+
+    <string name="network_error">Network Error please try again later.</string>
+    <string name="supplier_list_is_empty_in_product_list">Supplier list is empty.</string>
+
     <!--  Product strings  -->
     <string name="title_product_name">Product Name :</string>
     <string name="hint_enter_product_name">Enter Product Name</string>

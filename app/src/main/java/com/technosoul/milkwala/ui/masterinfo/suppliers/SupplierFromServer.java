@@ -1,21 +1,21 @@
 package com.technosoul.milkwala.ui.masterinfo.suppliers;
 
 
-public class SupplierEntity {
+public class SupplierFromServer {
     private int supplierId;
     private String supplierName;
     private String supplierAddress;
     private String supplierNumber;
     private String supplierAltNumber;
 
-    public SupplierEntity(int supplierId, String supplierName, String supplierAddress, String  supplierNumber, String supplierAltNumber) {
+    public SupplierFromServer(int supplierId, String supplierName, String supplierAddress, String  supplierNumber, String supplierAltNumber) {
         this.supplierName = supplierName;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
         this.supplierAltNumber = supplierAltNumber;
     }
 
-    public SupplierEntity() {
+    public SupplierFromServer() {
     }
 
     public String getSupplierName() {
