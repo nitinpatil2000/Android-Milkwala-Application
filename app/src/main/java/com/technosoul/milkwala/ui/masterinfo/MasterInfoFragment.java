@@ -1,7 +1,9 @@
 package com.technosoul.milkwala.ui.masterinfo;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -43,6 +45,11 @@ public class MasterInfoFragment extends Fragment {
     TextView totalDeliveryBoysSubText;
     LinearLayout llCustomers;
     TextView totalCustomersSubText;
+
+    private CardView supplierCardView;
+    private CardView productCardView;
+    private CardView deliveryCardView;
+    private CardView customerCardView;
 
     private MasterInfoListener masterInfoListener;
     private ViewPager viewPager;
@@ -156,11 +163,60 @@ public class MasterInfoFragment extends Fragment {
             ((MasterInfoActivity)getActivity()).setActionBarTitle("Master Info");
         }
 
-//        ActionBar actionBar = ((MasterInfoActivity)getActivity()).getSupportActionBar();
-//        actionBar.setTitle("DashBoard");
 
+        supplierCardView = view.findViewById(R.id.supplier_card_view);
+        productCardView = view.findViewById(R.id.product_card_view);
+        customerCardView = view.findViewById(R.id.customer_card_view);
+        deliveryCardView = view.findViewById(R.id.delivery_card_view);
+
+        // Animate card views when activity is opened
+        animateCardView(supplierCardView, 0);
+        animateCardView(productCardView, 100);
+        animateCardView(customerCardView, 200);
+        animateCardView(deliveryCardView, 300);
+
+
+
+        supplierCardView.setOnClickListener(view1 -> {
+            animateCardView(supplierCardView, 0);
+
+        });
+
+        productCardView.setOnClickListener(view1 -> {
+            animateCardView(productCardView, 0);
+        });
+
+        customerCardView.setOnClickListener(view1 -> {
+            animateCardView(customerCardView, 0);
+        });
+
+        deliveryCardView.setOnClickListener(view1 -> {
+            animateCardView(deliveryCardView, 0);
+        });
         return view;
     }
+
+    private void animateCardView(CardView cardView, int delay) {
+        cardView.setScaleX(0f);
+        cardView.setScaleY(0f);
+        cardView.setAlpha(0f);
+
+        cardView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(cardView, View.SCALE_X, 1f);
+                ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(cardView, View.SCALE_Y, 1f);
+                ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(cardView, View.ALPHA, 1f);
+                scaleXAnimator.setDuration(500);
+                scaleYAnimator.setDuration(500);
+                alphaAnimator.setDuration(500);
+                scaleXAnimator.start();
+                scaleYAnimator.start();
+                alphaAnimator.start();
+            }
+        }, delay);
+    }
+
 
     public void setListener(MasterInfoListener listener) {
         this.masterInfoListener = listener;
@@ -172,16 +228,6 @@ public class MasterInfoFragment extends Fragment {
         timer.cancel();
     }
 
-//    public void setTitle(MasterInfoListener listener){
-//        listener.setActionBarTitle("DashBoard");
-//    }
 
 
-
-
-    //    @Override
-//    public void onResume() {
-//        super.onResume();
-//        getActivity().setTitle("Master Info :");
-//    }
 }

@@ -1,12 +1,17 @@
 package com.technosoul.milkwala.ui.auth;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -94,7 +99,25 @@ public class LoginFragment extends Fragment {
             listener.onAdminLoginSuccess();
 
         } else {
-            Toast.makeText(context, "Not authorized to login.", Toast.LENGTH_SHORT).show();
+            Button btnActionOk;
+            Dialog dialog = new Dialog(getContext());
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.error_show_dialog);
+            Window window = dialog.getWindow();
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(window.getAttributes());
+
+// Set the width to match the parent
+            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+            window.setAttributes(layoutParams);
+
+            btnActionOk = dialog.findViewById(R.id.btn_action_ok);
+            btnActionOk.setOnClickListener(view -> {
+                dialog.dismiss();
+            });
+            dialog.show();
+//            Toast.makeText(context, "Not authorized to login.", Toast.LENGTH_SHORT).show();
         }
     }
 

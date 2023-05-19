@@ -20,7 +20,8 @@
             android:layout_marginTop="150dp"
             android:text="Milkwala"
             android:textColor="#FFC30E"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            app:fontFamily="@font/berkshire_swash" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,8 +31,8 @@
             android:layout_marginStart = "5dp"
             android:textColor="#F6F1F1"
             android:textSize="30sp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            app:fontFamily="@font/berkshire_swash" />
     </LinearLayout>
 
 

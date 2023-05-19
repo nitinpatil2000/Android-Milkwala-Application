@@ -151,6 +151,7 @@
     <string name="hint_mobile_number">1234567890</string>
     <string name="str_alt_number">Alternate Number :</string>
     <string name="str_cancel">Cancel</string>
+    <string name="str_ok">Ok</string>
     <string name="str_delete">Delete</string>
     <string name="str_unit">Unit :</string>
     <string name="str_city">City :</string>
@@ -193,4 +194,6 @@
     <string name="received_symbol">/-</string>
     <string name="received_qty">Qty</string>
     <string name="received_total">1000</string>
+    <string name="error_message_for_login">Please Enter Correct EmailId and Password !!</string>
+    <string name="error_text">Error</string>
 </resources>
