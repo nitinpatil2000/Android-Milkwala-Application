@@ -90,17 +90,15 @@ public class MasterInfoFragment extends Fragment {
         call.enqueue(new Callback<List<SupplierFromServer>>() {
             @Override
             public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<SupplierFromServer> supplierList = response.body();
-                    if(supplierList != null && !supplierList.isEmpty()){
+                    if (supplierList != null && !supplierList.isEmpty()) {
                         int numSuppliers = supplierList.size();
                         totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
                         totalProductsSubText.setText(getString(R.string.total_product_sub_text, numSuppliers));
-                    }else{
-
                     }
-                }else{
-                    Toast.makeText(getContext(), "No Supplier Found", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -141,7 +139,7 @@ public class MasterInfoFragment extends Fragment {
             public void run() {
                 if (currentPage == adapter.getCount() - 1) {
                     currentPage = 0;
-                }else{
+                } else {
                     currentPage++;
                 }
                 viewPager.setCurrentItem(currentPage, true);
@@ -157,10 +155,8 @@ public class MasterInfoFragment extends Fragment {
         }, DELAY_MS, PERIOD_MS);
 
 
-
-
         if (getActivity() != null) {
-            ((MasterInfoActivity)getActivity()).setActionBarTitle("Master Info");
+            ((MasterInfoActivity) getActivity()).setActionBarTitle("Master Info");
         }
 
 
@@ -174,7 +170,6 @@ public class MasterInfoFragment extends Fragment {
         animateCardView(productCardView, 100);
         animateCardView(customerCardView, 200);
         animateCardView(deliveryCardView, 300);
-
 
 
         supplierCardView.setOnClickListener(view1 -> {
@@ -227,7 +222,6 @@ public class MasterInfoFragment extends Fragment {
         super.onDestroy();
         timer.cancel();
     }
-
 
 
 }

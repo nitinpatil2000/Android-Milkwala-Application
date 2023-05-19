@@ -80,6 +80,7 @@
     <string name="products_of_supplier">%1$d Products</string>
     <string name="title_supplier_details">Supplier Details</string>
     <string name="btn_delete_supplier">Delete Supplier</string>
+    <string name="no_supplier_found">No Supplier Found</string>
     <string name="title_delete_supplier">Delete Supplier - %1$s</string>
     <string name="msg_delete_supplier_confirmation">Are you sure to delete this supplier?</string>
     <string name="msg_delete_supplier_desc">Please Note - If you delete this supplier, then all the products and associated data will get removed.</string>

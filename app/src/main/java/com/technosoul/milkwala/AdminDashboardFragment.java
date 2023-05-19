@@ -9,13 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.ui.MainActivity;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AdminDashboardFragment extends Fragment {
     TextView totalCustomers;
@@ -39,25 +49,50 @@ public class AdminDashboardFragment extends Fragment {
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 
         // Get total Suppliers
-        ArrayList<Supplier> supplierList = (ArrayList<Supplier>)myDbHelper.supplierDao().getAllSuppliers();
-        int noSuppliers = supplierList.size();
-        totalSuppliers.setText(getString(R.string.total_suppliers, noSuppliers));
+//        ArrayList<Supplier> supplierList = (ArrayList<Supplier>)myDbHelper.supplierDao().getAllSuppliers();
+//        int noSuppliers = supplierList.size();
+//        totalSuppliers.setText(getString(R.string.total_suppliers, noSuppliers));
+
+        // Get total Products
+        // TODO: need to add the products & fetch it.
+//        totalProducts.setText(getString(R.string.total_products, noSuppliers));
+
+        ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = supplierRetrofitService.getRetrofit();
+        SupplierService supplierService = retrofit.create(SupplierService.class);
+        Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
+        call.enqueue(new Callback<List<SupplierFromServer>>() {
+            @Override
+            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
+                if(response.isSuccessful()){
+                    List<SupplierFromServer> supplierList = response.body();
+                    if(supplierList != null && !supplierList.isEmpty()){
+                        int numSuppliers = supplierList.size();
+                        totalSuppliers.setText(getString(R.string.total_suppliers, numSuppliers));
+                        totalProducts.setText(getString(R.string.total_products, numSuppliers));
+                    }else{
+
+                    }
+                }else{
+                    Toast.makeText(getContext(), R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
 
         // Get total Customers
         ArrayList<Customer> customersList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         int noCustomers = customersList.size();
         totalCustomers.setText(getString(R.string.total_customers, noCustomers));
 
-        // Get total Products
-        // TODO: need to add the products & fetch it.
-        totalProducts.setText(getString(R.string.total_products, noSuppliers));
 
-//        if (getActivity() != null) {
-//            ActionBar actionBar =((MainActivity) getActivity()).getSupportActionBar();
-//            if (actionBar != null) {
-//                actionBar.setTitle(R.string.title_dashboard);
-//            }
-//        }
+
+
+
 
 //        PieChartView pieChartView = view.findViewById(R.id.pieChart);
 //        List<SliceValue> pieData = new ArrayList<>();
