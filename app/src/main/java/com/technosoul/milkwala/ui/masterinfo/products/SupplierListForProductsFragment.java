@@ -6,6 +6,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -61,6 +64,9 @@ public class SupplierListForProductsFragment extends Fragment {
         RecyclerView productRecyclerView = view.findViewById(R.id.recyclerView_product_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         productRecyclerView.setLayoutManager(gridLayoutManager);
+        Animation slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.item_animation_fall_down);
+        LayoutAnimationController animationController = new LayoutAnimationController(slideInAnimation);
+        productRecyclerView.setLayoutAnimation(animationController);
 
 //        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 //        supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();

@@ -127,18 +127,25 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 if (id == R.id.menu_dashboard) {
                     loadFragment(new AdminDashboardFragment());
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                 } else if (id == R.id.menu_master_info) {
-//                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//                    drawerLayout.setVisibility(navigationView.GONE);
                     Intent intent = new Intent(MainActivity.this, MasterInfoActivity.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_stock) {
                     loadFragment(new ReceivedProductFragment());
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                 } else if (id == R.id.menu_distribution) {
                     loadFragment(new CustomerOrderFragment());
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                 } else if (id == R.id.menu_profile) {
                     loadFragment(new ProfileFragment());
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                 } else if (id == R.id.menu_log_out) {
                     SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
@@ -149,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(iAuth);
                 } else {
                     loadFragment(new AboutFragment());
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

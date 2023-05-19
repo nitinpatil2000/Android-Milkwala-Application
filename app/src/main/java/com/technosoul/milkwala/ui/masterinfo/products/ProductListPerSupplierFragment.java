@@ -6,6 +6,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +69,9 @@ public class ProductListPerSupplierFragment extends Fragment {
 
         productListPerSupplierRecyclerView = view.findViewById(R.id.productDetailRecylerView);
         productListPerSupplierRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Animation slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.item_animation_fall_down);
+        LayoutAnimationController animationController = new LayoutAnimationController(slideInAnimation);
+        productListPerSupplierRecyclerView.setLayoutAnimation(animationController);
 
         ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
         Retrofit retrofit = apiRetrofitService.getRetrofit();

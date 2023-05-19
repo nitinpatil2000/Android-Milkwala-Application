@@ -19,5 +19,6 @@
 
     <color name="toolbar">#3A634B</color>
     <color name="cardColor">#CFCFCF</color>
+    <color name="indicator_dot_color">#FF0000</color>
 
 </resources>
