@@ -5,17 +5,27 @@ public class SupplierFromServer {
     private int supplierId;
     private String supplierName;
     private String supplierAddress;
-    private String supplierNumber;
-    private String supplierAltNumber;
+    private Long supplierNumber;
+    private Long supplierAltNumber;
 
-    public SupplierFromServer(int supplierId, String supplierName, String supplierAddress, String  supplierNumber, String supplierAltNumber) {
+
+    public SupplierFromServer() {
+    }
+
+    public SupplierFromServer(int supplierId, String supplierName, String supplierAddress, Long supplierNumber, Long supplierAltNumber) {
+        this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
         this.supplierAltNumber = supplierAltNumber;
     }
 
-    public SupplierFromServer() {
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getSupplierName() {
@@ -34,38 +44,30 @@ public class SupplierFromServer {
         this.supplierAddress = supplierAddress;
     }
 
-    public String getSupplierNumber() {
+    public Long getSupplierNumber() {
         return supplierNumber;
     }
 
-    public void setSupplierNumber(String  supplierNumber) {
+    public void setSupplierNumber(Long supplierNumber) {
         this.supplierNumber = supplierNumber;
     }
 
-    public String  getSupplierAltNumber() {
+    public Long getSupplierAltNumber() {
         return supplierAltNumber;
     }
 
-    public void setSupplierAltNumber(String  supplierAltNumber) {
+    public void setSupplierAltNumber(Long supplierAltNumber) {
         this.supplierAltNumber = supplierAltNumber;
-    }
-
-    public int getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
     }
 
     @Override
     public String toString() {
-        return "SupplierEntity{" +
+        return "SupplierFromServer{" +
                 "supplierId=" + supplierId +
                 ", supplierName='" + supplierName + '\'' +
                 ", supplierAddress='" + supplierAddress + '\'' +
-                ", supplierNumber='" + supplierNumber + '\'' +
-                ", supplierAltNumber='" + supplierAltNumber + '\'' +
+                ", supplierNumber=" + supplierNumber +
+                ", supplierAltNumber=" + supplierAltNumber +
                 '}';
     }
 }

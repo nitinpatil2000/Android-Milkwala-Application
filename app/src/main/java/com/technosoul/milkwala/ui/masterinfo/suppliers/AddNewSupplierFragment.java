@@ -95,6 +95,7 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierNumber.requestFocus();
             return;
         }
+        Long supplierNo = Long.parseLong(supplierNumber);
 
 
         String supplierAltNumber = etSupplierAlternateNumber.getText().toString();
@@ -105,6 +106,7 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierAlternateNumber.requestFocus();
             return;
         }
+        Long supplierAlterNo = Long.parseLong(supplierAltNumber);
 
 //        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
 //
@@ -120,8 +122,8 @@ public class AddNewSupplierFragment extends Fragment {
         SupplierFromServer supplierFromServer = new SupplierFromServer();
         supplierFromServer.setSupplierName(supplierName);
         supplierFromServer.setSupplierAddress(supplierAddress);
-        supplierFromServer.setSupplierNumber(supplierNumber);
-        supplierFromServer.setSupplierAltNumber(supplierAltNumber);
+        supplierFromServer.setSupplierNumber(supplierNo);
+        supplierFromServer.setSupplierAltNumber(supplierAlterNo);
 
         Call<SupplierFromServer> call = supplierService.createSupplier(supplierFromServer);
         call.enqueue(new Callback<SupplierFromServer>() {

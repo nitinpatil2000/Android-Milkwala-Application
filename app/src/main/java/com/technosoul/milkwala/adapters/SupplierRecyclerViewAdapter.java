@@ -123,8 +123,8 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
                     Bundle bundle = new Bundle();
                     bundle.putString("supplierTxt", clickedItem.getSupplierName());
                     bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
-                    bundle.putString("supplierNumber", clickedItem.getSupplierNumber());
-                    bundle.putString("supplierAltNumber", clickedItem.getSupplierAltNumber());
+                    bundle.putString("supplierNumber", String.valueOf(clickedItem.getSupplierNumber()));
+                    bundle.putString("supplierAltNumber",String.valueOf(clickedItem.getSupplierAltNumber()));
 //
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER, supplierId,supplierName, bundle);
