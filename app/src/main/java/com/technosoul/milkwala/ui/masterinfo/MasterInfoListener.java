@@ -10,5 +10,5 @@ public interface MasterInfoListener {
     void addNewDeliveryPerson();
     void addNewCustomer();
     void onBackToPreviousScreen();
-    public void setActionBarTitle(String actionBarTitle);
+    void setActionBarTitle(String actionBarTitle);
 }

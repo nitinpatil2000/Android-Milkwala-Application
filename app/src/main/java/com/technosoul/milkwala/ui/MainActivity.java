@@ -26,6 +26,7 @@ import com.technosoul.milkwala.AdminDashboardFragment;
 import com.technosoul.milkwala.ProfileFragment;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
+import com.technosoul.milkwala.receiveProduct.ReceivedProductActivity;
 import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
 import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
@@ -135,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_stock) {
-                    loadFragment(new ReceivedProductFragment());
+//                    loadFragment(new ReceivedProductFragment());
+                    Intent iReceiveIntent = new Intent(MainActivity.this, ReceivedProductActivity.class);
+                    startActivity(iReceiveIntent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_distribution) {

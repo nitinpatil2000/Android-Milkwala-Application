@@ -185,8 +185,6 @@ Toolbar toolbar;
             SpannableString spannableString = new SpannableString(actionBarTitle);
             spannableString.setSpan(new ForegroundColorSpan(Color.WHITE),0, actionBarTitle.length(),0);
             actionBar.setTitle(spannableString);
-//            int titleColor = getResources().getColor(R.color.white);
-//            actionBar.setTitleTextColor(titleColor);
         }
     }
 

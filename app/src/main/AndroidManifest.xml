@@ -25,21 +25,22 @@
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.MainActivity"
             android:exported="true" />
-
-        <activity android:name=".ui.masterinfo.MasterInfoActivity"
+        <activity
+            android:name=".ui.masterinfo.MasterInfoActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".receiveProduct.ReceivedProductActivity"
+            android:exported="false" />
         <activity
             android:name=".todaydeliver.DeliveryActivity"
             android:exported="true" />

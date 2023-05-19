@@ -27,6 +27,7 @@ import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,6 +49,8 @@ public class ReceivedProductFragment extends Fragment {
     Button saveReceiveProduct;
     private int supplierId;
     EditText receiveProductAmount, receiveProductQty;
+
+    private MasterInfoListener masterInfoListener;
 
     public ReceivedProductFragment() {
 //        this.supplierId = supplierId;
@@ -160,6 +163,10 @@ public class ReceivedProductFragment extends Fragment {
                 }
             }
         });
+
+        if(getActivity() != null){
+            ((ReceivedProductActivity)getActivity()).setActionBarTitle("Today's Received Product");
+        }
         return view;
     }
 
@@ -173,5 +180,9 @@ public class ReceivedProductFragment extends Fragment {
             }
         }, 2022, 1, 15);
         dialog.show();
+    }
+
+    public void setListener(MasterInfoListener listener) {
+        this.masterInfoListener = listener;
     }
 }
