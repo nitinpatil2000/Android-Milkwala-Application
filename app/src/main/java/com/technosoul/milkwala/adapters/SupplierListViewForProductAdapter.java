@@ -14,12 +14,21 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductService;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<SupplierListViewForProductAdapter.ViewHolder> {
     private final OnItemSelected onItemSelected;
@@ -45,10 +54,36 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
         SupplierFromServer selectedSupplier = supplierFromServers.get(position);
         int supplierId = selectedSupplier.getSupplierId();
         holder.productTxt.setText(supplierFromServers.get(position).getSupplierName());
-        MyDbHelper myDbHelper = MyDbHelper.getDB(context);
-        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
-        int numCounterProducts = productDetailsList.size();
-        holder.productCounter.setText(String.format(context.getString(R.string.products_of_supplier), numCounterProducts));
+
+        //TODO SET THE PRODUCT COUNTER USING ROOM DATABASE.
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(context);
+//        ArrayList<ProductDetails> productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId)
+//        int numCounterProducts = productDetailsList.size();
+////        holder.productCounter.setText(String.format(context.getString(R.string.products_of_supplier), numCounterProducts));;
+
+        //TODO SET THE PRODUCT COUNTER USING SERVER.
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
+        ProductService productService = retrofit.create(ProductService.class);
+
+        Call<List<ProductFromServer>> getProductsBySupplierId = productService.getProductsBySupplierId(supplierId);
+        getProductsBySupplierId.enqueue(new Callback<List<ProductFromServer>>() {
+            @Override
+            public void onResponse(Call<List<ProductFromServer>> call, Response<List<ProductFromServer>> response) {
+                if (response.isSuccessful()) {
+                    List<ProductFromServer> supplierListFromServers = response.body();
+                    if (supplierListFromServers != null && !supplierListFromServers.isEmpty()) {
+                        int numCounterProducts = supplierListFromServers.size();
+                        holder.productCounter.setText(String.format(context.getString(R.string.products_of_supplier), numCounterProducts));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ProductFromServer>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     @Override
@@ -78,7 +113,7 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
                     int supplierId = selectedSupplier.getSupplierId();
                     String supplierName = selectedSupplier.getSupplierName();
                     if (onItemSelected != null) {
-                        onItemSelected.onItemClicked(Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST, supplierId,supplierName, null);
+                        onItemSelected.onItemClicked(Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST, supplierId, supplierName, null);
                     }
                 }
             });

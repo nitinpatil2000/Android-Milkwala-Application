@@ -60,7 +60,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
-                    android:text="8 Products"
+                    android:text="0 Products"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

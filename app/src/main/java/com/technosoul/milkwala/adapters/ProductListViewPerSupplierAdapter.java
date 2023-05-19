@@ -14,6 +14,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ import java.util.ArrayList;
 public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<ProductListViewPerSupplierAdapter.ViewHolder> {
     private final OnItemSelected onItemSelected;
     Context context;
-    ArrayList<ProductDetails> productDetails;
+    ArrayList<ProductFromServer> productFromServers;
 
-    public ProductListViewPerSupplierAdapter(Context context, ArrayList<ProductDetails> productDetails, OnItemSelected onItemSelected) {
+    public ProductListViewPerSupplierAdapter(Context context, ArrayList<ProductFromServer> productFromServers, OnItemSelected onItemSelected) {
         this.context = context;
-        this.productDetails = productDetails;
+        this.productFromServers = productFromServers;
         this.onItemSelected = onItemSelected;
     }
 
@@ -38,19 +39,19 @@ public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<Prod
 
     @Override
     public void onBindViewHolder(@NonNull ProductListViewPerSupplierAdapter.ViewHolder holder, int position) {
-        holder.productId = productDetails.get(position).getProductDetailsId();
-        holder.productItems.setText(productDetails.get(position).getProductDetailsName());
-        holder.productUnit.setText(productDetails.get(position).getProductDetailsUnit());
-        holder.productMrp.setText(productDetails.get(position).getProductDetailsMrp());
+        holder.productId = productFromServers.get(position).getProductId();
+        holder.productItems.setText(productFromServers.get(position).getProductName());
+        holder.productUnit.setText(productFromServers.get(position).getProductUnit());
+        holder.productMrp.setText(String.valueOf(productFromServers.get(position).getProductMrp()));
     }
 
     @Override
     public int getItemCount() {
-        return productDetails.size();
+        return productFromServers.size();
     }
 
-    public void filteredList(ArrayList<ProductDetails> filterProductDetails) {
-        productDetails = filterProductDetails;
+    public void filteredList(ArrayList<ProductFromServer> filterProductDetails) {
+        productFromServers = filterProductDetails;
         notifyDataSetChanged();
     }
 
@@ -71,16 +72,15 @@ public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<Prod
             productImg.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    ProductDetails clickedItem = productDetails.get(position);
-                    int productId = clickedItem.getProductDetailsId();
-                    String productDetailsName = clickedItem.getProductDetailsName();
+                    ProductFromServer clickedItem = productFromServers.get(position);
+                    int productId = clickedItem.getProductId();
+                    String productDetailsName = clickedItem.getProductName();
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_PRODUCT,
-                                productDetails.get(position).getProductDetailsId(), productDetailsName, null);
+                                productFromServers.get(position).getProductId(), productDetailsName, null);
                     }
                 }
             });
-
         }
     }
 }

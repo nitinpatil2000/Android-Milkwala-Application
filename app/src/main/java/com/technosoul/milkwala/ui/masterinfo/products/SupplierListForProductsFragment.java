@@ -110,7 +110,7 @@ public class SupplierListForProductsFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
+//                filter(editable.toString());
             }
         });
         if (getActivity() != null) {
@@ -120,15 +120,15 @@ public class SupplierListForProductsFragment extends Fragment {
     }
 
     private void filter(String text) {
-        ArrayList<SupplierFromServer> filterList = new ArrayList<>();
-        for (SupplierFromServer supplier : supplierFromServers) {
-            if (supplier.getSupplierName().toLowerCase().contains(text.toLowerCase())) {
-                filterList.add(supplier);
-            }
-        }
+//        ArrayList<SupplierFromServer> filterList = new ArrayList<>();
+//        for (SupplierFromServer supplier : supplierFromServers) {
+//            if (supplier.getSupplierName().toLowerCase().contains(text.toLowerCase())) {
+//                filterList.add(supplier);
+//            }
+//        }
         //check if the adapter is not null before calling filteredList method
-        if (supplierListViewForProductAdapter != null) {
-            supplierListViewForProductAdapter.filteredList(filterList);
-        }
+//        if (supplierListViewForProductAdapter != null) {
+//            supplierListViewForProductAdapter.filteredList(filterList);
+//        }
     }
 }

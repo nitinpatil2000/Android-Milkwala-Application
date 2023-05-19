@@ -88,6 +88,7 @@
 
     <string name="network_error">Network Error please try again later.</string>
     <string name="supplier_list_is_empty_in_product_list">Supplier list is empty.</string>
+    <string name="empty_product_list">Product list is empty.</string>
 
     <!--  Product strings  -->
     <string name="title_product_name">Product Name :</string>

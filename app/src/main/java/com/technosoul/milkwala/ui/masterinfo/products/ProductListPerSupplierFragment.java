@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,18 +18,27 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.ProductListViewPerSupplierAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ProductListPerSupplierFragment extends Fragment {
     private final int supplierId;
     private String supplierName;
     ProductListViewPerSupplierAdapter productListViewPerSupplierAdapter;
     RecyclerView productListPerSupplierRecyclerView;
-    ArrayList<ProductDetails> productDetailsList;
+//    ArrayList<ProductDetails> productDetailsList;
+    ArrayList<ProductFromServer>productFromServers;
     TextView addProductTxt;
     EditText searchProductDetails;
     private MasterInfoListener listener;
@@ -57,13 +67,42 @@ public class ProductListPerSupplierFragment extends Fragment {
         productListPerSupplierRecyclerView = view.findViewById(R.id.productDetailRecylerView);
         productListPerSupplierRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
+        ProductService productService = retrofit.create(ProductService.class);
 
-        for (int i = 0; i < productDetailsList.size(); i++) {
-            productListViewPerSupplierAdapter = new ProductListViewPerSupplierAdapter(getContext(), productDetailsList, onItemSelected);
-            productListPerSupplierRecyclerView.setAdapter(productListViewPerSupplierAdapter);
-        }
+        Call<List<ProductFromServer>> getProductsFromSupplier = productService.getProductsBySupplierId(supplierId);
+        getProductsFromSupplier.enqueue(new Callback<List<ProductFromServer>>() {
+            @Override
+            public void onResponse(Call<List<ProductFromServer>> call, Response<List<ProductFromServer>> response) {
+                if(response.isSuccessful()){
+                    List<ProductFromServer> productFromServers = response.body();
+                    if(productFromServers == null || productFromServers.isEmpty()){
+                        Toast.makeText(getContext(), R.string.empty_product_list, Toast.LENGTH_SHORT).show();
+                    }else{
+                        productListViewPerSupplierAdapter = new ProductListViewPerSupplierAdapter(getContext(), (ArrayList<ProductFromServer>) productFromServers, onItemSelected);
+                        productListPerSupplierRecyclerView.setAdapter(productListViewPerSupplierAdapter);
+                        productListPerSupplierRecyclerView.scheduleLayoutAnimation();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ProductFromServer>> call, Throwable t) {
+                t.printStackTrace();
+
+            }
+        });
+
+
+
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        productDetailsList = (ArrayList<ProductDetails>) myDbHelper.productDetailsDto().getProductBySupplierId(supplierId);
+//
+//        for (int i = 0; i < productDetailsList.size(); i++) {
+//            productListViewPerSupplierAdapter = new ProductListViewPerSupplierAdapter(getContext(), productDetailsList, onItemSelected);
+//            productListPerSupplierRecyclerView.setAdapter(productListViewPerSupplierAdapter);
+//        }
 
         addProductTxt = view.findViewById(R.id.addProductTxt);
         addProductTxt.setOnClickListener(view1 -> listener.addNewProduct(supplierId));
@@ -81,7 +120,7 @@ public class ProductListPerSupplierFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
+//                filter(editable.toString());
             }
         });
 
@@ -93,15 +132,14 @@ public class ProductListPerSupplierFragment extends Fragment {
     }
 
     private void filter(String text) {
-        ArrayList<ProductDetails> filterProductDetails = new ArrayList<>();
-        for (ProductDetails productDetails : productDetailsList) {
-            if (productDetails.getProductDetailsName().toLowerCase().contains(text.toLowerCase())) {
-                filterProductDetails.add(productDetails);
-            }
-        }
-
-        productListViewPerSupplierAdapter.filteredList(filterProductDetails);
+//        ArrayList<ProductFromServer> filterProductDetails = new ArrayList<>();
+//        for (ProductFromServer productDetails : productFromServers) {
+//            if (productDetails.getProductName().toLowerCase().contains(text.toLowerCase())) {
+//                filterProductDetails.add(productDetails);
+//            }
+//        }
+//
+//        productListViewPerSupplierAdapter.filteredList(filterProductDetails);
     }
-
 }
 

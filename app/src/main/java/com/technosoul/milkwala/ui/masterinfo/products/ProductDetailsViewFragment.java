@@ -17,8 +17,14 @@ import android.widget.Toast;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ProductDetailsViewFragment extends Fragment {
     TextView tvProductName;
@@ -27,16 +33,16 @@ public class ProductDetailsViewFragment extends Fragment {
     Button deleteNewProductBtn;
     String viewProductName;
     String viewProductUnit;
-    ProductDetails productDetails;
+    ProductFromServer productFromServer;
     TextView tvVendorRate;
     TextView tvSupplierRate;
-    private final int productDetailsId;
+    private final int productId;
     private String productDetailsName;
 
     private MasterInfoListener masterInfoListener;
 
-    public ProductDetailsViewFragment(int productDetailsId, String productDetailsName) {
-        this.productDetailsId = productDetailsId;
+    public ProductDetailsViewFragment(int productId, String productDetailsName) {
+        this.productId = productId;
         this.productDetailsName = productDetailsName;
         // Required empty public constructor
     }
@@ -51,8 +57,10 @@ public class ProductDetailsViewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_view_details, container, false);
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        productDetails = myDbHelper.productDetailsDto().getProductById(productDetailsId);
+
+
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        productDetails = myDbHelper.productDetailsDto().getProductById(productDetailsId);
 
         tvProductName = view.findViewById(R.id.tv_product_name);
         tvProductUnit = view.findViewById(R.id.tv_product_unit);
@@ -61,11 +69,39 @@ public class ProductDetailsViewFragment extends Fragment {
         tvVendorRate = view.findViewById(R.id.tv_Vendor_rate);
         deleteNewProductBtn = view.findViewById(R.id.btnDeleteProduct);
 
-        tvProductName.setText(viewProductName = productDetails.getProductDetailsName());
-        tvProductUnit.setText(viewProductUnit = productDetails.getProductDetailsUnit());
-        tvProductMrp.setText(productDetails.getProductDetailsMrp());
-        tvSupplierRate.setText(productDetails.getProductSupplierRate());
-        tvVendorRate.setText(productDetails.getProductVenderRate());
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
+        ProductService productService = retrofit.create(ProductService.class);
+        Call<ProductFromServer> getProductsFromProductId = productService.getProductsByProductId(productId);
+        getProductsFromProductId.enqueue(new Callback<ProductFromServer>() {
+            @Override
+            public void onResponse(Call<ProductFromServer> call, Response<ProductFromServer> response) {
+                if(response.isSuccessful()){
+                    ProductFromServer productFromServer = new ProductFromServer();
+                    if(productFromServer!= null) {
+                        tvProductName.setText(productFromServer.getProductName());
+                        tvProductUnit.setText(productFromServer.getProductUnit());
+                        tvProductMrp.setText(String.valueOf(productFromServer.getProductMrp()));
+                        tvSupplierRate.setText(String.valueOf(productFromServer.getProductSupplierRate()));
+                        tvVendorRate.setText(String.valueOf(productFromServer.getProductVendorRate()));
+                    }else{
+                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductFromServer> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+//        tvProductName.setText(viewProductName = productDetails.getProductDetailsName());
+//        tvProductUnit.setText(viewProductUnit = productDetails.getProductDetailsUnit());
+//        tvProductMrp.setText(productDetails.getProductDetailsMrp());
+//        tvSupplierRate.setText(productDetails.getProductSupplierRate());
+//        tvVendorRate.setText(productDetails.getProductVenderRate());
 
         deleteNewProductBtn.setOnClickListener(view1 -> {
             Button btnCancel;
@@ -92,7 +128,7 @@ public class ProductDetailsViewFragment extends Fragment {
             btnCancel.setOnClickListener(view11 -> dialog.dismiss());
 
             deleteBtn.setOnClickListener(view112 -> {
-                myDbHelper.productDetailsDto().deleteProductById(productDetailsId);
+//                myDbHelper.productDetailsDto().deleteProductById(productDetailsId);
                 Toast.makeText(getContext(), R.string.msg_delete_product_success, Toast.LENGTH_SHORT).show();
                 if (masterInfoListener != null) {
                     masterInfoListener.onBackToPreviousScreen();
