@@ -85,6 +85,8 @@
     <string name="msg_delete_supplier_confirmation">Are you sure to delete this supplier?</string>
     <string name="msg_delete_supplier_desc">Please Note - If you delete this supplier, then all the products and associated data will get removed.</string>
     <string name="msg_delete_supplier_success">Supplier deleted successfully.</string>
+    <string name="empty_supplier_list_message">Please Add A Supplier.\n To Add, please touch on the Add Button on Bottom.</string>
+
 
 
     <string name="network_error">Network Error please try again later.</string>
@@ -114,6 +116,8 @@
     <string name="err_empty_supplier_rate">Supplier rate should not be empty.</string>
     <string name="err_empty_vendor_rate">Vendor rate should not be empty.</string>
     <string name="msg_product_added_success">Product added successfully!</string>
+    <string name="empty_product_list_message">Please Add A Product.\n To Add, please touch on the Add Button on Bottom.</string>
+
 
     <!--  Delivery person strings  -->
     <string name="hint_delivery_name">Delivery person name</string>

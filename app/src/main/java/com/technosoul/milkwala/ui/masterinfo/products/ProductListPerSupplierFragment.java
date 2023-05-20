@@ -46,6 +46,7 @@ public class ProductListPerSupplierFragment extends Fragment {
     EditText searchProductDetails;
     private MasterInfoListener listener;
     private OnItemSelected onItemSelected;
+    TextView tvEmptyProductList;
 
 
     public ProductListPerSupplierFragment(int supplierId, String supplierName) {
@@ -67,6 +68,8 @@ public class ProductListPerSupplierFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_list_per_supplier, container, false);
 
+        tvEmptyProductList = view.findViewById(R.id.tv_empty_product_list);
+
         productListPerSupplierRecyclerView = view.findViewById(R.id.productDetailRecylerView);
         productListPerSupplierRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Animation slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.item_animation_fall_down);
@@ -85,11 +88,17 @@ public class ProductListPerSupplierFragment extends Fragment {
                     List<ProductFromServer> productFromServers = response.body();
                     if(productFromServers == null || productFromServers.isEmpty()){
                         Toast.makeText(getContext(), R.string.empty_product_list, Toast.LENGTH_SHORT).show();
+                        tvEmptyProductList.setVisibility(View.VISIBLE);
                     }else{
+                        tvEmptyProductList.setVisibility(View.GONE); // Show the empty text message
                         productListViewPerSupplierAdapter = new ProductListViewPerSupplierAdapter(getContext(), (ArrayList<ProductFromServer>) productFromServers, onItemSelected);
                         productListPerSupplierRecyclerView.setAdapter(productListViewPerSupplierAdapter);
                         productListPerSupplierRecyclerView.scheduleLayoutAnimation();
                     }
+                }else{
+                    Toast.makeText(getContext(), R.string.failed_get_product_data, Toast.LENGTH_SHORT).show();
+                    tvEmptyProductList.setVisibility(View.VISIBLE); // Show the empty text message if data retrieval failed
+
                 }
             }
 

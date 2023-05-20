@@ -77,8 +77,8 @@ public class ProductDetailsViewFragment extends Fragment {
             @Override
             public void onResponse(Call<ProductFromServer> call, Response<ProductFromServer> response) {
                 if(response.isSuccessful()){
-                    ProductFromServer productFromServer = new ProductFromServer();
-                    if(productFromServer!= null) {
+                    ProductFromServer productFromServer = response.body();
+                    if(productFromServer  != null) {
                         tvProductName.setText(productFromServer.getProductName());
                         tvProductUnit.setText(productFromServer.getProductUnit());
                         tvProductMrp.setText(String.valueOf(productFromServer.getProductMrp()));

@@ -73,6 +73,22 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_empty_product_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_product_list_message"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:gravity = "center"
+        app:layout_constraintBottom_toBottomOf="@+id/productDetailRecylerView"
+        app:layout_constraintEnd_toEndOf="@+id/productDetailRecylerView"
+        app:layout_constraintStart_toStartOf="@+id/productDetailRecylerView"
+        app:layout_constraintTop_toTopOf="@+id/productDetailRecylerView"
+        android:visibility="visible" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

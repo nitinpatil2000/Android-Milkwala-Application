@@ -156,37 +156,40 @@ public class AddNewProductFragment extends Fragment {
                     if (response.isSuccessful()) {
                         String productMessage = response.body();
 
+
                     } else {
                         Toast.makeText(getContext(), "Failed to add product. Error: " + response.errorBody().toString(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    // Log the request body
-                    Request request = call.request();
-                    try {
-                        Buffer buffer = new Buffer();
-                        request.body().writeTo(buffer);
-                        String requestBody = buffer.readUtf8();
-                        Log.d("API Request Body", requestBody);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        // Log the request body
+                        Request request = call.request();
+                        try {
+                            Buffer buffer = new Buffer();
+                            request.body().writeTo(buffer);
+                            String requestBody = buffer.readUtf8();
+                            Log.d("API Request Body", requestBody);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Toast.makeText(getContext(), "Failed to add product. Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Failed to add product. Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    if(listener != null){
+                        listener.onBackToPreviousScreen();
+                    }
 
                     // Log the request body
-                    Request request = call.request();
-                    try {
-                        Buffer buffer = new Buffer();
-                        request.body().writeTo(buffer);
-                        String requestBody = buffer.readUtf8();
-                        Log.d("API Request Body", requestBody);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    Request request = call.request();
+//                    try {
+//                        Buffer buffer = new Buffer();
+//                        request.body().writeTo(buffer);
+//                        String requestBody = buffer.readUtf8();
+//                        Log.d("API Request Body", requestBody);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
 

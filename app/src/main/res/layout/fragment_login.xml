@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text= "@string/app_title_part_2"
+            android:text="@string/app_title_part_2"
             android:textColor="@color/white"
             android:textSize="30sp"
             app:fontFamily="@font/berkshire_swash" />
@@ -52,7 +52,6 @@
             android:layout_margin="10dp"
             android:orientation="vertical">
 
-
             <EditText
                 android:id="@+id/signInEmail"
                 android:layout_width="match_parent"
@@ -62,7 +61,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:autofillHints="emailAddress"
-                android:background="@drawable/rectangular_design_curve"
+                android:background="@drawable/receive_design_curve"
                 android:hint="@string/str_email"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
@@ -90,8 +89,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/toolbar"
+                android:fontFamily="@font/ubuntu_light"
                 android:text="@string/str_login"
-                android:fontFamily = "@font/ubuntu_light"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

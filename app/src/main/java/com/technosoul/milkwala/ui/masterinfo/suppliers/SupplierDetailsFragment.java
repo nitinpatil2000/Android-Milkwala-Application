@@ -59,20 +59,47 @@ public class SupplierDetailsFragment extends Fragment {
         tvSupplierAltNumber = view.findViewById(R.id.supplier_alt_number);
         deleteSupplier = view.findViewById(R.id.deleteSupplier);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            suppName = bundle.getString("supplierTxt");
-            suppAddress = bundle.getString("supplierAddress");
-            suppNumber = bundle.getString("supplierNumber");
-            suppAltNumber = bundle.getString("supplierAltNumber");
-            tvSupplierName.setText(suppName);
-            tvSupplierAddress.setText(suppAddress);
-            tvSupplierNumber.setText(suppNumber);
-            if (suppAltNumber == null) {
-                suppAltNumber = "";
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
+        SupplierService supplierService = retrofit.create(SupplierService.class);
+
+        Call<SupplierFromServer> supplierFromServerCall = supplierService.getSupplierDetails(supplierId);
+        supplierFromServerCall.enqueue(new Callback<SupplierFromServer>() {
+            @Override
+            public void onResponse(Call<SupplierFromServer> call, Response<SupplierFromServer> response) {
+                if(response.isSuccessful()){
+                    SupplierFromServer supplierListFromServer = response.body();
+                    if(supplierListFromServer != null){
+                        tvSupplierName.setText(supplierListFromServer.getSupplierName());
+                        tvSupplierAddress.setText(supplierListFromServer.getSupplierAddress());
+                        tvSupplierNumber.setText(String.valueOf(supplierListFromServer.getSupplierNumber()));
+                        tvSupplierAltNumber.setText(String.valueOf(supplierListFromServer.getSupplierAltNumber()));
+                    }else{
+                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
-            tvSupplierAltNumber.setText(suppAltNumber);
-        }
+
+            @Override
+            public void onFailure(Call<SupplierFromServer> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            suppName = bundle.getString("supplierTxt");
+//            suppAddress = bundle.getString("supplierAddress");
+//            suppNumber = bundle.getString("supplierNumber");
+//            suppAltNumber = bundle.getString("supplierAltNumber");
+//            tvSupplierName.setText(suppName);
+//            tvSupplierAddress.setText(suppAddress);
+//            tvSupplierNumber.setText(suppNumber);
+//            if (suppAltNumber == null) {
+//                suppAltNumber = "";
+//            }
+//            tvSupplierAltNumber.setText(suppAltNumber);
+//        }
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 

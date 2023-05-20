@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -39,6 +40,7 @@ public class SupplierFragment extends Fragment {
     private ArrayList<SupplierFromServer> supplierListFromServer = new ArrayList<>();
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
+    TextView tvEmptySupplierList;
 
     public SupplierFragment() {
     }
@@ -48,6 +50,7 @@ public class SupplierFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_supplier, container, false);
 
         Button btnAddNewSupplier = view.findViewById(R.id.btn_add_new_supplier);
+        tvEmptySupplierList = view.findViewById(R.id.tv_empty_supplier_list);
 
         btnAddNewSupplier.setOnClickListener(view1 -> {
             if (masterInfoListener != null) {
@@ -89,6 +92,8 @@ public class SupplierFragment extends Fragment {
 //                    supplierListFromServer = (ArrayList<SupplierFromServer>) response.body();
                     if(supplierEntityList == null || supplierEntityList.isEmpty()){
                         Toast.makeText(getContext(), R.string.empty_supplier_list, Toast.LENGTH_SHORT).show();
+                        tvEmptySupplierList.setVisibility(View.VISIBLE); // Show the empty text message
+
                     }else{
 //                        MyDbHelper myDbHelper = MyDbHelper.getDB(getContext());
 //                        ArrayList<Supplier> supplierArrayList = new ArrayList<>();
@@ -100,12 +105,15 @@ public class SupplierFragment extends Fragment {
 //                                    supplier.getSupplierAltNumber()));
 //                        }
 //                        myDbHelper.supplierDao().addSupplier(supplierArrayList);
+                        tvEmptySupplierList.setVisibility(View.GONE); // Show the empty text message
                         SupplierRecyclerViewAdapter supplierRecyclerViewAdapter = new SupplierRecyclerViewAdapter(getContext(), (ArrayList<SupplierFromServer>) supplierEntityList,onItemSelected);
                         supplierRecyclerView.setAdapter(supplierRecyclerViewAdapter);
                         supplierRecyclerView.scheduleLayoutAnimation();
                     }
                 }else{
                     Toast.makeText(getContext(), R.string.failed_get_supplier_data, Toast.LENGTH_SHORT).show();
+                    tvEmptySupplierList.setVisibility(View.VISIBLE); // Show the empty text message if data retrieval failed
+
                 }
             }
 

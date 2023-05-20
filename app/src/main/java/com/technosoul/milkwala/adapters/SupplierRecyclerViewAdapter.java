@@ -100,38 +100,10 @@ public class SupplierRecyclerViewAdapter extends RecyclerView.Adapter<SupplierRe
                     SupplierFromServer clickedItem = supplierEntityList.get(position);
                     int supplierId = clickedItem.getSupplierId();
                     String supplierName =  clickedItem.getSupplierName();
-//                    SupplierRetrofitService supplierRetrofitService = new SupplierRetrofitService();
-//                    Retrofit retrofit = supplierRetrofitService.getRetrofit();
-//                    SupplierService supplierService = retrofit.create(SupplierService.class);
-//                    Call<SupplierFromServer> call = supplierService.getSupplierDetails(supplierId);
-//                    call.enqueue(new Callback<SupplierFromServer>() {
-//                        @Override
-//                        public void onResponse(Call<SupplierFromServer> call, Response<SupplierFromServer> response) {
-//                            if(response.isSuccessful()){
-//                                SupplierFromServer getSupplierDetails = response.body();
-//                                if(getSupplierDetails != null){
-//
-//                                }
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<SupplierFromServer> call, Throwable t) {
-//
-//                        }
-//                    });
-                    Bundle bundle = new Bundle();
-                    bundle.putString("supplierTxt", clickedItem.getSupplierName());
-                    bundle.putString("supplierAddress", clickedItem.getSupplierAddress());
-                    bundle.putString("supplierNumber", String.valueOf(clickedItem.getSupplierNumber()));
-                    bundle.putString("supplierAltNumber",String.valueOf(clickedItem.getSupplierAltNumber()));
-//
                     if (onItemSelected != null) {
-                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER, supplierId,supplierName, bundle);
+                        onItemSelected.onItemClicked(Constants.SELECTED_TYPE_SUPPLIER,
+                                supplierEntityList.get(position).getSupplierId(), supplierName, null);
                     }
-
-//                    ((MasterInfoActivity)context).getSupportActionBar().setTitle(clickedItem.getSupplierName());
-
                 }
             });
         }

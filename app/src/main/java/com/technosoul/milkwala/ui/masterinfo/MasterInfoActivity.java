@@ -137,11 +137,11 @@ Toolbar toolbar;
 
 
     @Override
-    public void onItemClicked(int type, int id,String actionBarTitle, Bundle bundle) {
+    public void onItemClicked(int type, int id, String actionBarTitle, Bundle bundle) {
         switch (type) {
             case Constants.SELECTED_TYPE_SUPPLIER:
                 SupplierDetailsFragment supplierDetailsFragment = new SupplierDetailsFragment(id, actionBarTitle);
-                supplierDetailsFragment.setArguments(bundle);
+//                supplierDetailsFragment.setArguments(bundle);
                 supplierDetailsFragment.setListener(this);
                 loadFragment(supplierDetailsFragment);
                 break;
@@ -196,5 +196,7 @@ Toolbar toolbar;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
