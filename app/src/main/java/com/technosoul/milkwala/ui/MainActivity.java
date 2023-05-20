@@ -35,66 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private int supplieId;
     boolean showBackButton = false;
 
-
-
-    //set the title in the activity
-//    public void setActionBarTitle(String actionBarTitle) {
-//        if (!TextUtils.isEmpty(actionBarTitle) && getSupportActionBar() != null) {
-//            getSupportActionBar().setTitle(actionBarTitle);
-//
-//
-////            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            if (true) {
-////                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-////                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//                navigationView.setVisibility(View.GONE);
-////                getSupportFragmentManager().popBackStack();
-//            } else {
-//                onBackPressed();
-////                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-////                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
-//            }
-//
-//        }
-//    }
-
-    //option menu
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        new MenuInflater(this).inflate(R.menu.option_menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        int itemId = item.getItemId();
-//
-//        if (itemId == R.id.menu_master) {
-//            MasterInfoFragment homeFragment = new MasterInfoFragment();
-//            FragmentManager fm = getSupportFragmentManager();
-//            FragmentTransaction ft = fm.beginTransaction();
-//            ft.add(R.id.container, homeFragment);
-//            ft.commit();
-//
-//        } else if (itemId == R.id.menu_stock) {
-//            Toast.makeText(this, "stock menu", Toast.LENGTH_SHORT).show();
-//        } else if (itemId == android.R.id.home) {
-////            getSupportFragmentManager().popBackStack();
-//            super.onBackPressed();
-//            return true;
-//        } else if (itemId == R.id.menu_distribution){
-//            Toast.makeText(this, "distribution menu", Toast.LENGTH_SHORT).show();
-//        } else if(itemId == R.id.menu_profile){
-//            Toast.makeText(this, "profile menu", Toast.LENGTH_SHORT).show();
-//        } else if(itemId == R.id.menu_master){
-//            Toast.makeText(this, "master menu", Toast.LENGTH_SHORT).show();
-//        } else{
-//            Toast.makeText(this, "About menu", Toast.LENGTH_SHORT).show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,9 +56,11 @@ public class MainActivity extends AppCompatActivity {
         loadNewFragment(new AdminDashboardFragment());
 
         //after click the menu item
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
 
                 int id = item.getItemId();
                 if (id == R.id.menu_dashboard) {

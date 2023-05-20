@@ -1,86 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/toolbar"
     android:orientation="vertical"
     tools:context=".todaydeliver.TodayDeliverFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:weightSum="4">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="11dp"
-            android:layout_weight="1."
-            android:text="Select Customer :"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/deliverCustomerSpinner"
-            android:layout_width="0dp"
-            android:layout_height="43dp"
-            android:layout_margin="10dp"
-            android:layout_weight="3"
-            android:background="@android:drawable/btn_dropdown" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/black" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
+        android:background="@drawable/dashboard_design"
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/addProductRecyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
-            android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@id/addProductsInCustomer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="11dp"
+                android:layout_weight="1."
+                android:text="Select Customer :"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/deliverCustomerSpinner"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_margin="10dp"
+                android:layout_weight="3"
+                android:background="@android:drawable/btn_dropdown" />
+        </LinearLayout>
 
         <View
-            android:id="@+id/btnAboveViewLine"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/addProductRecyclerView" />
+            android:layout_height="2dp"
+            android:background="@color/black" />
 
-        <Button
-            android:id="@+id/addProductsInCustomer"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/button_background_color"
-            android:gravity="center"
-            android:text="Add"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/addProductRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toTopOf="@id/addProductsInCustomer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/btnAboveViewLine"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/addProductRecyclerView" />
 
-
-
+            <Button
+                android:id="@+id/addProductsInCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/button_background_color"
+                android:gravity="center"
+                android:text="Add"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </LinearLayout>

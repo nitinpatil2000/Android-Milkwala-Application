@@ -207,4 +207,8 @@
     <string name="err_max_digits_cust_contact_no2">Maximum 10 digits allowed for the customer contact Alter number</string>
     <string name="err_max_digits_delivery_mobile_no">Maximum 10 digits allowed for the delivery mobile number</string>
     <string name="err_max_digits_delivery_alter_no">Maximum 10 digits allowed for the delivery mobile Alter number</string>
+
+
+
+
 </resources>

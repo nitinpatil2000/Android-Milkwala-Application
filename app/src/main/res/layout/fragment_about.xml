@@ -173,7 +173,8 @@
                 android:text="About us"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="60sp" />
+                android:textSize="60sp"
+                app:fontFamily="@font/berkshire_swash" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -181,7 +182,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/contact"
+                app:fontFamily="@font/ubuntu_light"
+            android:text="@string/contact"
                 android:textAlignment="viewStart"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>

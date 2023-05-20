@@ -1,5 +1,7 @@
 package com.technosoul.milkwala;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +24,11 @@ import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import ir.mahozad.android.PieChart;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +40,8 @@ public class AdminDashboardFragment extends Fragment {
     TextView totalSuppliers;
     TextView todayTotalWaste;
     TextView todayTotalSale;
+
+    private PieChart pieChart;
 
     public AdminDashboardFragment() {
         // Required empty public constructor
@@ -100,7 +107,8 @@ public class AdminDashboardFragment extends Fragment {
 
 
 
-//        PieChartView pieChartView = view.findViewById(R.id.pieChart);
+         pieChart = view.findViewById(R.id.pie_chart);
+
 //        List<SliceValue> pieData = new ArrayList<>();
 
 //        pieData.add(new SliceValue(15, Color.BLUE));
@@ -111,18 +119,46 @@ public class AdminDashboardFragment extends Fragment {
 //        PieChartData pieChartData = new PieChartData(pieData);
 //        pieChartView.setPieChartData(pieChartData);
 
+//        List<PieChart.Slice> slices = new ArrayList<>();
+//        slices.add(new PieChart.Slice(0.2f, Color.BLUE));
+//        slices.add(new PieChart.Slice(0.4f, Color.MAGENTA));
+//        slices.add(new PieChart.Slice(0.3f, Color.YELLOW));
+//        slices.add(new PieChart.Slice(0.1f, Color.CYAN));
+//        pieChart.setSlices(slices);
+
+// Assuming PieChartView is called from another method or class
+//        public void PieChartView() {
+//            ViewModifier modifier = Modifier.fillMaxSize();
+//            AndroidViewFactory factory = new AndroidViewFactory() {
+//                @Override
+//                public View create(Context context) {
+//                    PieChart pieChart = new PieChart(context);
+//                    List<PieChart.Slice> slices = new ArrayList<>();
+//                    slices.add(new PieChart.Slice(0.2f, Color.BLUE));
+//                    slices.add(new PieChart.Slice(0.4f, Color.MAGENTA));
+//                    slices.add(new PieChart.Slice(0.3f, Color.YELLOW));
+//                    slices.add(new PieChart.Slice(0.1f, Color.CYAN));
+//                    pieChart.setSlices(slices);
+//                    return pieChart;
+//                }
+//            };
+//            AndroidViewUpdate<LinearLayout> update = new AndroidViewUpdate<LinearLayout>() {
+//                @Override
+//                public void update(PieChart view) {
+//                    // View's been inflated or state read in this block has been updated
+//                    // Add logic here if necessary
+//                }
+//            };
+//            AndroidView<LinearLayout, PieChart> androidView = new AndroidView<>(modifier, factory, update);
+//        }
+
 //        TODO SET THE TITLE
         ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
         if(actionBar != null) {
             actionBar.setTitle("DashBoard");
         }
 
-        // Apply animations to the fields
-//        applyAnimation(totalCustomers, R.anim.slide_in_left);
-//        applyAnimation(totalProducts, R.anim.slide_out_right);
-//        applyAnimation(totalSuppliers, R.anim.slide_in_left);
-//        applyAnimation(todayTotalSale, R.anim.slide_out_right);
-//        applyAnimation(todayTotalWaste, R.anim.slide_in_left);
+
         
         return view;
     }

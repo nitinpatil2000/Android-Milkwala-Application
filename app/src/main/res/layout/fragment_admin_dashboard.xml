@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardColor"
+    android:background="#3F51B5"
     android:fillViewport="true"
     tools:context=".AdminDashboardFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/dashboard_design"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -21,6 +22,7 @@
             app:cardElevation="10dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,11 +46,18 @@
                     android:orientation="horizontal"
                     android:weightSum="4">
 
+                    <ir.mahozad.android.PieChart
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:id="@+id/pie_chart"
+                        android:layout_weight="2.5"
+                        android:padding="5dp"/>
+
                     <RadioGroup
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1.5">
 
@@ -81,14 +90,6 @@
                             android:textSize="18sp" />
 
                     </RadioGroup>
-
-                    <!--                    <lecho.lib.hellocharts.view.PieChartView-->
-                    <!--                        android:id="@+id/pieChart"-->
-                    <!--                        android:layout_width="0dp"-->
-                    <!--                        android:layout_height="200dp"-->
-                    <!--                        android:layout_weight="2.5"-->
-                    <!--                        android:padding="5dp" />-->
-
                 </LinearLayout>
 
             </LinearLayout>
