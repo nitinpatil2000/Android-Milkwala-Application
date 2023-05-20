@@ -80,11 +80,19 @@ public class AddNewDeliverPersonFragment extends Fragment {
             if (!Patterns.PHONE.matcher(deliveryContactNo).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_mobile_number, Toast.LENGTH_SHORT).show();
                 return;
+            }else if (deliveryContactNo.length() > 10) {
+                Toast.makeText(getContext(), R.string.err_max_digits_delivery_mobile_no, Toast.LENGTH_LONG).show();
+                etDeliveryPersonMobileNo.requestFocus();
+                return;
             }
 
             String deliveryAlterNo = etDeliveryPersonAlternateNo.getText().toString();
             if (!deliveryAlterNo.isEmpty() && !Patterns.PHONE.matcher(deliveryContactNo).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_alternate_number, Toast.LENGTH_SHORT).show();
+                return;
+            }else if (deliveryAlterNo.length() > 10) {
+                Toast.makeText(getContext(), R.string.err_max_digits_delivery_alter_no, Toast.LENGTH_LONG).show();
+                etDeliveryPersonAlternateNo.requestFocus();
                 return;
             }
 

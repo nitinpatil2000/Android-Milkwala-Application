@@ -24,24 +24,15 @@ public class Customer {
     private String customerCity;
 
     @ColumnInfo(name = "customer_number")
-    private String customerNumber;
+    private Double customerNumber;
 
     @ColumnInfo(name = "customer_alter_no")
-    private String customerAlterNo;
+    private Double customerAlterNo;
 
-    public Customer(int customerId, String customerName, String customerAddress, String customerNumber, String customerCity) {
-        this.customerId = customerId;
+    public Customer(String customerName, String customerAddress, String customerCity, Double customerNumber, Double customerAlterNo) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerCity = customerCity;
-        this.customerNumber = customerNumber;
-    }
-
-    @Ignore
-    public Customer(String customerName, String customerAddress, String customerCity, String customerNumber, String customerAlterNo) {
-        this.customerName = customerName;
-        this.customerCity = customerCity;
-        this.customerAddress = customerAddress;
         this.customerNumber = customerNumber;
         this.customerAlterNo = customerAlterNo;
     }
@@ -78,19 +69,31 @@ public class Customer {
         this.customerCity = customerCity;
     }
 
-    public String getCustomerNumber() {
+    public Double getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(String customerNumber) {
+    public void setCustomerNumber(Double customerNumber) {
         this.customerNumber = customerNumber;
     }
 
-    public String getCustomerAlterNo() {
+    public Double getCustomerAlterNo() {
         return customerAlterNo;
     }
 
-    public void setCustomerAlterNo(String customerAlterNo) {
+    public void setCustomerAlterNo(Double customerAlterNo) {
         this.customerAlterNo = customerAlterNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", customerCity='" + customerCity + '\'' +
+                ", customerNumber=" + customerNumber +
+                ", customerAlterNo=" + customerAlterNo +
+                '}';
     }
 }

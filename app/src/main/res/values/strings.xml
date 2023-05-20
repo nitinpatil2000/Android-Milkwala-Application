@@ -88,7 +88,6 @@
     <string name="empty_supplier_list_message">Please Add A Supplier.\n To Add, please touch on the Add Button on Bottom.</string>
 
 
-
     <string name="network_error">Network Error please try again later.</string>
     <string name="supplier_list_is_empty_in_product_list">Supplier list is empty.</string>
     <string name="empty_product_list">Product list is empty.</string>
@@ -112,6 +111,7 @@
     <string name="err_empty_product_name">Product name should not be empty.</string>
     <string name="err_min_length_product_name">Product name should be minimum of 3 characters</string>
     <string name="err_empty_product_mrp">Product MRP should not be empty.</string>
+    <string name="no_product_found">No Product Found</string>
     <string name="err_empty_unit">Please select the unit from the dropdown list.</string>
     <string name="err_empty_supplier_rate">Supplier rate should not be empty.</string>
     <string name="err_empty_vendor_rate">Vendor rate should not be empty.</string>
@@ -200,4 +200,11 @@
     <string name="received_total">1000</string>
     <string name="error_message_for_login">Please Enter Correct EmailId and Password !!</string>
     <string name="error_text">Error</string>
+
+    <string name="err_max_digits_supplier_no">Maximum 10 digits allowed for the supplier number</string>
+    <string name="err_max_digits_supplier_alt_no">Maximum 10 digits allowed for the supplier Alter number</string>
+    <string name="err_max_digits_cust_contact_no1">Maximum 10 digits allowed for the customer contact number</string>
+    <string name="err_max_digits_cust_contact_no2">Maximum 10 digits allowed for the customer contact Alter number</string>
+    <string name="err_max_digits_delivery_mobile_no">Maximum 10 digits allowed for the delivery mobile number</string>
+    <string name="err_max_digits_delivery_alter_no">Maximum 10 digits allowed for the delivery mobile Alter number</string>
 </resources>

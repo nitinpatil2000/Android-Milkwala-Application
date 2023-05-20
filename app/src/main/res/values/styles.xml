@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="masterInfoTextviewTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="masterInfoTextViewSubTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="commonInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/edit_design</item>
+        <item name="android:inputType">text</item>>
+        <item name="android:maxLines">1</item>>
+        <item name="android:padding">8dp</item>>
+        <item name="android:textColor">@color/black</item>>
+        <item name="android:textSize">15sp</item>>
+    </style>
+
+    <style name="lineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">3dp</item>
+        <item name="android:layout_marginBottom">10dp</item>>
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="commonButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:backgroundTint">@color/button_background_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="commonTextViewLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="commonTextViewValue" parent="commonTextViewLabel">
+        <item name="android:background">@drawable/edit_design</item>>
+        <item name="android:padding">8dp</item>>
+    </style>
+</resources>

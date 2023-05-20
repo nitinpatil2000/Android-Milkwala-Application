@@ -85,15 +85,26 @@ public class AddNewCustomerFragment extends Fragment {
             if (!Patterns.PHONE.matcher(customerContact1).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_mobile_number, Toast.LENGTH_SHORT).show();
                 return;
+            }else if (customerContact1.length() > 10) {
+                Toast.makeText(getContext(), R.string.err_max_digits_cust_contact_no1, Toast.LENGTH_LONG).show();
+                etCustomerContact1.requestFocus();
+                return;
             }
+            double customerContactNo = Double.parseDouble(customerContact1);
+
 
             String customerContact2 = etCustomerContact2.getText().toString();
             if (!customerContact2.isEmpty() && !Patterns.PHONE.matcher(customerContact2).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_alternate_number, Toast.LENGTH_SHORT).show();
                 return;
+            }else if (customerContact2.length() > 10) {
+                Toast.makeText(getContext(), R.string.err_max_digits_cust_contact_no2, Toast.LENGTH_LONG).show();
+                etCustomerContact2.requestFocus();
+                return;
             }
+            double customerContactAltNo = Double.parseDouble(customerContact2);
 
-            myDbHelper.customerDao().addCustomer(new Customer(customerName, customerAddress, customerCity, customerContact1, customerContact2));
+            myDbHelper.customerDao().addCustomer(new Customer(customerName, customerAddress, customerCity, customerContactNo, customerContactAltNo));
 
             Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
 

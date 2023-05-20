@@ -127,10 +127,6 @@ public class SupplierDetailsFragment extends Fragment {
             msgDeleteSupplier.setText(R.string.msg_delete_supplier_desc);
 
             btnCancelDeleteSupplier.setOnClickListener(view1 -> dialog.dismiss());
-
-
-
-
             btnDeleteSupplier.setOnClickListener(v -> {
                 myDbHelper.supplierDao().deleteById(supplierId);
                 Toast.makeText(getContext(), R.string.msg_delete_supplier_success, Toast.LENGTH_SHORT).show();
@@ -163,7 +159,7 @@ public class SupplierDetailsFragment extends Fragment {
                         listener.onBackToPreviousScreen();
                     }
                 }else{
-                    Toast.makeText(getContext(), "Supplier Not Found ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),  R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
                 }
             }
 

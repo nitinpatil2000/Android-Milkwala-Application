@@ -94,6 +94,10 @@ public class AddNewSupplierFragment extends Fragment {
             Toast.makeText(getContext(), R.string.err_invalid_mobile_number, Toast.LENGTH_LONG).show();
             etSupplierNumber.requestFocus();
             return;
+        }else if (supplierNumber.length() > 10) {
+            Toast.makeText(getContext(), R.string.err_max_digits_supplier_no, Toast.LENGTH_LONG).show();
+            etSupplierNumber.requestFocus();
+            return;
         }
         Long supplierNo = Long.parseLong(supplierNumber);
 
@@ -105,15 +109,16 @@ public class AddNewSupplierFragment extends Fragment {
             Toast.makeText(getContext(), R.string.err_invalid_alternate_number, Toast.LENGTH_LONG).show();
             etSupplierAlternateNumber.requestFocus();
             return;
+        }else if (supplierAltNumber.length() > 10) {
+            Toast.makeText(getContext(), R.string.err_max_digits_supplier_alt_no, Toast.LENGTH_LONG).show();
+            etSupplierAlternateNumber.requestFocus();
+            return;
         }
         Long supplierAlterNo = Long.parseLong(supplierAltNumber);
 
 //        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
-//
 //        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
 //
-
-
         ApiRetrofitService retrofitService = new ApiRetrofitService();
         Retrofit retrofit = retrofitService.getRetrofit();
         SupplierService supplierService = retrofit.create(SupplierService.class);

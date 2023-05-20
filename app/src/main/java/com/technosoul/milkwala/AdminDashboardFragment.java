@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ public class AdminDashboardFragment extends Fragment {
     TextView totalCustomers;
     TextView totalProducts;
     TextView totalSuppliers;
+    TextView todayTotalWaste;
+    TextView todayTotalSale;
 
     public AdminDashboardFragment() {
         // Required empty public constructor
@@ -45,6 +49,8 @@ public class AdminDashboardFragment extends Fragment {
         totalSuppliers = view.findViewById(R.id.totalSuppliers);
         totalCustomers = view.findViewById(R.id.totalCustomers);
         totalProducts = view.findViewById(R.id.totalProducts);
+        todayTotalSale = view.findViewById(R.id.today_total_sale);
+        todayTotalWaste = view.findViewById(R.id.today_total_waste);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 
@@ -111,7 +117,18 @@ public class AdminDashboardFragment extends Fragment {
             actionBar.setTitle("DashBoard");
         }
 
-
+        // Apply animations to the fields
+//        applyAnimation(totalCustomers, R.anim.slide_in_left);
+//        applyAnimation(totalProducts, R.anim.slide_out_right);
+//        applyAnimation(totalSuppliers, R.anim.slide_in_left);
+//        applyAnimation(todayTotalSale, R.anim.slide_out_right);
+//        applyAnimation(todayTotalWaste, R.anim.slide_in_left);
+        
         return view;
     }
+
+//    private void applyAnimation(TextView textView, int animationId) {
+//        Animation animation = AnimationUtils.loadAnimation(getActivity(), animationId);
+//        textView.setAnimation(animation);
+//    }
 }

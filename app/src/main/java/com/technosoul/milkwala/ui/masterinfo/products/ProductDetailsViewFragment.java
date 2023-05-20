@@ -21,6 +21,7 @@ import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,7 +86,7 @@ public class ProductDetailsViewFragment extends Fragment {
                         tvSupplierRate.setText(String.valueOf(productFromServer.getProductSupplierRate()));
                         tvVendorRate.setText(String.valueOf(productFromServer.getProductVendorRate()));
                     }else{
-                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.failed_get_product_data, Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -97,11 +98,7 @@ public class ProductDetailsViewFragment extends Fragment {
             }
         });
 
-//        tvProductName.setText(viewProductName = productDetails.getProductDetailsName());
-//        tvProductUnit.setText(viewProductUnit = productDetails.getProductDetailsUnit());
-//        tvProductMrp.setText(productDetails.getProductDetailsMrp());
-//        tvSupplierRate.setText(productDetails.getProductSupplierRate());
-//        tvVendorRate.setText(productDetails.getProductVenderRate());
+
 
         deleteNewProductBtn.setOnClickListener(view1 -> {
             Button btnCancel;
@@ -129,10 +126,30 @@ public class ProductDetailsViewFragment extends Fragment {
 
             deleteBtn.setOnClickListener(view112 -> {
 //                myDbHelper.productDetailsDto().deleteProductById(productDetailsId);
-                Toast.makeText(getContext(), R.string.msg_delete_product_success, Toast.LENGTH_SHORT).show();
-                if (masterInfoListener != null) {
-                    masterInfoListener.onBackToPreviousScreen();
-                }
+//                Toast.makeText(getContext(), R.string.msg_delete_product_success, Toast.LENGTH_SHORT).show();
+//                if (masterInfoListener != null) {
+//                    masterInfoListener.onBackToPreviousScreen();
+//                }
+                Call<ResponseBody> deleteProductById = productService.deleteProduct(productId);
+                deleteProductById.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getContext(), R.string.msg_delete_product_success, Toast.LENGTH_SHORT).show();
+                            if (masterInfoListener != null) {
+                                masterInfoListener.onBackToPreviousScreen();
+                            }
+                        }else{
+                            Toast.makeText(getContext(),R.string.no_product_found, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
+                    }
+                });
                 dialog.dismiss();
             });
             dialog.show();

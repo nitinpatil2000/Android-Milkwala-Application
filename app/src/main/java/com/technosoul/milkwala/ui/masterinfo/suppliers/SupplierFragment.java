@@ -64,11 +64,7 @@ public class SupplierFragment extends Fragment {
         Animation slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.item_animation_fall_down);
         LayoutAnimationController animationController = new LayoutAnimationController(slideInAnimation);
         supplierRecyclerView.setLayoutAnimation(animationController);
-//        LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.item_animation_fall_down);
-//        supplierRecyclerView.setLayoutAnimation(animationController);
-
 //        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-
 //        supplierListFromServer = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
 //        if (supplierListFromServer == null || supplierListFromServer.size() == 0) {
 //            Toast.makeText(getContext(), R.string.empty_supplier_list, Toast.LENGTH_SHORT).show();
