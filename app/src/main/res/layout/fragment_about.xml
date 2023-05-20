@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/toolbar"
     android:orientation="vertical"
-    tools:context=".AboutFragment">
+    tools:context=".aboutscreen.AboutFragment">
 
     <!--    <com.airbnb.lottie.LottieAnimationView-->
     <!--        android:id="@+id/signin_image_view"-->

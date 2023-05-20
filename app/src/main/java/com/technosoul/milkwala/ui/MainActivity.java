@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.MenuItemHoverListener;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -21,16 +17,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
-import com.technosoul.milkwala.AboutFragment;
+import com.technosoul.milkwala.aboutscreen.AboutAppActivity;
 import com.technosoul.milkwala.AdminDashboardFragment;
-import com.technosoul.milkwala.ProfileFragment;
+import com.technosoul.milkwala.myprofile.MyProfileActivity;
+import com.technosoul.milkwala.myprofile.ProfileFragment;
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
+import com.technosoul.milkwala.customerorder.CustomerActivity;
 import com.technosoul.milkwala.receiveProduct.ReceivedProductActivity;
-import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
 import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
-import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -136,17 +131,18 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_stock) {
-//                    loadFragment(new ReceivedProductFragment());
                     Intent iReceiveIntent = new Intent(MainActivity.this, ReceivedProductActivity.class);
                     startActivity(iReceiveIntent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_distribution) {
-                    loadFragment(new CustomerOrderFragment());
+                    Intent iCustomerIntent = new Intent(MainActivity.this, CustomerActivity.class);
+                    startActivity(iCustomerIntent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_profile) {
-                    loadFragment(new ProfileFragment());
+                    Intent iMyProfile = new Intent(MainActivity.this, MyProfileActivity.class);
+                    startActivity(iMyProfile);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_log_out) {
@@ -158,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent iAuth = new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(iAuth);
                 } else {
-                    loadFragment(new AboutFragment());
+                    Intent iAboutIntent = new Intent(MainActivity.this, AboutAppActivity.class);
+                    startActivity(iAboutIntent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 }

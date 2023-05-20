@@ -1,4 +1,4 @@
-package com.technosoul.milkwala;
+package com.technosoul.milkwala.aboutscreen;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 
 public class AboutFragment extends Fragment {
@@ -27,9 +28,10 @@ public class AboutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-        //set the title in fragment
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("About MilkWala");
+        //TODO SET THE TITLE
+        if(getActivity()!= null){
+            ((AboutAppActivity)getActivity()).setActionBarTitle("About Milkwala");
+        }
 
         hyperlink = view.findViewById(R.id.hyperlink);
         hyperlink.setMovementMethod(LinkMovementMethod.getInstance());

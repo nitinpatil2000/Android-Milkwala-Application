@@ -1,4 +1,4 @@
-package com.technosoul.milkwala;
+package com.technosoul.milkwala.myprofile;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.technosoul.milkwala.R;
 
 public class ProfileFragment extends Fragment {
     private final int GALLERY_REQ_CODE = 100;
@@ -43,9 +45,11 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        //set the title in fragment
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle("<UserName>'s Profile");
+        //TODO set the title in fragment
+        if(getActivity() != null){
+            ((MyProfileActivity)getActivity()).setActionBarTitle("<Username>'s Profile");
+        }
+
 
 
         return view;

@@ -32,6 +32,7 @@ import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.db.Supplier;
+import com.technosoul.milkwala.receiveProduct.ReceivedProductActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -231,6 +232,10 @@ public class CustomerOrderFragment extends Fragment {
                 openDialog();
             }
         });
+
+        if(getActivity() != null){
+            ((CustomerActivity)getActivity()).setActionBarTitle("Today's Customer Order");
+        }
 
         return view;
     }

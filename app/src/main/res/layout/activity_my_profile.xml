@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".receiveProduct.ReceivedProductActivity">
+    tools:context=".myprofile.MyProfileActivity">
 
     <include layout="@layout/app_bar"
         android:id="@+id/master_info_appbar"
@@ -18,7 +18,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/customer_order_container"
+        android:id="@+id/my_profile_container"
         app:layout_constraintTop_toBottomOf="@id/master_info_appbar"/>
 
 

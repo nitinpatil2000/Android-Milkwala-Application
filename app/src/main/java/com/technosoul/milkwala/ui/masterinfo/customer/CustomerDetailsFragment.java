@@ -53,7 +53,7 @@ public class CustomerDetailsFragment extends Fragment {
         tvTitleCustomer.setText(getString(R.string.title_customer_details, customer.getCustomerName()));
         tvCustomerAdd.setText(customer.getCustomerAddress());
         tvCustomerCity.setText(customer.getCustomerCity());
-        tvCustomerNo.setText(customer.getCustomerNumber());
+        tvCustomerNo.setText(String.valueOf(customer.getCustomerNumber()));
 
         deleteCustomerBtn.setOnClickListener(view1 -> {
             Button btnCancel;

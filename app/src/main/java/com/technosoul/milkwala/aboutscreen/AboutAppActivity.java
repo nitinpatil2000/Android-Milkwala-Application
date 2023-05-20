@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.customerorder;
+package com.technosoul.milkwala.aboutscreen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,15 +14,15 @@ import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
+import com.technosoul.milkwala.customerorder.CustomerOrderFragment;
 
-public class CustomerActivity extends AppCompatActivity {
+public class AboutAppActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
+        setContentView(R.layout.activity_about_app);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().show();
@@ -32,14 +32,14 @@ public class CustomerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        loadFragment(new CustomerOrderFragment());
+        loadFragment(new AboutFragment());
 
     }
 
-    private void loadFragment(CustomerOrderFragment customerOrderFragment) {
+    private void loadFragment(AboutFragment aboutFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.customer_order_container, customerOrderFragment);
+        fragmentTransaction.add(R.id.about_application_container, aboutFragment);
         fragmentTransaction.commit();
 
     }
@@ -64,5 +64,4 @@ public class CustomerActivity extends AppCompatActivity {
         spannableString.setSpan(new ForegroundColorSpan(Color.WHITE),0, actionBarTitle.length(),0);
         actionBar.setTitle(spannableString);
     }
-
 }
