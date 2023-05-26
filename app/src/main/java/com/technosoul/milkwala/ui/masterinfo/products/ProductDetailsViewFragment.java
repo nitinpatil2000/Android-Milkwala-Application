@@ -30,12 +30,13 @@ import retrofit2.Retrofit;
 public class ProductDetailsViewFragment extends Fragment {
     TextView tvProductName;
     TextView tvProductUnit;
+    TextView tvProductType;
     TextView tvProductMrp;
     Button deleteNewProductBtn;
     String viewProductName;
     String viewProductUnit;
     ProductFromServer productFromServer;
-    TextView tvVendorRate;
+    TextView tvWholesaleRate;
     TextView tvSupplierRate;
     private final int productId;
     private String productDetailsName;
@@ -65,9 +66,10 @@ public class ProductDetailsViewFragment extends Fragment {
 
         tvProductName = view.findViewById(R.id.tv_product_name);
         tvProductUnit = view.findViewById(R.id.tv_product_unit);
+        tvProductType = view.findViewById(R.id.tv_product_type);
         tvProductMrp = view.findViewById(R.id.tv_product_mrp);
         tvSupplierRate = view.findViewById(R.id.tv_supplier_rate);
-        tvVendorRate = view.findViewById(R.id.tv_Vendor_rate);
+        tvWholesaleRate = view.findViewById(R.id.tv_wholesale_rate);
         deleteNewProductBtn = view.findViewById(R.id.btnDeleteProduct);
 
         ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
@@ -82,9 +84,10 @@ public class ProductDetailsViewFragment extends Fragment {
                     if(productFromServer  != null) {
                         tvProductName.setText(productFromServer.getProductName());
                         tvProductUnit.setText(productFromServer.getProductUnit());
-                        tvProductMrp.setText(String.valueOf(productFromServer.getProductMrp()));
+                        tvProductType.setText(productFromServer.getProductType());
+                        tvProductMrp.setText(String.valueOf(productFromServer.getProductMrpRetailerRate()));
                         tvSupplierRate.setText(String.valueOf(productFromServer.getProductSupplierRate()));
-                        tvVendorRate.setText(String.valueOf(productFromServer.getProductVendorRate()));
+                        tvWholesaleRate.setText(String.valueOf(productFromServer.getProductWholesaleRate()));
                     }else{
                         Toast.makeText(getContext(), R.string.failed_get_product_data, Toast.LENGTH_SHORT).show();
                     }

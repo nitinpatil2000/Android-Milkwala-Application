@@ -98,7 +98,6 @@ public class ProductListPerSupplierFragment extends Fragment {
                 }else{
                     Toast.makeText(getContext(), R.string.failed_get_product_data, Toast.LENGTH_SHORT).show();
                     tvEmptyProductList.setVisibility(View.VISIBLE); // Show the empty text message if data retrieval failed
-
                 }
             }
 

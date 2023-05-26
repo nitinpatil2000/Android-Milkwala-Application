@@ -3,37 +3,26 @@ package com.technosoul.milkwala.ui.masterinfo.products;
 public class ProductFromServer {
     private int productId;
     private String productName;
-    private double productSupplierRate;
-    private double productVendorRate;
+    private String productType;
     private String productUnit;
-    private double productMrp;
+    private double productSupplierRate;
+    private double productWholesaleRate;
+    private double productMrpRetailerRate;
     private int supplierId;
 
 
-    public ProductFromServer(int supplierId, String productName, double productSupplierRate, double productVendorRate, String productUnit, double productMrp) {
-        this.supplierId = supplierId;
+    public ProductFromServer(String productName, String productType, String productUnit, double productSupplierRate, double productWholesaleRate, double productMrpRetailerRate, int supplierId) {
         this.productName = productName;
-        this.productSupplierRate = productSupplierRate;
-        this.productVendorRate = productVendorRate;
+        this.productType = productType;
         this.productUnit = productUnit;
-        this.productMrp = productMrp;
+        this.productSupplierRate = productSupplierRate;
+        this.productWholesaleRate = productWholesaleRate;
+        this.productMrpRetailerRate = productMrpRetailerRate;
+        this.supplierId = supplierId;
     }
 
     public ProductFromServer(){
 
-    }
-
-    @Override
-    public String toString() {
-        return "ProductFromServer{" +
-                "productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", productSupplierRate=" + productSupplierRate +
-                ", productVendorRate=" + productVendorRate +
-                ", productUnit='" + productUnit + '\'' +
-                ", productMrp=" + productMrp +
-                ", supplierId=" + supplierId +
-                '}';
     }
 
     public int getProductId() {
@@ -44,14 +33,6 @@ public class ProductFromServer {
         this.productId = productId;
     }
 
-    public int getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
-    }
-
     public String getProductName() {
         return productName;
     }
@@ -60,20 +41,12 @@ public class ProductFromServer {
         this.productName = productName;
     }
 
-    public double getProductSupplierRate() {
-        return productSupplierRate;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setProductSupplierRate(double productSupplierRate) {
-        this.productSupplierRate = productSupplierRate;
-    }
-
-    public double getProductVendorRate() {
-        return productVendorRate;
-    }
-
-    public void setProductVendorRate(double productVendorRate) {
-        this.productVendorRate = productVendorRate;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
     public String getProductUnit() {
@@ -84,12 +57,49 @@ public class ProductFromServer {
         this.productUnit = productUnit;
     }
 
-    public double getProductMrp() {
-        return productMrp;
+    public double getProductSupplierRate() {
+        return productSupplierRate;
     }
 
-    public void setProductMrp(double productMrp) {
-        this.productMrp = productMrp;
+    public void setProductSupplierRate(double productSupplierRate) {
+        this.productSupplierRate = productSupplierRate;
     }
 
+    public double getProductWholesaleRate() {
+        return productWholesaleRate;
+    }
+
+    public void setProductWholesaleRate(double productWholesaleRate) {
+        this.productWholesaleRate = productWholesaleRate;
+    }
+
+    public double getProductMrpRetailerRate() {
+        return productMrpRetailerRate;
+    }
+
+    public void setProductMrpRetailerRate(double productMrpRetailerRate) {
+        this.productMrpRetailerRate = productMrpRetailerRate;
+    }
+
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductFromServer{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productType='" + productType + '\'' +
+                ", productUnit='" + productUnit + '\'' +
+                ", productSupplierRate=" + productSupplierRate +
+                ", productWholesaleRate=" + productWholesaleRate +
+                ", productMrpRetailerRate=" + productMrpRetailerRate +
+                ", supplierId=" + supplierId +
+                '}';
+    }
 }

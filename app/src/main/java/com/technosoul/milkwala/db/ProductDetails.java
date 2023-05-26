@@ -72,6 +72,7 @@ public class ProductDetails {
         this.productDetailsUnit = productDetailsUnit;
         this.productDetailsMrp = productDetailsMrp;
     }
+
     @Ignore
     public ProductDetails(String productDetailsName, Long productDetailsQuantity) {
         this.productDetailsName = productDetailsName;

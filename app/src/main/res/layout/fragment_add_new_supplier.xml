@@ -50,6 +50,31 @@
                     android:hint="@string/hint_enter_supplier_name" />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/commonTextViewLabel"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1.5"
+                    android:text="@string/title_supplier_email" />
+
+                <EditText
+                    android:id="@+id/editSupplierEmail"
+                    style="@style/commonInputEditText"
+                    android:layout_width="0dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_weight="3.5"
+                    android:autofillHints=""
+                    android:hint="@string/hint_enter_supplier_email"
+                   />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

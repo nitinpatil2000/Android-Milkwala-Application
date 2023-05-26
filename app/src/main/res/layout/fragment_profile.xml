@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/login_design"
+    android:background="@drawable/profile_design"
     android:layout_height="match_parent"
     tools:context=".myprofile.ProfileFragment">
 
@@ -13,21 +13,22 @@
         android:layout_marginTop="10dp"
         android:layout_height="match_parent">
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/my_image_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:background="@drawable/circle_background"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:scaleType="fitXY"
+            app:lottie_autoPlay="true"
+            android:padding="5dp"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/profiles" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardBackgroundColor="@color/cardColor"
+            app:cardBackgroundColor="#00BCD4"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             app:cardMaxElevation="10dp"
@@ -37,7 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="8dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -56,6 +57,7 @@
                     <EditText
                         android:id="@+id/editProfileName"
                         android:layout_width="0dp"
+                        android:text="Saurabh Shinde"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.7"
                         android:background="@drawable/edit_design"
@@ -68,7 +70,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="5">
 
@@ -82,6 +84,7 @@
                     <EditText
                         android:id="@+id/editProfileAddress"
                         android:layout_width="0dp"
+                        android:text="Surawala Buinding Balewadi, Pune."
                         android:layout_height="wrap_content"
                         android:layout_weight="3.7"
                         android:background="@drawable/edit_design"
@@ -96,7 +99,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="5">
 
@@ -113,6 +116,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.7"
+                        android:text="8983515852"
                         android:background="@drawable/edit_design"
                         android:gravity="top"
                         android:inputType="number"
@@ -125,5 +129,14 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/myprofiles"/>
+
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

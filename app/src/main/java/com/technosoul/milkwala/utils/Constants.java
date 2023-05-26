@@ -17,18 +17,29 @@ public class Constants {
     public static final int SELECTED_TYPE_CUSTOMER = 3;
     public static final int SELECTED_SUPPLIER_FOR_PRODUCT_LIST = 4;
 
-    public static final String UNIT_LITRE_1 = "1 Ltr";
-    public static final String UNIT_LITRE_2 = "2 Ltr";
-    public static final String UNIT_ML_500 = "500 ml";
-    public static final String UNIT_ML_250 = "250 ml";
-    public static final String UNIT_ML_100 = "100 ml";
-    public static final String UNIT_KG_1 = "1 kg";
-    public static final String UNIT_KG_2 = "2 kg";
-    public static final String UNIT_GRAM_500 = "500 gm";
-    public static final String UNIT_GRAM_250 = "250 gm";
-    public static final String UNIT_GRAM_200 = "200 gm";
-    public static final String UNIT_GRAM_100 = "100 gm";
-    public static final String UNIT_GRAM_50 = "50 gm";
-    public static final String UNIT_PACKETS = "packets";
+    public static final String UNIT_LITRE_1 = "UNIT_LITRE_1";
+    public static final String UNIT_LITRE_2 = "UNIT_LITRE_2";
+    public static final String UNIT_ML_500 = "UNIT_ML_500";
+    public static final String UNIT_ML_250 = "UNIT_ML_250";
+    public static final String UNIT_ML_100 = "UNIT_ML_100";
+    public static final String UNIT_KG_1 = "UNIT_KG_1";
+    public static final String UNIT_KG_2 = "UNIT_KG_2";
+    public static final String UNIT_GRAM_500 = "UNIT_GRAM_500";
+    public static final String UNIT_GRAM_250 = "UNIT_GRAM_250";
+    public static final String UNIT_GRAM_200 = "UNIT_GRAM_200";
+    public static final String UNIT_GRAM_100 = "UNIT_GRAM_100";
+    public static final String UNIT_GRAM_50 = "UNIT_GRAM_50";
+    public static final String UNIT_PACKETS = "UNIT_PACKETS";
+    public static final String CARET = "CARET";
+
+
+    public static final String MILK = "MILK";
+    public static final String BUTTERMILK = "BUTTERMILK";
+    public static final String PANEER = "PANEER";
+    public static final String GHEE = "GHEE";
+    public static final String BUTTER = "BUTTER";
+    public static final String CURD = "CURD";
+
+
 
 }

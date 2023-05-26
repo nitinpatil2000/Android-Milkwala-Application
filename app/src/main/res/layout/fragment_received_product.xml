@@ -26,6 +26,7 @@
                 android:layout_weight="1.8"
                 android:text="Select Supplier :"
                 android:textColor="@color/black"
+                android:fontFamily="@font/ubuntu_light"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

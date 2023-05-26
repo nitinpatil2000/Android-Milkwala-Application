@@ -15,16 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductService;
 
 import java.util.ArrayList;
 
 public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProductAdapter.ViewHolder> {
     Context context;
-    ArrayList<ProductDetails> productDetails;
+    ArrayList<ProductFromServer> productFromServers;
 
-    public ReceivedProductAdapter(Context context, ArrayList<ProductDetails> productDetails){
+    public ReceivedProductAdapter(Context context, ArrayList<ProductFromServer> productFromServers){
         this.context = context;
-        this.productDetails = productDetails;
+        this.productFromServers = productFromServers;
     }
 
     @NonNull
@@ -35,22 +37,23 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         return viewHolder;
     }
 
-    public ArrayList<ProductDetails> getProductDetails() {
-        return productDetails;
-    }
+    //TODO this method is used for save button.
+//    public ArrayList<ProductFromServer> getProductDetails() {
+//        return productFromServers;
+//    }
 
     @Override
     public void onBindViewHolder(@NonNull ReceivedProductAdapter.ViewHolder holder, int position) {
-        holder.receivedProductName.setText(productDetails.get(position).getProductDetailsName());
-        holder.receivedProductUnit.setText(productDetails.get(position).getProductDetailsUnit());
-        holder.receivedProductMrp.setText(productDetails.get(position).getProductDetailsMrp());
-        holder.totalAmount.setText(productDetails.get(position).getProductDetailsMrp());
-        holder.setProductDetails(productDetails.get(position));
+        holder.receivedProductName.setText(productFromServers.get(position).getProductName());
+        holder.receivedProductUnit.setText(productFromServers.get(position).getProductUnit());
+        holder.receivedProductMrp.setText(String.valueOf(productFromServers.get(position).getProductMrpRetailerRate()));
+        holder.totalAmount.setText(String.valueOf(productFromServers.get(position).getProductMrpRetailerRate()));
+        holder.setProductFromServer(productFromServers.get(position));
         }
 
     @Override
     public int getItemCount() {
-        return productDetails.size();
+        return productFromServers.size();
     }
 
 
@@ -58,10 +61,11 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         TextView receivedProductName, receivedProductUnit, receivedProductMrp;
         EditText editQuantity;
         TextView totalAmount;
-        ProductDetails productDetails;
+//        ProductDetails productDetails;
+        ProductFromServer productFromServer;
 
-        public void setProductDetails(ProductDetails productDetails) {
-            this.productDetails = productDetails;
+        public void setProductFromServer(ProductFromServer productFromServer) {
+            this.productFromServer = productFromServer;
         }
 
         public ViewHolder(@NonNull View itemView) {
@@ -75,33 +79,33 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
             String receivedMrp = receivedProductMrp.getText().toString();
             long mrp = Long.parseLong(receivedMrp);
 
-            editQuantity.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            editQuantity.addTextChangedListener(new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                     // not needed
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
                     // calculate the new total amount based on the value of editQuantity
-                    long newQuantity = 0L;
-                    if (!TextUtils.isEmpty(s)) {
-                        newQuantity = Long.parseLong(s.toString());
-                    }
-                    double newTotalAmount = newQuantity * mrp;
+//                    long newQuantity = 0L;
+//                    if (!TextUtils.isEmpty(s)) {
+//                        newQuantity = Long.parseLong(s.toString());
+//                    }
+//                    double newTotalAmount = newQuantity * mrp;
 
                     // update the totalAmount TextView
-                    totalAmount.setText(String.valueOf("Rs " + newTotalAmount));
-                    productDetails.setProductDetailsQuantity(newQuantity);
-                }
+//                    totalAmount.setText(String.valueOf("Rs " + newTotalAmount));
+//                    productDetails.setProductDetailsQuantity(newQuantity);
+//                }
 
-                @Override
-                public void afterTextChanged(Editable s) {
-                    // not needed
-                }
-            });
+//                @Override
+//                public void afterTextChanged(Editable s) {
+//                     not needed
+//                }
+//            });
         }
     }
 }

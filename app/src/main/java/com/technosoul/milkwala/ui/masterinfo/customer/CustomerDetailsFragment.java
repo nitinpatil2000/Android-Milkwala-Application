@@ -80,8 +80,8 @@ public class CustomerDetailsFragment extends Fragment {
             btnCancel.setOnClickListener(view2 -> dialog.dismiss());
 
             btnDelete.setOnClickListener(v1 -> {
-                myDbHelper.deliveryDetailDao().deleteDeliveryBoyId(customerId);
-                Toast.makeText(getContext(), R.string.msg_delete_delivery_person_success, Toast.LENGTH_SHORT).show();
+                myDbHelper.customerDao().deleteCustomerById(customerId);
+                Toast.makeText(getContext(), R.string.msg_delete_customer_success, Toast.LENGTH_SHORT).show();
                 if (masterInfoListener != null) {
                     masterInfoListener.onBackToPreviousScreen();
                 }

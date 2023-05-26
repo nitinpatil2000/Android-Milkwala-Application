@@ -4,20 +4,24 @@ package com.technosoul.milkwala.ui.masterinfo.suppliers;
 public class SupplierFromServer {
     private int supplierId;
     private String supplierName;
+    private String supplierEmail;
     private String supplierAddress;
-    private Long supplierNumber;
-    private Long supplierAltNumber;
+    private Double supplierNumber;
+    private Double supplierAltNumber;
+
 
 
     public SupplierFromServer() {
     }
 
-    public SupplierFromServer(int supplierId, String supplierName, String supplierAddress, Long supplierNumber, Long supplierAltNumber) {
+    public SupplierFromServer(int supplierId, String supplierName,String supplierEmail, String supplierAddress, Double supplierNumber, Double supplierAltNumber) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
+        this.supplierEmail = supplierEmail;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
         this.supplierAltNumber = supplierAltNumber;
+
     }
 
     public int getSupplierId() {
@@ -36,6 +40,14 @@ public class SupplierFromServer {
         this.supplierName = supplierName;
     }
 
+    public String getSupplierEmail() {
+        return supplierEmail;
+    }
+
+    public void setSupplierEmail(String supplierEmail) {
+        this.supplierEmail = supplierEmail;
+    }
+
     public String getSupplierAddress() {
         return supplierAddress;
     }
@@ -44,19 +56,19 @@ public class SupplierFromServer {
         this.supplierAddress = supplierAddress;
     }
 
-    public Long getSupplierNumber() {
+    public Double getSupplierNumber() {
         return supplierNumber;
     }
 
-    public void setSupplierNumber(Long supplierNumber) {
+    public void setSupplierNumber(Double supplierNumber) {
         this.supplierNumber = supplierNumber;
     }
 
-    public Long getSupplierAltNumber() {
+    public Double getSupplierAltNumber() {
         return supplierAltNumber;
     }
 
-    public void setSupplierAltNumber(Long supplierAltNumber) {
+    public void setSupplierAltNumber(Double supplierAltNumber) {
         this.supplierAltNumber = supplierAltNumber;
     }
 
@@ -65,6 +77,7 @@ public class SupplierFromServer {
         return "SupplierFromServer{" +
                 "supplierId=" + supplierId +
                 ", supplierName='" + supplierName + '\'' +
+                ", supplierEmail='" + supplierEmail + '\'' +
                 ", supplierAddress='" + supplierAddress + '\'' +
                 ", supplierNumber=" + supplierNumber +
                 ", supplierAltNumber=" + supplierAltNumber +

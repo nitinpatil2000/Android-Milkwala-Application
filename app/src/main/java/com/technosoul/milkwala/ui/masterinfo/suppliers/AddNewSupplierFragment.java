@@ -28,6 +28,7 @@ public class AddNewSupplierFragment extends Fragment {
     EditText etSupplierAddress;
     EditText etSupplierNumber;
     EditText etSupplierAlternateNumber;
+    EditText etSupplierEmail;
     Button btnAddNewSupplier;
 
     MasterInfoListener listener;
@@ -48,9 +49,11 @@ public class AddNewSupplierFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_new_supplier, container, false);
 
         etSupplierName = view.findViewById(R.id.editSupplierName);
+        etSupplierEmail = view.findViewById(R.id.editSupplierEmail);
         etSupplierAddress = view.findViewById(R.id.editSupplierAddress);
         etSupplierNumber = view.findViewById(R.id.et_supplier_mobile);
         etSupplierAlternateNumber = view.findViewById(R.id.et_supplier_alt_mobile);
+        etSupplierEmail = view.findViewById(R.id.editSupplierEmail);
         btnAddNewSupplier = view.findViewById(R.id.btnAddNewSupplier);
         btnAddNewSupplier.setOnClickListener(view1 -> onClickAddNewSupplier());
 
@@ -73,6 +76,16 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierName.requestFocus();
             return;
         }
+
+        String supplierEmail = etSupplierEmail.getText().toString();
+        if(TextUtils.isEmpty(supplierEmail)){
+            Toast.makeText(getContext(), R.string.err_empty_supplier_email, Toast.LENGTH_SHORT).show();
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(supplierEmail).matches()) {
+            Toast.makeText(getContext(), R.string.err_valid_supplier_email, Toast.LENGTH_SHORT).show();
+            etSupplierEmail.requestFocus();
+            return;
+        }
+
 
         String supplierAddress = etSupplierAddress.getText().toString();
         if (TextUtils.isEmpty(supplierAddress)) {
@@ -99,7 +112,7 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierNumber.requestFocus();
             return;
         }
-        Long supplierNo = Long.parseLong(supplierNumber);
+        Double supplierNo = Double.parseDouble(supplierNumber);
 
 
         String supplierAltNumber = etSupplierAlternateNumber.getText().toString();
@@ -114,7 +127,7 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierAlternateNumber.requestFocus();
             return;
         }
-        Long supplierAlterNo = Long.parseLong(supplierAltNumber);
+        Double supplierAlterNo = Double.parseDouble(supplierAltNumber);
 
 //        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
 //        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
@@ -126,19 +139,22 @@ public class AddNewSupplierFragment extends Fragment {
 
         SupplierFromServer supplierFromServer = new SupplierFromServer();
         supplierFromServer.setSupplierName(supplierName);
+        supplierFromServer.setSupplierEmail(supplierEmail);
         supplierFromServer.setSupplierAddress(supplierAddress);
         supplierFromServer.setSupplierNumber(supplierNo);
         supplierFromServer.setSupplierAltNumber(supplierAlterNo);
 
-        Call<SupplierFromServer> call = supplierService.createSupplier(supplierFromServer);
+        Call<SupplierFromServer> call = supplierService.addSupplier(supplierFromServer);
         call.enqueue(new Callback<SupplierFromServer>() {
             @Override
             public void onResponse(Call<SupplierFromServer> call, Response<SupplierFromServer> response) {
                 if (response.isSuccessful()) {
                     SupplierFromServer createSupplier = response.body();
-                    Toast.makeText(getContext(), "Supplier Created Successfully!!", Toast.LENGTH_SHORT).show();
-                    if (listener != null) {
-                        listener.onBackToPreviousScreen();
+                    if(createSupplier != null) {
+                        Toast.makeText(getContext(), "Supplier Created Successfully!!", Toast.LENGTH_SHORT).show();
+                        if (listener != null) {
+                            listener.onBackToPreviousScreen();
+                        }
                     }
                 } else {
                     Toast.makeText(getContext(), "Failed to create Supplier !!", Toast.LENGTH_SHORT).show();
@@ -147,9 +163,10 @@ public class AddNewSupplierFragment extends Fragment {
 
             @Override
             public void onFailure(Call<SupplierFromServer> call, Throwable t) {
-
+            t.printStackTrace();
             }
         });
+
 
 
     }

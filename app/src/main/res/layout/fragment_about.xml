@@ -7,153 +7,6 @@
     android:background="@color/toolbar"
     android:orientation="vertical"
     tools:context=".aboutscreen.AboutFragment">
-
-    <!--    <com.airbnb.lottie.LottieAnimationView-->
-    <!--        android:id="@+id/signin_image_view"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="240dp"-->
-    <!--        app:lottie_autoPlay="true"-->
-    <!--        app:lottie_loop="true"-->
-    <!--        android:layout_marginTop="15dp"-->
-    <!--        android:paddingLeft="10dp"-->
-    <!--        app:lottie_rawRes="@raw/milk"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        android:paddingRight="10dp"-->
-    <!--        android:paddingTop="10dp"-->
-    <!--        android:scaleType="centerCrop" />-->
-
-
-    <!--    <androidx.cardview.widget.CardView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:cardBackgroundColor="@color/white"-->
-    <!--        app:cardCornerRadius="10dp"-->
-    <!--        android:layout_marginTop="10dp"-->
-    <!--        app:cardElevation="10dp"-->
-    <!--        app:cardMaxElevation="10dp"-->
-    <!--        app:cardPreventCornerOverlap="true"-->
-    <!--        app:cardUseCompatPadding="true">-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_margin="10dp"-->
-    <!--            android:orientation="vertical">-->
-
-    <!--            <LinearLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:orientation="horizontal"-->
-    <!--                android:weightSum="5">-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="1.7"-->
-    <!--                    android:text="App Name :"-->
-    <!--                    android:layout_marginBottom="5dp"-->
-    <!--                    android:textColor="#000"-->
-    <!--                    android:textSize="20dp" />-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/editProfileName"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="3.3"-->
-    <!--                    android:background="@drawable/rectangular_design_curve"-->
-    <!--                    android:maxLines="2"-->
-    <!--                    android:padding="10dp" />-->
-
-    <!--            </LinearLayout>-->
-
-    <!--            <LinearLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:orientation="horizontal"-->
-    <!--                android:layout_marginTop="10dp"-->
-    <!--                android:weightSum="5">-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="1.7"-->
-    <!--                    android:text="Description :"-->
-    <!--                    android:layout_marginBottom="5dp"-->
-    <!--                    android:textColor="#000"-->
-    <!--                    android:textSize="20dp" />-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/editProfileDesc"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:gravity="top"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="3.3"-->
-    <!--                    android:background="@drawable/rectangular_design_curve"-->
-    <!--                    android:minLines="4"-->
-    <!--                    android:padding="10dp" />-->
-
-    <!--            </LinearLayout>-->
-
-    <!--            <LinearLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:orientation="horizontal"-->
-    <!--                android:layout_marginTop="10dp"-->
-    <!--                android:weightSum="5">-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="1.7"-->
-    <!--                    android:text="Version :"-->
-    <!--                    android:layout_marginBottom="5dp"-->
-    <!--                    android:textColor="#000"-->
-    <!--                    android:textSize="20dp" />-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/editVersionName"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_weight="3.3"-->
-    <!--                    android:background="@drawable/rectangular_design_curve"-->
-    <!--                    android:maxLines="2"-->
-    <!--                    android:padding="10dp" />-->
-
-    <!--            </LinearLayout>-->
-    <!--        </LinearLayout>-->
-    <!--    </androidx.cardview.widget.CardView>-->
-
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:gravity="bottom"-->
-    <!--        android:orientation="vertical"-->
-    <!--        android:layout_weight="1">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="@string/description"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            android:textAlignment="center"/>-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="@string/hyperlink"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:textSize="18sp"-->
-    <!--            android:id="@+id/hyperlink"-->
-    <!--            android:textStyle="bold"-->
-    <!--            android:paddingBottom="7dp"-->
-    <!--            android:textAlignment="center"/>-->
-
-    <!--    </LinearLayout>-->
-
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
@@ -164,46 +17,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
                 android:gravity="center"
                 android:text="About us"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="26dp"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="60sp"
                 app:fontFamily="@font/berkshire_swash" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_gravity="end"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation"/>
+
+
+        </LinearLayout>
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                app:fontFamily="@font/ubuntu_light"
-            android:text="@string/contact"
-                android:textAlignment="viewStart"
+                android:layout_marginEnd="1dp"
+                android:text="@string/contact"
+                android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="end"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/strawberry" />
+                android:textSize="18sp"
+                app:fontFamily="@font/ubuntu_light" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/signin_image_view"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 app:lottie_autoPlay="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/milk" />
+                app:lottie_rawRes="@raw/team" />
 
 
             <LinearLayout
@@ -249,6 +113,7 @@
                             <EditText
                                 android:id="@+id/editProfileName"
                                 android:layout_width="0dp"
+                                android:text="Milkwala App"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3.3"
                                 android:background="@drawable/rectangular_design_curve"
@@ -277,6 +142,7 @@
                             <EditText
                                 android:id="@+id/editMobileNumber"
                                 android:layout_width="0dp"
+                                android:text="8585748574"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3.3"
                                 android:background="@drawable/rectangular_design_curve"
@@ -306,6 +172,7 @@
                             <EditText
                                 android:id="@+id/editProfileEmail"
                                 android:layout_width="0dp"
+                                android:text="milk@gmail.com"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3.3"
                                 android:textSize="18sp"
@@ -334,10 +201,11 @@
                             <EditText
                                 android:id="@+id/editProfileMsg"
                                 android:layout_width="0dp"
+                                android:text="Bringing fresh dairy products to your doorstep with a click, making mornings delightful and hassle-free!"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3.3"
                                 android:background="@drawable/rectangular_design_curve"
-                                android:maxLines="2"
+                                android:maxLines="10"
                                 android:textSize="18sp"
                                 android:padding="10dp" />
                         </LinearLayout>

@@ -14,7 +14,7 @@ import com.technosoul.milkwala.R;
 public class ImageAdapter extends PagerAdapter {
     private Context context;
 
-    private int [] image = {R.drawable.milkk, R.drawable.healthy, R.drawable.glass, R.drawable.milk1, R.drawable.milk2, R.drawable.strawberry};
+    private int [] image = {R.drawable.milkinfo, R.drawable.milkinfoo, R.drawable.milkinfooo, R.drawable.milkinfoooo, R.drawable.milkyviewpager, R.drawable.milk};
     public ImageAdapter(Context context){
         this.context = context;
     }

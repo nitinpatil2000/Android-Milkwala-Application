@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"
-                android:src="@drawable/deliveryicon" />
+                android:src="@drawable/simplecustomer" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

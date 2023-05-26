@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/suppliericon" />
+                android:src="@drawable/simplesupplier" />
 
             <LinearLayout
                 android:id="@+id/supplierLinear"
@@ -60,7 +60,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
-                    android:text="8 Suppliers"
+                    android:text="0 Suppliers"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

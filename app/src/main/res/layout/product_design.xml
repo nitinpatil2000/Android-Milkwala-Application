@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="0.7"
-                android:src="@drawable/producticon" />
+                android:src="@drawable/simplesupplier" />
 
 
             <LinearLayout

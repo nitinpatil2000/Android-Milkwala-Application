@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/button_background_color"
             android:gravity="center"
             android:text="@string/btn_add_new_customer"

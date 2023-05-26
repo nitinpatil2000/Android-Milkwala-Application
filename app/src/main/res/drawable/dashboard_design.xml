@@ -5,7 +5,8 @@
             <corners
                 android:topLeftRadius="35dp"
                 android:topRightRadius="35dp" />
-            <solid android:color="@color/cardColor" />
+            <solid android:color="@color/cardColor"/>
+
         </shape>
     </item>
 </selector>

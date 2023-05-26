@@ -17,12 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.technosoul.milkwala.R;
 
 public class ProfileFragment extends Fragment {
     private final int GALLERY_REQ_CODE = 100;
 
-    ImageView myImageView;
+    LottieAnimationView myImageView;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -47,7 +48,7 @@ public class ProfileFragment extends Fragment {
 
         //TODO set the title in fragment
         if(getActivity() != null){
-            ((MyProfileActivity)getActivity()).setActionBarTitle("<Username>'s Profile");
+            ((MyProfileActivity)getActivity()).setActionBarTitle("<Saurabh>'s Profile");
         }
 
 

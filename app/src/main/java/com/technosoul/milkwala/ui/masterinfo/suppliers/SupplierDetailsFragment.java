@@ -30,6 +30,7 @@ public class SupplierDetailsFragment extends Fragment {
     TextView tvSupplierAddress;
     TextView tvSupplierNumber;
     TextView tvSupplierAltNumber;
+    TextView tvSupplierEmail;
     Button deleteSupplier;
     String suppName, suppAddress, suppNumber, suppAltNumber;
     int supplierId;
@@ -54,6 +55,7 @@ public class SupplierDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_supplier_details, container, false);
         tvSupplierName = view.findViewById(R.id.supplierName);
+        tvSupplierEmail = view.findViewById(R.id.supplierEmail);
         tvSupplierAddress = view.findViewById(R.id.supplierAddress);
         tvSupplierNumber = view.findViewById(R.id.supplierNumber);
         tvSupplierAltNumber = view.findViewById(R.id.supplier_alt_number);
@@ -71,6 +73,7 @@ public class SupplierDetailsFragment extends Fragment {
                     SupplierFromServer supplierListFromServer = response.body();
                     if(supplierListFromServer != null){
                         tvSupplierName.setText(supplierListFromServer.getSupplierName());
+                        tvSupplierEmail.setText(supplierListFromServer.getSupplierEmail());
                         tvSupplierAddress.setText(supplierListFromServer.getSupplierAddress());
                         tvSupplierNumber.setText(String.valueOf(supplierListFromServer.getSupplierNumber()));
                         tvSupplierAltNumber.setText(String.valueOf(supplierListFromServer.getSupplierAltNumber()));

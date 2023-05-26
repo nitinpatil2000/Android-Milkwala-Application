@@ -15,7 +15,7 @@
 
     <string name="app_title_part_1">Milkwala</string>
     <string name="app_title_part_2">Dairy</string>
-    <string name="str_email">Email</string>
+    <string name="str_email">Email :</string>
     <string name="str_password">Password</string>
     <string name="str_login">Login</string>
     <string name="err_empty_email">Please enter an Email address.</string>
@@ -27,10 +27,10 @@
     <string name="total_customers">Total Customers : %d</string>
     <string name="total_products">Total Products : %d</string>
     <string name="total_suppliers">Total Suppliers : %d</string>
-    <string name="title_yesterdays_status"><b>Yesterday\'s Status :</b></string>
-    <string name="title_todays_status"><b>Today\'s Status :</b></string>
-    <string name="total_sale">Total Sale: Rs.</string>
-    <string name="total_waste">Wastage: </string>
+    <string name="title_yesterdays_status"><b>Yester\nday\'s \nStatus:</b></string>
+    <string name="title_todays_status"><b>Today\'s \nStatus :</b></string>
+    <string name="total_sale">Total Sale:</string>
+    <string name="total_waste">Wastage:</string>
 
     <string name="total_supplier_sub_text">%d Suppliers</string>
     <string name="total_product_sub_text">%d Products</string>
@@ -49,6 +49,7 @@
     <string name="title_products">Products</string>
     <string name="title_customers">Customers</string>
     <string name="title_delivery_boys">Delivery Boys</string>
+
 
     <string name="master_info_total_suppliers">%d suppliers</string>
     <string name="master_info_total_customers">%d customers</string>
@@ -96,7 +97,7 @@
     <string name="title_product_name">Product Name :</string>
     <string name="hint_enter_product_name">Enter Product Name</string>
     <string name="str_supplier_rate">Supplier Rate :</string>
-    <string name="str_vendor_rate">Vendor Rate :</string>
+    <string name="str_wholesale_rate">Wholesale Rate :</string>
     <string name="str_mrp">MRP :</string>
     <string name="hint_supplier_rate">100</string>
     <string name="hint_vendor_rate">110</string>
@@ -113,6 +114,7 @@
     <string name="err_empty_product_mrp">Product MRP should not be empty.</string>
     <string name="no_product_found">No Product Found</string>
     <string name="err_empty_unit">Please select the unit from the dropdown list.</string>
+    <string name="err_empty_type">Please select the type from the dropdown list.</string>
     <string name="err_empty_supplier_rate">Supplier rate should not be empty.</string>
     <string name="err_empty_vendor_rate">Vendor rate should not be empty.</string>
     <string name="msg_product_added_success">Product added successfully!</string>
@@ -154,7 +156,7 @@
     <string name="str_address">Address :</string>
     <string name="str_mobile_number">Mobile Number :</string>
     <string name="hint_mobile_number">1234567890</string>
-    <string name="str_alt_number">Alternate Number :</string>
+    <string name="str_alt_number">Alternate \nNumber :</string>
     <string name="str_cancel">Cancel</string>
     <string name="str_ok">Ok</string>
     <string name="str_delete">Delete</string>
@@ -180,7 +182,7 @@
 
     <string name="supp_add_btn">Add</string>
     <string name="edit_product_mrp">Rs.200</string>
-    <string name="txt_product_mrp">MRP :</string>
+    <string name="txt_mrp_retailer_rate">Mrp Retailer Rate</string>
     <string name="add_customer_btn">Add</string>
     <string name="edit_customer_contact2">Contact No. 2</string>
     <string name="txt_customer_contact2">Contact 2 :</string>
@@ -207,7 +209,13 @@
     <string name="err_max_digits_cust_contact_no2">Maximum 10 digits allowed for the customer contact Alter number</string>
     <string name="err_max_digits_delivery_mobile_no">Maximum 10 digits allowed for the delivery mobile number</string>
     <string name="err_max_digits_delivery_alter_no">Maximum 10 digits allowed for the delivery mobile Alter number</string>
+    <string name="hint_enter_supplier_email">Enter Supplier Email</string>
+    <string name="title_supplier_email">Supplier Email :</string>
+    <string name="err_empty_supplier_email">Supplier Email should not be empty.</string>
+    <string name="err_valid_supplier_email">Please Enter the valid Supplier email.</string>
 
+    <string name="title_router">Total Route</string>
+    <string name="master_info_total_router">%d routers</string>
 
 
 

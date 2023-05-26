@@ -34,10 +34,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/berkshire_swash"
                     android:text="@string/title_monthly_sale"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -47,11 +47,12 @@
                     android:weightSum="4">
 
                     <ir.mahozad.android.PieChart
+                        android:id="@+id/pie_chart"
                         android:layout_width="0dp"
                         android:layout_height="200dp"
-                        android:id="@+id/pie_chart"
-                        android:layout_weight="2.5"
-                        android:padding="5dp"/>
+                        android:layout_weight="2.8"
+                        android:padding="5dp" />
+
 
                     <RadioGroup
                         android:layout_width="0dp"
@@ -59,35 +60,43 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_weight="1.5">
+                        android:layout_weight="1.2">
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_light"
                             android:text="Chitale"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_light"
                             android:text="Gokul"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_light"
                             android:text="Amul "
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/ubuntu_light"
                             android:text="Katraj"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </RadioGroup>
                 </LinearLayout>
@@ -115,6 +124,7 @@
                     android:id="@+id/totalCustomers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_light"
                     android:text="@string/total_customers"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -125,6 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/ubuntu_light"
                     android:text="@string/total_products"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -135,6 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/ubuntu_light"
                     android:text="@string/total_suppliers"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -158,28 +170,92 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_todays_status"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="5">
 
-                <TextView
-                    android:id="@+id/today_total_sale"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/total_sale"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/aclonica"
+                        android:text="@string/title_todays_status"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/today_total_waste"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="3.5"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:text="Got milk? Discover our creamy and nutritious dairy delights to elevate your day!"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/total_waste"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/today_total_sale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/aclonica"
+                        android:text="@string/total_sale"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="3.5"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:text="Rs. 10,500"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/today_total_waste"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/aclonica"
+                        android:text="@string/total_waste"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="3.5"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:text="Reduced milk wastage by 20% today through streamlined production and optimized inventory management. Together, let's make every drop count!"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -201,28 +277,92 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_yesterdays_status"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="5">
 
-                <TextView
-                    android:id="@+id/total_sale"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/total_sale"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/aclonica"
+                        android:text="@string/title_yesterdays_status"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/total_waste"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="3.5"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:text="Pouring freshness into every sip, our milk selection is the perfect choice for a healthy start to your day!"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/total_waste"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        android:id="@+id/total_sale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/aclonica"
+                        android:text="@string/total_sale"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="3.5"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:text="Rs. 9500"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/total_waste"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/aclonica"
+                        android:text="@string/total_waste"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="3.5"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:text="Efficiency at its best! Achieved minimal milk wastage yesterday, ensuring optimal utilization and preserving the goodness till the last drop"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
             </LinearLayout>
 

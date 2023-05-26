@@ -42,7 +42,7 @@ public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<Prod
         holder.productId = productFromServers.get(position).getProductId();
         holder.productItems.setText(productFromServers.get(position).getProductName());
         holder.productUnit.setText(productFromServers.get(position).getProductUnit());
-        holder.productMrp.setText(String.valueOf(productFromServers.get(position).getProductMrp()));
+        holder.productMrp.setText(String.valueOf(productFromServers.get(position).getProductMrpRetailerRate()));
     }
 
     @Override

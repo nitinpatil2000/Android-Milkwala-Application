@@ -35,12 +35,14 @@ import retrofit2.Retrofit;
 
 public class AddNewProductFragment extends Fragment {
     Spinner unitsSpinner;
+    Spinner typeSpinner;
     ArrayList<String> unitNamesArrayList = new ArrayList<>();
+    ArrayList<String> typeNamesArrayList = new ArrayList<>();
     Button btnAddNewProduct;
     EditText etProductName;
     EditText etProductMrp;
     EditText etSupplierRate;
-    EditText edtVendorRate;
+    EditText edtWholesaleRate;
     private final int supplierId;
 
     private MasterInfoListener listener;
@@ -71,6 +73,7 @@ public class AddNewProductFragment extends Fragment {
         unitNamesArrayList.add(Constants.UNIT_GRAM_100);
         unitNamesArrayList.add(Constants.UNIT_GRAM_50);
         unitNamesArrayList.add(Constants.UNIT_PACKETS);
+        unitNamesArrayList.add(Constants.CARET);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, unitNamesArrayList);
         unitsSpinner.setAdapter(adapter);
@@ -90,11 +93,37 @@ public class AddNewProductFragment extends Fragment {
             }
         });
 
+        typeSpinner = view.findViewById(R.id.typeSpinner);
+        typeNamesArrayList.add(Constants.MILK);
+        typeNamesArrayList.add(Constants.BUTTERMILK);
+        typeNamesArrayList.add(Constants.PANEER);
+        typeNamesArrayList.add(Constants.GHEE);
+        typeNamesArrayList.add(Constants.BUTTER);
+        typeNamesArrayList.add(Constants.CURD);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, typeNamesArrayList);
+        typeSpinner.setAdapter(typeAdapter);
+
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i != 0) {
+                    String selectedItem = adapterView.getItemAtPosition(i).toString();
+                    Toast.makeText(getContext(), "Selected Type is : " + selectedItem, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
         //after click the add Btn then element is added in the recyclerView;
         etProductName = view.findViewById(R.id.editProductName);
         etProductMrp = view.findViewById(R.id.editProductMrp);
         etSupplierRate = view.findViewById(R.id.editSupplierRate);
-        edtVendorRate = view.findViewById(R.id.tv_Vendor_rate);
+        edtWholesaleRate = view.findViewById(R.id.edit_wholesale_rate);
 
         btnAddNewProduct = view.findViewById(R.id.addNewProductBtn);
         // Set click listener on add button
@@ -124,29 +153,36 @@ public class AddNewProductFragment extends Fragment {
                 return;
             }
 
+            String productDetailType = typeSpinner.getSelectedItem().toString();
+            if (TextUtils.isEmpty(productDetailType)) {
+                Toast.makeText(getContext(), R.string.err_empty_type, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String productSupplierRate = etSupplierRate.getText().toString();
-            if (TextUtils.isEmpty(name)) {
+            if (TextUtils.isEmpty(productSupplierRate)) {
                 Toast.makeText(getContext(), R.string.err_empty_supplier_rate, Toast.LENGTH_SHORT).show();
                 return;
             }
             double supplierRate = Double.parseDouble(productSupplierRate);
 
-            String productVendorRate = edtVendorRate.getText().toString();
-            if (TextUtils.isEmpty(name)) {
+            String productWholesaleRate = edtWholesaleRate.getText().toString();
+            if (TextUtils.isEmpty(productWholesaleRate)) {
                 Toast.makeText(getContext(), R.string.err_empty_vendor_rate, Toast.LENGTH_SHORT).show();
                 return;
             }
-            double vendorRate = Double.parseDouble(productVendorRate);
+            double wholesaleRate = Double.parseDouble(productWholesaleRate);
 
             ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
             Retrofit retrofit = apiRetrofitService.getRetrofit();
             ProductService productService = retrofit.create(ProductService.class);
             ProductFromServer productFromServer = new ProductFromServer();
             productFromServer.setProductName(name);
-            productFromServer.setProductMrp(productPrice);
             productFromServer.setProductUnit(productDetailsUnit);
+            productFromServer.setProductType(productDetailType);
             productFromServer.setProductSupplierRate(supplierRate);
-            productFromServer.setProductVendorRate(vendorRate);
+            productFromServer.setProductWholesaleRate(wholesaleRate);
+            productFromServer.setProductMrpRetailerRate(productPrice);
             productFromServer.setSupplierId(supplierId);
 
             Call<String> createProductFromSupplier = productService.createProduct(productFromServer);
@@ -155,9 +191,11 @@ public class AddNewProductFragment extends Fragment {
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.isSuccessful()) {
                         String productMessage = response.body();
-                    if(listener != null){
-                        listener.onBackToPreviousScreen();
-                    }
+                        if(productMessage != null) {
+                            if (listener != null) {
+                                listener.onBackToPreviousScreen();
+                            }
+                        }
 
                     } else {
                         Toast.makeText(getContext(), "Failed to add product. Error: " + response.errorBody().toString(), Toast.LENGTH_SHORT).show();
@@ -177,7 +215,7 @@ public class AddNewProductFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Toast.makeText(getContext(), "Failed to add product. Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     // Log the request body
                     Request request = call.request();
                     try {

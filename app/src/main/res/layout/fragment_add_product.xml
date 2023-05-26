@@ -48,6 +48,31 @@
                     android:autofillHints=""
                     android:hint="@string/hint_enter_product_name" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/commonTextViewLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center_vertical"
+                    android:text="Type :" />
+
+                <Spinner
+                    android:id="@+id/typeSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="3.5"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,10 +134,10 @@
                     android:layout_width="0dp"
                     android:layout_weight="1.5"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/str_vendor_rate" />
+                    android:text="@string/str_wholesale_rate" />
 
                 <EditText
-                    android:id="@+id/tv_Vendor_rate"
+                    android:id="@+id/edit_wholesale_rate"
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
                     android:layout_weight="3.5"
@@ -133,7 +158,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1.5"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/txt_product_mrp" />
+                    android:text="@string/txt_mrp_retailer_rate" />
 
                 <EditText
                     android:id="@+id/editProductMrp"

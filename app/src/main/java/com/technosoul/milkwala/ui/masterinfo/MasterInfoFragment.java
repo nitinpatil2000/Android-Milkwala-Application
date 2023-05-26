@@ -45,11 +45,15 @@ public class MasterInfoFragment extends Fragment {
     TextView totalDeliveryBoysSubText;
     LinearLayout llCustomers;
     TextView totalCustomersSubText;
+    LinearLayout llRouters;
+    TextView totalRouterSubText;
 
     private CardView supplierCardView;
     private CardView productCardView;
     private CardView deliveryCardView;
     private CardView customerCardView;
+    private CardView routerCardView;
+
 
     private MasterInfoListener masterInfoListener;
     private ViewPager viewPager;
@@ -82,6 +86,9 @@ public class MasterInfoFragment extends Fragment {
 
         totalCustomersSubText = view.findViewById(R.id.masterinfo_customer_subtext);
         llCustomers = view.findViewById(R.id.ll_masterinfo_customers);
+
+        llRouters = view.findViewById(R.id.ll_master_info_router);
+        totalRouterSubText = view.findViewById(R.id.masterinfo_router_subtext);
 
         ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
         Retrofit retrofit = supplierRetrofitService.getRetrofit();
@@ -127,6 +134,7 @@ public class MasterInfoFragment extends Fragment {
         ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         int numCustomers = customerList.size();
         totalCustomersSubText.setText(getString(R.string.total_customer_sub_text, numCustomers));
+
         llCustomers.setOnClickListener(view14 -> masterInfoListener.onCustomerClick());
 
         //viewpager
@@ -164,12 +172,14 @@ public class MasterInfoFragment extends Fragment {
         productCardView = view.findViewById(R.id.product_card_view);
         customerCardView = view.findViewById(R.id.customer_card_view);
         deliveryCardView = view.findViewById(R.id.delivery_card_view);
+        routerCardView = view.findViewById(R.id.router_card_view);
 
         // Animate card views when activity is opened
         animateCardView(supplierCardView, 0);
         animateCardView(productCardView, 100);
         animateCardView(customerCardView, 200);
         animateCardView(deliveryCardView, 300);
+        animateCardView(routerCardView, 400);
 
 
         supplierCardView.setOnClickListener(view1 -> {
@@ -187,6 +197,10 @@ public class MasterInfoFragment extends Fragment {
 
         deliveryCardView.setOnClickListener(view1 -> {
             animateCardView(deliveryCardView, 0);
+        });
+
+        routerCardView.setOnClickListener(view1 -> {
+            animateCardView(routerCardView, 0);
         });
         return view;
     }

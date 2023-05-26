@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 
 public interface SupplierService {
     @POST("/addsupplier")
-    Call<SupplierFromServer> createSupplier(@Body SupplierFromServer supplierEntity);
+    Call<SupplierFromServer> addSupplier(@Body SupplierFromServer supplierEntity);
 
     @GET("/getsupplier")
     Call<List<SupplierFromServer>> getAllSuppliers();
