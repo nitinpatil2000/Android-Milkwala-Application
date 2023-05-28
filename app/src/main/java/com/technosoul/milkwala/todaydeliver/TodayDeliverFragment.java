@@ -191,6 +191,7 @@ public class TodayDeliverFragment extends Fragment {
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setTitle("Today's DeliveryPerson");
+
         return view;
     }
 }

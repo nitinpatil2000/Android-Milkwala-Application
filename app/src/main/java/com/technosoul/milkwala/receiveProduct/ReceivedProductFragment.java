@@ -121,7 +121,7 @@ public class ReceivedProductFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
-                Toast.makeText(getContext(), "Failed to get suppliers: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), R.string.network_error + t.getMessage(), Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });

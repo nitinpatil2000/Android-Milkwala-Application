@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/toolbar"
+            app:titleTextColor="@color/white"
             android:id="@+id/toolbar">
 
 <!--            <ImageView-->

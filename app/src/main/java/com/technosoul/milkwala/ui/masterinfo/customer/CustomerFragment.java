@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,8 @@ public class CustomerFragment extends Fragment {
 
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
+    TextView tvEmptyCustomerList;
+
 
     public CustomerFragment() {
         // Required empty public constructor
@@ -46,12 +49,16 @@ public class CustomerFragment extends Fragment {
         RecyclerView customerRecyclerView = view.findViewById(R.id.recyclerview_customer_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         customerRecyclerView.setLayoutManager(gridLayoutManager);
+        tvEmptyCustomerList = view.findViewById(R.id.tv_empty_customer_list);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
         if (customerList == null || customerList.size() == 0) {
             Toast.makeText(getContext(), "Customer list is empty. Let's start adding new Customers", Toast.LENGTH_SHORT).show();
+            tvEmptyCustomerList.setVisibility(View.VISIBLE); // Show the empty text message
+
         } else {
+            tvEmptyCustomerList.setVisibility(View.GONE); // Show the empty text message
             customerViewAdapter = new CustomerViewAdapter(getContext(), customerList, onItemSelected);
             customerRecyclerView.setAdapter(customerViewAdapter);
         }

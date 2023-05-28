@@ -135,6 +135,8 @@
     <string name="msg_delete_delivery_person_desc">Please Note - Deleting will remove all the information and records permanently related to this person</string>
     <string name="msg_delete_delivery_person_confirmation">Are you sure to delete this delivery person?</string>
     <string name="msg_delete_delivery_person_success">Delivery person deleted successfully.</string>
+    <string name="empty_delivery_boy_list_message">Please Add A Delivery Boy.\n To Add, please touch on the Add Button on Bottom.</string>
+
 
     <!--  Customer strings  -->
     <string name="hint_customer_name">Customer Name</string>
@@ -150,6 +152,8 @@
     <string name="msg_delete_customer_desc">Please Note - Deleting will remove all the information and records permanently related to this customer</string>
     <string name="msg_delete_customer_confirmation">Are you sure to delete this customer?</string>
     <string name="msg_delete_customer_success">Customer deleted successfully.</string>
+    <string name="empty_customer_list_message">Please Add A Customer.\n To Add, please touch on the Add Button on Bottom.</string>
+
 
     <!--  Generic Strings  -->
     <string name="str_name">Name :</string>

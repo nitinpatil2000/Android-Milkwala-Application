@@ -71,4 +71,21 @@
         app:layout_constraintBottom_toTopOf="@+id/ll_btn_add_new_customer"
         app:layout_constraintTop_toBottomOf="@+id/cardview_customer_search" />
 
+
+    <TextView
+        android:id="@+id/tv_empty_customer_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_customer_list_message"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:gravity = "center"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerview_customer_list"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerview_customer_list"
+        app:layout_constraintStart_toStartOf="@+id/recyclerview_customer_list"
+        app:layout_constraintTop_toTopOf="@+id/recyclerview_customer_list"
+        android:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

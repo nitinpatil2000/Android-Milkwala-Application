@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.adapters.CustomerViewAdapter;
 import com.technosoul.milkwala.adapters.DeliverPersonListViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.DeliveryPerson;
@@ -30,7 +33,7 @@ public class DeliveryPersonListFragment extends Fragment {
     ArrayList<DeliveryPerson> deliveryPersonList;
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
-
+    TextView tv_empty_delivery_list;
 
     public DeliveryPersonListFragment() {
         // Required empty public constructor
@@ -53,11 +56,22 @@ public class DeliveryPersonListFragment extends Fragment {
         RecyclerView deliverRecyclerView = view.findViewById(R.id.recyclerView_delivery_person_list);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         deliverRecyclerView.setLayoutManager(gridLayoutManager);
+        tv_empty_delivery_list = view.findViewById(R.id.tv_empty_delivery_list);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
 
-        for (int i = 0; i < deliveryPersonList.size(); i++) {
+//        for (int i = 0; i < deliveryPersonList.size(); i++) {
+//            deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
+//            deliverRecyclerView.setAdapter(deliverViewAdapter);
+//        }
+
+        if (deliveryPersonList == null || deliveryPersonList.size() == 0) {
+            Toast.makeText(getContext(), R.string.empty_delivery_boy_list_message, Toast.LENGTH_SHORT).show();
+            tv_empty_delivery_list.setVisibility(View.VISIBLE); // Show the empty text message
+
+        } else {
+            tv_empty_delivery_list.setVisibility(View.GONE); // Show the empty text message
             deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
             deliverRecyclerView.setAdapter(deliverViewAdapter);
         }

@@ -61,7 +61,6 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
         TextView receivedProductName, receivedProductUnit, receivedProductMrp;
         EditText editQuantity;
         TextView totalAmount;
-//        ProductDetails productDetails;
         ProductFromServer productFromServer;
 
         public void setProductFromServer(ProductFromServer productFromServer) {
