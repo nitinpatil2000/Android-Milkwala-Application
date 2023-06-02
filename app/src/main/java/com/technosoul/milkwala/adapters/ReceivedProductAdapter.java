@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.receiveProduct;
+package com.technosoul.milkwala.adapters;
 
 import android.content.Context;
 import android.text.Editable;
@@ -14,9 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
-import com.technosoul.milkwala.ui.masterinfo.products.ProductService;
 
 import java.util.ArrayList;
 
@@ -38,9 +36,9 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
     }
 
     //TODO this method is used for save button.
-//    public ArrayList<ProductFromServer> getProductDetails() {
-//        return productFromServers;
-//    }
+    public ArrayList<ProductFromServer> getProductFromServers() {
+        return productFromServers;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull ReceivedProductAdapter.ViewHolder holder, int position) {
@@ -75,36 +73,28 @@ public class ReceivedProductAdapter extends RecyclerView.Adapter<ReceivedProduct
             editQuantity = itemView.findViewById(R.id.editQuantity);
             totalAmount = itemView.findViewById(R.id.totalAmout);
 
-            String receivedMrp = receivedProductMrp.getText().toString();
-            long mrp = Long.parseLong(receivedMrp);
+            editQuantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    //Do nothing
+                }
 
-//            editQuantity.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    // not needed
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    // Do nothing
+                }
 
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    String quantityText = editable.toString();
+                    if(!TextUtils.isEmpty(quantityText)){
+                        int quantity = Integer.parseInt(quantityText);
+                        double calculateTotal = quantity * productFromServer.getProductMrpRetailerRate();
+                        totalAmount.setText(String.valueOf(calculateTotal));
 
-                    // calculate the new total amount based on the value of editQuantity
-//                    long newQuantity = 0L;
-//                    if (!TextUtils.isEmpty(s)) {
-//                        newQuantity = Long.parseLong(s.toString());
-//                    }
-//                    double newTotalAmount = newQuantity * mrp;
-
-                    // update the totalAmount TextView
-//                    totalAmount.setText(String.valueOf("Rs " + newTotalAmount));
-//                    productDetails.setProductDetailsQuantity(newQuantity);
-//                }
-
-//                @Override
-//                public void afterTextChanged(Editable s) {
-//                     not needed
-//                }
-//            });
+                    }
+                }
+            });
         }
     }
 }

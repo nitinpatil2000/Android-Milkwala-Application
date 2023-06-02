@@ -22,7 +22,6 @@ public interface SupplierService {
     @GET("/suppliers/{supplierId}")
     Call<SupplierFromServer> getSupplierDetails(@Path("supplierId") int supplierId);
 
-
     @DELETE("/supplier/{supplierId}")
     Call<ResponseBody> deleteSupplier(@Path("supplierId") int supplierId);
 }

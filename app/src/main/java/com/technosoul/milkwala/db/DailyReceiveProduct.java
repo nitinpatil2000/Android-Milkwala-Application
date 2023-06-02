@@ -1,4 +1,4 @@
-package com.technosoul.milkwala.receiveProduct;
+package com.technosoul.milkwala.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.receiveProduct.DataConverter;
 
 import java.util.Date;
 

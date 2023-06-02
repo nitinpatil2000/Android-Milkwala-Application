@@ -2,6 +2,8 @@ package com.technosoul.milkwala.ui.auth;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,6 +36,12 @@ public class LoginFragment extends Fragment {
     private Context context;
 
     @Override
+    public void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
@@ -54,7 +62,9 @@ public class LoginFragment extends Fragment {
         signInPassword = view.findViewById(R.id.signInPassword);
 
         Button btnLogin = view.findViewById(R.id.singInLogin);
-        btnLogin.setOnClickListener(view1 -> initiateLogin());
+        btnLogin.setOnClickListener(view1 -> initiateLogin()
+        );
+
 
         return view;
     }
@@ -125,5 +135,7 @@ public class LoginFragment extends Fragment {
 //            Toast.makeText(context, "Not authorized to login.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 }

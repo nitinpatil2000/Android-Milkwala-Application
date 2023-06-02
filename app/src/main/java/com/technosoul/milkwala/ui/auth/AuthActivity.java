@@ -1,6 +1,7 @@
 package com.technosoul.milkwala.ui.auth;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,9 @@ import com.technosoul.milkwala.todaydeliver.DeliveryActivity;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
 
 public class AuthActivity extends AbstractBaseActivity implements LoginListener {
+    private SharedPreferences sharedPreferences;
+   private  LoginFragment loginFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class AuthActivity extends AbstractBaseActivity implements LoginListener 
             getSupportActionBar().hide();
         }
 
-        loadFragment(new LoginFragment());
+            loadFragment(new LoginFragment());
     }
 
     private void loadFragment(Fragment fragment) {
@@ -35,8 +39,14 @@ public class AuthActivity extends AbstractBaseActivity implements LoginListener 
         ft.commit();
     }
 
+
+
     @Override
     public void onDeliveryBoyLoginSuccess() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", true);
+        editor.apply();
+
         Intent iDeliver = new Intent(this, DeliveryActivity.class);
         startActivity(iDeliver);
         finish();
@@ -47,5 +57,15 @@ public class AuthActivity extends AbstractBaseActivity implements LoginListener 
         Intent iMain = new Intent(this, MainActivity.class);
         startActivity(iMain);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+            finish();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

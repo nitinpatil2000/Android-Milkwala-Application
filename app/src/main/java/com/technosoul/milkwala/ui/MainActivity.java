@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 import com.technosoul.milkwala.aboutscreen.AboutAppActivity;
 import com.technosoul.milkwala.AdminDashboardFragment;
+import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
+import com.technosoul.milkwala.managers.SharedPreferenceManager;
 import com.technosoul.milkwala.myprofile.MyProfileActivity;
 import com.technosoul.milkwala.myprofile.ProfileFragment;
 import com.technosoul.milkwala.R;
@@ -26,6 +28,7 @@ import com.technosoul.milkwala.customerorder.CustomerActivity;
 import com.technosoul.milkwala.receiveProduct.ReceivedProductActivity;
 import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
+import com.technosoul.milkwala.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,13 +91,17 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (id == R.id.menu_log_out) {
-                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putBoolean("flag", false);
-                    editor.apply();
-
+//                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//                    editor.putBoolean("flag", false);
+//                    editor.apply();
+//                    AuthTokenManager.instance().set("");
+//                    SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
+                    AuthTokenManager.instance().set("");
+                    SharedPreferenceManager.getInstance().putInt(Constants.KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
                     Intent iAuth = new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(iAuth);
+                    finish();
                 } else {
                     Intent iAboutIntent = new Intent(MainActivity.this, AboutAppActivity.class);
                     startActivity(iAboutIntent);

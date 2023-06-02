@@ -155,6 +155,11 @@
     <string name="empty_customer_list_message">Please Add A Customer.\n To Add, please touch on the Add Button on Bottom.</string>
 
 
+    <!--    SupplierOrder-->
+    <string name="err_empty_supplier_order">Supplier order should not be empty.</string>
+    <string name="err_empty_supplier_order_date">Supplier Date should not be empty.</string>
+
+
     <!--  Generic Strings  -->
     <string name="str_name">Name :</string>
     <string name="str_address">Address :</string>
@@ -220,6 +225,34 @@
 
     <string name="title_router">Total Route</string>
     <string name="master_info_total_router">%d routers</string>
+    <string name="let_get_started">Lets Get Started</string>
+
+
+
+<!--    Heading-->
+    <string name="supplier_heading">Supplier</string>
+    <string name="product_heading">Product</string>
+    <string name="delivery_hading">Delivery Boy</string>
+    <string name="customer_heading">Customer</string>
+
+
+<!--    Desc-->
+    <string name="product_desc">The Milkwala app is a comprehensive platform for managing dairy product
+        supply, distribution, and sales, offering features such as inventory
+        management, order placement, delivery tracking, and reporting.</string>
+
+    <string name="supplier_desc">Suppliers are stakeholders who provide dairy products to the Milkwala app,
+        supplying various items like milk, cheese, butter, and other dairy essentials.</string>
+
+    <string name="delivery_desc">Delivery persons, also known as delivery boys, are stakeholders responsible
+        for delivering dairy products to customers and collecting payments efficiently and timely.</string>
+
+    <string name="customer_desc">Customers, as users of the milkwala application, can easily register, create profiles,
+        and access various features to search for and connect with their desired dairy products and suppliers.</string>
+
+
+
+
 
 
 

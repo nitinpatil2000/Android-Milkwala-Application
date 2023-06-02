@@ -189,10 +189,13 @@ public class AddNewProductFragment extends Fragment {
             createProductFromSupplier.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful())
+                    {
                         String productMessage = response.body();
-                        if(productMessage != null) {
-                            if (listener != null) {
+                        if(productMessage != null)
+                        {
+                            if (listener != null)
+                            {
                                 listener.onBackToPreviousScreen();
                             }
                         }
