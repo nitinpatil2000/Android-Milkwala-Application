@@ -43,10 +43,10 @@ public class AuthActivity extends AbstractBaseActivity implements LoginListener 
 
     @Override
     public void onDeliveryBoyLoginSuccess() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", true);
-        editor.apply();
-
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putBoolean("isLoggedIn", true);
+//        editor.apply();
+//
         Intent iDeliver = new Intent(this, DeliveryActivity.class);
         startActivity(iDeliver);
         finish();

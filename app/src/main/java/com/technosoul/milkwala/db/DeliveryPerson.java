@@ -27,22 +27,35 @@ public class DeliveryPerson {
     @ColumnInfo(name = "delivery_boy_alter_no")
     private String deliveryBoyAlterNo;
 
-    public DeliveryPerson(int deliverBoyId, String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity, String deliveryBoyNumber, String deliveryBoyAlterNo) {
+    @ColumnInfo(name = "delivery_login_email")
+    private String deliveryBoyEmail;
+
+    @ColumnInfo(name = "delivery_login_password")
+    private String deliveryBoyPassword;
+
+    public DeliveryPerson(int deliverBoyId, String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity,
+                          String deliveryBoyNumber, String deliveryBoyAlterNo, String deliveryBoyEmail, String deliveryBoyPassword) {
         this.deliverBoyId = deliverBoyId;
         this.deliveryBoyName = deliveryBoyName;
         this.deliveryBoyAddress = deliveryBoyAddress;
         this.deliveryBoyCity = deliveryBoyCity;
         this.deliveryBoyNumber = deliveryBoyNumber;
         this.deliveryBoyAlterNo = deliveryBoyAlterNo;
+        this.deliveryBoyEmail = deliveryBoyEmail;
+        this.deliveryBoyPassword = deliveryBoyPassword;
     }
 
+
     @Ignore
-    public DeliveryPerson(String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity, String deliveryBoyNumber, String deliveryBoyAlterNo) {
+    public DeliveryPerson(String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity
+            , String deliveryBoyNumber, String deliveryBoyAlterNo, String deliveryBoyEmail, String deliveryBoyPassword) {
         this.deliveryBoyName = deliveryBoyName;
         this.deliveryBoyAddress = deliveryBoyAddress;
         this.deliveryBoyCity = deliveryBoyCity;
         this.deliveryBoyNumber = deliveryBoyNumber;
         this.deliveryBoyAlterNo = deliveryBoyAlterNo;
+        this.deliveryBoyEmail = deliveryBoyEmail;
+        this.deliveryBoyPassword = deliveryBoyPassword;
     }
 
     public int getDeliverBoyId() {
@@ -91,5 +104,21 @@ public class DeliveryPerson {
 
     public void setDeliveryBoyAlterNo(String deliveryBoyAlterNo) {
         this.deliveryBoyAlterNo = deliveryBoyAlterNo;
+    }
+
+    public String getDeliveryBoyEmail() {
+        return deliveryBoyEmail;
+    }
+
+    public void setDeliveryBoyEmail(String deliveryBoyEmail) {
+        this.deliveryBoyEmail = deliveryBoyEmail;
+    }
+
+    public String getDeliveryBoyPassword() {
+        return deliveryBoyPassword;
+    }
+
+    public void setDeliveryBoyPassword(String deliveryBoyPassword) {
+        this.deliveryBoyPassword = deliveryBoyPassword;
     }
 }

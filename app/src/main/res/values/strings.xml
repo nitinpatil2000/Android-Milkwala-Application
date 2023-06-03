@@ -15,7 +15,7 @@
 
     <string name="app_title_part_1">Milkwala</string>
     <string name="app_title_part_2">Dairy</string>
-    <string name="str_email">Email :</string>
+    <string name="str_email">Email</string>
     <string name="str_password">Password</string>
     <string name="str_login">Login</string>
     <string name="err_empty_email">Please enter an Email address.</string>
@@ -131,6 +131,7 @@
     <string name="err_min_length_delivery_addr">Delivery person address should be minimum of 8 characters</string>
     <string name="msg_delivery_person_add_success">Delivery person %1$s added successfully.</string>
     <string name="title_delivery_person_details">%1$s details</string>
+    <string name="title_delivery_person_login_title">%1$s login details</string>
     <string name="title_delete_delivery_person">Delete - %1$s</string>
     <string name="msg_delete_delivery_person_desc">Please Note - Deleting will remove all the information and records permanently related to this person</string>
     <string name="msg_delete_delivery_person_confirmation">Are you sure to delete this delivery person?</string>
@@ -249,11 +250,7 @@
 
     <string name="customer_desc">Customers, as users of the milkwala application, can easily register, create profiles,
         and access various features to search for and connect with their desired dairy products and suppliers.</string>
-
-
-
-
-
+    <string name="login_details">Delivery Login Details</string>
 
 
 </resources>

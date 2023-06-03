@@ -118,12 +118,12 @@ public class MasterInfoFragment extends Fragment {
         //TODO GET ALL SUPPLIER IN ROOM DB
         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
-//        int numSuppliers = supplierList.size();
-//        totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
+        int numSuppliers = supplierList.size();
+        totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
         llSuppliers.setOnClickListener(view1 -> masterInfoListener.onSupplierClick());
 
-//        int numProducts = supplierList.size();
-//        totalProductsSubText.setText(getString(R.string.total_deliver_sub_text, numProducts));
+        int numProducts = supplierList.size();
+        totalProductsSubText.setText(getString(R.string.total_deliver_sub_text, numProducts));
         llProducts.setOnClickListener(view12 -> masterInfoListener.onProductClick());
 
         ArrayList<DeliveryPerson> deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();

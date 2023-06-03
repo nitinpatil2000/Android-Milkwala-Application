@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Supplier.class, ProductDetails.class, DeliveryPerson.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version =4)
+@Database(entities = {Supplier.class, ProductDetails.class, DeliveryPerson.class, Customer.class, Login.class, DailyReceiveProduct.class}, exportSchema = false, version =5)
 public abstract class MyDbHelper extends RoomDatabase {
     private static  final  String DB_NAME = "milkDb";
     private static MyDbHelper instance;

@@ -24,6 +24,8 @@ public class AddNewDeliverPersonFragment extends Fragment {
     EditText etDeliveryPersonMobileNo;
     EditText etDeliveryPersonAlternateNo;
     EditText etDeliveryPersonCity;
+    EditText deliveryLoginEmail;
+    EditText deliveryLoginPassword;
     Button btnAddNewDeliveryPerson;
 
     MasterInfoListener listener;
@@ -46,6 +48,8 @@ public class AddNewDeliverPersonFragment extends Fragment {
         etDeliveryPersonCity = view.findViewById(R.id.etDeliveryPersonCity);
         etDeliveryPersonMobileNo = view.findViewById(R.id.etDeliveryPersonContact);
         etDeliveryPersonAlternateNo = view.findViewById(R.id.etDeliveryPersonAlterNo);
+        deliveryLoginEmail = view.findViewById(R.id.delivery_login_email);
+        deliveryLoginPassword = view.findViewById(R.id.deliver_login_password);
 
         btnAddNewDeliveryPerson = view.findViewById(R.id.btnAddNewDeliveryPerson);
 
@@ -106,7 +110,30 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 return;
             }
 
-            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(name, deliveryAddress, deliveryCity, deliveryContactNo, deliveryAlterNo));
+            String deliveryEmail = deliveryLoginEmail.getText().toString();
+            // Validate the input values
+            if (TextUtils.isEmpty(deliveryEmail)) {
+                deliveryLoginEmail.setError(getString(R.string.err_empty_email));
+                return;
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(deliveryEmail).matches()) {
+                deliveryLoginEmail.setError(getString(R.string.err_invalid_email));
+                return;
+            }
+
+            String deliveryPassword = deliveryLoginPassword.getText().toString();
+            if (TextUtils.isEmpty(deliveryPassword)) {
+                deliveryLoginPassword.setError(getString(R.string.err_empty_pwd));
+                return;
+            }
+
+            if (deliveryPassword.length() < 6) {
+                deliveryLoginPassword.setError(getString(R.string.err_pwd_min_length));
+                return;
+            }
+
+            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(name, deliveryAddress, deliveryCity, deliveryContactNo, deliveryAlterNo, deliveryEmail, deliveryPassword));
 
             Toast.makeText(getContext(), getString(R.string.msg_delivery_person_add_success, name), Toast.LENGTH_SHORT).show();
 

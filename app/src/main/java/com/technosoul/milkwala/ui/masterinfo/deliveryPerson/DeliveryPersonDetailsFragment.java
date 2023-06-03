@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,11 @@ public class DeliveryPersonDetailsFragment extends Fragment {
     Button deleteDeliveryBoyBtn;
     private final int deliveryId;
     private String deliveryBoyName;
+
+
+    TextView tvDeliveryBoyLoginTitle;
+    TextView txtDeliveryDetailsEmail, txtDeliveryDetailsPassword;
+
 
     private MasterInfoListener listener;
 
@@ -49,6 +55,10 @@ public class DeliveryPersonDetailsFragment extends Fragment {
         txtDeliveryBoyAlterNo = view.findViewById(R.id.txtDeliveryBoyAlterNo);
         tvTitleDeliveryPerson = view.findViewById(R.id.tv_title_delivery_person);
 
+        tvDeliveryBoyLoginTitle = view.findViewById(R.id.delivery_boy_login_title);
+        txtDeliveryDetailsEmail = view.findViewById(R.id.delivery_details_email);
+        txtDeliveryDetailsPassword = view.findViewById(R.id.deliver_details_password);
+
         deleteDeliveryBoyBtn = view.findViewById(R.id.deleteDeliveryBoyBtn);
 
         MyDbHelper myDbHelper = MyDbHelper.getDB(getContext());
@@ -60,6 +70,11 @@ public class DeliveryPersonDetailsFragment extends Fragment {
         txtDeliveryBoyContactNo.setText(deliveryPersonDetails.getDeliveryBoyNumber());
         txtDeliveryBoyAlterNo.setText(deliveryPersonDetails.getDeliveryBoyAlterNo());
         tvTitleDeliveryPerson.setText(getString(R.string.title_delivery_person_details, deliveryPersonDetails.getDeliveryBoyName()));
+
+        txtDeliveryDetailsEmail.setText(deliveryPersonDetails.getDeliveryBoyEmail());
+        txtDeliveryDetailsPassword.setText(deliveryPersonDetails.getDeliveryBoyPassword());
+        tvDeliveryBoyLoginTitle.setText(getString(R.string.title_delivery_person_login_title, deliveryPersonDetails.getDeliveryBoyName()));
+
 
         deleteDeliveryBoyBtn.setOnClickListener(v -> {
             Button btnCancel;
