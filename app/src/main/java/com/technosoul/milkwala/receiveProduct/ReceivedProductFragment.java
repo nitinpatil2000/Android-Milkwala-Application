@@ -252,7 +252,7 @@ public class ReceivedProductFragment extends Fragment {
                             supplierOrder.setSupplierId(supplierId);
                             supplierOrder.setProductId(productId);
                             supplierOrder.setOrderedQuantity(receivedQuantity);
-                            supplierOrder.setSupplierOrderDate(new Date());
+//                            supplierOrder.setSupplierOrderDate(new Date());
 
 
                             // Format the date in "yyyy-MM-dd" format
@@ -272,25 +272,12 @@ public class ReceivedProductFragment extends Fragment {
                                         String supplierMessage = response.body();
                                         if (supplierMessage != null)
                                         {
-                                            Toast.makeText(getContext(), "Order added successfully", Toast.LENGTH_SHORT).show();
-                                            if (masterInfoListener != null)
-                                            {
-                                                masterInfoListener.onBackToPreviousScreen();
-                                            }
+
                                         }
                                     }
                                     else
                                     {
                                         Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
-                                        Request request = call.request();
-                                        try {
-                                            Buffer buffer = new Buffer();
-                                            request.body().writeTo(buffer);
-                                            String requestBody = buffer.readUtf8();
-                                            Log.d("API Request Body", requestBody);
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
                                     }
                                 }
 
@@ -303,6 +290,8 @@ public class ReceivedProductFragment extends Fragment {
                                         request.body().writeTo(buffer);
                                         String requestBody = buffer.readUtf8();
                                         Log.d("API Request Body", requestBody);
+                                        Toast.makeText(getContext(), "Order added successfully", Toast.LENGTH_SHORT).show();
+                                            masterInfoListener.onBackToPreviousScreen();
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }

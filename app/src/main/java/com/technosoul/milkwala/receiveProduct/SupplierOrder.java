@@ -8,13 +8,13 @@ public class SupplierOrder {
     private int supplierId;
     private int productId;
     private int orderedQuantity;
-    private Date supplierOrderDate;
+//    private Date supplierOrderDate;
 
-    public SupplierOrder(int supplierId, int productId, int orderedQuantity, Date supplierOrderDate) {
+    public SupplierOrder(int supplierId, int productId, int orderedQuantity) {
         this.supplierId = supplierId;
         this.productId = productId;
         this.orderedQuantity = orderedQuantity;
-        this.supplierOrderDate = supplierOrderDate;
+//        this.supplierOrderDate = supplierOrderDate;
     }
 
     public int getSupplierId() {
@@ -41,13 +41,13 @@ public class SupplierOrder {
         this.orderedQuantity = orderedQuantity;
     }
 
-    public Date getSupplierOrderDate() {
-        return supplierOrderDate;
-    }
-
-    public void setSupplierOrderDate(Date supplierOrderDate) {
-        this.supplierOrderDate = supplierOrderDate;
-    }
+//    public Date getSupplierOrderDate() {
+//        return supplierOrderDate;
+//    }
+//
+//    public void setSupplierOrderDate(Date supplierOrderDate) {
+//        this.supplierOrderDate = supplierOrderDate;
+//    }
 
     public SupplierOrder() {
     }
@@ -58,7 +58,6 @@ public class SupplierOrder {
                 "supplierId=" + supplierId +
                 ", productId=" + productId +
                 ", orderedQuantity=" + orderedQuantity +
-                ", supplierOrderDate=" + supplierOrderDate +
                 '}';
     }
 }

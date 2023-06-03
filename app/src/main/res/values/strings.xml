@@ -32,6 +32,7 @@
     <string name="total_sale">Total Sale:</string>
     <string name="total_waste">Wastage:</string>
 
+
     <string name="total_supplier_sub_text">%d Suppliers</string>
     <string name="total_product_sub_text">%d Products</string>
     <string name="total_deliver_sub_text">%d Delivery Boys</string>

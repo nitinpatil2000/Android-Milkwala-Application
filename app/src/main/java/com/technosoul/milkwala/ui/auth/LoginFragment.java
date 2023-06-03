@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ public class LoginFragment extends Fragment {
     private EditText signInEmail;
     private EditText signInPassword;
     private Context context;
+
 
     @Override
     public void onResume() {
@@ -64,6 +67,32 @@ public class LoginFragment extends Fragment {
         Button btnLogin = view.findViewById(R.id.singInLogin);
         btnLogin.setOnClickListener(view1 -> initiateLogin()
         );
+
+
+        final ImageButton visibilityButton = view.findViewById(R.id.visibility_button);
+        signInPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    visibilityButton.setVisibility(View.VISIBLE);
+                } else {
+                    visibilityButton.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        visibilityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (signInPassword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                    signInPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    visibilityButton.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                } else {
+                    signInPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    visibilityButton.setImageResource(R.drawable.ic_baseline_visibility_24);
+                }
+            }
+        });
 
 
         return view;

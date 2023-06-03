@@ -58,11 +58,14 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
+
                 <EditText
                     android:id="@+id/signInEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="6dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
@@ -73,20 +76,38 @@
                     android:inputType="textEmailAddress"
                     android:padding="10dp" />
 
-                <EditText
-                    android:id="@+id/signInPassword"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints="password"
-                    android:background="@drawable/rectangular_design_curve"
-                    android:hint="@string/str_password"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword|textVisiblePassword"
-                    android:padding="10dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/signInPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:drawableStart="@drawable/ic_baseline_security_24"
+                        android:drawablePadding="6dp"
+                        android:layout_marginEnd="20dp"
+                        android:autofillHints="password"
+                        android:background="@drawable/rectangular_design_curve"
+                        android:hint="@string/str_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword|textVisiblePassword"
+                        android:padding="10dp" />
+
+                    <ImageButton
+                        android:id="@+id/visibility_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_baseline_visibility_24"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
 
                 <Button
                     android:id="@+id/singInLogin"

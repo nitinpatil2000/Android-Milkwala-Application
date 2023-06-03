@@ -91,8 +91,8 @@ public class AdminDashboardFragment extends Fragment {
                     List<SupplierFromServer> supplierList = response.body();
                     if(supplierList != null && !supplierList.isEmpty()){
                         int numSuppliers = supplierList.size();
-//                        totalSuppliers.setText(getString(R.string.total_suppliers, numSuppliers));
-//                        totalProducts.setText(getString(R.string.total_products, numSuppliers));
+                        totalSuppliers.setText(getString(R.string.total_suppliers, numSuppliers));
+                        totalProducts.setText(getString(R.string.total_products, numSuppliers));
                     }else{
 
                     }
