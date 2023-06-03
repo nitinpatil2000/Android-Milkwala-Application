@@ -2,10 +2,7 @@ package com.technosoul.milkwala.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import javax.xml.transform.sax.SAXResult;
 
 @Entity(tableName = "customer")
 public class Customer {
@@ -23,16 +20,24 @@ public class Customer {
     @ColumnInfo(name = "customer_city")
     private String customerCity;
 
+    @ColumnInfo(name = "customer_email")
+    private String customerEmail;
+
+    @ColumnInfo(name = "customer_type")
+    private String customerType;
+
     @ColumnInfo(name = "customer_number")
-    private Double customerNumber;
+    private Long customerNumber;
 
     @ColumnInfo(name = "customer_alter_no")
-    private Double customerAlterNo;
+    private Long customerAlterNo;
 
-    public Customer(String customerName, String customerAddress, String customerCity, Double customerNumber, Double customerAlterNo) {
+    public Customer(String customerName, String customerAddress, String customerCity, String customerEmail, String customerType, Long customerNumber, Long customerAlterNo) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerCity = customerCity;
+        this.customerEmail = customerEmail;
+        this.customerType = customerType;
         this.customerNumber = customerNumber;
         this.customerAlterNo = customerAlterNo;
     }
@@ -57,6 +62,22 @@ public class Customer {
         return customerAddress;
     }
 
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
+    }
+
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
     }
@@ -69,19 +90,19 @@ public class Customer {
         this.customerCity = customerCity;
     }
 
-    public Double getCustomerNumber() {
+    public Long getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(Double customerNumber) {
+    public void setCustomerNumber(Long customerNumber) {
         this.customerNumber = customerNumber;
     }
 
-    public Double getCustomerAlterNo() {
+    public Long getCustomerAlterNo() {
         return customerAlterNo;
     }
 
-    public void setCustomerAlterNo(Double customerAlterNo) {
+    public void setCustomerAlterNo(Long customerAlterNo) {
         this.customerAlterNo = customerAlterNo;
     }
 

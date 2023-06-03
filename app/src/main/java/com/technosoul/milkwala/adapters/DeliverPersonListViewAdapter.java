@@ -37,7 +37,7 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.deliveryBoyName.setText(deliveryPerson.get(position).getDeliveryBoyName());
-        holder.deliveryBoyNumber.setText(deliveryPerson.get(position).getDeliveryBoyNumber());
+        holder.deliveryBoyNumber.setText(String.valueOf(deliveryPerson.get(position).getDeliveryBoyNumber()));
     }
 
     @Override

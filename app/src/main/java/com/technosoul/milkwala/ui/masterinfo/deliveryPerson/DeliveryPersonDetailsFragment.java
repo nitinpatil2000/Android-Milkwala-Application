@@ -67,8 +67,8 @@ public class DeliveryPersonDetailsFragment extends Fragment {
         txtDeliveryBoyName.setText(deliveryPersonDetails.getDeliveryBoyName());
         tvDeliveryBoyAddress.setText(deliveryPersonDetails.getDeliveryBoyAddress());
         txtDeliveryBoyCity.setText(deliveryPersonDetails.getDeliveryBoyCity());
-        txtDeliveryBoyContactNo.setText(deliveryPersonDetails.getDeliveryBoyNumber());
-        txtDeliveryBoyAlterNo.setText(deliveryPersonDetails.getDeliveryBoyAlterNo());
+        txtDeliveryBoyContactNo.setText(String.valueOf(deliveryPersonDetails.getDeliveryBoyNumber()));
+        txtDeliveryBoyAlterNo.setText(String.valueOf(deliveryPersonDetails.getDeliveryBoyAlterNo()));
         tvTitleDeliveryPerson.setText(getString(R.string.title_delivery_person_details, deliveryPersonDetails.getDeliveryBoyName()));
 
         txtDeliveryDetailsEmail.setText(deliveryPersonDetails.getDeliveryBoyEmail());

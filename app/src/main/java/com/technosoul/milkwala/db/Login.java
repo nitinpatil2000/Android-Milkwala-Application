@@ -18,12 +18,6 @@ public class Login {
     private String password;
 
 
-    public Login(int loginId, String emailId, String password) {
-        this.loginId = loginId;
-        this.emailId = emailId;
-        this.password = password;
-    }
-
     public Login(){
 
     }

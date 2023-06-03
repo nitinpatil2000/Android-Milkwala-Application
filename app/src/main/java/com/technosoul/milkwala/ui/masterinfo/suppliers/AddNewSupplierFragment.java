@@ -112,7 +112,7 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierNumber.requestFocus();
             return;
         }
-        Double supplierNo = Double.parseDouble(supplierNumber);
+        long supplierNo = Long.parseLong(supplierNumber);
 
 
         String supplierAltNumber = etSupplierAlternateNumber.getText().toString();
@@ -127,7 +127,7 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierAlternateNumber.requestFocus();
             return;
         }
-        Double supplierAlterNo = Double.parseDouble(supplierAltNumber);
+        long supplierAlterNo = Long.parseLong(supplierAltNumber);
 
 //        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
 //        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();

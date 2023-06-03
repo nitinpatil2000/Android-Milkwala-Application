@@ -90,6 +90,8 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 return;
             }
 
+            long deliveryMobileNo = Long.parseLong(deliveryContactNo);
+
             String deliveryAlterNo = etDeliveryPersonAlternateNo.getText().toString();
             if (!deliveryAlterNo.isEmpty() && !Patterns.PHONE.matcher(deliveryContactNo).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_alternate_number, Toast.LENGTH_SHORT).show();
@@ -99,6 +101,8 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 etDeliveryPersonAlternateNo.requestFocus();
                 return;
             }
+
+            long deliverAlterNo = Long.parseLong(deliveryAlterNo);
 
             String deliveryCity = etDeliveryPersonCity.getText().toString();
             if (TextUtils.isEmpty(deliveryCity)) {
@@ -133,7 +137,7 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 return;
             }
 
-            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(name, deliveryAddress, deliveryCity, deliveryContactNo, deliveryAlterNo, deliveryEmail, deliveryPassword));
+            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(name, deliveryAddress, deliveryCity, deliveryMobileNo, deliverAlterNo, deliveryEmail, deliveryPassword));
 
             Toast.makeText(getContext(), getString(R.string.msg_delivery_person_add_success, name), Toast.LENGTH_SHORT).show();
 

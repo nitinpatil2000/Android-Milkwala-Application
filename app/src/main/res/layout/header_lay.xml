@@ -4,27 +4,32 @@
     android:background="@color/toolbar"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="5dp"
-    android:layout_marginTop="5dp"
     android:layout_height="220dp">
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        />
+        android:scaleType = "centerCrop"
+        android:src = "@drawable/milklogo"/>
 
-    <View
-        android:layout_width="130dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/cardColor"/>
 
 <!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/app_name"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/white"-->
+<!--        />-->
+<!---->
+<!--    <View-->
+<!--        android:layout_width="130dp"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:background="@color/cardColor"/>-->
+
+
+    <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:text="nitin@gmail.com"-->

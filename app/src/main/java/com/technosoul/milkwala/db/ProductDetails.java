@@ -47,17 +47,7 @@ public class ProductDetails {
     public ProductDetails(){
 
     }
-    public ProductDetails(int productDetailsId, int supplierId, String productDetailsName, String productSupplierRate, String productVenderRate, String productDetailsUnit, String productDetailsMrp) {
-        this.productDetailsId = productDetailsId;
-        this.supplierId = supplierId;
-        this.productDetailsName = productDetailsName;
-        this.productSupplierRate = productSupplierRate;
-        this.productVenderRate = productVenderRate;
-        this.productDetailsUnit = productDetailsUnit;
-        this.productDetailsMrp = productDetailsMrp;
-    }
 
-    @Ignore
     public ProductDetails(String productDetailsName, String productSupplierRate, String productVenderRate, String productDetailsUnit, String productDetailsMrp) {
         this.productDetailsName = productDetailsName;
         this.productSupplierRate = productSupplierRate;

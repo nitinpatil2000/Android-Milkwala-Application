@@ -22,10 +22,10 @@ public class DeliveryPerson {
     private String deliveryBoyCity;
 
     @ColumnInfo(name = "delivery_boy_number")
-   private  String deliveryBoyNumber;
+   private  Long deliveryBoyNumber;
 
     @ColumnInfo(name = "delivery_boy_alter_no")
-    private String deliveryBoyAlterNo;
+    private Long deliveryBoyAlterNo;
 
     @ColumnInfo(name = "delivery_login_email")
     private String deliveryBoyEmail;
@@ -33,22 +33,10 @@ public class DeliveryPerson {
     @ColumnInfo(name = "delivery_login_password")
     private String deliveryBoyPassword;
 
-    public DeliveryPerson(int deliverBoyId, String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity,
-                          String deliveryBoyNumber, String deliveryBoyAlterNo, String deliveryBoyEmail, String deliveryBoyPassword) {
-        this.deliverBoyId = deliverBoyId;
-        this.deliveryBoyName = deliveryBoyName;
-        this.deliveryBoyAddress = deliveryBoyAddress;
-        this.deliveryBoyCity = deliveryBoyCity;
-        this.deliveryBoyNumber = deliveryBoyNumber;
-        this.deliveryBoyAlterNo = deliveryBoyAlterNo;
-        this.deliveryBoyEmail = deliveryBoyEmail;
-        this.deliveryBoyPassword = deliveryBoyPassword;
-    }
 
 
-    @Ignore
     public DeliveryPerson(String deliveryBoyName, String deliveryBoyAddress, String deliveryBoyCity
-            , String deliveryBoyNumber, String deliveryBoyAlterNo, String deliveryBoyEmail, String deliveryBoyPassword) {
+            , Long deliveryBoyNumber, Long deliveryBoyAlterNo, String deliveryBoyEmail, String deliveryBoyPassword) {
         this.deliveryBoyName = deliveryBoyName;
         this.deliveryBoyAddress = deliveryBoyAddress;
         this.deliveryBoyCity = deliveryBoyCity;
@@ -90,19 +78,19 @@ public class DeliveryPerson {
         this.deliveryBoyCity = deliveryBoyCity;
     }
 
-    public String getDeliveryBoyNumber() {
+    public Long getDeliveryBoyNumber() {
         return deliveryBoyNumber;
     }
 
-    public void setDeliveryBoyNumber(String deliveryBoyNumber) {
+    public void setDeliveryBoyNumber(Long deliveryBoyNumber) {
         this.deliveryBoyNumber = deliveryBoyNumber;
     }
 
-    public String getDeliveryBoyAlterNo() {
+    public Long getDeliveryBoyAlterNo() {
         return deliveryBoyAlterNo;
     }
 
-    public void setDeliveryBoyAlterNo(String deliveryBoyAlterNo) {
+    public void setDeliveryBoyAlterNo(Long deliveryBoyAlterNo) {
         this.deliveryBoyAlterNo = deliveryBoyAlterNo;
     }
 

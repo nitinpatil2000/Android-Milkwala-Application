@@ -141,6 +141,10 @@
 
     <!--  Customer strings  -->
     <string name="hint_customer_name">Customer Name</string>
+    <string name="hint_customer_email">Customer Email</string>
+    <string name="error_customer_email">Customer Email should not empty!!</string>
+    <string name="error_valid_customer_email">Please enter the valid customer email!!</string>
+    <string name="customer_type">Type :</string>
     <string name="hint_customer_address">Customer Address</string>
     <string name="hint_customer_city">Customer City</string>
     <string name="err_empty_customer_name">Customer name should not be empty.</string>

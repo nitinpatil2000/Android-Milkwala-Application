@@ -18,6 +18,7 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 
+
 public class CustomerDetailsFragment extends Fragment {
     private final int customerId;
     private String customerName;
@@ -41,6 +42,9 @@ public class CustomerDetailsFragment extends Fragment {
         TextView tvCustomerName = view.findViewById(R.id.tvCustomerName);
         TextView tvCustomerAdd = view.findViewById(R.id.tvCustomerAddress);
         TextView tvCustomerCity = view.findViewById(R.id.tvCustomerCity);
+        TextView tvCustomerEmail = view.findViewById(R.id.txtCustomerEm);
+        TextView tvCustomerType = view.findViewById(R.id.txtCustomerType);
+        TextView tvCustomerAltNo = view.findViewById(R.id.txtCustomerAltNo);
         TextView tvCustomerNo = view.findViewById(R.id.tvContactNo);
         TextView tvTitleCustomer = view.findViewById(R.id.tv_title_customer);
 
@@ -53,6 +57,9 @@ public class CustomerDetailsFragment extends Fragment {
         tvTitleCustomer.setText(getString(R.string.title_customer_details, customer.getCustomerName()));
         tvCustomerAdd.setText(customer.getCustomerAddress());
         tvCustomerCity.setText(customer.getCustomerCity());
+        tvCustomerEmail.setText(customer.getCustomerEmail());
+        tvCustomerType.setText(customer.getCustomerType());
+        tvCustomerAltNo.setText(String.valueOf(customer.getCustomerAlterNo()));
         tvCustomerNo.setText(String.valueOf(customer.getCustomerNumber()));
 
         deleteCustomerBtn.setOnClickListener(view1 -> {

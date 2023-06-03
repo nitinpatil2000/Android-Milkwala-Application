@@ -6,15 +6,15 @@ public class SupplierFromServer {
     private String supplierName;
     private String supplierEmail;
     private String supplierAddress;
-    private Double supplierNumber;
-    private Double supplierAltNumber;
+    private Long supplierNumber;
+    private Long supplierAltNumber;
 
 
 
     public SupplierFromServer() {
     }
 
-    public SupplierFromServer(int supplierId, String supplierName,String supplierEmail, String supplierAddress, Double supplierNumber, Double supplierAltNumber) {
+    public SupplierFromServer(int supplierId, String supplierName,String supplierEmail, String supplierAddress, Long supplierNumber, Long supplierAltNumber) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.supplierEmail = supplierEmail;
@@ -56,19 +56,19 @@ public class SupplierFromServer {
         this.supplierAddress = supplierAddress;
     }
 
-    public Double getSupplierNumber() {
+    public Long getSupplierNumber() {
         return supplierNumber;
     }
 
-    public void setSupplierNumber(Double supplierNumber) {
+    public void setSupplierNumber(Long supplierNumber) {
         this.supplierNumber = supplierNumber;
     }
 
-    public Double getSupplierAltNumber() {
+    public Long getSupplierAltNumber() {
         return supplierAltNumber;
     }
 
-    public void setSupplierAltNumber(Double supplierAltNumber) {
+    public void setSupplierAltNumber(Long supplierAltNumber) {
         this.supplierAltNumber = supplierAltNumber;
     }
 

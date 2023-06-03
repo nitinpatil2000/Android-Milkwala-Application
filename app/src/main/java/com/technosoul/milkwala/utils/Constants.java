@@ -41,5 +41,9 @@ public class Constants {
     public static final String CURD = "CURD";
 
 
+    public static final String  RETAILER = "RETAILER";
+    public static final String WHOLESALE = "WHOLESALE";
+
+
 
 }
