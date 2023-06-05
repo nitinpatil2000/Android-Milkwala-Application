@@ -127,7 +127,6 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierAlternateNumber.requestFocus();
             return;
         }
-        long supplierAlterNo = Long.parseLong(supplierAltNumber);
 
 //        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
 //        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
@@ -142,7 +141,10 @@ public class AddNewSupplierFragment extends Fragment {
         supplierFromServer.setSupplierEmail(supplierEmail);
         supplierFromServer.setSupplierAddress(supplierAddress);
         supplierFromServer.setSupplierNumber(supplierNo);
-        supplierFromServer.setSupplierAltNumber(supplierAlterNo);
+        if (!TextUtils.isEmpty(supplierAltNumber)) {
+            long supplierAlterNo = Long.parseLong(supplierAltNumber);
+            supplierFromServer.setSupplierAltNumber(supplierAlterNo);
+        }
 
         Call<SupplierFromServer> call = supplierService.addSupplier(supplierFromServer);
         call.enqueue(new Callback<SupplierFromServer>() {
