@@ -44,16 +44,6 @@ public class AdminDashboardFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
-        int numCustomers = customerList.size();
-        totalCustomers = getView().findViewById(R.id.totalCustomers);
-        totalCustomers.setText(getString(R.string.total_customers, numCustomers));
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -62,8 +52,7 @@ public class AdminDashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
 
-        totalSuppliers = view.findViewById(R.id.totalSuppliers);
-        totalProducts = view.findViewById(R.id.totalProducts);
+
         todayTotalSale = view.findViewById(R.id.today_total_sale);
         todayTotalWaste = view.findViewById(R.id.today_total_waste);
 
@@ -80,32 +69,7 @@ public class AdminDashboardFragment extends Fragment {
         // TODO: need to add the products & fetch it.
 //        totalProducts.setText(getString(R.string.total_products, noSuppliers));
 
-        ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
-        Retrofit retrofit = supplierRetrofitService.getRetrofit();
-        SupplierService supplierService = retrofit.create(SupplierService.class);
-        Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
-        call.enqueue(new Callback<List<SupplierFromServer>>() {
-            @Override
-            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
-                if(response.isSuccessful()){
-                    List<SupplierFromServer> supplierList = response.body();
-                    if(supplierList != null && !supplierList.isEmpty()){
-                        int numSuppliers = supplierList.size();
-                        totalSuppliers.setText(getString(R.string.total_suppliers, numSuppliers));
-                        totalProducts.setText(getString(R.string.total_products, numSuppliers));
-                    }else{
 
-                    }
-                }else{
-                    Toast.makeText(getContext(), R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
 
         // Get total Customers
 
@@ -211,4 +175,49 @@ public class AdminDashboardFragment extends Fragment {
 //        Animation animation = AnimationUtils.loadAnimation(getActivity(), animationId);
 //        textView.setAnimation(animation);
 //    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
+        int numCustomers = customerList.size();
+        totalCustomers = getView().findViewById(R.id.totalCustomers);
+        totalCustomers.setText(getString(R.string.total_customers, numCustomers));
+
+
+        totalSuppliers = getView().findViewById(R.id.totalSuppliers);
+        totalProducts = getView().findViewById(R.id.totalProducts);
+        ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = supplierRetrofitService.getRetrofit();
+        SupplierService supplierService = retrofit.create(SupplierService.class);
+        Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
+        call.enqueue(new Callback<List<SupplierFromServer>>() {
+            @Override
+            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
+                if(response.isSuccessful()){
+                    List<SupplierFromServer> supplierList = response.body();
+                    if(supplierList != null && !supplierList.isEmpty()){
+                        int numSuppliers = supplierList.size();
+                        totalSuppliers.setText(getString(R.string.total_suppliers, numSuppliers));
+                        totalProducts.setText(getString(R.string.total_products, numSuppliers));
+                    }else{
+
+                    }
+                }else{
+                    Toast.makeText(getContext(), R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
 }
+
+
+

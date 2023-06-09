@@ -227,82 +227,79 @@ public class ReceivedProductFragment extends Fragment {
 //                try {
 //                    selectedDateObj = dateFormat.parse(selectedDate);
 //                    if (selectedDateObj.compareTo(currentDate) > 0) {
-                        // The selected date is in the future
-                        // Perform additional validation here or show an error message
+                // The selected date is in the future
+                // Perform additional validation here or show an error message
 //                    } else {
-                        // The selected date is valid
-                        HashMap<EditText, ProductFromServer> editTextMap = new HashMap<>();
-                        ArrayList<ProductFromServer> productFromServers = receivedProductAdapter.getProductFromServers();
-                        for (ProductFromServer getProductFromServer : productFromServers) {
+                // The selected date is valid
+                HashMap<EditText, ProductFromServer> editTextMap = new HashMap<>();
+                ArrayList<ProductFromServer> productFromServers = receivedProductAdapter.getProductFromServers();
+                for (ProductFromServer getProductFromServer : productFromServers) {
+                    int position = productFromServers.indexOf(getProductFromServer);
+                    RecyclerView.ViewHolder viewHolder = receivedRecyclerView.findViewHolderForAdapterPosition(position);
+                    if (viewHolder != null) {
+                        View itemView = viewHolder.itemView;
+                        EditText editQuantity = itemView.findViewById(R.id.editQuantity);
+                        String quantity = editQuantity.getText().toString();
+                        if (TextUtils.isEmpty(quantity)) {
+                            Toast.makeText(getContext(), "Please enter the quantity for item: " + getProductFromServer.getProductName(), Toast.LENGTH_SHORT).show();
+                            editQuantity.requestFocus();
+                            return;
+                        }
 
-                            View itemView = receivedRecyclerView.findViewHolderForAdapterPosition(productFromServers.indexOf(getProductFromServer)).itemView;
-                            EditText editQuantity = itemView.findViewById(R.id.editQuantity);
-                            String quantity = editQuantity.getText().toString();
-                            if (TextUtils.isEmpty(quantity)) {
-                                Toast.makeText(getContext(), "Please enter the quantity for item: " + getProductFromServer.getProductId(), Toast.LENGTH_SHORT).show();
-                                editQuantity.requestFocus();
-                                return;
-                            }
+                        int receivedQuantity = Integer.parseInt(quantity);
+                        editTextMap.put(editQuantity, getProductFromServer);
 
-                            int receivedQuantity = Integer.parseInt(quantity);
-                            editTextMap.put(editQuantity, getProductFromServer);
-
-                            productId = getProductFromServer.getProductId();
-                            SupplierOrder supplierOrder = new SupplierOrder();
-                            supplierOrder.setSupplierId(supplierId);
-                            supplierOrder.setProductId(productId);
-                            supplierOrder.setOrderedQuantity(receivedQuantity);
+                        productId = getProductFromServer.getProductId();
+                        SupplierOrder supplierOrder = new SupplierOrder();
+                        supplierOrder.setSupplierId(supplierId);
+                        supplierOrder.setProductId(productId);
+                        supplierOrder.setOrderedQuantity(receivedQuantity);
 //                            supplierOrder.setSupplierOrderDate(new Date());
 
 
-                            // Format the date in "yyyy-MM-dd" format
+                        // Format the date in "yyyy-MM-dd" format
 //                            SimpleDateFormat serverDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 //                            String formattedDate = serverDateFormat.format(selectedDateObj);
 //                            supplierOrder.setSupplierOrderDate(formattedDate);
 
-                            ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
-                            Retrofit retrofit = apiRetrofitService.getRetrofit();
-                            SupplierOrderService supplierOrderService = retrofit.create(SupplierOrderService.class);
-                            Call<String> createSupplierOrder = supplierOrderService.createSupplierOrder(supplierOrder);
-                            createSupplierOrder.enqueue(new Callback<String>() {
-                                @Override
-                                public void onResponse(Call<String> call, Response<String> response) {
-                                    if (response.isSuccessful())
-                                    {
-                                        String supplierMessage = response.body();
-                                        if (supplierMessage != null)
-                                        {
+                        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+                        Retrofit retrofit = apiRetrofitService.getRetrofit();
+                        SupplierOrderService supplierOrderService = retrofit.create(SupplierOrderService.class);
+                        Call<SupplierOrder> createSupplierOrder = supplierOrderService.createSupplierOrder(supplierOrder);
+                        createSupplierOrder.enqueue(new Callback<SupplierOrder>() {
+                            @Override
+                            public void onResponse(Call<SupplierOrder> call, Response<SupplierOrder> response) {
+                                SupplierOrder supplierOrderList = response.body();
+                                if (supplierOrderList != null) {
+                                    Toast.makeText(getContext(), R.string.msg_supplier_order_success, Toast.LENGTH_SHORT).show();
+//                                if (masterInfoListener != null) {
+//                                    masterInfoListener.onBackToPreviousScreen();
+//                                }
+                                } else {
+                                    Toast.makeText(getContext(), R.string.error_text, Toast.LENGTH_SHORT).show();
 
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
-                                    }
                                 }
+                            }
 
-                                @Override
-                                public void onFailure(Call<String> call, Throwable t) {
-                                    Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    Request request = call.request();
-                                    try {
-                                        Buffer buffer = new Buffer();
-                                        request.body().writeTo(buffer);
-                                        String requestBody = buffer.readUtf8();
-                                        Log.d("API Request Body", requestBody);
-                                        Toast.makeText(getContext(), "Order added successfully", Toast.LENGTH_SHORT).show();
-                                            masterInfoListener.onBackToPreviousScreen();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+                            @Override
+                            public void onFailure(Call<SupplierOrder> call, Throwable t) {
+                                Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
+                                t.printStackTrace();
+                                // Log the request body
+                                Request request = call.request();
+                                try {
+                                    Buffer buffer = new Buffer();
+                                    request.body().writeTo(buffer);
+                                    String requestBody = buffer.readUtf8();
+                                    Log.d("API Request Body", requestBody);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+                }
+            }
         });
 
 

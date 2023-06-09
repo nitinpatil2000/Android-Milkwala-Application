@@ -125,6 +125,8 @@
     <!--  Delivery person strings  -->
     <string name="hint_delivery_name">Delivery person name</string>
     <string name="hint_delivery_address">Delivery person Address</string>
+    <string name="no_delivery_person_found">No Delivery Person Found</string>
+
     <string name="hint_delivery_city">Delivery person city</string>
     <string name="err_empty_delivery_name">Delivery person name should not be empty.</string>
     <string name="err_min_length_delivery_name">Delivery person name should be minimum of 3 characters</string>
@@ -175,6 +177,7 @@
     <string name="str_cancel">Cancel</string>
     <string name="str_ok">Ok</string>
     <string name="str_delete">Delete</string>
+    <string name="str_update_title">Update %1$s details</string>
     <string name="str_unit">Unit :</string>
     <string name="str_city">City :</string>
     <string name="err_empty_mobile_number">Mobile number should not be empty.</string>
@@ -230,7 +233,7 @@
     <string name="err_valid_supplier_email">Please Enter the valid Supplier email.</string>
 
     <string name="title_router">Total Route</string>
-    <string name="master_info_total_router">%d routers</string>
+    <string name="master_info_total_router">5 routers</string>
     <string name="let_get_started">Lets Get Started</string>
 
 
@@ -256,6 +259,11 @@
     <string name="customer_desc">Customers, as users of the milkwala application, can easily register, create profiles,
         and access various features to search for and connect with their desired dairy products and suppliers.</string>
     <string name="login_details">Delivery Login Details</string>
+
+    <string name="add_delivery_person_title">Add New Delivery Boy</string>
+    <string name="about_screen_title">About Milkwala</string>
+    <string name="msg_supplier_order_success">Supplier Order Added Successfully !!</string>
+    <string name="str_update">UPDATE</string>
 
 
 </resources>

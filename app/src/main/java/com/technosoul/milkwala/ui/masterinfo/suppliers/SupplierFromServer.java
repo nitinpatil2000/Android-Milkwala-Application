@@ -1,6 +1,8 @@
 package com.technosoul.milkwala.ui.masterinfo.suppliers;
 
 
+import androidx.annotation.NonNull;
+
 public class SupplierFromServer {
     private int supplierId;
     private String supplierName;
@@ -14,14 +16,12 @@ public class SupplierFromServer {
     public SupplierFromServer() {
     }
 
-    public SupplierFromServer(int supplierId, String supplierName,String supplierEmail, String supplierAddress, Long supplierNumber, Long supplierAltNumber) {
-        this.supplierId = supplierId;
+    public SupplierFromServer(String supplierName,String supplierEmail, String supplierAddress, Long supplierNumber, Long supplierAltNumber) {
         this.supplierName = supplierName;
         this.supplierEmail = supplierEmail;
         this.supplierAddress = supplierAddress;
         this.supplierNumber = supplierNumber;
         this.supplierAltNumber = supplierAltNumber;
-
     }
 
     public int getSupplierId() {
@@ -72,6 +72,7 @@ public class SupplierFromServer {
         this.supplierAltNumber = supplierAltNumber;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "SupplierFromServer{" +

@@ -30,7 +30,7 @@ public class AboutFragment extends Fragment {
 
         //TODO SET THE TITLE
         if(getActivity()!= null){
-            ((AboutAppActivity)getActivity()).setActionBarTitle("About Milkwala");
+            ((AboutAppActivity)getActivity()).setActionBarTitle(getString(R.string.about_screen_title));
         }
 
         hyperlink = view.findViewById(R.id.hyperlink);

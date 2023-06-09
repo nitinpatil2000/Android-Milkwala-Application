@@ -2,6 +2,7 @@ package com.technosoul.milkwala.ui.masterinfo.deliveryPerson;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,14 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.DeliveryPerson;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AddNewDeliverPersonFragment extends Fragment {
     EditText etDeliveryPersonName;
@@ -53,47 +58,83 @@ public class AddNewDeliverPersonFragment extends Fragment {
 
         btnAddNewDeliveryPerson = view.findViewById(R.id.btnAddNewDeliveryPerson);
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 
+
+        //for name
         btnAddNewDeliveryPerson.setOnClickListener(view1 -> {
-            String name = etDeliveryPersonName.getText().toString();
-            if (TextUtils.isEmpty(name)) {
+            String deliveryPersonName = etDeliveryPersonName.getText().toString();
+            if (TextUtils.isEmpty(deliveryPersonName)) {
                 Toast.makeText(getContext(), R.string.err_empty_delivery_name, Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (name.length() < 3) {
+            if (deliveryPersonName.length() < 3) {
                 Toast.makeText(getContext(), R.string.err_min_length_delivery_name, Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            String deliveryAddress = etDeliveryPersonAddress.getText().toString();
-            if (TextUtils.isEmpty(deliveryAddress)) {
+            //for emailId and password
+            String deliveryPersonEmail = deliveryLoginEmail.getText().toString();
+            // Validate the input values
+            if (TextUtils.isEmpty(deliveryPersonEmail)) {
+                deliveryLoginEmail.setError(getString(R.string.err_empty_email));
+                return;
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(deliveryPersonEmail).matches()) {
+                deliveryLoginEmail.setError(getString(R.string.err_invalid_email));
+                return;
+            }
+
+            String deliveryPersonPassword = deliveryLoginPassword.getText().toString();
+            if (TextUtils.isEmpty(deliveryPersonPassword)) {
+                deliveryLoginPassword.setError(getString(R.string.err_empty_pwd));
+                return;
+            }
+
+            if (deliveryPersonPassword.length() < 6) {
+                deliveryLoginPassword.setError(getString(R.string.err_pwd_min_length));
+                return;
+            }
+
+
+            String deliveryPersonAddress = etDeliveryPersonAddress.getText().toString();
+            if (TextUtils.isEmpty(deliveryPersonAddress)) {
                 Toast.makeText(getContext(), R.string.err_empty_delivery_addr, Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (deliveryAddress.length() < 8) {
+            if (deliveryPersonAddress.length() < 8) {
                 Toast.makeText(getContext(), R.string.err_min_length_delivery_addr, Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            String deliveryContactNo = etDeliveryPersonMobileNo.getText().toString();
-            if (TextUtils.isEmpty(deliveryContactNo)) {
+
+            String deliveryPersonCity = etDeliveryPersonCity.getText().toString();
+            if (TextUtils.isEmpty(deliveryPersonCity)) {
+                Toast.makeText(getContext(), R.string.err_empty_city_name, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (deliveryPersonCity.length() < 3) {
+                Toast.makeText(getContext(), R.string.err_min_length_city, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String deliveryPersonNo = etDeliveryPersonMobileNo.getText().toString();
+            if (TextUtils.isEmpty(deliveryPersonNo)) {
                 Toast.makeText(getContext(), R.string.err_empty_mobile_number, Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (!Patterns.PHONE.matcher(deliveryContactNo).matches()) {
+            if (!Patterns.PHONE.matcher(deliveryPersonNo).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_mobile_number, Toast.LENGTH_SHORT).show();
                 return;
-            }else if (deliveryContactNo.length() > 10) {
+            }else if (deliveryPersonNo.length() > 10) {
                 Toast.makeText(getContext(), R.string.err_max_digits_delivery_mobile_no, Toast.LENGTH_LONG).show();
                 etDeliveryPersonMobileNo.requestFocus();
                 return;
             }
-
-            long deliveryMobileNo = Long.parseLong(deliveryContactNo);
+            long deliveryPersonContactNo = Long.parseLong(deliveryPersonNo);
 
             String deliveryAlterNo = etDeliveryPersonAlternateNo.getText().toString();
-            if (!deliveryAlterNo.isEmpty() && !Patterns.PHONE.matcher(deliveryContactNo).matches()) {
+            if (!deliveryAlterNo.isEmpty() && !Patterns.PHONE.matcher(deliveryAlterNo).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_alternate_number, Toast.LENGTH_SHORT).show();
                 return;
             }else if (deliveryAlterNo.length() > 10) {
@@ -102,52 +143,57 @@ public class AddNewDeliverPersonFragment extends Fragment {
                 return;
             }
 
-            long deliverAlterNo = Long.parseLong(deliveryAlterNo);
+            long deliveryPersonAlterNo = Long.parseLong(deliveryAlterNo);
 
-            String deliveryCity = etDeliveryPersonCity.getText().toString();
-            if (TextUtils.isEmpty(deliveryCity)) {
-                Toast.makeText(getContext(), R.string.err_empty_city_name, Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (deliveryCity.length() < 3) {
-                Toast.makeText(getContext(), R.string.err_min_length_city, Toast.LENGTH_SHORT).show();
-                return;
-            }
 
-            String deliveryEmail = deliveryLoginEmail.getText().toString();
-            // Validate the input values
-            if (TextUtils.isEmpty(deliveryEmail)) {
-                deliveryLoginEmail.setError(getString(R.string.err_empty_email));
-                return;
-            }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(deliveryEmail).matches()) {
-                deliveryLoginEmail.setError(getString(R.string.err_invalid_email));
-                return;
-            }
+//        TODO FOR LOCAL DATABASE
+//            MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(deliveryPersonName,deliveryPersonEmail, deliveryPersonPassword,deliveryPersonAddress, deliveryPersonCity, deliveryPersonContactNo, deliveryPersonAlterNo));
+//            Toast.makeText(getContext(), getString(R.string.msg_delivery_person_add_success, deliveryPersonName), Toast.LENGTH_SHORT).show();
 
-            String deliveryPassword = deliveryLoginPassword.getText().toString();
-            if (TextUtils.isEmpty(deliveryPassword)) {
-                deliveryLoginPassword.setError(getString(R.string.err_empty_pwd));
-                return;
-            }
 
-            if (deliveryPassword.length() < 6) {
-                deliveryLoginPassword.setError(getString(R.string.err_pwd_min_length));
-                return;
-            }
+            ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+            Retrofit retrofit = apiRetrofitService.getRetrofit();
+            DeliveryPersonService deliveryPersonService = retrofit.create(DeliveryPersonService.class);
+            DeliveryFromServer deliveryFromServer = new DeliveryFromServer();
 
-            myDbHelper.deliveryDetailDao().addDeliver(new DeliveryPerson(name, deliveryAddress, deliveryCity, deliveryMobileNo, deliverAlterNo, deliveryEmail, deliveryPassword));
+            deliveryFromServer.setDeliveryPersonName(deliveryPersonName);
+            deliveryFromServer.setDeliveryPersonEmail(deliveryPersonEmail);
+            deliveryFromServer.setDeliveryPersonPassword(deliveryPersonPassword);
+            deliveryFromServer.setDeliveryPersonAddress(deliveryPersonAddress);
+            deliveryFromServer.setDeliveryPersonCity(deliveryPersonCity);
+            deliveryFromServer.setDeliveryPersonContactNo(deliveryPersonContactNo);
+            deliveryFromServer.setDeliveryPersonAlterNo(deliveryPersonAlterNo);
 
-            Toast.makeText(getContext(), getString(R.string.msg_delivery_person_add_success, name), Toast.LENGTH_SHORT).show();
+            Call<String> deliveryFromServerCall = deliveryPersonService.addDeliveryPerson(deliveryFromServer);
+            deliveryFromServerCall.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful()) {
+//                        String responseBody = response.body();
+//                        Toast.makeText(getContext(), responseBody, Toast.LENGTH_SHORT).show();
+                        if (listener != null) {
+                            listener.onBackToPreviousScreen();
+                        }
+                    } else {
+                        String errorBody = response.errorBody().toString();
+                        Toast.makeText(getContext(), errorBody, Toast.LENGTH_SHORT).show();
+                    }
+                }
 
-            if (listener != null) {
-                listener.onBackToPreviousScreen();
-            }
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.d("API Error", t.getMessage()); // Print the error message to log
+                    t.printStackTrace();
+                }
+            });
+
+
         });
 
         if (getActivity() != null) {
-            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Delivery Boy");
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(getString(R.string.add_delivery_person_title));
         }
         
         return view;

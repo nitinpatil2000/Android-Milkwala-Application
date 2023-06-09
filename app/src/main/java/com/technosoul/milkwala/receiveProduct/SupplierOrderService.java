@@ -9,5 +9,5 @@ import retrofit2.http.POST;
 public interface SupplierOrderService {
 
     @POST("/addsupplierorder")
-    Call<String> createSupplierOrder(@Body SupplierOrder supplierOrder);
+    Call<SupplierOrder> createSupplierOrder(@Body SupplierOrder supplierOrder);
 }

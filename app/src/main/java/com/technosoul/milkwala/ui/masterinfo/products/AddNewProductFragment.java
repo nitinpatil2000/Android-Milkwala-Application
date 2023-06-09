@@ -13,11 +13,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
@@ -25,6 +24,7 @@ import com.technosoul.milkwala.utils.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import okhttp3.Request;
 import okio.Buffer;
@@ -128,7 +128,7 @@ public class AddNewProductFragment extends Fragment {
         btnAddNewProduct = view.findViewById(R.id.addNewProductBtn);
         // Set click listener on add button
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         btnAddNewProduct.setOnClickListener(v -> {
             String name = etProductName.getText().toString();
             if (TextUtils.isEmpty(name)) {
@@ -145,7 +145,7 @@ public class AddNewProductFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.err_empty_product_mrp, Toast.LENGTH_SHORT).show();
                 return;
             }
-            double productPrice = Double.parseDouble(productMrp);
+            float productPrice = Float.parseFloat(productMrp);
 
             String productDetailsUnit = unitsSpinner.getSelectedItem().toString();
             if (TextUtils.isEmpty(productDetailsUnit)) {
@@ -164,14 +164,14 @@ public class AddNewProductFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.err_empty_supplier_rate, Toast.LENGTH_SHORT).show();
                 return;
             }
-            double supplierRate = Double.parseDouble(productSupplierRate);
+            float supplierRate = Float.parseFloat(productSupplierRate);
 
             String productWholesaleRate = edtWholesaleRate.getText().toString();
             if (TextUtils.isEmpty(productWholesaleRate)) {
                 Toast.makeText(getContext(), R.string.err_empty_vendor_rate, Toast.LENGTH_SHORT).show();
                 return;
             }
-            double wholesaleRate = Double.parseDouble(productWholesaleRate);
+            float wholesaleRate = Float.parseFloat(productWholesaleRate);
 
             ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
             Retrofit retrofit = apiRetrofitService.getRetrofit();
@@ -185,45 +185,29 @@ public class AddNewProductFragment extends Fragment {
             productFromServer.setProductMrpRetailerRate(productPrice);
             productFromServer.setSupplierId(supplierId);
 
-            Call<String> createProductFromSupplier = productService.createProduct(productFromServer);
-            createProductFromSupplier.enqueue(new Callback<String>() {
+            Call<ProductFromServer> createProductFromSupplier = productService.createProduct(productFromServer);
+            createProductFromSupplier.enqueue(new Callback<ProductFromServer>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.isSuccessful())
-                    {
-                        String productMessage = response.body();
-                        if(productMessage != null)
-                        {
-                            if (listener != null)
-                            {
-                                listener.onBackToPreviousScreen();
-                            }
+                public void onResponse(@NonNull Call<ProductFromServer> call, @NonNull Response<ProductFromServer> response) {
+                    ProductFromServer productFromServerList = response.body();
+                    if (productFromServerList != null) {
+                        Toast.makeText(getContext(), R.string.msg_product_added_success, Toast.LENGTH_SHORT).show();
+                        if (listener != null) {
+                            listener.onBackToPreviousScreen();
                         }
-
                     } else {
-                        Toast.makeText(getContext(), "Failed to add product. Error: " + response.errorBody().toString(), Toast.LENGTH_SHORT).show();
-                        // Log the request body
-                        Request request = call.request();
-                        try {
-                            Buffer buffer = new Buffer();
-                            request.body().writeTo(buffer);
-                            String requestBody = buffer.readUtf8();
-                            Log.d("API Request Body", requestBody);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Toast.makeText(getContext(), R.string.failed_get_product_data, Toast.LENGTH_SHORT).show();
                     }
                 }
 
-
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    Toast.makeText(getContext(), "Network Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onFailure(@NonNull Call<ProductFromServer> call, @NonNull Throwable t) {
+                    t.printStackTrace();
                     // Log the request body
                     Request request = call.request();
                     try {
                         Buffer buffer = new Buffer();
-                        request.body().writeTo(buffer);
+                        Objects.requireNonNull(request.body()).writeTo(buffer);
                         String requestBody = buffer.readUtf8();
                         Log.d("API Request Body", requestBody);
                     } catch (IOException e) {
@@ -232,7 +216,7 @@ public class AddNewProductFragment extends Fragment {
                 }
             });
 
-
+            //TODO FOR DB HELPER
             //get the id of the selected supplier
 //            ProductDetails productDetails = new ProductDetails(name, productSupplierRate, productVendorRate, productDetailsUnit, productMrp);
 //            productDetails.setSupplierId(supplierId);
@@ -240,9 +224,7 @@ public class AddNewProductFragment extends Fragment {
 //            Toast.makeText(getContext(), R.string.msg_product_added_success, Toast.LENGTH_SHORT).show();
         });
 
-//        if (listener != null) {
-//            listener.onBackToPreviousScreen();
-//        }
+
 
         if (getActivity() != null) {
             ((MasterInfoActivity) getActivity()).setActionBarTitle("Add New Product");

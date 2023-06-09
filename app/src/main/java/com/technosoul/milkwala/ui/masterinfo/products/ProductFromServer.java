@@ -5,13 +5,13 @@ public class ProductFromServer {
     private String productName;
     private String productType;
     private String productUnit;
-    private double productSupplierRate;
-    private double productWholesaleRate;
-    private double productMrpRetailerRate;
+    private float productSupplierRate;
+    private float productWholesaleRate;
+    private float productMrpRetailerRate;
     private int supplierId;
 
 
-    public ProductFromServer(String productName, String productType, String productUnit, double productSupplierRate, double productWholesaleRate, double productMrpRetailerRate, int supplierId) {
+    public ProductFromServer(String productName, String productType, String productUnit, float productSupplierRate, float productWholesaleRate, float productMrpRetailerRate, int supplierId) {
         this.productName = productName;
         this.productType = productType;
         this.productUnit = productUnit;
@@ -57,27 +57,27 @@ public class ProductFromServer {
         this.productUnit = productUnit;
     }
 
-    public double getProductSupplierRate() {
+    public float getProductSupplierRate() {
         return productSupplierRate;
     }
 
-    public void setProductSupplierRate(double productSupplierRate) {
+    public void setProductSupplierRate(float productSupplierRate) {
         this.productSupplierRate = productSupplierRate;
     }
 
-    public double getProductWholesaleRate() {
+    public float getProductWholesaleRate() {
         return productWholesaleRate;
     }
 
-    public void setProductWholesaleRate(double productWholesaleRate) {
+    public void setProductWholesaleRate(float productWholesaleRate) {
         this.productWholesaleRate = productWholesaleRate;
     }
 
-    public double getProductMrpRetailerRate() {
+    public float getProductMrpRetailerRate() {
         return productMrpRetailerRate;
     }
 
-    public void setProductMrpRetailerRate(double productMrpRetailerRate) {
+    public void setProductMrpRetailerRate(float productMrpRetailerRate) {
         this.productMrpRetailerRate = productMrpRetailerRate;
     }
 

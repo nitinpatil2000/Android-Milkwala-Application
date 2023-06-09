@@ -13,18 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPersonListViewAdapter.ViewHolder> {
     private final OnItemSelected onItemSelected;
     Context context;
-    ArrayList<DeliveryPerson> deliveryPerson;
+    List<DeliveryFromServer> deliveryListFromServer;
 
-    public DeliverPersonListViewAdapter(Context context, ArrayList<DeliveryPerson> deliveryPerson, OnItemSelected onItemSelected) {
+    public DeliverPersonListViewAdapter(Context context, List<DeliveryFromServer> deliveryListFromServer, OnItemSelected onItemSelected) {
         this.context = context;
-        this.deliveryPerson = deliveryPerson;
+        this.deliveryListFromServer = deliveryListFromServer;
         this.onItemSelected = onItemSelected;
     }
 
@@ -36,17 +38,17 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.deliveryBoyName.setText(deliveryPerson.get(position).getDeliveryBoyName());
-        holder.deliveryBoyNumber.setText(String.valueOf(deliveryPerson.get(position).getDeliveryBoyNumber()));
+        holder.deliveryBoyName.setText(deliveryListFromServer.get(position).getDeliveryPersonName());
+        holder.deliveryBoyNumber.setText(String.valueOf(deliveryListFromServer.get(position).getDeliveryPersonContactNo()));
     }
 
     @Override
     public int getItemCount() {
-        return deliveryPerson.size();
+        return deliveryListFromServer.size();
     }
 
-    public void filteredList(ArrayList<DeliveryPerson> filterDeliveryPerson) {
-        deliveryPerson = filterDeliveryPerson;
+    public void filteredList(ArrayList<DeliveryFromServer> filterDeliveryPerson) {
+        deliveryListFromServer = filterDeliveryPerson;
         notifyDataSetChanged();
     }
 
@@ -63,9 +65,9 @@ public class DeliverPersonListViewAdapter extends RecyclerView.Adapter<DeliverPe
             deliverImg.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    DeliveryPerson clickedItem = deliveryPerson.get(position);
-                    int deliveryId = clickedItem.getDeliverBoyId();
-                    String deliveryBoyName = clickedItem.getDeliveryBoyName();
+                    DeliveryFromServer clickedItem = deliveryListFromServer.get(position);
+                    int deliveryId = clickedItem.getDeliveryPersonId();
+                    String deliveryBoyName = clickedItem.getDeliveryPersonName();
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_DELIVERY_PERSON, deliveryId, deliveryBoyName, null);
                     }

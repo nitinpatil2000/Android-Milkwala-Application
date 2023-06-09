@@ -80,7 +80,7 @@ public class ProductDetailsViewFragment extends Fragment {
             @Override
             public void onResponse(Call<ProductFromServer> call, Response<ProductFromServer> response) {
                 if(response.isSuccessful()){
-                    ProductFromServer productFromServer = response.body();
+                    productFromServer = response.body();
                     if(productFromServer  != null) {
                         tvProductName.setText(productFromServer.getProductName());
                         tvProductUnit.setText(productFromServer.getProductUnit());
@@ -103,6 +103,8 @@ public class ProductDetailsViewFragment extends Fragment {
 
 
 
+
+
         deleteNewProductBtn.setOnClickListener(view1 -> {
             Button btnCancel;
             Button deleteBtn;
@@ -121,7 +123,7 @@ public class ProductDetailsViewFragment extends Fragment {
             dialogDesc = dialog.findViewById(R.id.tv_delete_dialog_desc);
             deleteConfirmation = dialog.findViewById(R.id.tv_delete_dialog_confirmation_msg);
 
-            dialogTitle.setText(String.format(getString(R.string.title_delete_dialog), viewProductName));
+            dialogTitle.setText(String.format(getString(R.string.title_delete_dialog), productFromServer.getProductName()));
             dialogDesc.setText(R.string.msg_delete_product_desc);
             deleteConfirmation.setText(R.string.msg_delete_product_confirmation);
 

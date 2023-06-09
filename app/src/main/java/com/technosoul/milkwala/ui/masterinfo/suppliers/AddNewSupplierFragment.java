@@ -13,10 +13,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
-import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +31,7 @@ public class AddNewSupplierFragment extends Fragment {
     Button btnAddNewSupplier;
 
     MasterInfoListener listener;
-    SupplierService supplierService;
+
 
     public AddNewSupplierFragment() {
         // Required empty public constructor
@@ -65,7 +64,6 @@ public class AddNewSupplierFragment extends Fragment {
     }
 
     private void onClickAddNewSupplier() {
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         String supplierName = etSupplierName.getText().toString();
         if (TextUtils.isEmpty(supplierName)) {
             Toast.makeText(getContext(), R.string.err_empty_supplier_name, Toast.LENGTH_LONG).show();
@@ -129,13 +127,15 @@ public class AddNewSupplierFragment extends Fragment {
         }
         long supplierAlterNo = Long.parseLong(supplierAltNumber);
 
-//        myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
-//        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
-//
+
+//        TODO FOR LOCAL DATABASE
+//         MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//         myDbHelper.supplierDao().addSupplier(new Supplier(supplierName, supplierAddress, supplierNumber, supplierAltNumber));
+//         Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_LONG).show();
+
         ApiRetrofitService retrofitService = new ApiRetrofitService();
         Retrofit retrofit = retrofitService.getRetrofit();
         SupplierService supplierService = retrofit.create(SupplierService.class);
-
 
         SupplierFromServer supplierFromServer = new SupplierFromServer();
         supplierFromServer.setSupplierName(supplierName);
@@ -166,9 +166,5 @@ public class AddNewSupplierFragment extends Fragment {
             t.printStackTrace();
             }
         });
-
-
-
     }
-
 }

@@ -6,6 +6,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,17 +23,25 @@ import com.technosoul.milkwala.adapters.CustomerViewAdapter;
 import com.technosoul.milkwala.adapters.DeliverPersonListViewAdapter;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.db.DeliveryPerson;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
+import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class DeliveryPersonListFragment extends Fragment {
     DeliverPersonListViewAdapter deliverViewAdapter;
     Button btnAddDeliveryPerson;
     EditText searchDeliveryPerson;
-    ArrayList<DeliveryPerson> deliveryPersonList;
+    ArrayList<DeliveryFromServer> deliveryListFromServers;
     private MasterInfoListener masterInfoListener;
     private OnItemSelected onItemSelected;
     TextView tv_empty_delivery_list;
@@ -53,28 +64,58 @@ public class DeliveryPersonListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_deliverperson_list, container, false);
 
+        tv_empty_delivery_list = view.findViewById(R.id.tv_empty_delivery_list);
         RecyclerView deliverRecyclerView = view.findViewById(R.id.recyclerView_delivery_person_list);
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         deliverRecyclerView.setLayoutManager(gridLayoutManager);
-        tv_empty_delivery_list = view.findViewById(R.id.tv_empty_delivery_list);
+        Animation slideInAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.item_animation_fall_down);
+        LayoutAnimationController animationController = new LayoutAnimationController(slideInAnimation);
+        deliverRecyclerView.setLayoutAnimation(animationController);
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
 
-//        for (int i = 0; i < deliveryPersonList.size(); i++) {
-//            deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
-//            deliverRecyclerView.setAdapter(deliverViewAdapter);
-//        }
+        //TODO FOR LOCAL DATABASE
+        // MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+        // deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+        // for (int i = 0; i < deliveryPersonList.size(); i++) {
+        // deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
+        // deliverRecyclerView.setAdapter(deliverViewAdapter);
+        // }
 
-        if (deliveryPersonList == null || deliveryPersonList.size() == 0) {
-            Toast.makeText(getContext(), R.string.empty_delivery_boy_list_message, Toast.LENGTH_SHORT).show();
-            tv_empty_delivery_list.setVisibility(View.VISIBLE); // Show the empty text message
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
+        DeliveryPersonService deliveryPersonService = retrofit.create(DeliveryPersonService.class);
 
-        } else {
-            tv_empty_delivery_list.setVisibility(View.GONE); // Show the empty text message
-            deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
-            deliverRecyclerView.setAdapter(deliverViewAdapter);
-        }
+        Call<List<DeliveryFromServer>> deliveryListFromServerCall = deliveryPersonService.getAllDeliveryPersons();
+        deliveryListFromServerCall.enqueue(new Callback<List<DeliveryFromServer>>() {
+            @Override
+            public void onResponse(Call<List<DeliveryFromServer>> call, Response<List<DeliveryFromServer>> response) {
+                if(response.isSuccessful()){
+                    List<DeliveryFromServer> deliveryPersonList = response.body();
+                    if (deliveryPersonList == null || deliveryPersonList.size() == 0) {
+                        Toast.makeText(getContext(), R.string.empty_delivery_boy_list_message, Toast.LENGTH_SHORT).show();
+                        tv_empty_delivery_list.setVisibility(View.VISIBLE); // Show the empty text message
+
+                    } else {
+                        tv_empty_delivery_list.setVisibility(View.GONE); // Show the empty text message
+                        deliverViewAdapter = new DeliverPersonListViewAdapter(getContext(), deliveryPersonList, onItemSelected);
+                        deliverRecyclerView.setAdapter(deliverViewAdapter);
+                        deliverRecyclerView.scheduleLayoutAnimation();
+                    }
+                }else{
+                        Toast.makeText(getContext(), R.string.failed_get_delivery_data, Toast.LENGTH_SHORT).show();
+                        tv_empty_delivery_list.setVisibility(View.VISIBLE); // Show the empty text message if data retrieval failed
+
+                    }
+            }
+
+            @Override
+            public void onFailure(Call<List<DeliveryFromServer>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+
 
         btnAddDeliveryPerson = view.findViewById(R.id.btn_add_new_supplier);
         btnAddDeliveryPerson.setOnClickListener(view1 -> {
@@ -83,39 +124,45 @@ public class DeliveryPersonListFragment extends Fragment {
             }
         });
 
-        searchDeliveryPerson = view.findViewById(R.id.searchDeliveryPerson);
-        searchDeliveryPerson.clearFocus();
-        searchDeliveryPerson.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
-            }
-        });
-
+        //TODO SET THE TITLE
         if(getActivity()!= null){
-            ((MasterInfoActivity)getActivity()).setActionBarTitle("Delivery Boy");
+            ((MasterInfoActivity)getActivity()).setActionBarTitle(getString(R.string.title_delivery_boys));
         }
+
+        //TODO FOR SEARCH THE DELIVERY BOY
+//        searchDeliveryPerson = view.findViewById(R.id.searchDeliveryPerson);
+//        searchDeliveryPerson.clearFocus();
+//        searchDeliveryPerson.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                filter(editable.toString());
+//            }
+//        });
 
         return view;
     }
 
-    private void filter(String text) {
-        ArrayList<DeliveryPerson> filterDeliveryPerson = new ArrayList<>();
-        for (DeliveryPerson deliveryPerson : deliveryPersonList) {
-            if (deliveryPerson.getDeliveryBoyName().toLowerCase().contains(text.toLowerCase())) {
-                filterDeliveryPerson.add(deliveryPerson);
-            }
-        }
-        deliverViewAdapter.filteredList(filterDeliveryPerson);
-    }
+
+
+//    private void filter(String text) {
+//        ArrayList<DeliveryFromServer> filterDeliveryPerson = new ArrayList<>();
+//        for (DeliveryFromServer deliveryPerson : deliveryListFromServers) {
+//            if (deliveryPerson.getDeliveryPersonName().toLowerCase().contains(text.toLowerCase())) {
+//                filterDeliveryPerson.add(deliveryPerson);
+//            }
+//        }
+//        deliverViewAdapter.filteredList(filterDeliveryPerson);
+//    }
 }

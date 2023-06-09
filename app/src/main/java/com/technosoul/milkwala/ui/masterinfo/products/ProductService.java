@@ -16,7 +16,7 @@ import retrofit2.http.Path;
 
 public interface ProductService {
     @POST("/addproductforsupplier")
-    Call<String> createProduct(@Body ProductFromServer productFromServer);
+    Call<ProductFromServer> createProduct(@Body ProductFromServer productFromServer);
 
     @GET("/productforsupplier/{supplierId}")
     Call<List<ProductFromServer>> getProductsBySupplierId(@Path("supplierId") int supplierId);
