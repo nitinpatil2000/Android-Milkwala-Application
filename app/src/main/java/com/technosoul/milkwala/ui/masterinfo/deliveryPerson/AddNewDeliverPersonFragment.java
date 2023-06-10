@@ -2,7 +2,6 @@ package com.technosoul.milkwala.ui.masterinfo.deliveryPerson;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
@@ -166,28 +166,29 @@ public class AddNewDeliverPersonFragment extends Fragment {
             deliveryFromServer.setDeliveryPersonContactNo(deliveryPersonContactNo);
             deliveryFromServer.setDeliveryPersonAlterNo(deliveryPersonAlterNo);
 
-            Call<String> deliveryFromServerCall = deliveryPersonService.addDeliveryPerson(deliveryFromServer);
-            deliveryFromServerCall.enqueue(new Callback<String>() {
+            Call<DeliveryFromServer> deliveryFromServerCall = deliveryPersonService.addDeliveryPerson(deliveryFromServer);
+            deliveryFromServerCall.enqueue(new Callback<DeliveryFromServer>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.isSuccessful()) {
-//                        String responseBody = response.body();
-//                        Toast.makeText(getContext(), responseBody, Toast.LENGTH_SHORT).show();
-                        if (listener != null) {
-                            listener.onBackToPreviousScreen();
+                public void onResponse(@NonNull Call<DeliveryFromServer> call, @NonNull Response<DeliveryFromServer> response) {
+                    if(response.isSuccessful()){
+                        DeliveryFromServer createdDeliveryBoy = response.body();
+                        if(createdDeliveryBoy != null){
+                            Toast.makeText(getContext(), R.string.msg_delivery_person_add_success, Toast.LENGTH_SHORT).show();
+                            if(listener != null){
+                                listener.onBackToPreviousScreen();
+                            }
                         }
-                    } else {
-                        String errorBody = response.errorBody().toString();
-                        Toast.makeText(getContext(), errorBody, Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(), R.string.msg_delivery_person_add_error, Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    Log.d("API Error", t.getMessage()); // Print the error message to log
+                public void onFailure(@NonNull Call<DeliveryFromServer> call, @NonNull Throwable t) {
                     t.printStackTrace();
                 }
             });
+
 
 
         });

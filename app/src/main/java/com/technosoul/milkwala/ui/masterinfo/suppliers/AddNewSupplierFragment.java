@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
@@ -147,22 +148,22 @@ public class AddNewSupplierFragment extends Fragment {
         Call<SupplierFromServer> call = supplierService.addSupplier(supplierFromServer);
         call.enqueue(new Callback<SupplierFromServer>() {
             @Override
-            public void onResponse(Call<SupplierFromServer> call, Response<SupplierFromServer> response) {
+            public void onResponse(@NonNull Call<SupplierFromServer> call, @NonNull Response<SupplierFromServer> response) {
                 if (response.isSuccessful()) {
                     SupplierFromServer createSupplier = response.body();
                     if(createSupplier != null) {
-                        Toast.makeText(getContext(), "Supplier Created Successfully!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.supplier_added_success, Toast.LENGTH_SHORT).show();
                         if (listener != null) {
                             listener.onBackToPreviousScreen();
                         }
                     }
                 } else {
-                    Toast.makeText(getContext(), "Failed to create Supplier !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.supplier_added_error, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<SupplierFromServer> call, Throwable t) {
+            public void onFailure(@NonNull Call<SupplierFromServer> call, @NonNull Throwable t) {
             t.printStackTrace();
             }
         });

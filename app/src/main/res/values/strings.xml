@@ -15,8 +15,8 @@
 
     <string name="app_title_part_1">Milkwala</string>
     <string name="app_title_part_2">Dairy</string>
-    <string name="str_email">Email</string>
-    <string name="str_password">Password</string>
+    <string name="str_email">Email :</string>
+    <string name="str_password">Password :</string>
     <string name="str_login">Login</string>
     <string name="err_empty_email">Please enter an Email address.</string>
     <string name="err_invalid_email">Please enter a valid Email address.</string>
@@ -78,6 +78,7 @@
     <string name="err_min_length_supplier_addr">Supplier address should be minimum of 8 characters</string>
     <string name="err_empty_supplier_number">Mobile number should not be empty.</string>
     <string name="supplier_added_success">Supplier Added successfully.</string>
+    <string name="supplier_added_error">Failed To Add Product.</string>
     <string name="empty_supplier_list">Supplier list is empty. Let\'s start adding new supplier.</string>
     <string name="products_of_supplier">%1$d Products</string>
     <string name="title_supplier_details">Supplier Details</string>
@@ -123,22 +124,40 @@
 
 
     <!--  Delivery person strings  -->
-    <string name="hint_delivery_name">Delivery person name</string>
-    <string name="hint_delivery_address">Delivery person Address</string>
+    <string name="hint_delivery_name">Enter Delivery person name</string>
+    <string name="hint_delivery_email">Enter Delivery person email</string>
+    <string name="hint_delivery_password">Enter Delivery person password</string>
+    <string name="hint_delivery_address">Enter Delivery person Address</string>
+    <string name="hint_delivery_city">Enter Delivery person city</string>
+    <string name="hint_delivery_mobile1">Enter Delivery person contact no</string>
+    <string name="hint_delivery_mobile2">Enter Delivery person alter no</string>
+
+    <string name="title_delivery_boy_name">Name :</string>
+    <string name="title_delivery_boy_email">Email :</string>
+    <string name="title_delivery_boy_password">Password :</string>
+    <string name="title_delivery_boy_address">Address :</string>
+    <string name="title_delivery_boy_city">City :</string>
+    <string name="title_delivery_boy_contact1">Contact No :</string>
+    <string name="title_delivery_boy_contact2">Alternate No :</string>
+
     <string name="no_delivery_person_found">No Delivery Person Found</string>
 
-    <string name="hint_delivery_city">Delivery person city</string>
     <string name="err_empty_delivery_name">Delivery person name should not be empty.</string>
     <string name="err_min_length_delivery_name">Delivery person name should be minimum of 3 characters</string>
     <string name="err_empty_delivery_addr">Delivery person address should not be empty.</string>
     <string name="err_min_length_delivery_addr">Delivery person address should be minimum of 8 characters</string>
+
     <string name="msg_delivery_person_add_success">Delivery person %1$s added successfully.</string>
+    <string name="msg_delivery_person_add_error">Failed to add delivery person.</string>
+
     <string name="title_delivery_person_details">%1$s details</string>
     <string name="title_delivery_person_login_title">%1$s login details</string>
     <string name="title_delete_delivery_person">Delete - %1$s</string>
+
     <string name="msg_delete_delivery_person_desc">Please Note - Deleting will remove all the information and records permanently related to this person</string>
     <string name="msg_delete_delivery_person_confirmation">Are you sure to delete this delivery person?</string>
     <string name="msg_delete_delivery_person_success">Delivery person deleted successfully.</string>
+
     <string name="empty_delivery_boy_list_message">Please Add A Delivery Boy.\n To Add, please touch on the Add Button on Bottom.</string>
 
 
@@ -178,6 +197,7 @@
     <string name="str_ok">Ok</string>
     <string name="str_delete">Delete</string>
     <string name="str_update_title">Update %1$s details</string>
+    <string name="str_update_login_title">Update %1$s login details</string>
     <string name="str_unit">Unit :</string>
     <string name="str_city">City :</string>
     <string name="err_empty_mobile_number">Mobile number should not be empty.</string>
@@ -264,6 +284,7 @@
     <string name="about_screen_title">About Milkwala</string>
     <string name="msg_supplier_order_success">Supplier Order Added Successfully !!</string>
     <string name="str_update">UPDATE</string>
+    <string name="success_update_delivery_boy">Delivery Boy updated successfully</string>
 
 
 </resources>

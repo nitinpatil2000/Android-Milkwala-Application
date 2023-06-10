@@ -20,8 +20,9 @@ public class ApiRetrofitService {
 
             retrofit = new Retrofit.Builder()
 
-                    .baseUrl("http://192.168.43.158:8080")
-//                    .baseUrl("http://192.168.249.3:8080")
+//                    .baseUrl("http://192.168.43.158:8080")
+                    .baseUrl("http://192.168.100.3:8080")
+//                    .baseUrl("http://192.168.25.3:8080")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }

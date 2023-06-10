@@ -10,8 +10,7 @@ public class DeliveryFromServer {
     private Long deliveryPersonContactNo;
     private Long deliveryPersonAlterNo;
 
-    public DeliveryFromServer(int deliveryPersonId, String deliveryPersonName, String deliveryPersonEmail, String deliveryPersonPassword, String deliveryPersonAddress, String deliveryPersonCity, Long deliveryPersonContactNo, Long deliveryPersonAlterNo) {
-        this.deliveryPersonId = deliveryPersonId;
+    public DeliveryFromServer(String deliveryPersonName, String deliveryPersonEmail, String deliveryPersonPassword, String deliveryPersonAddress, String deliveryPersonCity, Long deliveryPersonContactNo, Long deliveryPersonAlterNo) {
         this.deliveryPersonName = deliveryPersonName;
         this.deliveryPersonEmail = deliveryPersonEmail;
         this.deliveryPersonPassword = deliveryPersonPassword;

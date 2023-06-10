@@ -107,6 +107,7 @@ public class SupplierDetailsFragment extends Fragment {
             Button btnUpdateSupplier;
             TextView updateDialogTitle;
             EditText updateSupplierName, updateSupplierEmail, updateSupplierAddress, updateSupplierContactNo, updateSupplierAlterNo;
+            TextView txtUpdateName, txtUpdateAddress, txtUpdateEmail, txtUpdateNumber, txtUpdateAltNo;
 
             Dialog dialog = new Dialog(getContext());
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -116,15 +117,39 @@ public class SupplierDetailsFragment extends Fragment {
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
             layoutParams.copyFrom(window.getAttributes());
 
+            // Set the width to match the parent
+            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+            window.setAttributes(layoutParams);
+
+            txtUpdateName = dialog.findViewById(R.id.txtUpdateDialogName);
+            txtUpdateAddress = dialog.findViewById(R.id.txtUpdateDialogAddress);
+            txtUpdateEmail = dialog.findViewById(R.id.txtUpdateDialogEmail);
+            txtUpdateNumber = dialog.findViewById(R.id.txtUpdateDialogNumber);
+            txtUpdateAltNo = dialog.findViewById(R.id.txtUpdateDialogAlterNo);
+
+            //TODO set the values in the runtime
+            txtUpdateName.setText(getString(R.string.title_supplier_name));
+            txtUpdateAddress.setText(getString(R.string.title_supplier_address));
+            txtUpdateEmail.setText(getString(R.string.title_supplier_email));
+            txtUpdateNumber.setText(getString(R.string.title_supplier_number));
+            txtUpdateAltNo.setText(getString(R.string.title_supplier_alternate_number));
+
+
+            updateSupplierName = dialog.findViewById(R.id.edtUpdateDialogName);
+            updateSupplierEmail = dialog.findViewById(R.id.edtUpdateDialogEmail);
+            updateSupplierAddress = dialog.findViewById(R.id.edtUpdateDialogAddress);
+            updateSupplierContactNo = dialog.findViewById(R.id.edtUpdateDialogNumber);
+            updateSupplierAlterNo = dialog.findViewById(R.id.edtUpdateDialogAltNo);
+            updateDialogTitle = dialog.findViewById(R.id.tv_update_dialog_title);
+
+            updateSupplierName.setHint(getString(R.string.hint_enter_supplier_name));
+            updateSupplierEmail.setHint(getString(R.string.hint_enter_supplier_email));
+            updateSupplierAddress.setHint(getString(R.string.hint_enter_supplier_address));
+            updateSupplierContactNo.setHint(getString(R.string.hint_enter_supplier_mobile1));
+            updateSupplierAlterNo.setHint(getString(R.string.hint_enter_supplier_mobile2));
+
             btnCancelUpdateSupplier = dialog.findViewById(R.id.btnActionCancel);
             btnUpdateSupplier = dialog.findViewById(R.id.btnActionUpdate);
-
-            updateSupplierName = dialog.findViewById(R.id.updateSupplierName);
-            updateSupplierEmail = dialog.findViewById(R.id.updateSupplierEmail);
-            updateSupplierAddress = dialog.findViewById(R.id.updateSupplierAddress);
-            updateSupplierContactNo = dialog.findViewById(R.id.updateSupplierMobile);
-            updateSupplierAlterNo = dialog.findViewById(R.id.updateSupplierAlterMobileNo);
-            updateDialogTitle = dialog.findViewById(R.id.tv_update_dialog_title);
 
             updateSupplierName.setText(supplierListFromServer.getSupplierName());
             updateSupplierEmail.setText(supplierListFromServer.getSupplierEmail());
@@ -132,10 +157,6 @@ public class SupplierDetailsFragment extends Fragment {
             updateSupplierContactNo.setText(String.valueOf(supplierListFromServer.getSupplierNumber()));
             updateSupplierAlterNo.setText(String.valueOf(supplierListFromServer.getSupplierAltNumber()));
             updateDialogTitle.setText(String.format(getString(R.string.str_update_title) ,supplierListFromServer.getSupplierName() ));
-
-            // Set the width to match the parent
-            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-            window.setAttributes(layoutParams);
 
             btnCancelUpdateSupplier.setOnClickListener(view2 -> dialog.dismiss());
 
