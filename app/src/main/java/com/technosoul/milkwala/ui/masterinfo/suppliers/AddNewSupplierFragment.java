@@ -126,7 +126,6 @@ public class AddNewSupplierFragment extends Fragment {
             etSupplierAlternateNumber.requestFocus();
             return;
         }
-        long supplierAlterNo = Long.parseLong(supplierAltNumber);
 
 
 //        TODO FOR LOCAL DATABASE
@@ -143,7 +142,10 @@ public class AddNewSupplierFragment extends Fragment {
         supplierFromServer.setSupplierEmail(supplierEmail);
         supplierFromServer.setSupplierAddress(supplierAddress);
         supplierFromServer.setSupplierNumber(supplierNo);
-        supplierFromServer.setSupplierAltNumber(supplierAlterNo);
+        if (!TextUtils.isEmpty(supplierAltNumber)) {
+            long supplierAlterNo = Long.parseLong(supplierAltNumber);
+            supplierFromServer.setSupplierAltNumber(supplierAlterNo);
+        }
 
         Call<SupplierFromServer> call = supplierService.addSupplier(supplierFromServer);
         call.enqueue(new Callback<SupplierFromServer>() {
