@@ -145,6 +145,7 @@
                     style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
                     android:layout_weight="1.5"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/str_wholesale_rate" />
 
                 <TextView
@@ -193,7 +194,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_product_card_view"
         app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout

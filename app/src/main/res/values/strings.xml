@@ -98,6 +98,9 @@
     <!--  Product strings  -->
     <string name="title_product_name">Product Name :</string>
     <string name="hint_enter_product_name">Enter Product Name</string>
+    <string name="hint_enter_product_supp_rate">Enter Product SupplierRate</string>
+    <string name="hint_enter_product_wholesale_rate">Enter Product WholesaleRate</string>
+    <string name="hint_enter_product_mrp_rate">Enter Product MrpRetailerRate</string>
     <string name="str_supplier_rate">Supplier Rate :</string>
     <string name="str_wholesale_rate">Wholesale Rate :</string>
     <string name="str_mrp">MRP :</string>
@@ -285,6 +288,7 @@
     <string name="msg_supplier_order_success">Supplier Order Added Successfully !!</string>
     <string name="str_update">UPDATE</string>
     <string name="success_update_delivery_boy">Delivery Boy updated successfully</string>
+    <string name="success_update_product">Product updated successfully</string>
 
 
 </resources>

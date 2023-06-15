@@ -12,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ProductService {
@@ -26,6 +27,9 @@ public interface ProductService {
 
     @GET("/getproducts")
     Call<List<ProductFromServer>> getAllProducts();
+
+    @PUT("/updateproduct/{productId}")
+    Call<ProductFromServer> updateProduct(@Path("productId") int productId, @Body ProductFromServer productFromServer);
 
     @DELETE("/product/{productId}")
     Call<ResponseBody> deleteProduct(@Path("productId") int productId);

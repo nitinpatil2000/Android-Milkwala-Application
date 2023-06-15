@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,24 +54,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ReceivedProductFragment extends Fragment {
-    TextView savedDate;
     Spinner receivedSpinner;
-    //    ArrayList<String> arryNames = new ArrayList<>();
     View line;
-
     ReceivedProductAdapter receivedProductAdapter;
     RecyclerView receivedRecyclerView;
-    //    private OnItemSelected onItemSelected;
     private List<SupplierFromServer> supplierFromServers;
-
-//    ArrayList<DailyReceiveProduct> dailyReceiveProducts = new ArrayList<>();
-
     int productId;
-    ImageView receiveProductDate;
     Button saveReceiveProduct;
     private int supplierId;
-//    EditText receiveProductAmount, receiveProductQty;
-//    ArrayList<SupplierFromServer> supplierFromServers;
+
+    private Button dateButton;
+    private TextView dateTextView;
+    private Calendar calendar;
 
     private MasterInfoListener masterInfoListener;
 
@@ -86,17 +79,24 @@ public class ReceivedProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_received_product, container, false);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("Today's Received Products ");
+        actionBar.setTitle("Today's Received Products");
 
-        savedDate = view.findViewById(R.id.saveDate);
-        receiveProductDate = view.findViewById(R.id.selectDate);
-        //show date picker
-        receiveProductDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog();
-            }
+        dateButton = view.findViewById(R.id.dateButton);
+        dateTextView = view.findViewById(R.id.dateTextView);
+        calendar = Calendar.getInstance();
+
+        dateButton.setOnClickListener(view1 -> {
+            showDatePickerDialog();
         });
+//        savedDate = view.findViewById(R.id.saveDate);
+//        receiveProductDate = view.findViewById(R.id.selectDate);
+//        show date picker
+//        receiveProductDate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openDialog();
+//            }
+//        });
 
 
 //        show spinner
@@ -214,154 +214,106 @@ public class ReceivedProductFragment extends Fragment {
         saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String selectedDate = savedDate.getText().toString();
-                if (TextUtils.isEmpty(selectedDate)) {
-                    Toast.makeText(getContext(), R.string.err_empty_supplier_order_date, Toast.LENGTH_SHORT).show();
-                    savedDate.requestFocus();
-                    return;
-                }
-
-//                Date selectedDateObj;
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-//                Date currentDate = new Date();
+//                String selectedDate = dateTextView.getText().toString();
+//                if (TextUtils.isEmpty(selectedDate)) {
+//                    Toast.makeText(getContext(), R.string.err_empty_supplier_order_date, Toast.LENGTH_SHORT).show();
+//                    dateTextView.requestFocus();
+//                    return;
+//                }
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 //                try {
-//                    selectedDateObj = dateFormat.parse(selectedDate);
-//                    if (selectedDateObj.compareTo(currentDate) > 0) {
-                // The selected date is in the future
-                // Perform additional validation here or show an error message
-//                    } else {
-                // The selected date is valid
-                HashMap<EditText, ProductFromServer> editTextMap = new HashMap<>();
-                ArrayList<ProductFromServer> productFromServers = receivedProductAdapter.getProductFromServers();
-                for (ProductFromServer getProductFromServer : productFromServers) {
-                    int position = productFromServers.indexOf(getProductFromServer);
-                    RecyclerView.ViewHolder viewHolder = receivedRecyclerView.findViewHolderForAdapterPosition(position);
-                    if (viewHolder != null) {
-                        View itemView = viewHolder.itemView;
-                        EditText editQuantity = itemView.findViewById(R.id.editQuantity);
-                        String quantity = editQuantity.getText().toString();
-                        if (TextUtils.isEmpty(quantity)) {
-                            Toast.makeText(getContext(), "Please enter the quantity for item: " + getProductFromServer.getProductName(), Toast.LENGTH_SHORT).show();
-                            editQuantity.requestFocus();
-                            return;
-                        }
+//                    Date date = dateFormat.parse(selectedDate);
+                    // Date format is valid, proceed with saving the data
+                    // Rest of your code for saving the data goes here
+                    HashMap<EditText, ProductFromServer> editTextMap = new HashMap<>();
+                    ArrayList<ProductFromServer> productFromServers = receivedProductAdapter.getProductFromServers();
+                    for (ProductFromServer getProductFromServer : productFromServers) {
+                        int position = productFromServers.indexOf(getProductFromServer);
+                        RecyclerView.ViewHolder viewHolder = receivedRecyclerView.findViewHolderForAdapterPosition(position);
+                        if (viewHolder != null) {
+                            View itemView = viewHolder.itemView;
+                            EditText editQuantity = itemView.findViewById(R.id.editQuantity);
+                            String quantity = editQuantity.getText().toString();
+                            if (TextUtils.isEmpty(quantity)) {
+                                Toast.makeText(getContext(), "Please enter the quantity for item: " + getProductFromServer.getProductName(), Toast.LENGTH_SHORT).show();
+                                editQuantity.requestFocus();
+                                return;
+                            }
 
-                        int receivedQuantity = Integer.parseInt(quantity);
-                        editTextMap.put(editQuantity, getProductFromServer);
+                            int receivedQuantity = Integer.parseInt(quantity);
+                            editTextMap.put(editQuantity, getProductFromServer);
+                            productId = getProductFromServer.getProductId();
 
-                        productId = getProductFromServer.getProductId();
-                        SupplierOrder supplierOrder = new SupplierOrder();
-                        supplierOrder.setSupplierId(supplierId);
-                        supplierOrder.setProductId(productId);
-                        supplierOrder.setOrderedQuantity(receivedQuantity);
+                            SupplierOrder supplierOrder = new SupplierOrder();
+                            supplierOrder.setSupplierId(supplierId);
+                            supplierOrder.setProductId(productId);
+                            supplierOrder.setOrderedQuantity(receivedQuantity);
 //                            supplierOrder.setSupplierOrderDate(new Date());
 
-
-                        // Format the date in "yyyy-MM-dd" format
-//                            SimpleDateFormat serverDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-//                            String formattedDate = serverDateFormat.format(selectedDateObj);
-//                            supplierOrder.setSupplierOrderDate(formattedDate);
-
-                        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
-                        Retrofit retrofit = apiRetrofitService.getRetrofit();
-                        SupplierOrderService supplierOrderService = retrofit.create(SupplierOrderService.class);
-                        Call<SupplierOrder> createSupplierOrder = supplierOrderService.createSupplierOrder(supplierOrder);
-                        createSupplierOrder.enqueue(new Callback<SupplierOrder>() {
-                            @Override
-                            public void onResponse(Call<SupplierOrder> call, Response<SupplierOrder> response) {
-                                SupplierOrder supplierOrderList = response.body();
-                                if (supplierOrderList != null) {
-                                    Toast.makeText(getContext(), R.string.msg_supplier_order_success, Toast.LENGTH_SHORT).show();
-//                                if (masterInfoListener != null) {
-//                                    masterInfoListener.onBackToPreviousScreen();
-//                                }
-                                } else {
-                                    Toast.makeText(getContext(), R.string.error_text, Toast.LENGTH_SHORT).show();
-
+                            ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+                            Retrofit retrofit = apiRetrofitService.getRetrofit();
+                            SupplierOrderService supplierOrderService = retrofit.create(SupplierOrderService.class);
+                            Call<SupplierOrder> createSupplierOrder = supplierOrderService.createSupplierOrder(supplierOrder);
+                            createSupplierOrder.enqueue(new Callback<SupplierOrder>() {
+                                @Override
+                                public void onResponse(Call<SupplierOrder> call, Response<SupplierOrder> response) {
+                                    SupplierOrder supplierOrderList = response.body();
+                                    if (supplierOrderList != null) {
+                                        Toast.makeText(getContext(), R.string.msg_supplier_order_success, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getContext(), R.string.error_text, Toast.LENGTH_SHORT).show();
+                                        Request request = call.request();
+                                        try {
+                                            Buffer buffer = new Buffer();
+                                            request.body().writeTo(buffer);
+                                            String requestBody = buffer.readUtf8();
+                                            Log.d("API Request Body", requestBody);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call<SupplierOrder> call, Throwable t) {
-                                Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
-                                t.printStackTrace();
-                                // Log the request body
-                                Request request = call.request();
-                                try {
-                                    Buffer buffer = new Buffer();
-                                    request.body().writeTo(buffer);
-                                    String requestBody = buffer.readUtf8();
-                                    Log.d("API Request Body", requestBody);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                @Override
+                                public void onFailure(Call<SupplierOrder> call, Throwable t) {
+                                    Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
+                                    t.printStackTrace();
+                                    // Log the request body
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
-                }
+
             }
         });
 
 
-        //        saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EditText editQuantity;
-//                LayoutInflater inflater = LayoutInflater.from(getContext());
-//                View anotherView = inflater.inflate(R.layout.received_product_design, null);
-//                editQuantity = anotherView.findViewById(R.id.editQuantity);
-//                receiveProductDate = view.findViewById(R.id.selectDate);
-//
-//
-//                ArrayList<ProductDetails> productDetails = receivedProductAdapter.getProductDetails();
-//                for (ProductDetails productDetail : productDetails) {
-//                    productDetailsId = productDetail.getProductDetailsId();
-//        String receivedQuantity = productDetail.getProductDetailsQuantity().toString();
-//                    int quantityReceiveProduct = 0;
-//                    if (TextUtils.isEmpty(receivedQuantity)) {
-//                        Toast.makeText(getContext(), "Please enter a quantity", Toast.LENGTH_SHORT).show();
-//
-
-//                        editQuantity.requestFocus();
-//                        return;
-
-
-//                    } else {
-//                        DailyReceiveProduct dailyReceiveProduct = new DailyReceiveProduct();
-//                        quantityReceiveProduct = Integer.parseInt(receivedQuantity);
-//                        dailyReceiveProduct.setProductDetailsId(productDetailsId);
-//                        dailyReceiveProduct.setReceivedProductQuantity(quantityReceiveProduct);
-//                        dailyReceiveProduct.setReceivedProductDate(new Date()); //use current date of the receive product
-
-//         Insert the DailyReceivedProduct object into the database
-//                        myDbHelper.dailyReceiveDao().addDailyReceiveProduct(dailyReceiveProduct);
-//                        Toast.makeText(getContext(), "Product Added Successfully !!", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
-//
 //        if(getActivity() != null){
 //            ((ReceivedProductActivity)getActivity()).setActionBarTitle("Today's Received Product");
 //        }
         return view;
     }
 
-
-    //    select the datePicker
-    private void openDialog() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+    private void showDatePickerDialog() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                savedDate.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day));
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, monthOfYear);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDateTextView();
             }
-        }, year, month, day);
-        dialog.show();
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    private void updateDateTextView() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String currentDate = dateFormat.format(new Date());
+        dateTextView.setText(currentDate);
     }
 
     public void setListener(MasterInfoListener listener) {

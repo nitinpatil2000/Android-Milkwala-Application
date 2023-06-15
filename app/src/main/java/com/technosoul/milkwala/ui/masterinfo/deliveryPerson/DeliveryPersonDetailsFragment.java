@@ -221,7 +221,6 @@ public class DeliveryPersonDetailsFragment extends Fragment {
                         t.printStackTrace();
                     }
                 });
-
             });
             dialog.show();
 
