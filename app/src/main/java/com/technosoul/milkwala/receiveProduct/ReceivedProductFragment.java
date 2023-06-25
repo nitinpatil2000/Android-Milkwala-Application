@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -37,14 +38,11 @@ import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 import okhttp3.Request;
 import okio.Buffer;
@@ -63,11 +61,11 @@ public class ReceivedProductFragment extends Fragment {
     Button saveReceiveProduct;
     private int supplierId;
 
-    private Button dateButton;
-    private TextView dateTextView;
-    private Calendar calendar;
-
     private MasterInfoListener masterInfoListener;
+
+    TextView dateTextView;
+    Button dateButton;
+    DatePickerDialog datePickerDialog;
 
     public ReceivedProductFragment() {
 //        this.supplierId = supplierId;
@@ -81,28 +79,9 @@ public class ReceivedProductFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setTitle("Today's Received Products");
 
-        dateButton = view.findViewById(R.id.dateButton);
-        dateTextView = view.findViewById(R.id.dateTextView);
-        calendar = Calendar.getInstance();
-
-        dateButton.setOnClickListener(view1 -> {
-            showDatePickerDialog();
-        });
-//        savedDate = view.findViewById(R.id.saveDate);
-//        receiveProductDate = view.findViewById(R.id.selectDate);
-//        show date picker
-//        receiveProductDate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openDialog();
-//            }
-//        });
-
-
-//        show spinner
         receivedSpinner = view.findViewById(R.id.receivedSpinner);
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        List<Supplier> suppliersList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        List<Supplier> suppliersList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
 
         // TODO: GET THE ALL SUPPLIERS LIST
         ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
@@ -111,7 +90,7 @@ public class ReceivedProductFragment extends Fragment {
         Call<List<SupplierFromServer>> getAllSuppliers = supplierService.getAllSuppliers();
         getAllSuppliers.enqueue(new Callback<List<SupplierFromServer>>() {
             @Override
-            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
+            public void onResponse(@NonNull Call<List<SupplierFromServer>> call, @NonNull Response<List<SupplierFromServer>> response) {
                 if (response.isSuccessful()) {
                     supplierFromServers = response.body();
                     if (supplierFromServers != null) {
@@ -130,7 +109,7 @@ public class ReceivedProductFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<SupplierFromServer>> call, @NonNull Throwable t) {
 //                Toast.makeText(getContext(), R.string.network_error + t.getMessage(), Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
@@ -172,14 +151,14 @@ public class ReceivedProductFragment extends Fragment {
                             Call<List<ProductFromServer>> getProductBySupplierId = productService.getProductsBySupplierId(supplierId);
                             getProductBySupplierId.enqueue(new Callback<List<ProductFromServer>>() {
                                 @Override
-                                public void onResponse(Call<List<ProductFromServer>> call, Response<List<ProductFromServer>> response) {
+                                public void onResponse(@NonNull Call<List<ProductFromServer>> call, @NonNull Response<List<ProductFromServer>> response) {
                                     if (response.isSuccessful()) {
                                         List<ProductFromServer> productFromServers = response.body();
                                         if (productFromServers == null || productFromServers.isEmpty()) {
                                             Toast.makeText(getContext(), R.string.empty_product_list, Toast.LENGTH_SHORT).show();
                                         } else {
                                             receivedProductAdapter = new ReceivedProductAdapter(getContext(), (ArrayList<ProductFromServer>) productFromServers);
-                                            receivedProductAdapter.notifyDataSetChanged();
+//                                            receivedProductAdapter.notifyDataSetChanged();
                                             receivedRecyclerView.setAdapter(receivedProductAdapter);
                                         }
                                     } else {
@@ -189,7 +168,7 @@ public class ReceivedProductFragment extends Fragment {
 
 
                                 @Override
-                                public void onFailure(Call<List<ProductFromServer>> call, Throwable t) {
+                                public void onFailure(@NonNull Call<List<ProductFromServer>> call, @NonNull Throwable t) {
                                     Toast.makeText(getContext(), "Failed to get products: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                                     t.printStackTrace();
                                 }
@@ -210,6 +189,22 @@ public class ReceivedProductFragment extends Fragment {
             }
         });
 
+        dateTextView = view.findViewById(R.id.dateTextView);
+        dateButton =  view.findViewById(R.id.dateButton);
+        dateButton.setOnClickListener(view1 -> {
+            final Calendar c = Calendar.getInstance();
+            int mYear = c.get(Calendar.YEAR); // current year
+            int mMonth = c.get(Calendar.MONTH); // current month
+            int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+            datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    dateTextView.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                }
+            }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        });
+
 
         saveReceiveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,9 +215,10 @@ public class ReceivedProductFragment extends Fragment {
 //                    dateTextView.requestFocus();
 //                    return;
 //                }
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //                try {
 //                    Date date = dateFormat.parse(selectedDate);
+//                    System.out.println(date);
                     // Date format is valid, proceed with saving the data
                     // Rest of your code for saving the data goes here
                     HashMap<EditText, ProductFromServer> editTextMap = new HashMap<>();
@@ -248,7 +244,7 @@ public class ReceivedProductFragment extends Fragment {
                             supplierOrder.setSupplierId(supplierId);
                             supplierOrder.setProductId(productId);
                             supplierOrder.setOrderedQuantity(receivedQuantity);
-//                            supplierOrder.setSupplierOrderDate(new Date());
+//                            supplierOrder.setSupplierOrderDate(date);
 
                             ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
                             Retrofit retrofit = apiRetrofitService.getRetrofit();
@@ -256,7 +252,7 @@ public class ReceivedProductFragment extends Fragment {
                             Call<SupplierOrder> createSupplierOrder = supplierOrderService.createSupplierOrder(supplierOrder);
                             createSupplierOrder.enqueue(new Callback<SupplierOrder>() {
                                 @Override
-                                public void onResponse(Call<SupplierOrder> call, Response<SupplierOrder> response) {
+                                public void onResponse(@NonNull Call<SupplierOrder> call, @NonNull Response<SupplierOrder> response) {
                                     SupplierOrder supplierOrderList = response.body();
                                     if (supplierOrderList != null) {
                                         Toast.makeText(getContext(), R.string.msg_supplier_order_success, Toast.LENGTH_SHORT).show();
@@ -265,7 +261,7 @@ public class ReceivedProductFragment extends Fragment {
                                         Request request = call.request();
                                         try {
                                             Buffer buffer = new Buffer();
-                                            request.body().writeTo(buffer);
+                                            Objects.requireNonNull(request.body()).writeTo(buffer);
                                             String requestBody = buffer.readUtf8();
                                             Log.d("API Request Body", requestBody);
                                         } catch (IOException e) {
@@ -275,7 +271,7 @@ public class ReceivedProductFragment extends Fragment {
                                 }
 
                                 @Override
-                                public void onFailure(Call<SupplierOrder> call, Throwable t) {
+                                public void onFailure(@NonNull Call<SupplierOrder> call, @NonNull Throwable t) {
                                     Toast.makeText(getContext(), R.string.network_error, Toast.LENGTH_SHORT).show();
                                     t.printStackTrace();
                                     // Log the request body
@@ -284,6 +280,9 @@ public class ReceivedProductFragment extends Fragment {
                         }
                     }
 
+//                } catch (Exception e) {
+//
+//                }
             }
         });
 
@@ -294,27 +293,6 @@ public class ReceivedProductFragment extends Fragment {
         return view;
     }
 
-    private void showDatePickerDialog() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, monthOfYear);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateDateTextView();
-            }
-        };
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
-        );
-        datePickerDialog.show();
-    }
-
-    private void updateDateTextView() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String currentDate = dateFormat.format(new Date());
-        dateTextView.setText(currentDate);
-    }
 
     public void setListener(MasterInfoListener listener) {
         this.masterInfoListener = listener;

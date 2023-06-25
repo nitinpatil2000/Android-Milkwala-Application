@@ -2,11 +2,6 @@ package com.technosoul.milkwala.ui.masterinfo;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +10,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.technosoul.milkwala.db.DeliveryPerson;
-import com.technosoul.milkwala.home.ImageAdapter;
-import com.technosoul.milkwala.db.MyDbHelper;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.Supplier;
-import com.technosoul.milkwala.db.Customer;
+import com.technosoul.milkwala.home.ImageAdapter;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryFromServer;
+import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonService;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -93,10 +89,10 @@ public class MasterInfoFragment extends Fragment {
         ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
         Retrofit retrofit = supplierRetrofitService.getRetrofit();
         SupplierService supplierService = retrofit.create(SupplierService.class);
-        Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
-        call.enqueue(new Callback<List<SupplierFromServer>>() {
+        Call<List<SupplierFromServer>> supplierProductCall = supplierService.getAllSuppliers();
+        supplierProductCall.enqueue(new Callback<List<SupplierFromServer>>() {
             @Override
-            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
+            public void onResponse(@NonNull Call<List<SupplierFromServer>> call, @NonNull Response<List<SupplierFromServer>> response) {
                 if (response.isSuccessful()) {
                     List<SupplierFromServer> supplierList = response.body();
                     if (supplierList != null && !supplierList.isEmpty()) {
@@ -110,30 +106,52 @@ public class MasterInfoFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<SupplierFromServer>> call, @NonNull Throwable t) {
+
+            }
+        });
+
+        DeliveryPersonService deliveryPersonService = retrofit.create(DeliveryPersonService.class);
+        Call<List<DeliveryFromServer>> deliveryPersonCall = deliveryPersonService.getAllDeliveryPersons();
+        deliveryPersonCall.enqueue(new Callback<List<DeliveryFromServer>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<DeliveryFromServer>> call, @NonNull Response<List<DeliveryFromServer>> response) {
+                if(response.isSuccessful()){
+                    List<DeliveryFromServer> deliveryFromServerList = response.body();
+                    if(deliveryFromServerList != null && !deliveryFromServerList.isEmpty()){
+                        int numDeliveryPersons = deliveryFromServerList.size();
+                        totalDeliveryBoysSubText.setText(getString(R.string.total_deliver_sub_text, numDeliveryPersons));
+                    }
+                }else{
+                    Toast.makeText(getContext(), "No Delivery Person found !!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<DeliveryFromServer>> call, @NonNull Throwable t) {
 
             }
         });
 
         //TODO GET ALL SUPPLIER IN ROOM DB
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
-        int numSuppliers = supplierList.size();
-        totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        ArrayList<Supplier> supplierList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
+//        int numSuppliers = supplierList.size();
+//        totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
         llSuppliers.setOnClickListener(view1 -> masterInfoListener.onSupplierClick());
 
-        int numProducts = supplierList.size();
-        totalProductsSubText.setText(getString(R.string.total_deliver_sub_text, numProducts));
+//        int numProducts = supplierList.size();
+//        totalProductsSubText.setText(getString(R.string.total_deliver_sub_text, numProducts));
         llProducts.setOnClickListener(view12 -> masterInfoListener.onProductClick());
 
-        ArrayList<DeliveryPerson> deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
-        int numDelivers = deliveryPersonList.size();
-        totalDeliveryBoysSubText.setText(getString(R.string.total_deliver_sub_text, numDelivers));
+//        ArrayList<DeliveryPerson> deliveryPersonList = (ArrayList<DeliveryPerson>) myDbHelper.deliveryDetailDao().getAllDeliveryBoys();
+//        int numDelivers = deliveryPersonList.size();
+//        totalDeliveryBoysSubText.setText(getString(R.string.total_deliver_sub_text, numDelivers));
         llDeliveryBoys.setOnClickListener(view13 -> masterInfoListener.onDeliveryPersonClick());
 
-        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
-        int numCustomers = customerList.size();
-        totalCustomersSubText.setText(getString(R.string.total_customer_sub_text, numCustomers));
+//        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
+//        int numCustomers = customerList.size();
+//        totalCustomersSubText.setText(getString(R.string.total_customer_sub_text, numCustomers));
 
         llCustomers.setOnClickListener(view14 -> masterInfoListener.onCustomerClick());
 
