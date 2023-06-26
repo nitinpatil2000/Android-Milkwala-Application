@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/cardColor"
     android:orientation="vertical">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:orientation="horizontal"
-            android:weightSum="4.8">
+            android:weightSum="5">
 
             <ImageView
                 android:layout_width="0dp"
@@ -36,30 +37,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_weight="3.2"
+                android:layout_weight="3.4"
                 android:orientation="vertical">
 
 
                 <TextView
-                    android:id="@+id/deliveryBoyName"
+                    android:id="@+id/deliveryPersonForRouteName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:maxLines="2"
-                    android:text="delivery"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
+
                 <TextView
-                    android:id="@+id/deliveryBoyNumber"
+                    android:id="@+id/deliveryPersonForRoutes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="7dp"
-                    android:inputType="number"
+                    android:layout_marginTop="5dp"
                     android:maxLines="1"
-                    android:text="210 delivery boys"
+                    android:text="0 routes"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
 

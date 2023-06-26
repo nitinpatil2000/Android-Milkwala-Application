@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardColor"
+    tools:context=".ui.masterinfo.route.AddNewRouteFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_add_new_route"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/commonTextViewLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_route_name" />
+
+                <EditText
+                    android:id="@+id/edtRouteName"
+                    style="@style/commonInputEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:autofillHints=""
+                    android:hint="@string/hint_enter_route_name" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/commonTextViewLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/title_route_No" />
+
+                <EditText
+                    android:id="@+id/edtRouteNo"
+                    style="@style/commonInputEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:autofillHints=""
+                    android:hint="@string/hint_enter_route_no"
+                     />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/commonTextViewLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="top"
+                    android:text="@string/title_route_desc" />
+
+                <EditText
+                    android:id="@+id/edtRouteDesc"
+                    style="@style/commonInputEditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:autofillHints=""
+                    android:gravity="top"
+                    android:hint="@string/hint_enter_route_desc"
+                    android:inputType="none"
+                    android:maxLines="5"
+                    android:minLines="4" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View style="@style/lineHorizontal" />
+
+        <Button
+            android:id="@+id/addNewRouteBtn"
+            style="@style/commonButton"
+            android:text="@string/supp_add_btn" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

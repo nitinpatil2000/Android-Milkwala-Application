@@ -121,6 +121,7 @@ public class MasterInfoFragment extends Fragment {
                     if(deliveryFromServerList != null && !deliveryFromServerList.isEmpty()){
                         int numDeliveryPersons = deliveryFromServerList.size();
                         totalDeliveryBoysSubText.setText(getString(R.string.total_deliver_sub_text, numDeliveryPersons));
+                        totalRouterSubText.setText(getString(R.string.total_route_sub_text, numDeliveryPersons));
                     }
                 }else{
                     Toast.makeText(getContext(), "No Delivery Person found !!", Toast.LENGTH_SHORT).show();
@@ -132,6 +133,8 @@ public class MasterInfoFragment extends Fragment {
 
             }
         });
+
+
 
         //TODO GET ALL SUPPLIER IN ROOM DB
 //        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
@@ -154,6 +157,8 @@ public class MasterInfoFragment extends Fragment {
 //        totalCustomersSubText.setText(getString(R.string.total_customer_sub_text, numCustomers));
 
         llCustomers.setOnClickListener(view14 -> masterInfoListener.onCustomerClick());
+
+        llRouters.setOnClickListener(view15 -> masterInfoListener.onRouterClick());
 
         //viewpager
         viewPager = view.findViewById(R.id.viewPagerImage);

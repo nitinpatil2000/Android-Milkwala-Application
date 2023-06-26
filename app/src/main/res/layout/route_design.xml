@@ -10,58 +10,60 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="15dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         card_view:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="82.5dp"
+            android:layout_height="80dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:orientation="horizontal"
-            android:weightSum="4.8">
+            android:weightSum="4.6">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:src="@drawable/simpledeliver" />
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.5"
+                android:src="@drawable/simpledelivery" />
+
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_weight="3.2"
+                android:layout_weight="3.4"
                 android:orientation="vertical">
 
-
                 <TextView
-                    android:id="@+id/deliveryBoyName"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtRouteNameForDelivery"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:text="route_name"
                     android:maxLines="2"
-                    android:text="delivery"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
+
+
                 <TextView
-                    android:id="@+id/deliveryBoyNumber"
+                    android:id="@+id/txtRouteNoForDelivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="7dp"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:text="210 delivery boys"
+                    android:layout_marginTop="5dp"
+                    android:text="A1"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
+
 
             </LinearLayout>
 
@@ -69,11 +71,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_weight="0.8"
+                android:layout_weight="0.7"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/deliverImg"
+                    android:id="@+id/routeImg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"

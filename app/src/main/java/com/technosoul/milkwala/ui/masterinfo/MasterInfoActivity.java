@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.adapters.DeliveryPersonListForRouteAdapter;
 import com.technosoul.milkwala.ui.masterinfo.customer.AddNewCustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerFragment;
@@ -30,13 +31,17 @@ import com.technosoul.milkwala.ui.masterinfo.products.ProductDetailsViewFragment
 import com.technosoul.milkwala.ui.masterinfo.products.ProductListPerSupplierFragment;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.ui.masterinfo.products.SupplierListForProductsFragment;
+import com.technosoul.milkwala.ui.masterinfo.route.AddNewRouteFragment;
+import com.technosoul.milkwala.ui.masterinfo.route.DeliveryPersonForRouteFragment;
+import com.technosoul.milkwala.ui.masterinfo.route.RouteDetailsFragment;
+import com.technosoul.milkwala.ui.masterinfo.route.RouteListPerDeliveryPersonFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.AddNewSupplierFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
 import com.technosoul.milkwala.utils.Constants;
 
 public class MasterInfoActivity extends AbstractBaseActivity implements MasterInfoListener, OnItemSelected {
-Toolbar toolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +62,6 @@ Toolbar toolbar;
         Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_back_ios_24);
         upArrow.setColorFilter(desiredColor, PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -93,7 +97,6 @@ Toolbar toolbar;
 
     @Override
     public void onDeliveryPersonClick() {
-
         DeliveryPersonListFragment deliveryPersonListFragment = new DeliveryPersonListFragment();
         deliveryPersonListFragment.setMasterInfoListener(this);
         deliveryPersonListFragment.setOnItemSelected(this);
@@ -107,6 +110,15 @@ Toolbar toolbar;
         customerFragment.setOnItemSelected(this);
         loadFragment(customerFragment);
     }
+
+    @Override
+    public void onRouterClick() {
+        DeliveryPersonForRouteFragment deliveryPersonForRouteFragment = new DeliveryPersonForRouteFragment();
+        deliveryPersonForRouteFragment.setMasterInfoListener(this);
+        deliveryPersonForRouteFragment.setOnItemSelectedListener(this);
+        loadFragment(deliveryPersonForRouteFragment);
+    }
+
 
     @Override
     public void addNewSupplier() {
@@ -137,11 +149,17 @@ Toolbar toolbar;
     }
 
     @Override
+    public void addNewRoute(int id) {
+        AddNewRouteFragment addNewRouteFragment = new AddNewRouteFragment(id);
+        addNewRouteFragment.setMasterInfoListener(this);
+        loadFragment(addNewRouteFragment);
+    }
+
+    @Override
     public void onBackToPreviousScreen() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStack();
     }
-
 
 
     @Override
@@ -172,12 +190,24 @@ Toolbar toolbar;
                 loadFragment(customerDetailsFragment);
                 break;
 
+            case Constants.SELECTED_TYPE_ROUTE:
+                RouteDetailsFragment routeDetailsFragment = new RouteDetailsFragment(id, actionBarTitle);
+                routeDetailsFragment.setMasterInfoListener(this);
+                loadFragment(routeDetailsFragment);
+                break;
+
             case Constants.SELECTED_SUPPLIER_FOR_PRODUCT_LIST:
                 ProductListPerSupplierFragment productListPerSupplierFragment = new ProductListPerSupplierFragment(id, actionBarTitle);
                 productListPerSupplierFragment.setListener(this);
                 productListPerSupplierFragment.setOnItemSelected(this);
                 loadFragment(productListPerSupplierFragment);
                 break;
+
+            case Constants.SELECTED_DELIVERY_PERSON_FOR_ROUTE_LIST:
+                RouteListPerDeliveryPersonFragment routeListPerDeliveryPersonFragment = new RouteListPerDeliveryPersonFragment(id, actionBarTitle);
+                routeListPerDeliveryPersonFragment.setListener(this);
+                routeListPerDeliveryPersonFragment.setOnItemSelected(this);
+                loadFragment(routeListPerDeliveryPersonFragment);
         }
     }
 
@@ -186,12 +216,12 @@ Toolbar toolbar;
     @Override
     public void setActionBarTitle(String actionBarTitle) {
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!= null && actionBarTitle != null){
+        if (actionBar != null && actionBarTitle != null) {
             actionBar.setTitle(actionBarTitle);
 
             //TODO set the title color
             SpannableString spannableString = new SpannableString(actionBarTitle);
-            spannableString.setSpan(new ForegroundColorSpan(Color.WHITE),0, actionBarTitle.length(),0);
+            spannableString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, actionBarTitle.length(), 0);
             actionBar.setTitle(spannableString);
         }
     }
@@ -204,7 +234,6 @@ Toolbar toolbar;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

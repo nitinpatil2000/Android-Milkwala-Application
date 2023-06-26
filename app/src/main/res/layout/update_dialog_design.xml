@@ -75,6 +75,30 @@
                             android:layout_weight="3.5" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:id="@+id/linearLayoutRouteNo"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <TextView
+                            android:id="@+id/txtUpdateDialogRouteNo"
+                            style="@style/commonTextViewLabel"
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1.5" />
+
+                        <EditText
+                            android:id="@+id/edtUpdateDialogRouteNo"
+                            style="@style/commonInputEditText"
+
+                            android:layout_width="0dp"
+                            android:layout_weight="3.5" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -142,7 +166,7 @@
                             android:id="@+id/txtUpdateDialogAddress"
                             style="@style/commonTextViewLabel"
                             android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
+                            android:layout_gravity="top"
                             android:layout_weight="1.5" />
 
                         <EditText
@@ -186,6 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:id="@+id/linearLayoutContactNo"
                         android:layout_marginBottom="2dp"
                         android:orientation="horizontal"
                         android:weightSum="5">
@@ -210,6 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:id="@+id/linearLayoutAlterNo"
                         android:layout_marginBottom="2dp"
                         android:orientation="horizontal"
                         android:weightSum="5">

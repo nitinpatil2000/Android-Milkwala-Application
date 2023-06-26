@@ -36,6 +36,7 @@
     <string name="total_supplier_sub_text">%d Suppliers</string>
     <string name="total_product_sub_text">%d Products</string>
     <string name="total_deliver_sub_text">%d Delivery Boys</string>
+    <string name="total_route_sub_text">%d Routes</string>
     <string name="total_customer_sub_text">%d Customers</string>
 
 
@@ -95,6 +96,7 @@
     <string name="supplier_list_is_empty_in_product_list">Supplier list is empty.</string>
     <string name="empty_product_list">Product list is empty.</string>
 
+
     <!--  Product strings  -->
     <string name="title_product_name">Product Name :</string>
     <string name="hint_enter_product_name">Enter Product Name</string>
@@ -124,6 +126,37 @@
     <string name="err_empty_vendor_rate">Vendor rate should not be empty.</string>
     <string name="msg_product_added_success">Product added successfully!</string>
     <string name="empty_product_list_message">Please Add A Product.\n To Add, please touch on the Add Button on Bottom.</string>
+
+
+    <!--    Route String -->
+    <string name="empty_route_list">Route list is empty.</string>
+    <string name="title_route_name">Route Name :</string>
+    <string name="title_route_No">Route No :</string>
+    <string name="title_route_desc">Route Desc :</string>
+    <string name="hint_enter_route_name">Enter Route Name</string>
+    <string name="hint_enter_route_no">Enter Route No</string>
+    <string name="hint_enter_route_desc">Enter Route Description</string>
+    <string name="err_empty_route_name">Route name should not be empty.</string>
+    <string name="err_empty_route_no">Route no should not be empty.</string>
+    <string name="err_empty_route_desc">Route desc should not be empty.</string>
+    <string name="msg_route_added_success">Route added successfully!</string>
+    <string name="failed_add_route_data">Failed to add Route data</string>
+    <string name="failed_fetch_route_data">Failed to fetch Route data</string>
+    <string name="title_route_details">Route Details</string>
+    <string name="btn_delete_route">Delete Route</string>
+    <string name="msg_delete_route_confirmation">Are you sure to delete this route?</string>
+    <string name="msg_delete_route_desc">Please Note - Deleting this route will remove all the route related information, permanently.</string>
+    <string name="msg_delete_route_success">Route deleted successfully.</string>
+    <string name="no_route_found">No Route Found</string>
+    <string name="str_update_route_title">Update %1$s Route</string>
+    <string name="success_update_route">Route updated successfully</string>
+    <string name="routes_of_delivery_person">%1$d Routes</string>
+
+
+
+
+
+
 
 
     <!--  Delivery person strings  -->
@@ -213,6 +246,7 @@
     <!--   TODO FAILED TO FETCH THE DATA ON THE MASTER INFO FRAGMENT-->
     <string name="failed_get_supplier_data">Failed to fetch supplier data</string>
     <string name="failed_get_product_data">Failed to fetch product data</string>
+    <string name="failed_get_route_data">Failed to fetch route data</string>
     <string name="failed_get_delivery_data">Failed to fetch delivery boy data</string>
     <string name="failed_get_customer_data">Failed to fetch customer data</string>
 
@@ -260,15 +294,14 @@
     <string name="let_get_started">Lets Get Started</string>
 
 
-
-<!--    Heading-->
+    <!--    Heading-->
     <string name="supplier_heading">Supplier</string>
     <string name="product_heading">Product</string>
     <string name="delivery_hading">Delivery Boy</string>
     <string name="customer_heading">Customer</string>
 
 
-<!--    Desc-->
+    <!--    Desc-->
     <string name="product_desc">The Milkwala app is a comprehensive platform for managing dairy product
         supply, distribution, and sales, offering features such as inventory
         management, order placement, delivery tracking, and reporting.</string>

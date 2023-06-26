@@ -77,7 +77,7 @@ public class ProductListViewPerSupplierAdapter extends RecyclerView.Adapter<Prod
                     String productDetailsName = clickedItem.getProductName();
                     if (onItemSelected != null) {
                         onItemSelected.onItemClicked(Constants.SELECTED_TYPE_PRODUCT,
-                                productFromServers.get(position).getProductId(), productDetailsName, null);
+                                productId, productDetailsName, null);
                     }
                 }
             });
