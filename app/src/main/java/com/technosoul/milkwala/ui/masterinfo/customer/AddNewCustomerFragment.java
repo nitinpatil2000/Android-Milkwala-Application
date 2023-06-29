@@ -2,6 +2,7 @@ package com.technosoul.milkwala.ui.masterinfo.customer;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +14,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.Customer;
-import com.technosoul.milkwala.db.MyDbHelper;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
+import com.technosoul.milkwala.ui.masterinfo.route.RouteFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import okhttp3.Request;
+import okio.Buffer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AddNewCustomerFragment extends Fragment {
     private EditText etCustomerName;
@@ -32,14 +43,15 @@ public class AddNewCustomerFragment extends Fragment {
     private EditText etCustomerContact2;
     private Spinner spCustomerType;
     private EditText etCustomerEmail;
+    private final int routeId;
 
 
     ArrayList<String> customerTypeArrayList = new ArrayList<>();
 
     private MasterInfoListener masterInfoListener;
 
-    public AddNewCustomerFragment() {
-        // Required empty public constructor
+    public AddNewCustomerFragment(int routeId) {
+        this.routeId = routeId;
     }
 
     public void setMasterInfoListener(MasterInfoListener masterInfoListener) {
@@ -53,7 +65,6 @@ public class AddNewCustomerFragment extends Fragment {
 
         etCustomerName = view.findViewById(R.id.etCustomerName);
         etCustomerAddress = view.findViewById(R.id.etCustomerAddress);
-        etCustomerCity = view.findViewById(R.id.etCustomerCity);
         etCustomerContact1 = view.findViewById(R.id.etCustomerMobile);
         etCustomerContact2 = view.findViewById(R.id.etCustomerAlternateMobile);
         spCustomerType = view.findViewById(R.id.spCustomerType);
@@ -84,7 +95,7 @@ public class AddNewCustomerFragment extends Fragment {
         });
 
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         btnAddNewCustomer.setOnClickListener(view1 -> {
             String customerName = etCustomerName.getText().toString();
             if (TextUtils.isEmpty(customerName)) {
@@ -104,33 +115,20 @@ public class AddNewCustomerFragment extends Fragment {
                 return;
             }
 
-            String customerCity = etCustomerCity.getText().toString();
-            if (TextUtils.isEmpty(customerCity)) {
-                Toast.makeText(getContext(), R.string.err_empty_city_name, Toast.LENGTH_SHORT).show();
-                return;
-            } else if (customerCity.length() < 3) {
-                Toast.makeText(getContext(), R.string.err_min_length_city, Toast.LENGTH_SHORT).show();
-                return;
-            }
-
             String customerEmail = etCustomerEmail.getText().toString();
-            if(TextUtils.isEmpty(customerEmail)){
+            if (TextUtils.isEmpty(customerEmail)) {
                 Toast.makeText(getContext(), R.string.error_customer_email, Toast.LENGTH_SHORT).show();
-            }else if (!Patterns.EMAIL_ADDRESS.matcher(customerEmail).matches()) {
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(customerEmail).matches()) {
                 Toast.makeText(getContext(), R.string.error_valid_customer_email, Toast.LENGTH_SHORT).show();
                 etCustomerEmail.requestFocus();
                 return;
             }
-
 
             String customerType = spCustomerType.getSelectedItem().toString();
             if (TextUtils.isEmpty(customerType)) {
                 Toast.makeText(getContext(), R.string.err_empty_unit, Toast.LENGTH_SHORT).show();
                 return;
             }
-
-
-
 
             String customerContact1 = etCustomerContact1.getText().toString();
             if (TextUtils.isEmpty(customerContact1)) {
@@ -140,7 +138,7 @@ public class AddNewCustomerFragment extends Fragment {
             if (!Patterns.PHONE.matcher(customerContact1).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_mobile_number, Toast.LENGTH_SHORT).show();
                 return;
-            }else if (customerContact1.length() > 10) {
+            } else if (customerContact1.length() > 10) {
                 Toast.makeText(getContext(), R.string.err_max_digits_cust_contact_no1, Toast.LENGTH_LONG).show();
                 etCustomerContact1.requestFocus();
                 return;
@@ -152,16 +150,58 @@ public class AddNewCustomerFragment extends Fragment {
             if (!customerContact2.isEmpty() && !Patterns.PHONE.matcher(customerContact2).matches()) {
                 Toast.makeText(getContext(), R.string.err_invalid_alternate_number, Toast.LENGTH_SHORT).show();
                 return;
-            }else if (customerContact2.length() > 10) {
+            }
+            if (!Patterns.PHONE.matcher(customerContact2).matches()) {
+                Toast.makeText(getContext(), R.string.err_invalid_mobile_number, Toast.LENGTH_SHORT).show();
+                return;
+            } else if (customerContact2.length() > 10) {
                 Toast.makeText(getContext(), R.string.err_max_digits_cust_contact_no2, Toast.LENGTH_LONG).show();
                 etCustomerContact2.requestFocus();
                 return;
             }
             long customerContactAltNo = Long.parseLong(customerContact2);
 
-            myDbHelper.customerDao().addCustomer(new Customer(customerName, customerAddress, customerCity,customerEmail, customerType, customerContactNo, customerContactAltNo));
+            ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+            Retrofit retrofit = apiRetrofitService.getRetrofit();
+            CustomerService customerService = retrofit.create(CustomerService.class);
+            CustomerFromServer customerFromServer = new CustomerFromServer();
+            customerFromServer.setCustomerName(customerName);
+            customerFromServer.setCustomerAddress(customerAddress);
+            customerFromServer.setCustomerEmail(customerEmail);
+            customerFromServer.setCustomerType(customerType);
+            customerFromServer.setCustomerContactNo(customerContactNo);
+            customerFromServer.setCustomerAlterNo(customerContactAltNo);
+            customerFromServer.setRouteId(routeId);
 
-            Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
+            Call<CustomerFromServer> createCustomerFromServer = customerService.createCustomer(customerFromServer);
+            createCustomerFromServer.enqueue(new Callback<CustomerFromServer>() {
+                @Override
+                public void onResponse(@NonNull Call<CustomerFromServer> call, @NonNull Response<CustomerFromServer> response) {
+                    CustomerFromServer customerListFromServer = response.body();
+                    if (customerListFromServer != null) {
+                        Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
+                        if (masterInfoListener != null) {
+                            masterInfoListener.onBackToPreviousScreen();
+                        }
+                    } else {
+//                        Toast.makeText(getContext(), R.string.failed_add_customer_data, Toast.LENGTH_SHORT).show();
+                        Request request = call.request();
+                        try {
+                            Buffer buffer = new Buffer();
+                            Objects.requireNonNull(request.body()).writeTo(buffer);
+                            String requestBody = buffer.readUtf8();
+                            Log.d("API Request Body", requestBody);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<CustomerFromServer> call, @NonNull Throwable t) {
+                    t.printStackTrace();
+                }
+            });
 
             if (masterInfoListener != null) {
                 masterInfoListener.onBackToPreviousScreen();
@@ -169,8 +209,8 @@ public class AddNewCustomerFragment extends Fragment {
 
         });
 
-        if(getActivity() !=null){
-            ((MasterInfoActivity)getActivity()).setActionBarTitle("Add New Customer");
+        if (getActivity() != null) {
+            ((MasterInfoActivity) getActivity()).setActionBarTitle("Add New Customer");
         }
         return view;
     }

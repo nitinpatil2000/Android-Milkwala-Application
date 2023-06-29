@@ -20,6 +20,7 @@ public class ProductFromServer {
         this.productMrpRetailerRate = productMrpRetailerRate;
         this.supplierId = supplierId;
     }
+
     public ProductFromServer(String productName, String productType, String productUnit, float productSupplierRate, float productWholesaleRate, float productMrpRetailerRate) {
         this.productName = productName;
         this.productType = productType;

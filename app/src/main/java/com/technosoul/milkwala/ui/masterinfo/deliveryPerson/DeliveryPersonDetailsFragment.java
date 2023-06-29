@@ -209,6 +209,9 @@ public class DeliveryPersonDetailsFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<DeliveryFromServer> call, @NonNull Response<DeliveryFromServer> response) {
                         if(response.isSuccessful()) {
+                            if(listener != null){
+                                listener.onBackToPreviousScreen();
+                            }
                             DeliveryFromServer updateDeliveryBoy = response.body();
                             Toast.makeText(getContext(), R.string.success_update_delivery_boy, Toast.LENGTH_SHORT).show();
                             deliveryFromServer = updateDeliveryBoy;

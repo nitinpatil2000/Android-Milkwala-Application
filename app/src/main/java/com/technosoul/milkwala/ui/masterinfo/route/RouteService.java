@@ -1,5 +1,7 @@
 package com.technosoul.milkwala.ui.masterinfo.route;
 
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
+
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -27,5 +29,10 @@ public interface RouteService {
 
     @DELETE("/route/{routeId}")
     Call<ResponseBody> deleteRoute(@Path("routeId") int routeId);
+
+    @GET("/getroutes")
+    Call<List<RouteFromServer>> getAllRoutes();
 }
+
+
 

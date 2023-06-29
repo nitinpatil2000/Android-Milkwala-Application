@@ -11,14 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.ProductDetails;
-import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductService;
-import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFragment;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
@@ -69,7 +65,7 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
         Call<List<ProductFromServer>> getProductsBySupplierId = productService.getProductsBySupplierId(supplierId);
         getProductsBySupplierId.enqueue(new Callback<List<ProductFromServer>>() {
             @Override
-            public void onResponse(Call<List<ProductFromServer>> call, Response<List<ProductFromServer>> response) {
+            public void onResponse(@NonNull Call<List<ProductFromServer>> call, @NonNull Response<List<ProductFromServer>> response) {
                 if (response.isSuccessful()) {
                     List<ProductFromServer> supplierListFromServers = response.body();
                     if (supplierListFromServers != null && !supplierListFromServers.isEmpty()) {
@@ -80,7 +76,7 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
             }
 
             @Override
-            public void onFailure(Call<List<ProductFromServer>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<ProductFromServer>> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });
@@ -91,10 +87,10 @@ public class SupplierListViewForProductAdapter extends RecyclerView.Adapter<Supp
         return supplierFromServers.size();
     }
 
-    public void filteredList(ArrayList<SupplierFromServer> filteredSupplier) {
-        supplierFromServers = filteredSupplier;
-        notifyDataSetChanged();
-    }
+//    public void filteredList(ArrayList<SupplierFromServer> filteredSupplier) {
+//        supplierFromServers = filteredSupplier;
+//        notifyDataSetChanged();
+//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView productTxt, productCounter;

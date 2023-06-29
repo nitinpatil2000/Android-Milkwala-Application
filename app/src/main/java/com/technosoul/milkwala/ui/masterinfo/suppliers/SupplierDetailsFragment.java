@@ -175,6 +175,9 @@ public class SupplierDetailsFragment extends Fragment {
                     public void onResponse(@NonNull Call<SupplierFromServer> call, @NonNull Response<SupplierFromServer> response) {
                         if(response.isSuccessful()){
                             SupplierFromServer updatedSupplier = response.body();
+                            if(listener != null){
+                                listener.onBackToPreviousScreen();
+                            }
                             Toast.makeText(getContext(), "Supplier updated successfully", Toast.LENGTH_SHORT).show();
                             supplierListFromServer = updatedSupplier;
                             dialog.dismiss();

@@ -9,7 +9,7 @@ public interface MasterInfoListener {
     void addNewSupplier();
     void addNewProduct(int id);
     void addNewDeliveryPerson();
-    void addNewCustomer();
+    void addNewCustomer(int id);
     void addNewRoute(int id);
     void onBackToPreviousScreen();
     void setActionBarTitle(String actionBarTitle);

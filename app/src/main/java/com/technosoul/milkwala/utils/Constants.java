@@ -18,6 +18,8 @@ public class Constants {
     public static final int SELECTED_SUPPLIER_FOR_PRODUCT_LIST = 4;
     public static final int SELECTED_DELIVERY_PERSON_FOR_ROUTE_LIST = 5;
     public static final int SELECTED_TYPE_ROUTE = 6;
+    public static final int SELECTED_ROUTE_FOR_CUSTOMER_LIST = 7;
+
 
     public static final String UNIT_LITRE_1 = "UNIT_LITRE_1";
     public static final String UNIT_LITRE_2 = "UNIT_LITRE_2";

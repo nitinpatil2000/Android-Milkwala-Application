@@ -1,6 +1,5 @@
 package com.technosoul.milkwala;
 
-import android.app.slice.Slice;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -9,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
@@ -19,6 +18,10 @@ import com.technosoul.milkwala.db.Customer;
 import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
+import com.technosoul.milkwala.ui.masterinfo.customer.CustomerFromServer;
+import com.technosoul.milkwala.ui.masterinfo.customer.CustomerService;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductService;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
@@ -50,14 +53,11 @@ public class AdminDashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
 
 
         todayTotalSale = view.findViewById(R.id.today_total_sale);
         todayTotalWaste = view.findViewById(R.id.today_total_waste);
-
-
-
 
 
         // Get total Suppliers
@@ -68,7 +68,6 @@ public class AdminDashboardFragment extends Fragment {
         // Get total Products
         // TODO: need to add the products & fetch it.
 //        totalProducts.setText(getString(R.string.total_products, noSuppliers));
-
 
 
         // Get total Customers
@@ -123,7 +122,7 @@ public class AdminDashboardFragment extends Fragment {
         slices.add(new PieChart.Slice(
                 0.3f, Color.BLUE, Color.RED, "C - 24%", Color.WHITE, 50f,
                 typefaceObject, null, 35f, 25f, null, 0.6f,
-                null, null, null, "",    Color.GREEN, null,
+                null, null, null, "", Color.GREEN, null,
                 R.drawable.suppliericon, null, 8f, Color.BLUE, Color.GRAY,
                 16f, 0.8f, 1.0f, 0.2f
         ));
@@ -153,21 +152,16 @@ public class AdminDashboardFragment extends Fragment {
         ));
 
 
-
-
-
         pieChart.setSlices(slices);
 
 
-
 //        TODO SET THE TITLE
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        if(actionBar != null) {
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
             actionBar.setTitle("DashBoard");
         }
 
 
-        
         return view;
     }
 
@@ -181,41 +175,78 @@ public class AdminDashboardFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
-        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
-        int numCustomers = customerList.size();
-        totalCustomers = getView().findViewById(R.id.totalCustomers);
-        totalCustomers.setText(getString(R.string.total_customers, numCustomers));
-
+//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
+//        ArrayList<Customer> customerList = (ArrayList<Customer>) myDbHelper.customerDao().getAllCustomers();
+//        int numCustomers = customerList.size();
+//        totalCustomers.setText(getString(R.string.total_customers, numCustomers));
 
         totalSuppliers = getView().findViewById(R.id.totalSuppliers);
         totalProducts = getView().findViewById(R.id.totalProducts);
-        ApiRetrofitService supplierRetrofitService = new ApiRetrofitService();
-        Retrofit retrofit = supplierRetrofitService.getRetrofit();
+        totalCustomers = getView().findViewById(R.id.totalCustomers);
+
+        ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
+        Retrofit retrofit = apiRetrofitService.getRetrofit();
         SupplierService supplierService = retrofit.create(SupplierService.class);
         Call<List<SupplierFromServer>> call = supplierService.getAllSuppliers();
         call.enqueue(new Callback<List<SupplierFromServer>>() {
             @Override
-            public void onResponse(Call<List<SupplierFromServer>> call, Response<List<SupplierFromServer>> response) {
-                if(response.isSuccessful()){
+            public void onResponse(@NonNull Call<List<SupplierFromServer>> call, @NonNull Response<List<SupplierFromServer>> response) {
+                if (response.isSuccessful()) {
                     List<SupplierFromServer> supplierList = response.body();
-                    if(supplierList != null && !supplierList.isEmpty()){
+                    if (supplierList != null && !supplierList.isEmpty()) {
                         int numSuppliers = supplierList.size();
                         totalSuppliers.setText(getString(R.string.total_suppliers, numSuppliers));
-                        totalProducts.setText(getString(R.string.total_products, numSuppliers));
-                    }else{
-
                     }
-                }else{
-                    Toast.makeText(getContext(), R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<SupplierFromServer>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<SupplierFromServer>> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });
+
+        ProductService productService = retrofit.create(ProductService.class);
+        Call<List<ProductFromServer>> callProductFromServer = productService.getAllProducts();
+        callProductFromServer.enqueue(new Callback<List<ProductFromServer>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<ProductFromServer>> call, @NonNull Response<List<ProductFromServer>> response) {
+                if (response.isSuccessful()) {
+                    List<ProductFromServer> productList = response.body();
+                    if (productList != null && !productList.isEmpty()) {
+                        int numProducts = productList.size();
+                        totalProducts.setText(getString(R.string.total_products, numProducts));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<ProductFromServer>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        CustomerService customerService = retrofit.create(CustomerService.class);
+        Call<List<CustomerFromServer>> callCustomerFromServer = customerService.getAllCustomers();
+        callCustomerFromServer.enqueue(new Callback<List<CustomerFromServer>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<CustomerFromServer>> call, @NonNull Response<List<CustomerFromServer>> response) {
+                if (response.isSuccessful()) {
+                    List<CustomerFromServer> customerList = response.body();
+                    if (customerList != null && !customerList.isEmpty()) {
+                        int numCustomers = customerList.size();
+                        totalCustomers.setText(getString(R.string.total_customers, numCustomers));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<CustomerFromServer>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+
     }
 }
 

@@ -153,6 +153,9 @@ public class RouteDetailsFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<RouteFromServer> call, @NonNull Response<RouteFromServer> response) {
                         if (response.isSuccessful()) {
+                            if(masterInfoListener != null){
+                                masterInfoListener.onBackToPreviousScreen();
+                            }
                             RouteFromServer updateRoute = response.body();
                             Toast.makeText(getContext(), R.string.success_update_route, Toast.LENGTH_SHORT).show();
                             routeFromServer = updateRoute;

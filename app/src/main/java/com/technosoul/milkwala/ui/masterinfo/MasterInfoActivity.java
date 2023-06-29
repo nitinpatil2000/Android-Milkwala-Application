@@ -8,7 +8,6 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -19,17 +18,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.adapters.DeliveryPersonListForRouteAdapter;
+import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.ui.masterinfo.customer.AddNewCustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerDetailsFragment;
-import com.technosoul.milkwala.ui.masterinfo.customer.CustomerFragment;
+import com.technosoul.milkwala.ui.masterinfo.customer.CustomerListForRouteFragment;
+import com.technosoul.milkwala.ui.masterinfo.customer.RouteForCustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.AddNewDeliverPersonFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonListFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.AddNewProductFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductDetailsViewFragment;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductListPerSupplierFragment;
-import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.ui.masterinfo.products.SupplierListForProductsFragment;
 import com.technosoul.milkwala.ui.masterinfo.route.AddNewRouteFragment;
 import com.technosoul.milkwala.ui.masterinfo.route.DeliveryPersonForRouteFragment;
@@ -105,10 +104,10 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
 
     @Override
     public void onCustomerClick() {
-        CustomerFragment customerFragment = new CustomerFragment();
-        customerFragment.setMasterInfoListener(this);
-        customerFragment.setOnItemSelected(this);
-        loadFragment(customerFragment);
+        RouteForCustomerFragment routeForCustomerFragment = new RouteForCustomerFragment();
+        routeForCustomerFragment.setMasterInfoListener(this);
+        routeForCustomerFragment.setOnItemSelectedListener(this);
+        loadFragment(routeForCustomerFragment);
     }
 
     @Override
@@ -142,8 +141,8 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     }
 
     @Override
-    public void addNewCustomer() {
-        AddNewCustomerFragment addNewCustomerFragment = new AddNewCustomerFragment();
+    public void addNewCustomer(int id) {
+        AddNewCustomerFragment addNewCustomerFragment = new AddNewCustomerFragment(id);
         addNewCustomerFragment.setMasterInfoListener(this);
         loadFragment(addNewCustomerFragment);
     }
@@ -208,8 +207,16 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
                 routeListPerDeliveryPersonFragment.setListener(this);
                 routeListPerDeliveryPersonFragment.setOnItemSelected(this);
                 loadFragment(routeListPerDeliveryPersonFragment);
+
+            case Constants.SELECTED_ROUTE_FOR_CUSTOMER_LIST:
+                CustomerListForRouteFragment customerListForRouteFragment = new CustomerListForRouteFragment(id, actionBarTitle);
+                customerListForRouteFragment.setListener(this);
+                customerListForRouteFragment.setOnItemSelected(this);
+                loadFragment(customerListForRouteFragment);
+
         }
     }
+
 
 
     //TODO SET THE TITLE

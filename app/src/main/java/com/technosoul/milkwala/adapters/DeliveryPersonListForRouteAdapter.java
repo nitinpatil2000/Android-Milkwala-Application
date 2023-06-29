@@ -85,15 +85,15 @@ public class DeliveryPersonListForRouteAdapter extends RecyclerView.Adapter<Deli
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView deliveryPersonForRouteName, deliveryPersonForRoutesCounter;
-        ImageView deliveryImg;
+        ImageView deliveryForRouteImg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             deliveryPersonForRouteName = itemView.findViewById(R.id.deliveryPersonForRouteName);
             deliveryPersonForRoutesCounter = itemView.findViewById(R.id.deliveryPersonForRoutes);
-            deliveryImg = itemView.findViewById(R.id.deliverImg);
+            deliveryForRouteImg = itemView.findViewById(R.id.deliveryForRouteImg);
 
-            deliveryImg.setOnClickListener(view -> {
+            deliveryForRouteImg.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     DeliveryFromServer selectedDeliveryPerson = deliveryFromServers.get(position);

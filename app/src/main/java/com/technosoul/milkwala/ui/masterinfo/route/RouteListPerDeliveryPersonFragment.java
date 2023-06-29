@@ -35,7 +35,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RouteListPerDeliveryPersonFragment extends Fragment {
-
     private final int deliveryPersonId;
     private final String deliveryPersonName;
     RouteListPerDeliveryPersonAdapter routeListPerDeliveryPersonAdapter;
@@ -92,7 +91,6 @@ public class RouteListPerDeliveryPersonFragment extends Fragment {
                         routeRecyclerView.scheduleLayoutAnimation();
                     }
                 } else {
-                    Toast.makeText(getContext(), R.string.failed_get_route_data, Toast.LENGTH_SHORT).show();
                     tvEmptyRouteList.setVisibility(View.VISIBLE); // Show the empty text message if data retrieval failed
                 }
             }

@@ -1,8 +1,6 @@
 package com.technosoul.milkwala.ui.masterinfo.deliveryPerson;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +17,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.adapters.CustomerViewAdapter;
 import com.technosoul.milkwala.adapters.DeliverPersonListViewAdapter;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.DeliveryPerson;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
-import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.util.ArrayList;
 import java.util.List;

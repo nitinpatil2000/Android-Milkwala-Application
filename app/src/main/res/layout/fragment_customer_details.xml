@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/title_delivery_person_details"
+            android:text="@string/title_customer_details"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -94,24 +94,6 @@
                     android:minLines="4" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:weightSum="5">
-
-                <TextView
-                    style="@style/commonTextViewLabel"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.8"
-                    android:text="@string/str_city" />
-
-                <TextView
-                    android:id="@+id/tvCustomerCity"
-                    style="@style/commonTextViewValue"
-                    android:layout_width="0dp"
-                    android:layout_weight="3.2" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,7 +108,7 @@
                     android:text="@string/str_email" />
 
                 <TextView
-                    android:id="@+id/txtCustomerEm"
+                    android:id="@+id/txtCustomerEmail"
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
                     android:layout_weight="3.2" />
@@ -199,9 +181,25 @@
 
     </androidx.cardview.widget.CardView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnUpdateCustomerDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toTopOf="@id/customerLinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id = "@+id/customerLinearLayout"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">

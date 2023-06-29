@@ -19,6 +19,8 @@ import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.home.ImageAdapter;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryFromServer;
 import com.technosoul.milkwala.ui.masterinfo.deliveryPerson.DeliveryPersonService;
+import com.technosoul.milkwala.ui.masterinfo.route.RouteFromServer;
+import com.technosoul.milkwala.ui.masterinfo.route.RouteService;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
@@ -98,7 +100,7 @@ public class MasterInfoFragment extends Fragment {
                     if (supplierList != null && !supplierList.isEmpty()) {
                         int numSuppliers = supplierList.size();
                         totalSuppliersSubText.setText(getString(R.string.total_supplier_sub_text, numSuppliers));
-                        totalProductsSubText.setText(getString(R.string.total_product_sub_text, numSuppliers));
+                        totalProductsSubText.setText(getString(R.string.total_supplier_for_product_sub_text, numSuppliers));
                     }
                 } else {
                     Toast.makeText(getContext(), R.string.no_supplier_found, Toast.LENGTH_SHORT).show();
@@ -107,7 +109,7 @@ public class MasterInfoFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<SupplierFromServer>> call, @NonNull Throwable t) {
-
+                    t.printStackTrace();
             }
         });
 
@@ -121,7 +123,7 @@ public class MasterInfoFragment extends Fragment {
                     if(deliveryFromServerList != null && !deliveryFromServerList.isEmpty()){
                         int numDeliveryPersons = deliveryFromServerList.size();
                         totalDeliveryBoysSubText.setText(getString(R.string.total_deliver_sub_text, numDeliveryPersons));
-                        totalRouterSubText.setText(getString(R.string.total_route_sub_text, numDeliveryPersons));
+                        totalRouterSubText.setText(getString(R.string.total_deliver_for_route_sub_text, numDeliveryPersons));
                     }
                 }else{
                     Toast.makeText(getContext(), "No Delivery Person found !!", Toast.LENGTH_SHORT).show();
@@ -130,7 +132,29 @@ public class MasterInfoFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<DeliveryFromServer>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
 
+        RouteService routeService = retrofit.create(RouteService.class);
+        Call<List<RouteFromServer>> routeListFromServer = routeService.getAllRoutes();
+        routeListFromServer.enqueue(new Callback<List<RouteFromServer>>() {
+            @Override
+            public void onResponse(Call<List<RouteFromServer>> call, Response<List<RouteFromServer>> response) {
+                if(response.isSuccessful()){
+                    List<RouteFromServer> totalRouteListForCustomer = response.body();
+                    if(totalRouteListForCustomer != null && !totalRouteListForCustomer.isEmpty()){
+                        int numRouteForCustomer = totalRouteListForCustomer.size();
+                        totalCustomersSubText.setText(getString(R.string.total_route_for_customer_sub_text, numRouteForCustomer));
+                    }
+                }else{
+                    Toast.makeText(getContext(), "No Route Found !!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RouteFromServer>> call, Throwable t) {
+                t.printStackTrace();
             }
         });
 

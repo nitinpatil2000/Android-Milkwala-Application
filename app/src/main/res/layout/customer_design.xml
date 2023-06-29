@@ -41,21 +41,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/customerTxt"
+                    android:id="@+id/txt_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:text="Customers"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/masterinfo_customer_subtext"
+                    android:id="@+id/txt_customer_mobile_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:maxLines="1"
                     android:text="8 Customers"
                     android:textColor="@color/black"
@@ -72,7 +72,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/customerImg"
+                    android:id="@+id/customer_for_route_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="10dp"

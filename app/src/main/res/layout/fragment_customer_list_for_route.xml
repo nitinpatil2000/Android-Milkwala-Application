@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardColor"
-    tools:context=".ui.masterinfo.customer.CustomerFragment">
+    tools:context=".ui.masterinfo.customer.CustomerListForRouteFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_customer_search"
+        android:id="@+id/cv_customer_list_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/toolbar"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/searchCustomer"
+            android:id="@+id/edt_customer_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -69,7 +69,7 @@
         android:layout_marginBottom="60dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/ll_btn_add_new_customer"
-        app:layout_constraintTop_toBottomOf="@+id/cardview_customer_search" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_customer_list_search" />
 
 
     <TextView

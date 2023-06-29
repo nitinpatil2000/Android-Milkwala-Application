@@ -40,6 +40,7 @@ public class ProductDetailsViewFragment extends Fragment {
     TextView tvProductUnit;
     TextView tvProductType;
     TextView tvProductMrp;
+    TextView tvTitleProductDetails;
     Button deleteNewProductBtn;
     ProductFromServer productFromServer;
     TextView tvWholesaleRate;
@@ -76,7 +77,10 @@ public class ProductDetailsViewFragment extends Fragment {
         tvProductMrp = view.findViewById(R.id.tv_product_mrp);
         tvSupplierRate = view.findViewById(R.id.tv_supplier_rate);
         tvWholesaleRate = view.findViewById(R.id.tv_wholesale_rate);
+
+        tvTitleProductDetails = view.findViewById(R.id.txt_title_product_details);
         deleteNewProductBtn = view.findViewById(R.id.btnDeleteProduct);
+
 
         ApiRetrofitService apiRetrofitService = new ApiRetrofitService();
         Retrofit retrofit = apiRetrofitService.getRetrofit();
@@ -94,6 +98,7 @@ public class ProductDetailsViewFragment extends Fragment {
                         tvProductMrp.setText(String.valueOf(productFromServer.getProductMrpRetailerRate()));
                         tvSupplierRate.setText(String.valueOf(productFromServer.getProductSupplierRate()));
                         tvWholesaleRate.setText(String.valueOf(productFromServer.getProductWholesaleRate()));
+                        tvTitleProductDetails.setText(getString(R.string.title_product_details, productFromServer.getProductName()));
                     } else {
                         Toast.makeText(getContext(), R.string.failed_get_product_data, Toast.LENGTH_SHORT).show();
                     }
@@ -222,6 +227,9 @@ public class ProductDetailsViewFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<ProductFromServer> call, @NonNull Response<ProductFromServer> response) {
                         if (response.isSuccessful()) {
+                            if(masterInfoListener != null){
+                                masterInfoListener.onBackToPreviousScreen();
+                            }
                             ProductFromServer updateProduct = response.body();
                             Toast.makeText(getContext(), R.string.success_update_product, Toast.LENGTH_SHORT).show();
                             productFromServer = updateProduct;

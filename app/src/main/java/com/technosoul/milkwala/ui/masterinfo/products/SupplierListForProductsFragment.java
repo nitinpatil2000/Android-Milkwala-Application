@@ -19,11 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.SupplierListViewForProductAdapter;
+import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
-import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.util.ArrayList;

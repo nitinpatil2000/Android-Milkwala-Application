@@ -85,29 +85,6 @@
                     style="@style/commonTextViewLabel"
                     android:layout_width="0dp"
                     android:layout_weight="1.8"
-                    android:text="@string/str_city" />
-
-                <EditText
-                    android:id="@+id/etCustomerCity"
-                    style="@style/commonInputEditText"
-                    android:layout_width="0dp"
-                    android:layout_weight="3.2"
-                    android:autofillHints="city"
-                    android:hint="@string/hint_customer_city" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:weightSum="5">
-
-                <TextView
-                    style="@style/commonTextViewLabel"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.8"
                     android:text="@string/str_email" />
 
                 <EditText

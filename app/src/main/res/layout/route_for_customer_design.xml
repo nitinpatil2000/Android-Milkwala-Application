@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:background="@color/cardColor"
     android:orientation="vertical">
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,17 +20,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="82.5dp"
+            android:layout_height="80dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="4.7">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:src="@drawable/simpledeliver" />
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.7"
+                android:src="@drawable/simpledelivery" />
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -39,30 +40,30 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_weight="3.4"
+                android:layout_weight="3.2"
                 android:orientation="vertical">
 
-
                 <TextView
-                    android:id="@+id/deliveryPersonForRouteName"
+                    android:id="@+id/txtRouteNoForCustomer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:maxLines="2"
-                    android:text=""
+                    android:maxLines="1"
+                    android:text="Routes"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/deliveryPersonForRoutes"
+                    android:id="@+id/txtRouteForCustomerCounter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:maxLines="1"
-                    android:text="0 routes"
+                    android:text="0 Customers"
                     android:textColor="@color/black"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp" />
+
 
             </LinearLayout>
 
@@ -74,11 +75,11 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/deliveryForRouteImg"
+                    android:id="@+id/routeForCustomerImg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
                     android:padding="10dp"
+                    android:gravity="center_horizontal"
                     android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
 
             </LinearLayout>
@@ -86,4 +87,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>

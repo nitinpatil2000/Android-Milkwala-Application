@@ -38,6 +38,9 @@
     <string name="total_deliver_sub_text">%d Delivery Boys</string>
     <string name="total_route_sub_text">%d Routes</string>
     <string name="total_customer_sub_text">%d Customers</string>
+    <string name="total_deliver_for_route_sub_text">%d Delivery Boys For Routes</string>
+    <string name="total_supplier_for_product_sub_text">%d Suppliers For Products</string>
+    <string name="total_route_for_customer_sub_text">%d Routes For Customers</string>
 
 
     <string name="title_dashboard">Dashboard</string>
@@ -110,7 +113,7 @@
     <string name="hint_vendor_rate">110</string>
     <string name="hint_mrp">115</string>
     <string name="str_rs">Rs.</string>
-    <string name="title_product_details">Product Details</string>
+    <string name="title_product_details">%1$s Details</string>
     <string name="btn_delete_product">Delete Product</string>
     <string name="title_delete_product">Delete - %1$s</string>
     <string name="msg_delete_product_desc">Please Note - Deleting this product will remove all the product related information, permanently.</string>
@@ -151,11 +154,7 @@
     <string name="str_update_route_title">Update %1$s Route</string>
     <string name="success_update_route">Route updated successfully</string>
     <string name="routes_of_delivery_person">%1$d Routes</string>
-
-
-
-
-
+    <string name="empty_route_list_message">Please Add A Route.\n To Add, please touch on the Add Button on Bottom.</string>
 
 
 
@@ -198,13 +197,16 @@
 
 
     <!--  Customer strings  -->
-    <string name="hint_customer_name">Customer Name</string>
-    <string name="hint_customer_email">Customer Email</string>
+    <string name="hint_customer_name">Enter Customer Name</string>
+    <string name="hint_customer_email">Enter Customer Email</string>
     <string name="error_customer_email">Customer Email should not empty!!</string>
     <string name="error_valid_customer_email">Please enter the valid customer email!!</string>
     <string name="customer_type">Type :</string>
-    <string name="hint_customer_address">Customer Address</string>
-    <string name="hint_customer_city">Customer City</string>
+    <string name="hint_customer_address">Enter Customer Address</string>
+    <string name="hint_customer_contact_no">Enter Customer Contact No</string>
+    <string name="hint_customer_contact_alt_no">Enter Customer Alter No</string>
+    <string name="route_of_customer">%1$d Customers</string>
+
     <string name="err_empty_customer_name">Customer name should not be empty.</string>
     <string name="err_min_length_customer_name">Customer name should be minimum of 3 characters</string>
     <string name="err_empty_customer_address">Customer address should not be empty</string>
@@ -249,6 +251,7 @@
     <string name="failed_get_route_data">Failed to fetch route data</string>
     <string name="failed_get_delivery_data">Failed to fetch delivery boy data</string>
     <string name="failed_get_customer_data">Failed to fetch customer data</string>
+    <string name="failed_add_customer_data">Failed to Add customer data</string>
 
 
     <string name="description">Copyright 2023–24 \n Developed By:\n Technosoul Ventures Pvt Ltd</string>
@@ -275,6 +278,8 @@
     <string name="received_symbol">/-</string>
     <string name="received_qty">Qty</string>
     <string name="received_total">1000</string>
+    <string name="no_customer_found">No Customer Found</string>
+
     <string name="error_message_for_login">Please Enter Correct EmailId and Password !!</string>
     <string name="error_text">Error</string>
 
@@ -322,6 +327,7 @@
     <string name="str_update">UPDATE</string>
     <string name="success_update_delivery_boy">Delivery Boy updated successfully</string>
     <string name="success_update_product">Product updated successfully</string>
+    <string name="success_update_customer">Customer updated successfully</string>
 
 
 </resources>
