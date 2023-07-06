@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:fontFamily="@font/ubuntu_light"
             android:textSize="18sp"
             android:textColor="@color/black"

@@ -57,7 +57,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.3"
-                        android:text="Name :"
+                        android:text="@string/str_name"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -69,8 +69,11 @@
                         android:background="@drawable/edit_design"
                         android:maxLines="2"
                         android:padding="10dp"
-                        android:text="Saurabh Shinde"
-                        android:textSize="18sp" />
+                        android:text=""
+                        android:textSize="18sp"
+                        android:autofillHints=""
+                        android:inputType="textPersonName"
+                        tools:ignore="LabelFor" />
 
                 </LinearLayout>
 
@@ -85,7 +88,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.3"
-                        android:text="Address :"
+                        android:text="@string/str_address"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -99,8 +102,10 @@
                         android:maxLines="6"
                         android:minLines="4"
                         android:padding="10dp"
-                        android:text="Surawala Buinding Balewadi, Pune."
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:autofillHints=""
+                        android:inputType="text"
+                        tools:ignore="LabelFor" />
 
                 </LinearLayout>
 
@@ -116,12 +121,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_weight="1.3"
-                        android:text="Contact No :"
+                        android:text="@string/str_mobile_number"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
                     <EditText
-                        android:id="@+id/editContacNo"
+                        android:id="@+id/editContactNo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.7"
@@ -130,8 +135,9 @@
                         android:inputType="number"
                         android:minLines="1"
                         android:padding="10dp"
-                        android:text="8983515852"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:autofillHints=""
+                        tools:ignore="LabelFor" />
 
                 </LinearLayout>
 

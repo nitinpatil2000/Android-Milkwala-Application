@@ -31,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/simplesupplier" />
+                android:src="@drawable/simplesupplier"
+                android:contentDescription="@string/supplier_desc" />
 
             <LinearLayout
                 android:id="@+id/supplierLinear"
@@ -49,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:maxLines="1"
-                    android:text="Suppliers"
+                    android:text="@string/title_suppliers"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -60,7 +61,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
-                    android:text="0 Suppliers"
+                    android:text="@string/total_supplier_sub_text"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -78,7 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:contentDescription="@string/supplier_desc" />
 
             </LinearLayout>
 

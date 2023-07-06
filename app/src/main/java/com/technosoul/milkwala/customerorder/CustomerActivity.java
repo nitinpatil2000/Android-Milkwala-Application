@@ -17,7 +17,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.receiveProduct.ReceivedProductFragment;
 
 public class CustomerActivity extends AppCompatActivity {
     private Toolbar toolbar;

@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="2dp"
-            android:weightSum="5">
+            android:weightSum="5"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -109,7 +110,8 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:autofillHints="" />
 
                 <TextView
                     android:id="@+id/totalAmout"

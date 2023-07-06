@@ -234,7 +234,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_supplier_details" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_supplier_details"
+            android:contentDescription="@string/open_dialog_btn" />
 
         <LinearLayout
             android:id="@+id/supplierLineaLayout"

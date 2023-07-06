@@ -28,8 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.ReceivedProductAdapter;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.Supplier;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
@@ -52,7 +50,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ReceivedProductFragment extends Fragment {
-    Spinner receivedSpinner;
+    Spinner receivedSupplierSpinner;
     View line;
     ReceivedProductAdapter receivedProductAdapter;
     RecyclerView receivedRecyclerView;
@@ -79,7 +77,7 @@ public class ReceivedProductFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setTitle("Today's Received Products");
 
-        receivedSpinner = view.findViewById(R.id.receivedSpinner);
+        receivedSupplierSpinner = view.findViewById(R.id.receivedSupplierSpinner);
 //        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
 //        List<Supplier> suppliersList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
 
@@ -102,7 +100,7 @@ public class ReceivedProductFragment extends Fragment {
                         }
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, supplierNames);
-                        receivedSpinner.setAdapter(adapter);
+                        receivedSupplierSpinner.setAdapter(adapter);
 
                     }
                 }
@@ -121,7 +119,7 @@ public class ReceivedProductFragment extends Fragment {
         line = view.findViewById(R.id.line);
 
 
-        receivedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        receivedSupplierSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();

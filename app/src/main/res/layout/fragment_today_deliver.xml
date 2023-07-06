@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="11dp"
                 android:layout_weight="1."
-                android:text="Select Customer :"
+                android:text="@string/select_customer"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -78,7 +78,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/button_background_color"
                 android:gravity="center"
-                android:text="Add"
+                android:text="@string/add"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"

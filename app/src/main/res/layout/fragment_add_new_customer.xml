@@ -137,6 +137,7 @@
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
                     android:layout_weight="3.2"
+                    android:inputType= "phone"
                     android:autofillHints="phone"
                     android:hint="@string/hint_mobile_number" />
             </LinearLayout>
@@ -159,6 +160,7 @@
                     style="@style/commonInputEditText"
                     android:layout_width="0dp"
                     android:layout_weight="3.2"
+                    android:inputType= "phone"
                     android:autofillHints="phone"
                     android:hint="@string/hint_mobile_number" />
             </LinearLayout>

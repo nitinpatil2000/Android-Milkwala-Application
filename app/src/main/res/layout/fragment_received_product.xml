@@ -24,14 +24,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="11dp"
                 android:layout_weight="1.8"
-                android:text="Select Supplier :"
+                android:text="@string/select_supplier"
                 android:textColor="@color/black"
                 android:fontFamily="@font/ubuntu_light"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/receivedSpinner"
+                android:id="@+id/receivedSupplierSpinner"
                 android:layout_width="0dp"
                 android:layout_height="43dp"
                 android:layout_margin="10dp"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="Select Date"
                 android:layout_margin="10dp"
-                android:onClick="openDatePicker" />
+                 />
 
         </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/button_background_color"
                 android:gravity="center"
-                android:text="save"
+                android:text="@string/save"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"

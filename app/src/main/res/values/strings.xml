@@ -328,6 +328,35 @@
     <string name="success_update_delivery_boy">Delivery Boy updated successfully</string>
     <string name="success_update_product">Product updated successfully</string>
     <string name="success_update_customer">Customer updated successfully</string>
+    <string name="success_customer_order">Customer Order Added Successfully</string>
+
+
+<!--    Customer Order String-->
+    <string name="err_empty_customer_spinner">Please select the Customer from the dropdown list.</string>
+    <string name="err_empty_delivery_spinner">Please select the Delivery Person from the dropdown list.</string>
+    <string name="customer_txt">Customers</string>
+    <string name="select_customer_dialog">Select Supplier :</string>
+    <string name="select_product_customer_dialog">Select Products :</string>
+    <string name="btn_cancel_customer_dialog">Cancel</string>
+    <string name="btn_add_customer_dialog">Add</string>
+    <string name="space">-</string>
+    <string name="product_qty">Qty</string>
+    <string name="hint_product_amount">Amt</string>
+    <string name="about_us">About us</string>
+    <string name="about_us_name">App Name :</string>
+    <string name="submit_btn">Submit</string>
+    <string name="message">Message :</string>
+    <string name="open_dialog_btn">open_dialog_btn</string>
+    <string name="visibility_btn">visibility_btn</string>
+    <string name="search">Search</string>
+    <string name="add_product">Add Product</string>
+    <string name="select_supplier">Select Supplier :</string>
+    <string name="save">save</string>
+    <string name="add_route">Add Route</string>
+    <string name="select_customer">Select Customer :</string>
+    <string name="add">Add</string>
+    <string name="logo_image">Logo Image</string>
+    <string name="product_details_name">product_details_name</string>
 
 
 </resources>

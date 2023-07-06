@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/searchProdutctDetails"
+            android:id="@+id/searchProductDetails"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -26,12 +26,15 @@
             android:background="@drawable/scratch_edit_background"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:drawablePadding="10dp"
-            android:hint="Search"
+            android:hint="@string/search"
             android:paddingStart="20sp"
+            android:paddingEnd="20sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints=""
+            android:inputType="textPersonName" />
     </androidx.cardview.widget.CardView>
 
 
@@ -68,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/button_background_color"
         android:gravity="center"
-        android:text="Add Product"
+        android:text="@string/add_product"
         android:textSize = "22sp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1.8"
-            android:text="Select Supplier :"
+            android:text="@string/select_customer_dialog"
             android:textColor="@color/white"
             android:textSize="18sp"
            />
@@ -29,7 +29,6 @@
             android:layout_weight="2.2"
             android:background="@android:drawable/btn_dropdown" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1.8"
-            android:text="Select Products :"
+            android:text="@string/select_product_customer_dialog"
             android:textColor="@color/white"
             android:textSize="18sp"
             />
@@ -54,35 +53,36 @@
             android:layout_weight="2.2"
             android:background="@android:drawable/btn_dropdown" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:weightSum="4">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1.8"
-            android:text="Select Quantity :"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            />
-
-        <EditText
-            android:id="@+id/selectProductQuantity"
-            android:layout_width="0dp"
-            android:layout_height="43dp"
-            android:layout_margin="10dp"
-            android:hint="Enter the Quantity"
-            android:textColorHint="@color/white"
-            android:paddingStart="15dp"
-            android:inputType = "number"
-            android:layout_weight="2.2"
-            android:background="@drawable/receive_design_curve"
-            />
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:weightSum="4">-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_weight="1.8"-->
+<!--            android:text="Select Quantity :"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="18sp"-->
+<!--            />-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--        <EditText-->
+<!--            android:id="@+id/selectProductQuantity"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="43dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:hint="Enter the Quantity"-->
+<!--            android:textColorHint="@color/white"-->
+<!--            android:paddingStart="15dp"-->
+<!--            android:inputType = "number"-->
+<!--            android:layout_weight="2.2"-->
+<!--            android:background="@drawable/receive_design_curve"-->
+<!--            />-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,7 +98,7 @@
             android:layout_marginEnd="10dp"
             android:id="@+id/cancelCustomerDialogButton"
             android:layout_weight="1.8"
-            android:text="Cancel"
+            android:text="@string/btn_cancel_customer_dialog"
             android:backgroundTint="@color/teal_200"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.8"
             android:backgroundTint="@color/teal_200"
-            android:text="Add"
+            android:text="@string/btn_add_customer_dialog"
             android:textColor="@color/black"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"

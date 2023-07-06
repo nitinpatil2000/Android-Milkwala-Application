@@ -1,6 +1,9 @@
 package com.technosoul.milkwala.customerorder;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,26 +14,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOrderProductAdapter.ViewHolder> {
 
     Context context;
-    List<ProductDetails> productDetails;
-    List<String> customerData;
-    private int mClickedPosition;
+    ArrayList<ProductFromServer> productFromServers;
 
-    public CustomerOrderProductAdapter(Context context, ArrayList<ProductDetails> productDetails, List<String>customerData){
+    public CustomerOrderProductAdapter(Context context, ArrayList<ProductFromServer> productFromServers){
         this.context = context;
-        this.productDetails = productDetails;
-        this.customerData = customerData;
+        this.productFromServers = productFromServers;
     }
+
     public CustomerOrderProductAdapter(Context context){
         this.context = context;
     }
+
+
 
     @NonNull
     @Override
@@ -40,36 +42,82 @@ public class CustomerOrderProductAdapter extends RecyclerView.Adapter<CustomerOr
         return viewHolder;
     }
 
+//    public List<ProductFromServer> getProductFromServers() {
+//        return productFromServers;
+//    }
 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.cProductDetailsName.setText(productDetails.get(position).getProductDetailsName());
-        holder.cProductDetailsUnit.setText(productDetails.get(position).getProductDetailsMrp());
-        holder.cProductTotalAmount.setText(productDetails.get(position).getProductDetailsMrp());
+        holder.cProductDetailsName.setText(productFromServers.get(position).getProductName());
+        holder.cProductDetailsUnit.setText(productFromServers.get(position).getProductUnit());
+        holder.cProductTotalAmount.setText(String.valueOf(productFromServers.get(position).getProductMrpRetailerRate()));
+        holder.setProductListFromServer(productFromServers.get(position));
+
     }
 
 
     @Override
     public int getItemCount() {
-        return customerData.size();
+        return productFromServers.size();
     }
 
 
-    public void addItem(String selectItem) {
-        customerData.add(selectItem);
-        notifyItemInserted(productDetails.size () - 1);
+
+
+
+    public void addItem(ProductFromServer product) {
+        productFromServers.add(product);
+        notifyItemInserted(productFromServers.size () - 1);
+    }
+
+    public ArrayList<ProductFromServer> getProductFromServers() {
+        return productFromServers;
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView cProductDetailsName, cProductDetailsUnit;
-        EditText cProductTotalAmount;
+        EditText cProductTotalAmount, cProductEditQuantity;
+        ProductFromServer productListFromServer;
+
+//        public void setProductFromServer(ProductFromServer productListFromServer) {
+//            this.productListFromServer = productListFromServer;
+//        }
+
+        public void setProductListFromServer(ProductFromServer productListFromServer){
+            this.productListFromServer = productListFromServer;
+        }
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cProductDetailsName = itemView.findViewById(R.id.cProductDetailsName);
             cProductDetailsUnit = itemView.findViewById(R.id.cProductDetailsUnit);
             cProductTotalAmount = itemView.findViewById(R.id.customerTotalAmount);
+            cProductEditQuantity = itemView.findViewById(R.id.cProductEditQuantity);
+
+            cProductEditQuantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    String quantity = editable.toString();
+                    if(!TextUtils.isEmpty(quantity)){
+                        int receivedProductQuantity = Integer.parseInt(quantity);
+                        Float calculateReceivedTotalAmount = receivedProductQuantity * productListFromServer.getProductMrpRetailerRate();
+                        cProductTotalAmount.setText(String.valueOf(calculateReceivedTotalAmount));
+                    }
+                }
+            });
+
 
 
 //            String mrpString = receivedProductMrp.getText().toString();

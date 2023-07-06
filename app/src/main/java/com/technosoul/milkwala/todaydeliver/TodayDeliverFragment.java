@@ -91,7 +91,7 @@ public class TodayDeliverFragment extends Fragment {
 
                 Button cancelCustomerDialogBtn, addCustomerDialogBtn;
                 Spinner selectSupplierInCustomer, selectProductInSupplier;
-                EditText editProductsQuantity;
+//                EditText editProductsQuantity;
 
                 cancelCustomerDialogBtn = dialog.findViewById(R.id.cancelCustomerDialogButton);
                 addCustomerDialogBtn = dialog.findViewById(R.id.selectCustomerDialogBtn);
@@ -99,7 +99,7 @@ public class TodayDeliverFragment extends Fragment {
                 selectSupplierInCustomer = dialog.findViewById(R.id.selectSupplierInCustomer);
                 selectProductInSupplier = dialog.findViewById(R.id.selectProductBySupplier);
 
-                editProductsQuantity = dialog.findViewById(R.id.selectProductQuantity);
+//                editProductsQuantity = dialog.findViewById(R.id.selectProductQuantity);
 
                 ArrayList<String> supplierNameList = new ArrayList<>();
                 List<Supplier> suppliersList = (ArrayList<Supplier>) myDbHelper.supplierDao().getAllSuppliers();
@@ -162,12 +162,12 @@ public class TodayDeliverFragment extends Fragment {
 //                        for(ProductDetails productDetails : productDetailsList) {
 //                            int productDetailsId = productDetails.getProductDetailsId();
                         String productDetailsName = selectProductInSupplier.getSelectedItem().toString();
-                        long quantity = Long.parseLong(editProductsQuantity.getText().toString());
+//                        long quantity = Long.parseLong(editProductsQuantity.getText().toString());
 
                         ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
                         DeliveryProductsAdapter deliveryProductsAdapter = new DeliveryProductsAdapter(getContext(), productDetailsList);
                         addProductRecyclerView.setAdapter(deliveryProductsAdapter);
-                        productDetailsList.add(new ProductDetails(productDetailsName, quantity));
+//                        productDetailsList.add(new ProductDetails(productDetailsName, quantity));
                         deliveryProductsAdapter.notifyDataSetChanged();
                         dialog.dismiss();
 //                            String productName = customerProductName.getText().toString();

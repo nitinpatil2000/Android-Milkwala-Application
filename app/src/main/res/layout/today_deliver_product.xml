@@ -29,7 +29,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="7dp"
-                android:text="Ice Cream \nVeniilak"
+                android:text="@string/title_product_name"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
