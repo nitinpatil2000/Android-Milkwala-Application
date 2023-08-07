@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
-import com.technosoul.milkwala.db.DeliveryPerson;
-import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
 import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
 import com.technosoul.milkwala.utils.Constants;

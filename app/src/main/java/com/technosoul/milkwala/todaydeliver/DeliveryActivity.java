@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.accounts.auth.AuthTokenManager;
 import com.technosoul.milkwala.managers.SharedPreferenceManager;
+import com.technosoul.milkwala.myprofile.MyProfileActivity;
+import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.ui.auth.AuthActivity;
 import com.technosoul.milkwala.utils.Constants;
 
@@ -27,8 +29,10 @@ public class DeliveryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search_item:
-                // do your code
+            case R.id.my_profile:
+                Intent iMyProfile = new Intent(DeliveryActivity.this, MyProfileActivity.class);
+                startActivity(iMyProfile);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 return true;
             case R.id.upload_item:
                 // do your code
@@ -68,10 +72,9 @@ public class DeliveryActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.deliveryToolbar);
         setSupportActionBar(toolbar);
         loadFragment(new TodayDeliverFragment());
-
-
     }
 
+    
     @Override
     public void onBackPressed() {
         finish();

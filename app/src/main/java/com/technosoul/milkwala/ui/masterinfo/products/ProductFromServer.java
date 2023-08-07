@@ -8,6 +8,7 @@ public class ProductFromServer {
     private float productSupplierRate;
     private float productWholesaleRate;
     private float productMrpRetailerRate;
+    private boolean isChecked;
     private int supplierId;
 
 
@@ -32,6 +33,14 @@ public class ProductFromServer {
 
     public ProductFromServer(){
 
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public int getProductId() {

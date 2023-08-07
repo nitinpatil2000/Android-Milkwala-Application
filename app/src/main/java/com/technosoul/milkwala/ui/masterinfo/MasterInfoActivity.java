@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.ui.AbstractBaseActivity;
 import com.technosoul.milkwala.ui.masterinfo.customer.AddNewCustomerFragment;
+import com.technosoul.milkwala.ui.masterinfo.customer.AssignProductForCustomerFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerDetailsFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerListForRouteFragment;
 import com.technosoul.milkwala.ui.masterinfo.customer.RouteForCustomerFragment;
@@ -119,6 +120,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     }
 
 
+
     @Override
     public void addNewSupplier() {
         AddNewSupplierFragment addNewSupplierFragment = new AddNewSupplierFragment();
@@ -153,6 +155,14 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
         addNewRouteFragment.setMasterInfoListener(this);
         loadFragment(addNewRouteFragment);
     }
+
+    @Override
+    public void addNewProductForCustomer(int id) {
+        AssignProductForCustomerFragment assignProductForCustomerFragment = new AssignProductForCustomerFragment(id);
+        assignProductForCustomerFragment.setMasterInfoListener(this);
+        loadFragment(assignProductForCustomerFragment);
+    }
+
 
     @Override
     public void onBackToPreviousScreen() {

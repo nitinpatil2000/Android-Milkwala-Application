@@ -194,7 +194,7 @@ public class AddNewDeliverPersonFragment extends Fragment {
         });
 
         if (getActivity() != null) {
-            ((MasterInfoActivity)getActivity()).setActionBarTitle(getString(R.string.add_delivery_person_title));
+//            ((MasterInfoActivity) getActivity()).setActionBarTitle(getString(R.string.add_delivery_person_title));
         }
         
         return view;

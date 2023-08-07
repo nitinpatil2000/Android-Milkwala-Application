@@ -89,7 +89,6 @@ public class SupplierFragment extends Fragment {
                     if(supplierEntityList == null || supplierEntityList.isEmpty()){
                         Toast.makeText(getContext(), R.string.empty_supplier_list, Toast.LENGTH_SHORT).show();
                         tvEmptySupplierList.setVisibility(View.VISIBLE); // Show the empty text message
-
                     }else{
 //                        MyDbHelper myDbHelper = MyDbHelper.getDB(getContext());
 //                        ArrayList<Supplier> supplierArrayList = new ArrayList<>();
@@ -109,7 +108,6 @@ public class SupplierFragment extends Fragment {
                 }else{
                     Toast.makeText(getContext(), R.string.failed_get_supplier_data, Toast.LENGTH_SHORT).show();
                     tvEmptySupplierList.setVisibility(View.VISIBLE); // Show the empty text message if data retrieval failed
-
                 }
             }
 

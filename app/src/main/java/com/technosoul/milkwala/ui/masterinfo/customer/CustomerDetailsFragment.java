@@ -42,6 +42,7 @@ public class CustomerDetailsFragment extends Fragment {
     CustomerFromServer customerFromServer;
     FloatingActionButton btnUpdateCustomerDetails;
     ArrayList<String> customerTypeNamesArrayList = new ArrayList<>();
+    Button assignProductForCustomer;
 
 
     public CustomerDetailsFragment(int customerId, String customerName) {
@@ -58,6 +59,7 @@ public class CustomerDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_details, container, false);
+
         TextView tvCustomerName = view.findViewById(R.id.tvCustomerName);
         TextView tvCustomerAdd = view.findViewById(R.id.tvCustomerAddress);
         TextView tvCustomerEmail = view.findViewById(R.id.txtCustomerEmail);
@@ -181,6 +183,15 @@ public class CustomerDetailsFragment extends Fragment {
 
             });
             dialog.show();
+        });
+
+
+        assignProductForCustomer = view.findViewById(R.id.assignProductForCustomer);
+        assignProductForCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                masterInfoListener.addNewProductForCustomer(customerId);
+            }
         });
 
         deleteCustomerBtn.setOnClickListener(view1 -> {

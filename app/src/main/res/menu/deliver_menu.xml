@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/search_item"
-        android:title="Search" />
+        android:id="@+id/my_profile"
+        android:title="My Profile" />
     <item
         android:id="@+id/upload_item"
         android:title="Upload" />

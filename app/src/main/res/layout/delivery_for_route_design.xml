@@ -59,8 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
-                    android:maxLines="1"
-                    android:text="@string/total_deliver_for_route_sub_text"
+                    android:maxLines="2"
+                    android:text="0 Routes"
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
 

@@ -157,7 +157,6 @@
     <string name="empty_route_list_message">Please Add A Route.\n To Add, please touch on the Add Button on Bottom.</string>
 
 
-
     <!--  Delivery person strings  -->
     <string name="hint_delivery_name">Enter Delivery person name</string>
     <string name="hint_delivery_email">Enter Delivery person email</string>
@@ -331,7 +330,7 @@
     <string name="success_customer_order">Customer Order Added Successfully</string>
 
 
-<!--    Customer Order String-->
+    <!--    Customer Order String-->
     <string name="err_empty_customer_spinner">Please select the Customer from the dropdown list.</string>
     <string name="err_empty_delivery_spinner">Please select the Delivery Person from the dropdown list.</string>
     <string name="customer_txt">Customers</string>

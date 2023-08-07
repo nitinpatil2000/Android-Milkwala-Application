@@ -10,18 +10,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
+import com.technosoul.milkwala.customerorder.CustomerOrder;
 import com.technosoul.milkwala.db.ProductDetails;
+import com.technosoul.milkwala.ui.masterinfo.products.ProductFromServer;
 
 import java.util.ArrayList;
 
 public class DeliveryProductsAdapter extends RecyclerView.Adapter<DeliveryProductsAdapter.ViewHolder>{
     Context context;
-    ArrayList<ProductDetails> productDetailsList;
+    ArrayList<ProductFromServer> productFromServers;
 
-    public DeliveryProductsAdapter(Context context, ArrayList<ProductDetails> productDetailsList){
+    public DeliveryProductsAdapter(Context context, ArrayList<ProductFromServer> productFromServers){
         this.context = context;
-        this.productDetailsList = productDetailsList;
+        this.productFromServers = productFromServers;
     }
+
+    ArrayList<ProductFromServer> getProductListFromServers(){
+        return productFromServers;
+    }
+
 
     @NonNull
     @Override
@@ -34,24 +41,26 @@ public class DeliveryProductsAdapter extends RecyclerView.Adapter<DeliveryProduc
 
     @Override
     public void onBindViewHolder(@NonNull DeliveryProductsAdapter.ViewHolder holder, int position) {
-        holder.customerProductName.setText(productDetailsList.get(position).getProductDetailsName());
-        holder.customerProductUnit.setText(productDetailsList.get(position).getProductDetailsUnit());
+        holder.deliveryBoyProductName.setText(productFromServers.get(position).getProductName());
+        holder.deliveryBoyProductUnit.setText(productFromServers.get(position).getProductUnit());
+        holder.deliveryBoyProductAmount.setText(String.valueOf(productFromServers.get(position).getProductMrpRetailerRate()));
 
 
     }
 
     @Override
     public int getItemCount() {
-        return productDetailsList.size();
+        return productFromServers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView customerProductName, customerProductUnit;
+        TextView deliveryBoyProductName, deliveryBoyProductUnit, deliveryBoyProductAmount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            customerProductName = itemView.findViewById(R.id.customerProductsName);
-            customerProductUnit = itemView.findViewById(R.id.customerProductUnit);
+            deliveryBoyProductName = itemView.findViewById(R.id.deliveryBoyProductName);
+            deliveryBoyProductUnit = itemView.findViewById(R.id.deliveryBoyProductUnit);
+            deliveryBoyProductAmount = itemView.findViewById(R.id.deliveryBoyProductAmount);
         }
     }
 }

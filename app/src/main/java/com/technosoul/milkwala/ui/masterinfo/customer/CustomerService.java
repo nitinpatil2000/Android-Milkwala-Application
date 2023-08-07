@@ -19,6 +19,9 @@ public interface CustomerService {
     @POST("/addcustomer")
     Call<CustomerFromServer> createCustomer(@Body CustomerFromServer customerFromServer);
 
+    @POST("/productforcustomer")
+    Call<ProductForCustomerServer> createProductForCustomer(@Body ProductForCustomerServer productForCustomerServer);
+
     @GET("/customer/{customerId}")
     Call<CustomerFromServer> getAllCustomersById(@Path("customerId") int customerId);
 

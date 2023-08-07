@@ -2,7 +2,6 @@ package com.technosoul.milkwala.ui.masterinfo.customer;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,20 +15,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
-import com.technosoul.milkwala.ui.masterinfo.route.RouteFromServer;
 import com.technosoul.milkwala.utils.Constants;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
-import okhttp3.Request;
-import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,7 +34,6 @@ import retrofit2.Retrofit;
 public class AddNewCustomerFragment extends Fragment {
     private EditText etCustomerName;
     private EditText etCustomerAddress;
-    private EditText etCustomerCity;
     private EditText etCustomerContact1;
     private EditText etCustomerContact2;
     private Spinner spCustomerType;
@@ -73,6 +68,7 @@ public class AddNewCustomerFragment extends Fragment {
         Button btnAddNewCustomer = view.findViewById(R.id.btnAddNewCustomer);
 
 
+
         customerTypeArrayList.add(Constants.RETAILER);
         customerTypeArrayList.add(Constants.WHOLESALE);
 
@@ -95,7 +91,6 @@ public class AddNewCustomerFragment extends Fragment {
         });
 
 
-//        MyDbHelper myDbHelper = MyDbHelper.getDB(getActivity());
         btnAddNewCustomer.setOnClickListener(view1 -> {
             String customerName = etCustomerName.getText().toString();
             if (TextUtils.isEmpty(customerName)) {
@@ -177,31 +172,36 @@ public class AddNewCustomerFragment extends Fragment {
             createCustomerFromServer.enqueue(new Callback<CustomerFromServer>() {
                 @Override
                 public void onResponse(@NonNull Call<CustomerFromServer> call, @NonNull Response<CustomerFromServer> response) {
-                    CustomerFromServer customerListFromServer = response.body();
-                    if (customerListFromServer != null) {
-                        Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
-                        if (masterInfoListener != null) {
-                            masterInfoListener.onBackToPreviousScreen();
-                        }
-                    } else {
-//                        Toast.makeText(getContext(), R.string.failed_add_customer_data, Toast.LENGTH_SHORT).show();
-                        Request request = call.request();
-                        try {
-                            Buffer buffer = new Buffer();
-                            Objects.requireNonNull(request.body()).writeTo(buffer);
-                            String requestBody = buffer.readUtf8();
-                            Log.d("API Request Body", requestBody);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+//                    if (isAdded()) {
+                        CustomerFromServer customerListFromServer = response.body();
+                        if (customerListFromServer != null) {
+                            Toast.makeText(getContext(), R.string.msg_customer_added_success, Toast.LENGTH_SHORT).show();
+                            if (masterInfoListener != null) {
+                                masterInfoListener.onBackToPreviousScreen();
+                            }
+                        } else {
+                            Toast.makeText(getContext(), R.string.failed_add_customer_data, Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
+//                }
+//                        Request request = call.request();
+//                        try {
+//                            Buffer buffer = new Buffer();
+//                            Objects.requireNonNull(request.body()).writeTo(buffer);
+//                            String requestBody = buffer.readUtf8();
+//                            Log.d("API Request Body", requestBody);
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
 
                 @Override
                 public void onFailure(@NonNull Call<CustomerFromServer> call, @NonNull Throwable t) {
                     t.printStackTrace();
                 }
             });
+
+
 
             if (masterInfoListener != null) {
                 masterInfoListener.onBackToPreviousScreen();

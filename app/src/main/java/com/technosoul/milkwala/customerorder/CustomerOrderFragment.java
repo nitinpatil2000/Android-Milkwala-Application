@@ -18,6 +18,7 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -44,10 +45,14 @@ import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierService;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import okhttp3.Request;
@@ -60,12 +65,16 @@ import retrofit2.Retrofit;
 public class CustomerOrderFragment extends Fragment {
     Spinner receivedCustomerSpinner, receivedDelivery;
     TextView savedDate;
-    ImageView selectedDate;
+    ImageView selectedDateImageView;
+    private Calendar calendar;
     CustomerOrderProductAdapter customerOrderProductAdapter;
     RecyclerView recyclerReceivedCustomerView;
     FloatingActionButton btnOpenDialog;
     Button saveCustomerOrder;
     TextView txtCustomerOrderTotalAmount;
+
+    private Calendar selectedCalender = Calendar.getInstance();
+
 
     private List<CustomerFromServer> customerFromServers;
     private List<DeliveryFromServer> deliveryFromServers;
@@ -280,7 +289,9 @@ public class CustomerOrderFragment extends Fragment {
 //                    }
                     String selectItem = selectProductInSupplier.getSelectedItem().toString();
                     ProductFromServer selectedProduct = getSelectedProduct(selectItem);
-                    if (selectedProduct != null) {
+                    if (selectedProduct == null) {
+                        Toast.makeText(getContext(), R.string.empty_product_list, Toast.LENGTH_SHORT).show();
+                    }else{
                         customerOrderProductAdapter.addItem(selectedProduct);
                         dialog.dismiss();
                     }
@@ -300,9 +311,21 @@ public class CustomerOrderFragment extends Fragment {
         });
 
         //select the date
-//        selectedDate = view.findViewById(R.id.selectedDate);
-//        savedDate = view.findViewById(R.id.savedDate);
-//        selectedDate.setOnClickListener(view12 -> showDatePicker());
+        savedDate = view.findViewById(R.id.savedDate);
+        selectedDateImageView = view.findViewById(R.id.selectedDate);
+        calendar = Calendar.getInstance();
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        savedDate.setText(sdf.format(calendar.getTime()));
+
+        selectedDateImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "open dialog box", Toast.LENGTH_SHORT).show();
+                showDatePickerDialog();
+            }
+        });
 
 
         txtCustomerOrderTotalAmount = view.findViewById(R.id.txtCustomerOrderTotalAmount);
@@ -318,6 +341,7 @@ public class CustomerOrderFragment extends Fragment {
                     View itemView = viewHolder.itemView;
                     EditText quantity = itemView.findViewById(R.id.cProductEditQuantity);
                     String editQuantity = quantity.getText().toString();
+                    Date selectedDate = new Date(selectedCalender.getTimeInMillis());
                     if(TextUtils.isEmpty(editQuantity)){
                         Toast.makeText(getContext(), "Please Enter the quantity for item :" + getProductListFromServer.getProductName(), Toast.LENGTH_SHORT).show();
                         quantity.requestFocus();
@@ -358,12 +382,21 @@ public class CustomerOrderFragment extends Fragment {
                         }
                     }
 
+                    String dateString = "2023-10-10";
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+                    Date date = null;
+                    try {
+                        date = new Date(simpleDateFormat.parse(dateString).getTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     CustomerOrder customerOrder = new CustomerOrder();
-                    customerOrder.setProductId(productId);
-                    customerOrder.setCustomerId(customerId);
-                    customerOrder.setDeliveryPersonId(deliveryPersonId);
-                    customerOrder.setOrderedQuantity(receivedCustomerQuantity);
-//                    customerOrder.setCustomerOrderDate(selectedLocalDate);
+                        customerOrder.setProductId(productId);
+                        customerOrder.setCustomerId(customerId);
+                        customerOrder.setDeliveryPersonId(deliveryPersonId);
+                        customerOrder.setOrderedQuantity(receivedCustomerQuantity);
+                        customerOrder.setCustomerOrderDate(date);
 
                     CustomerOrderService customerOrderService = retrofit.create(CustomerOrderService.class);
                     Call<CustomerOrder> receivedCustomerOrder = customerOrderService.createCustomerOrder(customerOrder);
@@ -424,6 +457,28 @@ public class CustomerOrderFragment extends Fragment {
         return view;
     }
 
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR,year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        String formattedDate = sdf.format(calendar.getTime());
+                        savedDate.setText(formattedDate);
+                        System.out.println(formattedDate);
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
 
 }
 

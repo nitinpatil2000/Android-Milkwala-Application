@@ -13,19 +13,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.technosoul.milkwala.R;
 import com.technosoul.milkwala.adapters.ProductListViewPerSupplierAdapter;
-import com.technosoul.milkwala.db.MyDbHelper;
-import com.technosoul.milkwala.db.ProductDetails;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoActivity;
 import com.technosoul.milkwala.ui.masterinfo.MasterInfoListener;
 import com.technosoul.milkwala.ui.masterinfo.OnItemSelected;
-import com.technosoul.milkwala.ui.masterinfo.suppliers.SupplierFromServer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +35,11 @@ import retrofit2.Retrofit;
 
 public class ProductListPerSupplierFragment extends Fragment {
     private final int supplierId;
-    private String supplierName;
+    private final String supplierName;
     ProductListViewPerSupplierAdapter productListViewPerSupplierAdapter;
     RecyclerView productListPerSupplierRecyclerView;
 //    ArrayList<ProductDetails> productDetailsList;
-    ArrayList<ProductFromServer>productFromServers;
+//    ArrayList<ProductFromServer>productFromServers;
     TextView addProductTxt;
     EditText searchProductDetails;
     private MasterInfoListener listener;
@@ -83,7 +81,7 @@ public class ProductListPerSupplierFragment extends Fragment {
         Call<List<ProductFromServer>> getProductsFromSupplier = productService.getProductsBySupplierId(supplierId);
         getProductsFromSupplier.enqueue(new Callback<List<ProductFromServer>>() {
             @Override
-            public void onResponse(Call<List<ProductFromServer>> call, Response<List<ProductFromServer>> response) {
+            public void onResponse(@NonNull Call<List<ProductFromServer>> call, @NonNull Response<List<ProductFromServer>> response) {
                 if(response.isSuccessful()){
                     List<ProductFromServer> productFromServers = response.body();
                     if(productFromServers == null || productFromServers.isEmpty()){
@@ -102,7 +100,7 @@ public class ProductListPerSupplierFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<ProductFromServer>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<ProductFromServer>> call, @NonNull Throwable t) {
                 t.printStackTrace();
 
             }
@@ -121,7 +119,7 @@ public class ProductListPerSupplierFragment extends Fragment {
         addProductTxt = view.findViewById(R.id.addProductTxt);
         addProductTxt.setOnClickListener(view1 -> listener.addNewProduct(supplierId));
 
-        searchProductDetails = view.findViewById(R.id.searchProdutctDetails);
+        searchProductDetails = view.findViewById(R.id.searchProductDetails);
         searchProductDetails.clearFocus();
         searchProductDetails.addTextChangedListener(new TextWatcher() {
             @Override

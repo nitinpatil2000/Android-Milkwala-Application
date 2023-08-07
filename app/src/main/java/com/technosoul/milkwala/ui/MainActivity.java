@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
                 int id = item.getItemId();
                 if (id == R.id.menu_dashboard) {
                     loadFragment(new AdminDashboardFragment());
@@ -85,11 +83,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(iCustomerIntent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
-                } else if (id == R.id.menu_profile) {
-                    Intent iMyProfile = new Intent(MainActivity.this, MyProfileActivity.class);
-                    startActivity(iMyProfile);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
                 } else if (id == R.id.menu_log_out) {
 //                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
 //                    SharedPreferences.Editor editor = pref.edit();
@@ -106,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent iAboutIntent = new Intent(MainActivity.this, AboutAppActivity.class);
                     startActivity(iAboutIntent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

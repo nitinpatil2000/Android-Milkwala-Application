@@ -14,8 +14,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
-import com.technosoul.milkwala.db.Customer;
-import com.technosoul.milkwala.db.MyDbHelper;
 import com.technosoul.milkwala.ui.MainActivity;
 import com.technosoul.milkwala.ui.masterinfo.ApiRetrofitService;
 import com.technosoul.milkwala.ui.masterinfo.customer.CustomerFromServer;

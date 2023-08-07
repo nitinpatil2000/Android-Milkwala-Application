@@ -26,11 +26,6 @@
         android:title="@string/title_today_distribution"
         app:showAsAction="collapseActionView" />
 
-    <item
-        android:id="@+id/menu_profile"
-        android:icon="@drawable/user"
-        android:title="@string/title_my_profile"
-        app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/menu_about"
