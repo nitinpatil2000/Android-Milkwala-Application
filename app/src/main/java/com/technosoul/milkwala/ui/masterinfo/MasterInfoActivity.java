@@ -47,6 +47,7 @@ public class MasterInfoActivity extends AbstractBaseActivity implements MasterIn
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_info);
+
         MasterInfoFragment masterInfoFragment = new MasterInfoFragment();
         masterInfoFragment.setListener(this);
 
